@@ -16,4 +16,5 @@ include_once('geodirectory-functions/cat-meta-functions/cat_meta.php');
 include_once('geodirectory-functions/map-functions/map_functions.php');
 //include_once('geodirectory-functions/shortcode_functions.php');
 include_once('geodirectory-functions/location_functions.php');
+include_once('geodirectory-functions/count_functions.php');
 include_once('geodirectory-functions/google_analytics.php');
