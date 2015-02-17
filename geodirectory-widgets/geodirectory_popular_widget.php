@@ -784,6 +784,10 @@ class geodir_popular_postview extends WP_Widget {
 
 register_widget( 'geodir_popular_postview' );
 
+function geodir_sort_by_count($a, $b)
+{
+    return $a['count'] - $b['count'];
+}
 
 function geodir_count_posts_by_term($data, $term) {
 	if ($data) {
