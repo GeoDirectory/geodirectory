@@ -2,6 +2,15 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Term and review count functions
 /*-----------------------------------------------------------------------------------*/
+function has_lm_plugin_enabled() {
+    if( is_plugin_active('geodir_location_manager/geodir_location_manager.php') ){
+        $multi_loc = true;
+    } else {
+        $multi_loc = false;
+    }
+    return $multi_loc;
+}
+
 function geodir_filter_listings_where_set_loc( $term_id, $taxonomy, $post_type, $location, $count_type ) {
 	global $wpdb, $plugin_prefix;
 
@@ -55,7 +64,7 @@ function geodir_filter_listings_where_set_loc( $term_id, $taxonomy, $post_type, 
 }
 
 function geodir_insert_term_count_by_loc($location_name, $location_type, $count_type, $row_id=null, $multi_loc=true) {
-	global $wpdb;
+    global $wpdb;
 	$post_types = geodir_get_posttypes();
 	$term_array = array();
 	foreach($post_types as $post_type) {
@@ -101,15 +110,11 @@ function geodir_insert_term_count_by_loc($location_name, $location_type, $count_
 	return $term_array;
 }
 
-function geodir_get_loc_term_count($count_type = 'term_count', $location_name=null, $location_type=null, $force_update=false) {
+function geodir_get_loc_term_count($count_type = 'term_count', $location_name=null, $location_type=null, $force_update=false, $custom_table=true) {
 	//accepted count type: term_count, review_count
 	global $wpdb;
 
-	if( is_plugin_active('geodir_location_manager/geodir_location_manager.php') ){
-		$multi_loc = true;
-	} else {
-		$multi_loc = false;
-	}
+	$multi_loc = has_lm_plugin_enabled();
 
 	if (!$location_name || !$location_type) {
 		$loc = array();
@@ -134,9 +139,9 @@ function geodir_get_loc_term_count($count_type = 'term_count', $location_name=nu
 		}
 	}
 
-	if ($location_name && $location_type) {
+    if ($location_name && $location_type) {
 
-		if($multi_loc) {
+		if($multi_loc && $custom_table) {
 			$sql = $wpdb->prepare( "SELECT * FROM " . GEODIR_TERM_META . " WHERE location_type=%s AND location_name=%s LIMIT 1", array( $location_type, $location_name ) );
 			$row = $wpdb->get_row( $sql );
 
@@ -159,13 +164,14 @@ function geodir_get_loc_term_count($count_type = 'term_count', $location_name=nu
 			$array = get_option('geodir_'.$count_type.'_'.$location_type);
 			if ($array) {
 				if ( $force_update ) {
-					return geodir_insert_term_count_by_loc( $location_name, $location_type, $count_type, $multi_loc=false );
+					return geodir_insert_term_count_by_loc( $location_name, $location_type, $count_type, null, false );
 				} else {
 					$data = unserialize( $array );
+                    var_dump($data);
 					return $data;
 				}
 			} else {
-				return geodir_insert_term_count_by_loc( $location_name, $location_type, $count_type, $multi_loc=false );
+				return geodir_insert_term_count_by_loc( $location_name, $location_type, $count_type, null, false );
 			}
 		}
 	}
@@ -179,7 +185,7 @@ function geodir_term_post_count_update($post_id, $post) {
 
 	if( !wp_is_post_revision( $post_id ) && isset($post->post_type) && in_array($post->post_type,$geodir_posttypes )) {
 
-		//if ( !wp_verify_nonce( $_POST['geodir_post_info_noncename'], plugin_basename( __FILE__ ) ) )
+		//if ( !wp_verify_nonce( $_POST['geodir_post_info_noncename'], 'geodirectory/geodirectory-admin/admin_functions.php' ) )
 		//    return;
 
 		$country = isset($_REQUEST['post_country']) ? $_REQUEST['post_country'] : '';
@@ -203,6 +209,30 @@ function geodir_term_post_count_update($post_id, $post) {
 }
 add_action( 'save_post', 'geodir_term_post_count_update', 100, 2);
 
+function geodir_term_count_update_on_loc_change() {
+
+    if(isset($_REQUEST['is_default']) && $_REQUEST['is_default'] == '1') {
+        $country = isset($_REQUEST['country']) ? $_REQUEST['country'] : '';
+        $region = isset($_REQUEST['region']) ? $_REQUEST['region'] : '';
+        $city = isset($_REQUEST['city']) ? $_REQUEST['city'] : '';
+        $country_slug = create_location_slug($country);
+        $region_slug = create_location_slug($region);
+        $city_slug = create_location_slug($city);
+
+        $loc = array();
+        $loc['gd_city'] = $country_slug;
+        $loc['gd_region'] = $region_slug;
+        $loc['gd_country'] = $city_slug;
+
+        foreach($loc as $key => $value) {
+            if ($value != '') {
+                geodir_get_loc_term_count('term_count', $value, $key, true, false);
+                geodir_get_loc_term_count('review_count', $value, $key, true, false);
+            }
+        }
+    }
+}
+add_action('geodir_update_options_default_location_settings', 'geodir_term_count_update_on_loc_change', 100);
 
 function geodir_term_review_count_update($post_id) {
 	$geodir_posttypes = geodir_get_posttypes();

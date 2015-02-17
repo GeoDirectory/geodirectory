@@ -755,7 +755,7 @@ class geodir_popular_postview extends WP_Widget {
 			function geodir_change_category_list(obj, selected) {
 				var post_type = obj.value;
 
-				var ajax_url = '<?php echo geodir_get_ajax_url(); ?>'
+				var ajax_url = '<?php echo geodir_get_ajax_url(); ?>';
 
 				var myurl = ajax_url + "&geodir_ajax=admin_ajax&ajax_action=get_cat_dl&post_type=" + post_type + "&selected=" + selected;
 
