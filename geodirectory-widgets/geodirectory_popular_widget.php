@@ -29,7 +29,13 @@ class geodir_popular_post_category extends WP_Widget {
 		$gd_post_type = geodir_get_current_posttype();
 		$post_types = geodir_get_posttypes();
 
-		$data = geodir_get_loc_term_count('term_count');
+        $multi_loc = has_lm_plugin_enabled();
+        if($multi_loc) {
+            $data = geodir_get_loc_term_count('term_count');
+        } else {
+            $data = null;
+        }
+
 
 		$output = '';
 		$term_count = 0;
@@ -800,3 +806,42 @@ function geodir_count_posts_by_term($data, $term) {
 		return $term->count;
 	}
 }
+
+function geodir_count_reviews_by_term_id($term_id, $taxonomy, $post_type) {
+
+    global $wpdb, $plugin_prefix;
+    $detail_table =  $plugin_prefix . $post_type . '_detail';
+
+    $sql =  "SELECT rating_count FROM " . $detail_table . " WHERE rating_count > 0 AND FIND_IN_SET(" . $term_id . ", ".$taxonomy.")";
+    $rows = $wpdb->get_results($sql);
+    $count = 0;
+    foreach($rows as $row) {
+        $count = $count + (int) $row->rating_count;
+    }
+    return $count;
+}
+
+function geodir_count_reviews_by_terms() {
+
+    $post_types = geodir_get_posttypes();
+    $term_array = array();
+    foreach($post_types as $post_type) {
+
+        $taxonomy = geodir_get_taxonomies($post_type);
+        $taxonomy = $taxonomy[0];
+
+        $args = array(
+            'hide_empty' => false
+        );
+
+        $terms = get_terms($taxonomy, $args);
+        foreach ($terms as $term) {
+            $count = geodir_count_reviews_by_term_id($term->term_id, $taxonomy, $post_type);
+            $term_array[$term->term_id] = $count;
+        }
+    }
+    $data = serialize($term_array);
+    update_option('geodir_global_review_count', $data);
+}
+
+geodir_count_reviews_by_terms();
