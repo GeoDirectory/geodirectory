@@ -33,6 +33,9 @@ class geodir_popular_post_category extends WP_Widget {
 
 		$output = '';
 		$term_count = 0;
+
+        $default_icon_url = geodir_plugin_url().'/geodirectory-functions/map-functions/icons/pin.png';
+
 		foreach($post_types as $post_type) {
 
 			if (is_single()) {
@@ -75,10 +78,15 @@ class geodir_popular_post_category extends WP_Widget {
 					$geodir_post_category_str[] = array('posttype' => $post_type, 'termid' => $term->term_id);
 
 					$class_row = $term_count > $categ_limit ? 'geodir-pcat-hide geodir-hide' : 'geodir-pcat-show';
-					$term_icon_url = get_tax_meta($term->term_id, 'ct_cat_icon', false, $post_type);
+					$term_icon = get_tax_meta($term->term_id, 'ct_cat_icon', false, $post_type);
+                    if($term_icon) {
+                        $term_icon_url = $term_icon["src"];
+                    } else {
+                        $term_icon_url = $default_icon_url;
+                    }
 					$total_post = geodir_count_posts_by_term($data, $term);
 
-					$html = '<li class="' . $class_row . '"><a href="' . get_term_link($term, $term->taxonomy) . '"><img class="" style="height:20px;vertical-align:middle;" src="' . $term_icon_url["src"] . '"/> ';
+					$html = '<li class="' . $class_row . '"><a href="' . get_term_link($term, $term->taxonomy) . '"><img class="" style="height:20px;vertical-align:middle;" src="' . $term_icon_url . '"/> ';
 					$html .= ucwords($term->name) . ' (<span class="geodir_link_span geodir_category_class_' . $post_type . '_' . $term->term_id . '" >' . $total_post . '</span>) ';
 					$html .= '</a></li>';
 
