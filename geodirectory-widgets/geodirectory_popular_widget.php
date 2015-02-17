@@ -56,7 +56,8 @@ class geodir_popular_post_category extends WP_Widget {
 			$args = array(
 				'order_by' => $list_sort,
 				'order' => 'ASC',
-				'pad_counts' => true
+				'pad_counts' => true,
+                'hide_empty' => false,
 			);
 
 			$terms = get_terms($taxonomy, $args);

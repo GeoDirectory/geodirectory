@@ -62,7 +62,11 @@ function geodir_insert_term_count_by_loc($location_name, $location_type, $count_
 		$taxonomy = geodir_get_taxonomies($post_type);
 		$taxonomy = $taxonomy[0];
 
-		$terms = get_terms($taxonomy);
+        $args = array(
+            'hide_empty' => false
+        );
+
+		$terms = get_terms($taxonomy, $args);
 		foreach ($terms as $term) {
 			$count = geodir_filter_listings_where_set_loc($term->term_id, $taxonomy, $post_type, $location_name, $count_type);
 			$term_array[$term->term_id] = $count;
