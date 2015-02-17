@@ -1427,7 +1427,15 @@ function geodir_googlemap_script_extra_details_page($extra){
 }
 add_filter( 'geodir_googlemap_script_extra', 'geodir_googlemap_script_extra_details_page', 101,1 );
 
-
+//location manager check
+function has_lm_plugin_enabled() {
+    if( is_plugin_active('geodir_location_manager/geodir_location_manager.php') ){
+        $enabled = true;
+    } else {
+        $enabled = false;
+    }
+    return $enabled;
+}
 
 
 
