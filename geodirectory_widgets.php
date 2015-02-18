@@ -742,6 +742,7 @@ register_widget('geodir_advance_search_widget');
 	include_once ( 'geodirectory-widgets/listing_map_widget.php');
 	include_once ('geodirectory-widgets/geodirectory_reviews_widget.php');
 	include_once ('geodirectory-widgets/geodirectory_related_listing_widget.php');
+    include_once ('geodirectory-widgets/geodirectory_bestof_widget.php');
 }
 
 }
