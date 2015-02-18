@@ -812,7 +812,7 @@ function geodir_count_reviews_by_term_id($term_id, $taxonomy, $post_type) {
     global $wpdb, $plugin_prefix;
     $detail_table =  $plugin_prefix . $post_type . '_detail';
 
-    $sql =  "SELECT rating_count FROM " . $detail_table . " WHERE rating_count > 0 AND FIND_IN_SET(" . $term_id . ", ".$taxonomy.")";
+    $sql =  "SELECT rating_count FROM " . $detail_table . " WHERE post_status = 'publish' AND rating_count > 0 AND FIND_IN_SET(" . $term_id . ", ".$taxonomy.")";
     $rows = $wpdb->get_results($sql);
     $count = 0;
     foreach($rows as $row) {
@@ -821,27 +821,43 @@ function geodir_count_reviews_by_term_id($term_id, $taxonomy, $post_type) {
     return $count;
 }
 
-function geodir_count_reviews_by_terms() {
+function geodir_count_reviews_by_terms($force_update=false) {
 
-    $post_types = geodir_get_posttypes();
-    $term_array = array();
-    foreach($post_types as $post_type) {
+    $option_data = get_option('geodir_global_review_count');
 
-        $taxonomy = geodir_get_taxonomies($post_type);
-        $taxonomy = $taxonomy[0];
+    if(!$option_data OR $force_update) {
+        $post_types = geodir_get_posttypes();
+        $term_array = array();
+        foreach ($post_types as $post_type) {
 
-        $args = array(
-            'hide_empty' => false
-        );
+            $taxonomy = geodir_get_taxonomies($post_type);
+            $taxonomy = $taxonomy[0];
 
-        $terms = get_terms($taxonomy, $args);
-        foreach ($terms as $term) {
-            $count = geodir_count_reviews_by_term_id($term->term_id, $taxonomy, $post_type);
-            $term_array[$term->term_id] = $count;
+            $args = array(
+                'hide_empty' => false
+            );
+
+            $terms = get_terms($taxonomy, $args);
+            foreach ($terms as $term) {
+                $count = geodir_count_reviews_by_term_id($term->term_id, $taxonomy, $post_type);
+                $term_array[$term->term_id] = $count;
+            }
         }
+        $data = serialize($term_array);
+        update_option('geodir_global_review_count', $data);
+        //clear cache
+        wp_cache_delete('geodir_global_review_count');
+        return $term_array;
+    } else {
+        $term_array = unserialize($option_data);
+        return $term_array;
     }
-    $data = serialize($term_array);
-    update_option('geodir_global_review_count', $data);
 }
 
-geodir_count_reviews_by_terms();
+function geodir_term_review_count_force_update() {
+    geodir_count_reviews_by_terms(true);
+    return true;
+}
+add_action( 'geodir_update_postrating', 'geodir_term_review_count_force_update', 100);
+add_action( 'transition_post_status',  'geodir_term_review_count_force_update', 100 );
+var_dump(geodir_count_reviews_by_terms());

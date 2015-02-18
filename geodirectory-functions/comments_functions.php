@@ -263,7 +263,9 @@ function geodir_update_postrating($post_id = 0, $post_type='' , $delete = false 
 				
 				update_post_meta( $post_id, 'overall_rating', $post_newrating );
 				update_post_meta( $post_id, 'rating_count', $post_newrating_count );
-			} 
+			}
+
+    do_action('geodir_update_postrating');
 	
 }
 
