@@ -21,12 +21,15 @@ class geodir_bestof_widget extends WP_Widget {
         } else {
             $cur_location = '';
         }
+        $cur_location = apply_filters( 'bestof_widget_cur_location', $cur_location );
+
         $title = empty( $instance['title'] ) ? __( 'Best of '.get_bloginfo( 'name' ). $cur_location, GEODIRECTORY_TEXTDOMAIN ) : apply_filters( 'bestof_widget_title', __( $instance['title'],GEODIRECTORY_TEXTDOMAIN ) );
         $post_type = empty( $instance['post_type'] ) ? 'gd_place' : apply_filters( 'bestof_widget_post_type', $instance['post_type'] );
         $post_limit = empty( $instance['post_limit'] ) ? '5' : apply_filters( 'bestof_widget_post_limit', $instance['post_limit'] );
         $categ_limit = empty( $instance['categ_limit'] ) ? '3' : apply_filters( 'bestof_widget_categ_limit', $instance['categ_limit'] );
         $use_viewing_post_type = !empty( $instance['use_viewing_post_type'] ) ? true : false;
         $add_location_filter = empty( $instance['add_location_filter'] ) ? '1' : apply_filters( 'bestof_widget_location_filter', $instance['add_location_filter'] );
+
         // set post type to current viewing post type
         if ( $use_viewing_post_type ) {
             $current_post_type = geodir_get_current_posttype();
@@ -43,16 +46,6 @@ class geodir_bestof_widget extends WP_Widget {
 
         $category_taxonomy = geodir_get_taxonomies( $post_type );
 
-        $query_args = array(
-                                'posts_per_page' => $post_limit,
-                                'is_geodir_loop' => true,
-                                'post_type' => $post_type,
-                                'gd_location' => $add_location_filter ? true : false,
-                                'order_by' => 'high_rating'
-                            );
-        if ( $character_count ) {
-            $query_args['excerpt_length'] = $character_count;
-        }
         if (is_tax()) {
             $cur_tax = get_query_var('taxonomy');
             $cur_term = get_query_var('term');
@@ -69,12 +62,29 @@ class geodir_bestof_widget extends WP_Widget {
         } else {
             $terms = get_terms( $category_taxonomy[0] );
         }
-        echo $before_title . __( $title ) . $after_title;
+
+        $query_args = array(
+            'posts_per_page' => $post_limit,
+            'is_geodir_loop' => true,
+            'post_type' => $post_type,
+            'gd_location' => $add_location_filter ? true : false,
+            'order_by' => 'high_rating'
+        );
+        if ( $character_count ) {
+            $query_args['excerpt_length'] = $character_count;
+        }
+
         if ($tab_layout == 'bestof-tabs-as-dropdown') {
             $is_dropdown = true;
         } else {
             $is_dropdown = false;
         }
+
+        $reviews_count_array = geodir_count_reviews_by_terms();
+
+        echo $before_title . __( $title ) . $after_title;
+
+        //term navigation - start
         echo '<div class="geodir-tabs gd-bestof-tabs" id="gd-bestof-tabs" style="position:relative;">';
         if ($is_dropdown) { ?>
             <select id="geodir_bestof_tab_dd" class="chosen_select" name="geodir_bestof_tab_dd" data-placeholder="<?php echo esc_attr( __( 'Select Category', GEODIRECTORY_TEXTDOMAIN ) );?>">
@@ -84,14 +94,13 @@ class geodir_bestof_widget extends WP_Widget {
         }
 
         $cat_count = 0;
-
         foreach( $terms as $cat ) {
             $cat_count++;
             if ($cat_count > $categ_limit) {
                 break;
             }
             if ($is_dropdown) { ?>
-                <option id="<?php echo $cat->name; ?>" <?php if ($cat_count == 1) { echo 'selected="selected"'; } ?> value="<?php echo $cat->name; ?>"><?php echo ucwords( $cat->name ); ?></option>
+                <option <?php if ($cat_count == 1) { echo 'selected="selected"'; } ?> value="<?php echo $cat->term_id; ?>"><?php echo ucwords( $cat->name ); ?></option>
             <?php
             } else {
                 if ($cat_count == 1) {
@@ -100,34 +109,28 @@ class geodir_bestof_widget extends WP_Widget {
                     echo '<dd class="">';
                 }
                 $term_icon_url = get_tax_meta($cat->term_id, 'ct_cat_icon', false, $post_type);
-                echo '<a id="'.$cat->name.'" href="' . get_term_link( $cat, $cat->taxonomy ) . '">';
+                echo '<a data-termid="'.$cat->term_id.'" href="' . get_term_link( $cat, $cat->taxonomy ) . '">';
                 echo '<img class="bestof-cat-icon" src="'.$term_icon_url["src"].'"/>';
-                // echo '<div class="bestof-cat-div-wrap">';
                 echo '<span>';
                 echo ucwords( $cat->name );
                 ?>
                 <small>
                 <?php
-                $tax_query = array(
-                                    'taxonomy' => $category_taxonomy[0],
-                                    'field' => 'name',
-                                    'terms' => $cat->name
-                                );
-                $query_args['tax_query'] = array( $tax_query );
-                $num_reviews = geodir_bestof_term_reviews_count($query_args);
-                if ( $num_reviews == 0 ) {
-                    $reviews = __('No Reviews', GEODIRECTORY_TEXTDOMAIN);
-                } elseif ( $num_reviews > 1 ) {
-                    $reviews = $num_reviews . __(' Reviews', GEODIRECTORY_TEXTDOMAIN);
-                } else {
-                    $reviews = __('1 Review', GEODIRECTORY_TEXTDOMAIN);
+                if(isset($reviews_count_array[$cat->term_id])) {
+                    $num_reviews = $reviews_count_array[$cat->term_id];
+                    if ($num_reviews == 0) {
+                        $reviews = __('No Reviews', GEODIRECTORY_TEXTDOMAIN);
+                    } elseif ($num_reviews > 1) {
+                        $reviews = $num_reviews . __(' Reviews', GEODIRECTORY_TEXTDOMAIN);
+                    } else {
+                        $reviews = __('1 Review', GEODIRECTORY_TEXTDOMAIN);
+                    }
+                    echo $reviews;
                 }
-                echo $reviews;
                 ?>
                 </small>
                 <?php
-                 echo '</span>';
-                // echo '</div>';
+                echo '</span>';
                 echo '</a>';
                 echo '</dd>';
             }
@@ -137,17 +140,20 @@ class geodir_bestof_widget extends WP_Widget {
         } else {
             echo '</dl>';
         }
-        $term = '';
+        //term navigation - end
+
+        //first term listings by default - start
+        $first_term = '';
         if ($terms) {
-            $term = $terms[0]->name;
+            $first_term = $terms[0];
+            $tax_query = array(
+                'taxonomy' => $category_taxonomy[0],
+                'field' => 'id',
+                'terms' => $first_term->term_id
+            );
+            $query_args['tax_query'] = array( $tax_query );
         }
 
-        $tax_query = array(
-            'taxonomy' => $category_taxonomy[0],
-            'field' => 'name',
-            'terms' => $term
-        );
-        $query_args['tax_query'] = array( $tax_query );
         ?>
         <input type="hidden" id="bestof_widget_post_type" name="bestof_widget_post_type" value="<?php echo $post_type; ?>">
         <input type="hidden" id="bestof_widget_post_limit" name="bestof_widget_post_limit" value="<?php echo $post_limit; ?>">
@@ -159,12 +165,13 @@ class geodir_bestof_widget extends WP_Widget {
         <?php
         echo '<div id="geodir-bestof-places">';
         if ($terms) {
-            echo '<h3 class="bestof-cat-title">Best of '.$term.'<a href="' . get_term_link( $terms[0], $terms[0]->taxonomy ) . '">'.__( "View all", GEODIRECTORY_TEXTDOMAIN ).'</a></h3>';
+            echo '<h3 class="bestof-cat-title">Best of '.$first_term->name.'<a href="' . add_query_arg( array('sort_by' => 'overall_rating_desc'), get_term_link( $first_term, $first_term->taxonomy ) ) . '">'.__( "View all", GEODIRECTORY_TEXTDOMAIN ).'</a></h3>';
         }
         geodir_bestof_places_by_term($query_args);
         echo "</div>";
         ?>
         </div>
+        <?php //first term listings by default - end ?>
         <?php echo $after_widget;
         echo "</div>";
     }
@@ -179,9 +186,9 @@ class geodir_bestof_widget extends WP_Widget {
         $instance['character_count'] = $new_instance['character_count'];
         $instance['tab_layout'] = $new_instance['tab_layout'];
         if(isset($new_instance['add_location_filter']) && $new_instance['add_location_filter'] != '')
-        $instance['add_location_filter']= strip_tags($new_instance['add_location_filter']);
+            $instance['add_location_filter']= strip_tags($new_instance['add_location_filter']);
         else
-        $instance['add_location_filter'] = '0';
+            $instance['add_location_filter'] = '0';
         $instance['use_viewing_post_type'] = isset($new_instance['use_viewing_post_type']) && $new_instance['use_viewing_post_type'] ? 1 : 0;
         return $instance;
     }
@@ -207,7 +214,7 @@ class geodir_bestof_widget extends WP_Widget {
         $character_count = strip_tags($instance['character_count']);
         $tab_layout = strip_tags($instance['tab_layout']);
         $add_location_filter = strip_tags($instance['add_location_filter']);
-        $use_viewing_post_type = isset($instance['use_viewing_post_type']) && $instance['use_viewing_post_type'] ? true : false;$use_viewing_post_type = isset($instance['use_viewing_post_type']) && $instance['use_viewing_post_type'] ? true : false;
+        $use_viewing_post_type = isset($instance['use_viewing_post_type']) && $instance['use_viewing_post_type'] ? true : false;
 
         ?>
         <p>
@@ -286,9 +293,11 @@ register_widget('geodir_bestof_widget');
 
 
 function geodir_bestof_places_by_term($query_args) {
+
     $widget_listings = geodir_get_widget_listings( $query_args );
 
     $character_count = $query_args['excerpt_length'];
+
     if ( !isset( $character_count ) ) {
         $character_count = $character_count == '' ? 50 : apply_filters( 'bestof_widget_character_count', $character_count );
     }
@@ -316,12 +325,14 @@ function geodir_bestof_places_by_term($query_args) {
 add_action( 'wp_ajax_geodir_bestof', 'geodir_bestof_callback' );
 add_action( 'wp_ajax_nopriv_geodir_bestof', 'geodir_bestof_callback' );
 function geodir_bestof_callback() {
-    $post_type = strip_tags($_POST['post_type']);
-    $post_limit = strip_tags($_POST['post_limit']);
-    $character_count = strip_tags($_POST['char_count']);
-    $taxonomy = strip_tags($_POST['taxonomy']);
-    $add_location_filter = strip_tags($_POST['add_location_filter']);
-    $term = strip_tags($_POST['term']);
+    check_ajax_referer( 'geodir-bestof-nonce', 'geodir_bestof_nonce' );
+    //set variables
+    $post_type = strip_tags(esc_sql($_POST['post_type']));
+    $post_limit = strip_tags(esc_sql($_POST['post_limit']));
+    $character_count = strip_tags(esc_sql($_POST['char_count']));
+    $taxonomy = strip_tags(esc_sql($_POST['taxonomy']));
+    $add_location_filter = strip_tags(esc_sql($_POST['add_location_filter']));
+    $term_id = strip_tags(esc_sql($_POST['term_id']));
 
     $query_args = array(
         'posts_per_page' => $post_limit,
@@ -337,13 +348,14 @@ function geodir_bestof_callback() {
 
     $tax_query = array(
         'taxonomy' => $taxonomy,
-        'field' => 'name',
-        'terms' => $term
+        'field' => 'id',
+        'terms' => $term_id
     );
 
     $query_args['tax_query'] = array( $tax_query );
-    if ($term && $taxonomy) {
-        echo '<h3 class="bestof-cat-title">Best of '.$term.'<a href="' . get_term_link( $term, $taxonomy ) . '">'.__( "View all", GEODIRECTORY_TEXTDOMAIN ).'</a></h3>';
+    if ($term_id && $taxonomy) {
+        $term = get_term_by('id', $term_id, $taxonomy);
+        echo '<h3 class="bestof-cat-title">Best of '.$term->name.'<a href="' . add_query_arg( array('sort_by' => 'overall_rating_desc'), get_term_link( $term ) ) . '">'.__( "View all", GEODIRECTORY_TEXTDOMAIN ).'</a></h3>';
     }
     geodir_bestof_places_by_term($query_args);
     wp_die();
@@ -356,6 +368,7 @@ function geodir_bestof_js() { ?>
     jQuery(document).ready(function($) {
         var loading = $("#geodir-bestof-loading");
         var container = $('#geodir-bestof-places');
+        <?php $ajax_nonce = wp_create_nonce( "geodir-bestof-nonce" ); ?>
         $('.geodir-bestof-cat-list a, #geodir_bestof_tab_dd').on("click change", function(e){
             $(document).ajaxStart(function() {
                 container.hide();
@@ -368,25 +381,26 @@ function geodir_bestof_js() { ?>
             var activeTab = $(this).closest('dl').find('dd.geodir-tab-active');
             activeTab.removeClass('geodir-tab-active');
             $(this).parent().addClass('geodir-tab-active');
+            var term_id = 0;
             if(e.type === "change"){
-               var term = $(this).val();
-            }
-            else if(e.type === "click") {
-               var term = $(this).attr('id');
+               term_id = $(this).val();
+            } else if(e.type === "click") {
+               term_id = $(this).attr('data-termid');
             }
             var post_type = $('#bestof_widget_post_type').val();
             var post_limit = $('#bestof_widget_post_limit').val();
             var taxonomy = $('#bestof_widget_taxonomy').val();
             var char_count = $('#bestof_widget_char_count').val();
             var add_location_filter = $('#bestof_widget_location_filter').val();
-            var ajax_url = '<?php echo geodir_get_ajax_url(); ?>'
+            var ajax_url = '<?php echo geodir_get_ajax_url(); ?>';
             var data = {
                 'action': 'geodir_bestof',
+                'geodir_bestof_nonce': '<?php echo $ajax_nonce; ?>',
                 'post_type': post_type,
                 'post_limit': post_limit,
                 'taxonomy': taxonomy,
                 'geodir_ajax': true,
-                'term': term,
+                'term_id': term_id,
                 'char_count': char_count,
                 'add_location_filter': add_location_filter
             };
@@ -493,17 +507,4 @@ function geodir_bestof_js() { ?>
     </style>
 
     <?php
-}
-
-function geodir_bestof_term_reviews_count($query_args) {
-
-    $widget_listings = geodir_get_widget_listings( $query_args );
-    $comments_count = 0;
-    foreach ( $widget_listings as $widget_listing ) {
-                $post = $widget_listing;
-                $GLOBALS['post'] = $post;
-                setup_postdata( $post );
-                $comments_count = $comments_count + geodir_get_review_count_total(get_the_ID());
-    }
-    return $comments_count;
 }
