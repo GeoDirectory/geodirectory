@@ -807,6 +807,9 @@ function geodir_count_posts_by_term($data, $term) {
 	}
 }
 
+/*-----------------------------------------------------------------------------------*/
+/*  Review count functions
+/*-----------------------------------------------------------------------------------*/
 function geodir_count_reviews_by_term_id($term_id, $taxonomy, $post_type) {
 
     global $wpdb, $plugin_prefix;
@@ -838,8 +841,16 @@ function geodir_count_reviews_by_terms($force_update=false) {
             );
 
             $terms = get_terms($taxonomy, $args);
+
             foreach ($terms as $term) {
                 $count = geodir_count_reviews_by_term_id($term->term_id, $taxonomy, $post_type);
+                $children = get_term_children($term->term_id, $taxonomy);
+                if ( is_array( $children ) ) {
+                    foreach ( $children as $child_id ) {
+                        $child_count = geodir_count_reviews_by_term_id($child_id, $taxonomy, $post_type);
+                        $count = $count + $child_count;
+                    }
+                }
                 $term_array[$term->term_id] = $count;
             }
         }
@@ -860,4 +871,6 @@ function geodir_term_review_count_force_update() {
 }
 add_action( 'geodir_update_postrating', 'geodir_term_review_count_force_update', 100);
 add_action( 'transition_post_status',  'geodir_term_review_count_force_update', 100 );
-var_dump(geodir_count_reviews_by_terms());
+add_action( 'created_term',  'geodir_term_review_count_force_update', 100 );
+add_action( 'edited_term',  'geodir_term_review_count_force_update', 100 );
+add_action( 'delete_term',  'geodir_term_review_count_force_update', 100 );
