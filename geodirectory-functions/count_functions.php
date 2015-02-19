@@ -47,14 +47,12 @@ function geodir_count_reviews_by_terms($force_update=false) {
                 $term_array[$term->term_id] = $count;
             }
         }
-        $data = serialize($term_array);
-        update_option('geodir_global_review_count', $data);
+        update_option('geodir_global_review_count', $term_array);
         //clear cache
         wp_cache_delete('geodir_global_review_count');
         return $term_array;
     } else {
-        $term_array = unserialize($option_data);
-        return $term_array;
+        return $option_data;
     }
 }
 
