@@ -3,8 +3,9 @@
 /* Functions Includes */
 /*--------------------------------------------------------------------*/
 include_once('geodirectory-functions/ajax_handler_functions.php');
-include_once('geodirectory-functions/general_functions.php'); 
+include_once('geodirectory-functions/general_functions.php');
 include_once('geodirectory-functions/custom_functions.php'); // Custom hooks and action functions will be defined here
+include_once('geodirectory-functions/count_functions.php');
 include_once( 'geodirectory-functions/listing_filters.php' );
 include_once('geodirectory-functions/template_functions.php'); 
 include_once('geodirectory-functions/signup_function.php');
