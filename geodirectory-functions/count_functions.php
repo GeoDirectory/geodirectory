@@ -18,6 +18,7 @@ function geodir_count_reviews_by_term_id($term_id, $taxonomy, $post_type) {
 
 function geodir_count_reviews_by_terms($force_update=false) {
 
+    do_action('geodir_count_reviews_by_terms_before',$force_update);
     $option_data = get_option('geodir_global_review_count');
 
     if(!$option_data OR $force_update) {

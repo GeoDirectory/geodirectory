@@ -77,12 +77,7 @@ class geodir_bestof_widget extends WP_Widget {
             $is_dropdown = false;
         }
 
-
-        $review_count_array = null;
-        $review_count = apply_filters( 'geodir_get_review_count_array', $review_count_array );
-        if($review_count == null) {
-            $review_count = geodir_count_reviews_by_terms();
-        }
+        $review_count = geodir_count_reviews_by_terms();
 
         echo $before_title . __( $title ) . $after_title;
 
