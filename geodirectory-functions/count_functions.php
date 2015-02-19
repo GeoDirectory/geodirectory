@@ -67,11 +67,9 @@ add_action( 'created_term',  'geodir_term_review_count_force_update', 100 );
 add_action( 'edited_term',  'geodir_term_review_count_force_update', 100 );
 add_action( 'delete_term',  'geodir_term_review_count_force_update', 100 );
 
-//function for sorting
-function geodir_sort_by_count($a, $b) {
-    return $a['count'] - $b['count'];
-}
-
+/*-----------------------------------------------------------------------------------*/
+/*  Term count functions
+/*-----------------------------------------------------------------------------------*/
 function geodir_count_posts_by_term($data, $term) {
     if ($data) {
         if(isset($data[$term->term_id])) {
@@ -82,4 +80,11 @@ function geodir_count_posts_by_term($data, $term) {
     } else {
         return $term->count;
     }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  Utils
+/*-----------------------------------------------------------------------------------*/
+function geodir_sort_by_count($a, $b) {
+    return $a['count'] - $b['count'];
 }

@@ -29,15 +29,10 @@ class geodir_popular_post_category extends WP_Widget {
 		$gd_post_type = geodir_get_current_posttype();
 		$post_types = geodir_get_posttypes();
 
-        $multi_loc = has_lm_plugin_enabled();
-        if($multi_loc) {
-            $data = geodir_get_loc_term_count('term_count');
-        } else {
-            $data = null;
-        }
+        $data = null;
+        $data = apply_filters( 'geodir_get_term_count_array', $data );
 
-
-		$output = '';
+        $output = '';
 		$term_count = 0;
 
         $default_icon_url = geodir_plugin_url().'/geodirectory-functions/map-functions/icons/pin.png';
@@ -45,15 +40,6 @@ class geodir_popular_post_category extends WP_Widget {
 		foreach($post_types as $post_type) {
 
 			if (is_single()) {
-				if ($post_type != $gd_post_type) {
-					continue;
-				}
-			}
-			if (is_tax()) {
-				$taxonomy = get_query_var('taxonomy');
-				$cur_term = get_query_var('term');
-				$term_data = get_term_by('name', $cur_term, $taxonomy);
-				$args['parent'] = $term_data->term_id;
 				if ($post_type != $gd_post_type) {
 					continue;
 				}
@@ -68,6 +54,20 @@ class geodir_popular_post_category extends WP_Widget {
 				'pad_counts' => true,
                 'hide_empty' => false,
 			);
+
+            if (is_tax()) {
+                $taxonomy = get_query_var('taxonomy');
+                $cur_term = get_query_var('term');
+                $term_data = get_term_by('name', $cur_term, $taxonomy);
+                $args['parent'] = $term_data->term_id;
+                if ($post_type != $gd_post_type) {
+                    continue;
+                }
+            }
+
+            if (is_home()) {
+                $args['parent'] = 0;
+            }
 
 			$terms = get_terms($taxonomy, $args);
 
@@ -92,9 +92,13 @@ class geodir_popular_post_category extends WP_Widget {
                     }
 					$total_post = geodir_count_posts_by_term($data, $term);
 
-					$html = '<li class="' . $class_row . '"><a href="' . get_term_link($term, $term->taxonomy) . '"><img class="" style="height:20px;vertical-align:middle;" src="' . $term_icon_url . '"/> ';
-					$html .= ucwords($term->name) . ' (<span class="geodir_link_span geodir_category_class_' . $post_type . '_' . $term->term_id . '" >' . $total_post . '</span>) ';
-					$html .= '</a></li>';
+					$html = '<li class="' . $class_row . '">';
+					$html .= '<a href="' . get_term_link($term, $term->taxonomy) . '">';
+                    $html .= '<img class="" style="height:20px;vertical-align:middle;" src="' . $term_icon_url . '"/> ';
+					$html .= ucwords($term->name) . ' (<span>' . $total_post . '</span>) ';
+					$html .= '</a>';
+                    $html .= '</li>';
+
 
 					//this is needed since we are filtering by location
 					if ($list_sort == 'count') {
