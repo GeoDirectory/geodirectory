@@ -80,7 +80,9 @@ class geodir_bestof_widget extends WP_Widget {
             $is_dropdown = false;
         }
 
-        $reviews_count_array = geodir_count_reviews_by_terms();
+
+        $review_count_array = geodir_count_reviews_by_terms();
+        $review_count = apply_filters( 'bestof_widget_review_count', $review_count_array );
 
         echo $before_title . __( $title ) . $after_title;
 
@@ -116,8 +118,8 @@ class geodir_bestof_widget extends WP_Widget {
                 ?>
                 <small>
                 <?php
-                if(isset($reviews_count_array[$cat->term_id])) {
-                    $num_reviews = $reviews_count_array[$cat->term_id];
+                if(isset($review_count[$cat->term_id])) {
+                    $num_reviews = $review_count[$cat->term_id];
                     if ($num_reviews == 0) {
                         $reviews = __('No Reviews', GEODIRECTORY_TEXTDOMAIN);
                     } elseif ($num_reviews > 1) {
