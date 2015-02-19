@@ -46,22 +46,19 @@ class geodir_bestof_widget extends WP_Widget {
 
         $category_taxonomy = geodir_get_taxonomies( $post_type );
 
-        if (is_tax()) {
-            $cur_tax = get_query_var('taxonomy');
-            $cur_term = get_query_var('term');
-            $term_data = get_term_by('name', $cur_term, $cur_tax );
-            $args = array(
-                 'parent' => $term_data->term_id, // id of the direct parent
-                 'hide_empty' => false,
-            );
-            $terms = get_terms( $cur_tax , $args);
+        $term_args = array(
+            'hide_empty' => false,
+            'parent' => 0
+        );
 
-            if (!$terms) {
-                $terms = get_terms( $category_taxonomy[0] );
-            }
-        } else {
-            $terms = get_terms( $category_taxonomy[0] );
+        if (is_tax()) {
+            $taxonomy = get_query_var('taxonomy');
+            $cur_term = get_query_var('term');
+            $term_data = get_term_by('name', $cur_term, $taxonomy);
+            $term_args['parent'] = $term_data->term_id;
         }
+
+        $terms = get_terms( $category_taxonomy[0], $term_args );
 
         $query_args = array(
             'posts_per_page' => $post_limit,
