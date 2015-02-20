@@ -362,12 +362,12 @@ function geodir_bestof_callback() {
 add_action( 'wp_footer', 'geodir_bestof_js' );
 function geodir_bestof_js() { ?>
     <script type="text/javascript" >
-    jQuery(document).ready(function($) {
-        var loading = $("#geodir-bestof-loading");
-        var container = $('#geodir-bestof-places');
+    jQuery(document).ready(function() {
+        var loading = jQuery("#geodir-bestof-loading");
+        var container = jQuery('#geodir-bestof-places');
         <?php $ajax_nonce = wp_create_nonce( "geodir-bestof-nonce" ); ?>
-        $('.geodir-bestof-cat-list a, #geodir_bestof_tab_dd').on("click change", function(e){
-            $(document).ajaxStart(function() {
+        jQuery('.geodir-bestof-cat-list a, #geodir_bestof_tab_dd').on("click change", function(e){
+            jQuery(document).ajaxStart(function() {
                 container.hide();
                 loading.show();
             }).ajaxStop(function() {
@@ -375,21 +375,20 @@ function geodir_bestof_js() { ?>
                 container.show();
             });
             e.preventDefault();
-            var activeTab = $(this).closest('dl').find('dd.geodir-tab-active');
+            var activeTab = jQuery(this).closest('dl').find('dd.geodir-tab-active');
             activeTab.removeClass('geodir-tab-active');
-            $(this).parent().addClass('geodir-tab-active');
+            jQuery(this).parent().addClass('geodir-tab-active');
             var term_id = 0;
             if(e.type === "change"){
-               term_id = $(this).val();
+               term_id = jQuery(this).val();
             } else if(e.type === "click") {
-               term_id = $(this).attr('data-termid');
+               term_id = jQuery(this).attr('data-termid');
             }
-            var post_type = $('#bestof_widget_post_type').val();
-            var post_limit = $('#bestof_widget_post_limit').val();
-            var taxonomy = $('#bestof_widget_taxonomy').val();
-            var char_count = $('#bestof_widget_char_count').val();
-            var add_location_filter = $('#bestof_widget_location_filter').val();
-            var ajax_url = '<?php echo geodir_get_ajax_url(); ?>';
+            var post_type = jQuery('#bestof_widget_post_type').val();
+            var post_limit = jQuery('#bestof_widget_post_limit').val();
+            var taxonomy = jQuery('#bestof_widget_taxonomy').val();
+            var char_count = jQuery('#bestof_widget_char_count').val();
+            var add_location_filter = jQuery('#bestof_widget_location_filter').val();
             var data = {
                 'action': 'geodir_bestof',
                 'geodir_bestof_nonce': '<?php echo $ajax_nonce; ?>',
@@ -402,9 +401,9 @@ function geodir_bestof_js() { ?>
                 'add_location_filter': add_location_filter
             };
 
-            $.post(ajax_url, data, function(response) {
+            jQuery.post(geodir_var.geodir_ajax_url, data, function(response) {
                 container.html(response);
-                $('.geodir_category_list_view li .geodir-post-img .geodir_thumbnail img').css('display','block');
+                jQuery('.geodir_category_list_view li .geodir-post-img .geodir_thumbnail img').css('display','block');
             });
         })
     });
