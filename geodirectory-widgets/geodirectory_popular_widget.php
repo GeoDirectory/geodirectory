@@ -94,7 +94,7 @@ class geodir_popular_post_category extends WP_Widget {
 
 					$html = '<li class="' . $class_row . '">';
 					$html .= '<a href="' . get_term_link($term, $term->taxonomy) . '">';
-                    $html .= '<img class="" style="height:20px;vertical-align:middle;" src="' . $term_icon_url . '"/> ';
+                    $html .= '<img alt="icon" class="" style="height:20px;vertical-align:middle;" src="' . $term_icon_url . '"/> ';
 					$html .= ucwords($term->name) . ' (<span>' . $total_post . '</span>) ';
 					$html .= '</a>';
                     $html .= '</li>';

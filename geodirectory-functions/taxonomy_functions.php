@@ -750,7 +750,7 @@ function geodir_addpost_categories_html( $request_taxonomy, $parrent, $selected 
     <?php $main_cat = get_term( $parrent, $request_taxonomy); ?>
     
     <div class="post_catlist_item" style="border:1px solid #CCCCCC; margin:5px auto; padding:5px;">
-    	<img src="<?php echo geodir_plugin_url().'/geodirectory-assets/images/move.png';?>" onclick="jQuery(this).closest('div').remove();update_listing_cat();" align="right" /> 
+    	<img alt="" src="<?php echo geodir_plugin_url().'/geodirectory-assets/images/move.png';?>" onclick="jQuery(this).closest('div').remove();update_listing_cat();" align="right" />
 		<?php /* ?>
 		<img src="<?php echo geodir_plugin_url().'/geodirectory-assets/images/move.png';?>" onclick="jQuery(this).closest('div').remove();show_subcatlist();" align="right" /> 
 		<?php */ ?>

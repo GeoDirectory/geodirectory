@@ -521,7 +521,7 @@ function geodir_get_rating_stars($rating, $post_id, $small=false){
 	}else{
 	
 	//$rating_img = '<img src="'.geodir_plugin_url().'/geodirectory-assets/images/stars.png" />';
-	$rating_img = '<img src="'.get_option('geodir_default_rating_star_icon').'" />';
+	$rating_img = '<img alt="rating icon" src="'.get_option('geodir_default_rating_star_icon').'" />';
 	
 	/* fix rating star for safari */
 	$star_width = 23 * 5;

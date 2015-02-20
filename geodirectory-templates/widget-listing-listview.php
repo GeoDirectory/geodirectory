@@ -28,7 +28,7 @@ if ( !empty( $widget_listings ) ) {
 		$post_view_class = apply_filters( 'geodir_post_view_extra_class', '',$all_postypes );
 		$post_view_article_class = apply_filters( 'geodir_post_view_article_extra_class', '' );
 	?>
-	<li id="post-<?php echo $post->ID;?>" class="clearfix <?php if( $grid_view_class ) { echo 'geodir-gridview ' . $grid_view_class; }else{echo ' geodir-listview ';} ?> <?php if($post_view_class) { echo $post_view_class; } ?>" <?php if( isset( $listing_width ) && $listing_width ) { echo "style='width:{$listing_width}%;'"; } ?>>
+	<li class="clearfix <?php if( $grid_view_class ) { echo 'geodir-gridview ' . $grid_view_class; }else{echo ' geodir-listview ';} ?> <?php if($post_view_class) { echo $post_view_class; } ?>" <?php if( isset( $listing_width ) && $listing_width ) { echo "style='width:{$listing_width}%;'"; } ?>>
 		<article class="geodir-category-listing <?php if($post_view_article_class){echo $post_view_article_class;}?>">
 			<div class="geodir-post-img"> 
 			<?php  if( $fimage = geodir_show_featured_image( $post->ID, 'list-thumb', true, false, $post->featured_image ) ) { ?>
@@ -96,7 +96,6 @@ if ( !empty( $widget_listings ) ) {
 			<?php echo geodir_show_listing_info( 'listing' );?>
 			<?php if(isset( $character_count ) && $character_count == '0' ) { } else { ?>
 			<div class="geodir-entry-content">
-			  <p>
 				<?php
 				if(isset( $character_count ) && $character_count != '' ) {
 					echo geodir_max_excerpt( $character_count ); 
@@ -104,7 +103,6 @@ if ( !empty( $widget_listings ) ) {
 					the_excerpt(); 
 				}
 				?>
-			  </p>
 			</div>
 			<?php } ?>
 			<?php do_action('geodir_after_listing_post_excerpt', $post ); ?>

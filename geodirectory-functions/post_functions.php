@@ -1545,7 +1545,7 @@ if (!function_exists('geodir_get_infowindow_html')) {
 				
 				if (!empty($post_images)) {
 				?>
-				<div class="geodir-bubble_image"><a href="<?php if($plink!= ''){ echo $plink;}else{ echo 'javascript:void(0);';}?>"><img style="max-height:50px;" src="<?php echo $post_images[0];?>" /></a></div> 
+				<div class="geodir-bubble_image"><a href="<?php if($plink!= ''){ echo $plink;}else{ echo 'javascript:void(0);';}?>"><img alt="" style="max-height:50px;" src="<?php echo $post_images[0];?>" /></a></div>
 				<?php
 				}
 			} else {
