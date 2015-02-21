@@ -1,3 +1,19 @@
+<?php
+if(isset($_GET['redirect_to']) && $_GET['redirect_to'] != '')
+{
+    $redirect_to = $_GET['redirect_to'];
+}
+else
+{
+    //echo $_SERVER['HTTP_HOST'] ;
+    $redirect_to = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+    if(strpos($redirect_to,$_SERVER['HTTP_HOST'] )===false)
+    {
+        $redirect_to = home_url();
+    }
+
+}
+?>
 <div id="sign_up">
     <div class="login_content">
    		<?php echo stripslashes(get_option('ptthemes_reg_page_content'));?>
@@ -25,9 +41,9 @@
 		}
         ?>
     
-        <form name="cus_registerform" id="cus_registerform" action="<?php echo geodir_curPageURL(); ?>" method="post">
-        	<input type="hidden" name="action" value="register" />	 
-        	<input type="hidden" name="redirect_to" value="<?php if(isset($_SERVER['HTTP_REFERER'])){ echo $_SERVER['HTTP_REFERER'];}?>" />	 
+        <form name="cus_registerform" id="cus_registerform" action="<?php echo htmlspecialchars(geodir_curPageURL()); ?>" method="post">
+        	<input type="hidden" name="action" value="register" />
+            <input type="hidden" name="redirect_to" value="<?php echo htmlspecialchars($redirect_to); ?>" />
         
             <div class="form_row clearfix">
             	<input placeholder='<?php echo EMAIL_TEXT; ?>' type="text" name="user_email" id="user_email" class="textfield" value="<?php global $user_email; if(!isset($user_email)){$user_email='';} echo esc_attr(stripslashes($user_email)); ?>" size="25" />

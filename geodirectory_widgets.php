@@ -334,7 +334,7 @@ function register_geodir_widgets() {
 					<div class="geodir_form_row"><input placeholder="<?php _e('Email', GEODIRECTORY_TEXTDOMAIN);?>" name="log" type="text" class="textfield user_login1" /> <span class="user_loginInfo"></span> </div>
 					<div class="geodir_form_row"><input placeholder="<?php _e('Password', GEODIRECTORY_TEXTDOMAIN);?>" name="pwd" type="password" class="textfield user_pass1 input-text" /><span class="user_passInfo"></span>  </div>
 					
-					<input type="hidden" name="redirect_to" value="<?php echo geodir_curPageURL(); ?>" />
+					<input type="hidden" name="redirect_to" value="<?php echo htmlspecialchars(geodir_curPageURL()); ?>" />
 					<input type="hidden" name="testcookie" value="1" />
 					<div class="geodir_form_row clearfix"><input type="submit" name="submit" value="<?php echo SIGN_IN_BUTTON;?>" class="b_signin"/><p class="geodir-new-forgot-link">   
                     <a href="<?php echo apply_filters( 'geodir_signup_reg_form_link', home_url() . '/?geodir_signup=true&amp;page1=sign_up' ); ?>" class="goedir-newuser-link"><?php echo NEW_USER_TEXT;?></a>
