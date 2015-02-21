@@ -158,7 +158,7 @@ class geodir_bestof_widget extends WP_Widget {
         <input type="hidden" id="bestof_widget_location_filter" name="bestof_widget_location_filter" value="<?php if($add_location_filter) { echo 1; } else { echo 0; }  ?>">
         <input type="hidden" id="bestof_widget_char_count" name="bestof_widget_char_count" value="<?php echo $character_count;  ?>">
         <div class="geo-bestof-contentwrap geodir-tabs-content" style="position: relative; z-index: 0;">
-        <p id="geodir-bestof-loading"><img alt="" src="<?php echo geodir_plugin_url().'/geodirectory-assets/images/ajax-loader.gif'; ?>" /></p>
+        <p id="geodir-bestof-loading"><img alt="loader icon" src="<?php echo geodir_plugin_url().'/geodirectory-assets/images/ajax-loader.gif'; ?>" /></p>
         <?php
         echo '<div id="geodir-bestof-places">';
         if ($terms) {

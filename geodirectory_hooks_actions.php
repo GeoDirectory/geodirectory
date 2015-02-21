@@ -468,7 +468,7 @@ function geodir_detail_page_google_analytics()
 					jQuery("#ga_stats").load("<?php echo get_bloginfo('url').'/?ptype=ga&ga_page='.$page_url; ?>");
 			});
 			</script>
-				<p id="ga_stats"><img alt="" src="<?php echo geodir_plugin_url().'/geodirectory-assets/images/ajax-loader.gif'; ?>" /></p>
+				<p id="ga_stats"><img alt="loader icon" src="<?php echo geodir_plugin_url().'/geodirectory-assets/images/ajax-loader.gif'; ?>" /></p>
 			
 		<?php 
 	} 
