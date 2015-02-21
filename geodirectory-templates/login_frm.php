@@ -68,7 +68,7 @@ else
         
         <div id="lostpassword_form" style="display:none;">
             <h4><?php echo FORGOT_PW_TEXT;?></h4> 
-            <form name="lostpasswordform" id="lostpasswordform" action="" method="post">
+            <form name="lostpasswordform" id="lostpasswordform" action="<?php echo geodir_curPageURL(); ?>" method="post">
                 <input type="hidden" name="action" value="lostpassword" />	 
                 <div class="form_row clearfix"> 
                     <input placeholder='<?php echo USERNAME_EMAIL_TEXT; ?>' type="text" name="user_login" value="<?php echo esc_attr($user_login); ?>" size="20" class="user_login1 textfield" />
