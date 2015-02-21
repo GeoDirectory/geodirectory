@@ -41,7 +41,7 @@ else
 			echo '<p class="sucess_msg">'.PW_SEND_CONFIRM_MSG.'</p>';
 		
 		?>
-        <form name="cus_loginform" id="cus_loginform" action="" method="post" >
+        <form name="cus_loginform" id="cus_loginform" action="<?php echo geodir_curPageURL(); ?>" method="post" >
         
             <div class="form_row clearfix">
                 <input placeholder='<?php echo USERNAME_TEXT; ?>' type="text" name="log" id="user_login" value="<?php global $user_login; if(!isset($user_login)){$user_login='';} echo esc_attr($user_login); ?>" size="20" class="textfield" />

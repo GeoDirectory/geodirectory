@@ -25,7 +25,7 @@
 		}
         ?>
     
-        <form name="cus_registerform" id="cus_registerform" action="" method="post">
+        <form name="cus_registerform" id="cus_registerform" action="<?php echo geodir_curPageURL(); ?>" method="post">
         	<input type="hidden" name="action" value="register" />	 
         	<input type="hidden" name="redirect_to" value="<?php if(isset($_SERVER['HTTP_REFERER'])){ echo $_SERVER['HTTP_REFERER'];}?>" />	 
         
