@@ -34,7 +34,7 @@ do_action( 'geodir_wrapper_open', 'home-page', 'geodir-wrapper','');
         
     ###### BOTTOM SECTION WIDGET AREA ######
 	// adds the details bottom section widget area, you can add more classes via ''
-	do_action('geodir_sidebar_home_bottom_section'); 
+	do_action('geodir_sidebar_home_bottom_section');
 	
 # WRAPPER CLOSE ######	
 // this adds the closing html tags to the wrapper div :: ($type='')
