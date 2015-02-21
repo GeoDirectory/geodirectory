@@ -345,11 +345,11 @@ function geodir_user_signup(){
 				$errors = geodir_retrieve_password();
 				$error_message = isset($errors->errors['invalid_email'][0]) ? $errors->errors['invalid_email'][0] : '';
 				if ( !is_wp_error($errors) ) {
-					wp_redirect(home_url().'/?geodir_signup=true&checkemail=confirm');
+					wp_redirect(home_url().'/?geodir_signup=true&amp;checkemail=confirm');
 					exit();
 				}else
 				{
-					wp_redirect(home_url().'/?geodir_signup=true&emsg=fw');
+					wp_redirect(home_url().'/?geodir_signup=true&amp;emsg=fw');
 					exit();
 				}
 			}
@@ -365,11 +365,11 @@ function geodir_user_signup(){
 			$errors = reset_password($_GET['key'], $_GET['login']);
 		
 			if ( ! is_wp_error($errors) ) {
-				wp_redirect(home_url().'/?geodir_signup=true&action=login&checkemail=newpass');
+				wp_redirect(home_url().'/?geodir_signup=true&amp;action=login&amp;checkemail=newpass');
 				exit();
 			}
 		
-			wp_redirect(home_url().'/?geodir_signup=true&action=lostpassword&page1=sign_in&error=invalidkey');
+			wp_redirect(home_url().'/?geodir_signup=true&amp;action=lostpassword&amp;page1=sign_in&amp;error=invalidkey');
 			exit();
 		
 		break;
@@ -377,7 +377,7 @@ function geodir_user_signup(){
 		case 'register' :
 		############################### fix by Stiofan -  HebTech.co.uk ### SECURITY FIX ##############################
 			if ( !get_option('users_can_register') ) {
-				wp_redirect(home_url().'?geodir_signup=true&emsg=regnewusr');
+				wp_redirect(home_url().'?geodir_signup=true&amp;emsg=regnewusr');
 				exit();
 			}
 		############################### fix by Stiofan -  HebTech.co.uk ### SECURITY FIX ##############################
@@ -571,7 +571,7 @@ function geodir_user_signup(){
 					wp_redirect($_REQUEST['pagetype'].'&emsg=1');
 				}else
 				{
-					wp_redirect(home_url().'?geodir_signup=true&logemsg=1&redirect_to='.urlencode($_REQUEST['redirect_to']));
+					wp_redirect(home_url().'?geodir_signup=true&amp;logemsg=1&amp;redirect_to='.urlencode($_REQUEST['redirect_to']));
 				}
 				exit;
 			}
