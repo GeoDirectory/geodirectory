@@ -503,14 +503,16 @@ function geodir_delete_dummy_posts()
 	global $wpdb, $plugin_prefix;
 	
 	
-	$post_ids =	$wpdb->get_results("SELECT post_id FROM ".$plugin_prefix."gd_place_detail WHERE post_dummy='1'"
-									);
+	$post_ids =	$wpdb->get_results("SELECT post_id FROM ".$plugin_prefix."gd_place_detail WHERE post_dummy='1'");
 	
-	
+
 	foreach($post_ids as $post_ids_obj)
 	{
 		wp_delete_post($post_ids_obj->post_id);
 	}
+
+    //double check posts are deleted
+    $wpdb->get_results("DELETE FROM ".$plugin_prefix."gd_place_detail WHERE post_dummy='1'");
 }
 
 /**
@@ -2565,8 +2567,8 @@ function geodir_notification_add_bcc_option($settings) {
 		foreach ($settings as $setting) {
 			if (isset($setting['id']) && $setting['id']=='site_bcc_options' && isset($setting['type']) && $setting['type']=='sectionend') {				
 				$geodir_bcc_listing_published_yes = array(  
-											'name' => __( 'Listing published', GEODIRPAYMENT_TEXTDOMAIN ),
-											'desc' => __( 'Yes', GEODIRPAYMENT_TEXTDOMAIN ),
+											'name' => __( 'Listing published', GEODIRECTORY_TEXTDOMAIN ),
+											'desc' => __( 'Yes', GEODIRECTORY_TEXTDOMAIN),
 											'id' => 'geodir_bcc_listing_published',
 											'std' => 'yes',
 											'type' => 'radio',
@@ -2575,8 +2577,8 @@ function geodir_notification_add_bcc_option($settings) {
 										);
 				
 				$geodir_bcc_listing_published_no = array(  
-											'name' => __( 'Listing published', GEODIRPAYMENT_TEXTDOMAIN ),
-											'desc' => __( 'No', GEODIRPAYMENT_TEXTDOMAIN ),
+											'name' => __( 'Listing published', GEODIRECTORY_TEXTDOMAIN ),
+											'desc' => __( 'No', GEODIRECTORY_TEXTDOMAIN ),
 											'id' => 'geodir_bcc_listing_published',
 											'std' => 'yes',
 											'type' => 'radio',

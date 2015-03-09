@@ -150,7 +150,7 @@ tabNoRun=false;
 			}, 100);
 		}
 
-		if(history.pushState && window.location.hash) {
+		if(history.pushState && window.location.hash && jQuery('#publish_listing').length === 0) {
 			if(jQuery(window).width()<1060){
 				jQuery('html, body').animate({scrollTop: jQuery(urlHash).offset().top}, 500);
 			}

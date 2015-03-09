@@ -1744,19 +1744,19 @@ function geodir_update_listing_info($updatingpost,$temppost){
 if (!function_exists('geodir_delete_listing_info')) {
 function geodir_delete_listing_info($deleted_postid, $force = false){
 	global $wpdb,$plugin_prefix;
-	
+
 	// check for multisite deletions
-	if (strpos($wpdb->prefix,$plugin_prefix) !== false) {}else{return;}
-	
+	if (strpos($plugin_prefix,$wpdb->prefix) !== false) {}else{return;}
+
 	$post_type = get_post_type( $deleted_postid );
-	
+
 	$all_postypes = geodir_get_posttypes();
 
 	if(!in_array($post_type, $all_postypes))
 		return false;
 	
 	$table = $plugin_prefix . $post_type . '_detail';
-	
+
 	/* Delete custom post meta*/	
 	$wpdb->query(
 		$wpdb->prepare(

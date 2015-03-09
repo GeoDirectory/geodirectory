@@ -514,8 +514,8 @@ __('Vanuatu',GEODIRECTORY_TEXTDOMAIN);
 __('Venezuela',GEODIRECTORY_TEXTDOMAIN);
 __('Vietnam',GEODIRECTORY_TEXTDOMAIN);
 __('Virgin Islands',GEODIRECTORY_TEXTDOMAIN);
-__('Virgin Islands (UK)',GEODIRECTORY_TEXTDOMAIN);
-__('Virgin Islands (US)',GEODIRECTORY_TEXTDOMAIN);
+//__('Virgin Islands (UK)',GEODIRECTORY_TEXTDOMAIN); // duplicate removed
+//__('Virgin Islands (US)',GEODIRECTORY_TEXTDOMAIN); // duplicate removed
 __('Wake Island',GEODIRECTORY_TEXTDOMAIN);
 __('Wallis and Futuna',GEODIRECTORY_TEXTDOMAIN);
 __('West Bank',GEODIRECTORY_TEXTDOMAIN);

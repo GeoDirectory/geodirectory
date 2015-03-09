@@ -170,7 +170,7 @@ function geodir_curPageURL()
         $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
     }
     //return str_replace("www.", "", $pageURL);
-    return $pageURL;
+    return apply_filters('geodir_curPageURL',$pageURL);
 }
 
 
@@ -1062,7 +1062,6 @@ if (!function_exists('adminEmail')) {
             $client_message = get_option('post_payment_fail_admin_email_content');
         }
         $transaction_details = $custom_1;
-        $approve_listing_link = '<a href="' . get_option('siteurl') . '/?ptype=verify&rs=' . $custom_1 . '">' . VERIFY_TEXT . '</a>';
         $fromEmail = get_option('site_email');
         $fromEmailName = get_site_emailName();
 //$alivedays = get_post_meta($page_id,'alive_days',true);
@@ -1090,8 +1089,8 @@ if (!function_exists('adminEmail')) {
             $post_type = 'listing';
         }
         $renew_link = '<a href="' . $siteurl . '?ptype=post_' . $post_type . '&renew=1&pid=' . $page_id . '">' . RENEW_LINK . '</a>';
-        $search_array = array('[#client_name#]', '[#listing_link#]', '[#posted_date#]', '[#number_of_days#]', '[#number_of_grace_days#]', '[#login_url#]', '[#username#]', '[#user_email#]', '[#site_name_url#]', '[#renew_link#]', '[#post_id#]', '[#site_name#]', '[#approve_listing_link#]', '[#transaction_details#]');
-        $replace_array = array($display_name, $listingLink, $post_date, $alivedays, $number_of_grace_days, $loginurl_link, $user_login, $user_email, $siteurl_link, $renew_link, $page_id, $fromEmailName, $approve_listing_link, $transaction_details);
+        $search_array = array('[#client_name#]', '[#listing_link#]', '[#posted_date#]', '[#number_of_days#]', '[#number_of_grace_days#]', '[#login_url#]', '[#username#]', '[#user_email#]', '[#site_name_url#]', '[#renew_link#]', '[#post_id#]', '[#site_name#]', '[#transaction_details#]');
+        $replace_array = array($display_name, $listingLink, $post_date, $alivedays, $number_of_grace_days, $loginurl_link, $user_login, $user_email, $siteurl_link, $renew_link, $page_id, $fromEmailName, $transaction_details);
         $client_message = str_replace($search_array, $replace_array, $client_message);
         $subject = str_replace($search_array, $replace_array, $subject);
         $headers = 'MIME-Version: 1.0' . "\r\n";

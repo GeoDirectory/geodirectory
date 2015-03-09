@@ -158,7 +158,7 @@ function geodir_template_loader( $template ) {
 		//geodir_is_login(true);
 		global $current_user; 
 		if(!$current_user->ID){
-			wp_redirect( home_url().'?geodir_signup=true&amp;redirect_add_listing='.urlencode(geodir_curPageURL()), 302 );exit;
+			wp_redirect( home_url().'?geodir_signup=true&redirect_add_listing='.urlencode(geodir_curPageURL()), 302 );exit;
 		}
 		
 	 	$template = geodir_locate_template('add-listing');

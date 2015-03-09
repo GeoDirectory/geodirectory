@@ -349,7 +349,7 @@ function geodir_user_signup(){
 					exit();
 				}else
 				{
-					wp_redirect(home_url().'/?geodir_signup=true&amp;emsg=fw');
+					wp_redirect(home_url().'/?geodir_signup=true&emsg=fw');
 					exit();
 				}
 			}
@@ -377,7 +377,7 @@ function geodir_user_signup(){
 		case 'register' :
 		############################### fix by Stiofan -  HebTech.co.uk ### SECURITY FIX ##############################
 			if ( !get_option('users_can_register') ) {
-				wp_redirect(home_url().'?geodir_signup=true&amp;emsg=regnewusr');
+				wp_redirect(home_url().'?geodir_signup=true&emsg=regnewusr');
 				exit();
 			}
 		############################### fix by Stiofan -  HebTech.co.uk ### SECURITY FIX ##############################

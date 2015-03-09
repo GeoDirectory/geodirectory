@@ -157,7 +157,7 @@ add_action('set_object_terms', 'geodir_set_post_terms', 10, 4);
 
 add_action('transition_post_status', 'geodir_update_poststatus', 10, 3);
 
-add_action('before_delete_post', 'geodir_delete_listing_info');
+add_action('before_delete_post', 'geodir_delete_listing_info',10,1);
 
 
 ////////////////////////
@@ -173,7 +173,7 @@ add_action('delete_term', 'geodir_term_review_count_force_update', 100);
 ////////////////////////
 /* WP CAT META UPDATE ACTIONS */
 ////////////////////////
-add_action('gd_tax_meta_updated', 'geodir_get_term_icon', 10, 2);
+add_action('edit_category', 'geodir_get_term_icon', 5000, 2);
 ////////////////////////
 /* WP FOOTER ACTIONS */
 ////////////////////////
@@ -408,7 +408,7 @@ function geodir_share_this_button()
             <div class="addthis_toolbox addthis_default_style">
                 <span id='st_sharethis'></span>
                 <script type="text/javascript">var switchTo5x = false;</script>
-                <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+                <script type="text/javascript" src="//ws.sharethis.com/button/buttons.js"></script>
                 <script type="text/javascript">stLight.options({
                         publisher: "2bee0c38-7c7d-4ce7-9d9a-05e920d509b4",
                         doNotHash: false,

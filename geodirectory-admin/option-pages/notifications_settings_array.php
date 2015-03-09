@@ -13,7 +13,7 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
 	
 	array(  
 		'name' => __( 'List of usable shortcodes', GEODIRECTORY_TEXTDOMAIN ),
-		'desc' 		=> __( '[#client_name#],[#listing_link#],[#posted_date#],[#number_of_days#],[#number_of_grace_days#],[#login_url#],[#username#],[#user_email#],[#site_name_url#],[#renew_link#],[#post_id#],[#site_name#],[#approve_listing_link#]', GEODIRECTORY_TEXTDOMAIN ),
+		'desc' 		=> __( '[#client_name#],[#listing_link#],[#posted_date#],[#number_of_days#],[#number_of_grace_days#],[#login_url#],[#username#],[#user_email#],[#site_name_url#],[#renew_link#],[#post_id#],[#site_name#]', GEODIRECTORY_TEXTDOMAIN ),
 		'id' 		=> 'geodir_list_of_usable_shordcodes',
 		'type' 		=> 'html_content',
 		'css' 		=> 'min-width:300px;',

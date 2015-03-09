@@ -1,0 +1,19 @@
+v1.4.0
+New user registration disabled error not showing because of &amp; - FIXED
+
+v1.3.9
+Moved change log into core files as we lost 1.3.9 change log due to SSD failure - CHANGED
+Virgin islands have duplicate entries in country list, removed from db install script - FIXED
+Search changed for better individual word results - CHANGED
+Excerpt length hook priority changed so it's not overriden by avada - CHANGED
+Upload error message can now be translated - FIXED
+Several W3C validation fixes/changes made - CHANGED
+Switching between listing types can add an aditional "enable dragging" message - FIXED
+Category widget has a default of 15 changing this in widget does not take affect - FIXED
+Dummy data can sometimes not delete post_details info - FIXED
+Recent reviews widget can sometimes show replies as reviews - FIXED
+added filter to function geodir_curPageURL - ADDED
+Share this button JS not loaded over HTTPS if requested - FIXED
+Add listing page on mobile can sometime scroll to content section - FIXED
+Popular Categories widget improved loading time, reduced SQL queries and added ajax switcher per CPT - CHANGED
+GD > Best of widget added (similar to yelp best of section)  - ADDED
