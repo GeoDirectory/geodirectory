@@ -1389,6 +1389,12 @@ function geodir_term_exists($term, $taxonomy = '', $parent = 0) {
 	return false;
 }
 
+function geodir_get_term_icon_rebuild(){
+
+    update_option('gd_term_icons','');
+
+}
+
 function geodir_get_term_icon($term_id = false,$rebuild=false)
 {
 	if(!$rebuild){$terms_icons = get_option('gd_term_icons');}

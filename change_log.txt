@@ -1,5 +1,6 @@
 v1.4.0
 New user registration disabled error not showing because of &amp; - FIXED
+Category icons not always updated when changed - FIXED
 
 v1.3.9
 Moved change log into core files as we lost 1.3.9 change log due to SSD failure - CHANGED

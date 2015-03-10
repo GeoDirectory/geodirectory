@@ -173,7 +173,7 @@ add_action('delete_term', 'geodir_term_review_count_force_update', 100);
 ////////////////////////
 /* WP CAT META UPDATE ACTIONS */
 ////////////////////////
-add_action('edit_category', 'geodir_get_term_icon', 5000, 2);
+add_action('gd_tax_meta_updated', 'geodir_get_term_icon_rebuild', 5000);
 ////////////////////////
 /* WP FOOTER ACTIONS */
 ////////////////////////
