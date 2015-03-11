@@ -1797,7 +1797,8 @@ function geodir_popular_post_category_output($args = '', $instance = '')
     }
 
     $terms = get_terms($taxonomy);
-
+    $a_terms = array();
+    $b_terms = array();
 
     foreach ($terms as $term) {
 

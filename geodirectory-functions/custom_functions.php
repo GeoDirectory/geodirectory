@@ -1153,7 +1153,7 @@ function geodir_exif($file) {
 ###########################################
 ############ RECENT REVIEWS ###############
 ###########################################
-function geodir_get_recent_reviews($g_size = 30, $no_comments = 10, $comment_lenth = 60, $show_pass_post = false) {
+function geodir_get_recent_reviews($g_size = 60, $no_comments = 10, $comment_lenth = 60, $show_pass_post = false) {
         global $wpdb, $tablecomments, $tableposts,$rating_table_name;
 		$tablecomments = $wpdb->comments;
 		$tableposts = $wpdb->posts;
@@ -1233,7 +1233,7 @@ function geodir_get_recent_reviews($g_size = 30, $no_comments = 10, $comment_len
 			$comment_content = strip_tags($comment->comment_content);
 			
 			$comment_content = preg_replace('#(\\[img\\]).+(\\[\\/img\\])#', '', $comment_content);
-			$comment_excerpt = mb_substr($comment_content, 0, $comment_lenth)."";
+
 			$permalink = get_permalink($comment->ID)."#comment-".$comment->comment_ID;
 			$comment_author_email = $comment->comment_author_email;
 			$comment_post_ID = $comment->post_id;
@@ -1246,6 +1246,16 @@ function geodir_get_recent_reviews($g_size = 30, $no_comments = 10, $comment_len
 			
 			$post_title = get_the_title($comment_post_ID);
 			$permalink = get_permalink($comment_post_ID);
+            $comment_permalink = $permalink . "#comment-" . $comment->comment_ID;
+            $read_more = '<a class="comment_excerpt" href="' . $comment_permalink . '">'.__( 'Read more', GEODIRECTORY_TEXTDOMAIN ) . '</a>';
+
+            $comment_content_length = strlen($comment_content);
+            if ($comment_content_length > $comment_lenth) {
+                $comment_excerpt = mb_substr($comment_content, 0, $comment_lenth).'... '.$read_more;
+            } else {
+                $comment_excerpt = $comment_content;
+            }
+
 			if($comment->user_id){$user_profile_url = get_author_posts_url($comment->user_id);}
 			else{$user_profile_url ='';}
 			
@@ -1255,29 +1265,27 @@ function geodir_get_recent_reviews($g_size = 30, $no_comments = 10, $comment_len
 					if (function_exists('get_avatar')) {
 					  if (!isset($comment->comment_type) ) {
 						 if($user_profile_url){ $comments_echo .=   '<a href="'.$user_profile_url.'">';}
-						 $comments_echo .=  get_avatar($comment->comment_author_email, 60, geodir_plugin_url().'/geodirectory-assets/images/gravatar2.png');
+						 $comments_echo .=  get_avatar($comment->comment_author_email, $g_size, geodir_plugin_url().'/geodirectory-assets/images/gravatar2.png');
 						if($user_profile_url){ $comments_echo .=  '</a>';}
 					  } elseif ( (isset($comment->comment_type) && $comment->comment_type == 'trackback') || (isset($comment->comment_type) && $comment->comment_type=='pingback') ) {
 					if($user_profile_url){	 $comments_echo .=   '<a href="'.$user_profile_url.'">';}
-						 $comments_echo .=  get_avatar($comment->comment_author_url, 60, geodir_plugin_url().'/geodirectory-assets/images/gravatar2.png');
+						 $comments_echo .=  get_avatar($comment->comment_author_url, $g_size, geodir_plugin_url().'/geodirectory-assets/images/gravatar2.png');
 					  }
 				   } elseif (function_exists('gravatar')) {
 					if($user_profile_url){  $comments_echo .=   '<a href="'.$user_profile_url.'">';}
 					  $comments_echo .=  "<img src=\"";
 					  if ('' == $comment->comment_type) {
-						 $comments_echo .=  gravatar($comment->comment_author_email,60, geodir_plugin_url().'/geodirectory-assets/images/gravatar2.png');
+						 $comments_echo .=  gravatar($comment->comment_author_email, $g_size, geodir_plugin_url().'/geodirectory-assets/images/gravatar2.png');
 						if($user_profile_url){  $comments_echo .=  '</a>';}
 					  } elseif ( ('trackback' == $comment->comment_type) || ('pingback' == $comment->comment_type) ) {
 					if($user_profile_url){	$comments_echo .=   '<a href="'.$user_profile_url.'">';}
-						$comments_echo .=  gravatar($comment->comment_author_url,60, geodir_plugin_url().'/geodirectory-assets/images/gravatar2.png');
+						$comments_echo .=  gravatar($comment->comment_author_url, $g_size, geodir_plugin_url().'/geodirectory-assets/images/gravatar2.png');
 						if($user_profile_url){ $comments_echo .=  '</a>';}
 					  }
 					 $comments_echo .=  "\" alt=\"\" class=\"avatar\" />";
 				   }
 					
 					$comments_echo .=  "</span>\n";
-					
-					$comment_permalink = $permalink . "#comment-" . $comment->comment_ID;
 					
 					$comments_echo .= '<span class="geodir_reviewer_content">' ;
 					//if($comment->user_id){$comments_echo .= '<a href="'.get_author_posts_url( $comment->user_id ).'">';}
@@ -1286,10 +1294,9 @@ function geodir_get_recent_reviews($g_size = 30, $no_comments = 10, $comment_len
 					//if($comment->user_id){'</a> ';}
 					$comments_echo .= '<a href="' . $permalink . '" class="geodir_reviewer_title">' . $post_title . '</a>';
 					$comments_echo .= geodir_get_rating_stars( $comment->overall_rating, $comment_post_ID );
-					$comments_echo .= '<a class="comment_excerpt" href="' . $comment_permalink . '" title="'.__( 'View the entire comment', GEODIRECTORY_TEXTDOMAIN ) . '">';
-					$comments_echo .= '<span class="geodir_reviewer_text">' . $comment_excerpt . '</span>';
+					$comments_echo .= '<p class="geodir_reviewer_text">' . $comment_excerpt . '';
 					//echo preg_replace('#(\\[img\\]).+(\\[\\/img\\])#', '', $comment_excerpt);
-					$comments_echo .= '</a>';
+                    $comments_echo .= '</p>';
 					
 					$comments_echo .= "</span>\n";
 					$comments_echo .= '</li>';

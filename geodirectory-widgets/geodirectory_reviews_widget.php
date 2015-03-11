@@ -13,8 +13,9 @@ class geodir_recent_reviews_widget extends WP_Widget {
 		
 		$title = empty( $instance['title'] ) ? '' : apply_filters( 'widget_title', __( $instance['title'], GEODIRECTORY_TEXTDOMAIN ) );
 		$count = empty( $instance['count'] ) ? '5' : apply_filters( 'widget_count', $instance['count'] );
-		
-		$comments_li = geodir_get_recent_reviews( 30, $count, 100, false );
+
+        $g_size = apply_filters('geodir_recent_reviews_g_size', 30);
+		$comments_li = geodir_get_recent_reviews( $g_size, $count, 100, false );
 		
 		if( $comments_li ) {
 			echo $before_widget;

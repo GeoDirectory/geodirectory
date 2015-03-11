@@ -26,7 +26,7 @@ function create_marker_jason_of_posts( $post ) {
 
 
 		$geodir_cat_icons = geodir_get_term_icon();
-		$icon = $geodir_cat_icons[$post->default_category];
+		$icon = @$geodir_cat_icons[$post->default_category];
 		 
 		 $post_title = $post->post_title;
 		 $title = str_replace( $srcharr, $replarr, $post_title );
