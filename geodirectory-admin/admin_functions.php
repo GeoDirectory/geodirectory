@@ -945,9 +945,10 @@ function geodir_post_information_save( $post_id )
 
 	global $wpdb,$current_user,$post;
 	
-	if(isset($_SESSION['listing'])){
+	//unsetting the listing session here causes problems, it should be the last thing to be done.
+    /*if(isset($_SESSION['listing'])){
 		unset($_SESSION['listing']);
-	}
+	}*/
 	
 	$geodir_posttypes = geodir_get_posttypes();
 	

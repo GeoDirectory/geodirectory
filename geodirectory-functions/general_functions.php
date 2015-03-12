@@ -97,9 +97,7 @@ function geodir_get_formated_time($time)
     return mysql2date(get_option('time_format'), $time, $translate = true);
 }
 
-/**
- * Create Url through query string var
- **/
+
 /**
  * Return a formatted link with parameters.
  *

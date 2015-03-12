@@ -62,7 +62,7 @@ function geodir_save_listing( $request_info = array(), $dummy = false ) {
 	global $wpdb, $current_user; 
 	
 	$last_post_id = '';
-	
+
 	if( isset( $_SESSION['listing'] ) && !$dummy) {
 		$request_info = array();
 		$request_session = unserialize( $_SESSION['listing'] );
@@ -133,10 +133,10 @@ function geodir_save_listing( $request_info = array(), $dummy = false ) {
 				'post_title'     => $request_info['post_title'],
 				'post_name'      => $request_info['post_name'],
 				'post_type'      => $request_info['listing_type']
-			);  
-	
+			);
+
 	do_action_ref_array( 'geodir_before_save_listing', $post );
-	
+
 	$send_post_submit_mail = false;
 	if ( isset( $request_info['pid'] ) && $request_info['pid'] != '' ){	
 		$post['ID'] = $request_info['pid'];
@@ -150,7 +150,7 @@ function geodir_save_listing( $request_info = array(), $dummy = false ) {
 			//geodir_sendEmail('','',$current_user->user_email,$current_user->display_name,'','',$request_info,'post_submit',$last_post_id,$current_user->ID);
 		}
 	}
-		
+
 	$post_tags = '';
 	if(!isset($request_info['post_tags'])){
 			
@@ -196,8 +196,8 @@ function geodir_save_listing( $request_info = array(), $dummy = false ) {
 		$name = $val['name'];
 		$type = $val['type'];
 		$extrafields = $val['extra_fields'];
-		
-		
+
+
 		if(trim($type) == 'address')
 		{
 			$prefix = $name.'_';

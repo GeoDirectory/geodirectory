@@ -535,7 +535,7 @@ function register_geodir_widgets() {
 			
 			$desc1 = ($instance['gd_tw_desc1']);
 			?>
-			<p><label for="<?php echo $this->get_field_id('gd_tw_desc1'); ?>"><?php _e('Your twitter code (ex.google adsense, etc.)',GEODIRECTORY_TEXTDOMAIN);?> <textarea class="widefat" rows="6" cols="20" id="<?php echo $this->get_field_id('gd_tw_desc1'); ?>" name="<?php echo $this->get_field_name('gd_tw_desc1'); ?>"><?php echo esc_attr($desc1); ?></textarea></label></p>
+			<p><label for="<?php echo $this->get_field_id('gd_tw_desc1'); ?>"><?php _e('Your twitter code',GEODIRECTORY_TEXTDOMAIN);?> <textarea class="widefat" rows="6" cols="20" id="<?php echo $this->get_field_id('gd_tw_desc1'); ?>" name="<?php echo $this->get_field_name('gd_tw_desc1'); ?>"><?php echo esc_attr($desc1); ?></textarea></label></p>
 		
 		<?php
 		}

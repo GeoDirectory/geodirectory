@@ -202,7 +202,7 @@ define('GET_NEW_PW_TEXT',__('Get New Password',GEODIRECTORY_TEXTDOMAIN));
 define('REGISTRATION_NOW_TEXT',__('Sign Up Now',GEODIRECTORY_TEXTDOMAIN));
 define('PERSONAL_INFO_TEXT',__('Personal Information',GEODIRECTORY_TEXTDOMAIN));
 define('FIRST_NAME_TEXT',__('Full Name',GEODIRECTORY_TEXTDOMAIN));
-define('REGISTRATION_MESSAGE',__('(note: A password will be e-mailed to you for future usage.)',GEODIRECTORY_TEXTDOMAIN));
+define('REGISTRATION_MESSAGE',__('(Note: A password will be e-mailed to you for future usage)',GEODIRECTORY_TEXTDOMAIN));
 define('REGISTER_NOW_TEXT',__('Register Now',GEODIRECTORY_TEXTDOMAIN));
 define('SIGN_IN_BUTTON',__('Sign In',GEODIRECTORY_TEXTDOMAIN));
 define('REGISTER_BUTTON',__('Register',GEODIRECTORY_TEXTDOMAIN));

@@ -468,7 +468,7 @@ function geodir_posts_order_by_custom_sort($orderby, $sort_by, $table){
 	
 	global $wpdb;
 	
-	if($sort_by != ''){
+	if($sort_by != '' && !is_search()){
 	
 		$sort_array = explode('_', $sort_by);
 		
