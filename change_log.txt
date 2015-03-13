@@ -3,6 +3,7 @@ New user registration disabled error not showing because of &amp; - FIXED
 Category icons not always updated when changed - FIXED
 Search results not ordered correct if default sort_by changed - FIXED
 $_SESSION['listing'] being cleared too early for other addons - FIXED
+Options added for detail page default sections to be disabled - ADDED
 
 v1.3.9
 Moved change log into core files as we lost 1.3.9 change log due to SSD failure - CHANGED

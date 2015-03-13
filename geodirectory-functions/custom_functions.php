@@ -1331,3 +1331,65 @@ function geodir_home_map_cats_key_value_array() {
 	}
 	return $return;
 }
+
+// Social sharing buttons
+function geodir_twitter_tweet_button() {
+	?>
+	<a href="http://twitter.com/share"
+	   class="twitter-share-button"><?php _e('Tweet', GEODIRECTORY_TEXTDOMAIN); ?></a>
+	<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+	<?php
+}
+
+function geodir_fb_like_button() {
+	global $post;
+	?>
+	<iframe <?php if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) {
+		echo 'allowtransparency="true"';
+	} ?> class="facebook"
+	     src="//www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink($post->ID)); ?>&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;colorscheme=light"
+	     style="border:none; overflow:hidden; width:100px; height:20px"></iframe>
+<?php
+}
+
+function geodir_google_plus_button() {
+	?>
+	<div id="plusone-div" class="g-plusone" data-size="medium"></div>
+	<script type="text/javascript">
+		(function () {
+			var po = document.createElement('script');
+			po.type = 'text/javascript';
+			po.async = true;
+			po.src = 'https://apis.google.com/js/platform.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(po, s);
+		})();
+	</script>
+<?php
+}
+
+function geodir_share_this_button_code() {
+	global $post;
+	?>
+	<div class="addthis_toolbox addthis_default_style">
+		<span id='st_sharethis'></span>
+		<script type="text/javascript">var switchTo5x = false;</script>
+		<script type="text/javascript" src="//ws.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript">stLight.options({
+				publisher: "2bee0c38-7c7d-4ce7-9d9a-05e920d509b4",
+				doNotHash: false,
+				doNotCopy: false,
+				hashAddressBar: false
+			});
+			stWidget.addEntry({
+				"service": "sharethis",
+				"element": document.getElementById('st_sharethis'),
+				"url": "<?php echo geodir_curPageURL();?>",
+				"title": "<?php echo $post->post_title;?>",
+				"type": "chicklet",
+				"text": "<?php _e( 'Share', GEODIRECTORY_TEXTDOMAIN );?>"
+			});</script>
+
+	</div>
+	<?php
+}
