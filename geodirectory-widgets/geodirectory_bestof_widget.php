@@ -292,7 +292,7 @@ class geodir_bestof_widget extends WP_Widget {
             </label>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('tab_layout'); ?>"><?php _e('Sort by:',GEODIRECTORY_TEXTDOMAIN);?>
+            <label for="<?php echo $this->get_field_id('tab_layout'); ?>"><?php _e('Tab Layout:',GEODIRECTORY_TEXTDOMAIN);?>
 
                 <select class="widefat" id="<?php echo $this->get_field_id('tab_layout'); ?>" name="<?php echo $this->get_field_name('tab_layout'); ?>">
 
@@ -331,10 +331,12 @@ function geodir_bestof_places_by_term($query_args) {
     }
     $template =  apply_filters( "geodir_template_part-widget-listing-listview",geodir_locate_template('widget-listing-listview'));
 
-    global $post, $map_jason, $map_canvas_arr;
+    global $post, $map_jason, $map_canvas_arr, $gridview_columns_widget;
     $current_post = $post;
     $current_map_jason = $map_jason;
     $current_map_canvas_arr = $map_canvas_arr;
+    $current_grid_view = $gridview_columns_widget;
+    $gridview_columns_widget = null;
     $geodir_is_widget_listing = true;
 
     include( $template );
@@ -345,7 +347,7 @@ function geodir_bestof_places_by_term($query_args) {
     setup_postdata( $current_post );
     $map_jason = $current_map_jason;
     $map_canvas_arr = $current_map_canvas_arr;
-
+    $gridview_columns_widget = $current_grid_view;
 }
 
 //Ajax functions

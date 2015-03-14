@@ -1397,13 +1397,23 @@ function geodir_get_term_icon_rebuild(){
 
 function geodir_get_term_icon($term_id = false,$rebuild=false)
 {
+    global $wpdb;
 	if(!$rebuild){$terms_icons = get_option('gd_term_icons');}
 	else{$terms_icons = '';}
 
 	if(empty($terms_icons)){
 		$default_icon_url = get_option('geodir_default_marker_icon');
 		$taxonomy = geodir_get_taxonomies();
-		$terms = get_terms( $taxonomy );
+        $post_types = geodir_get_posttypes();
+        $tax_arr = array();
+        foreach($post_types as $post_type){
+            $tax_arr[]= "'".$post_type."category'";
+        }
+        $tax_c = implode(',',$tax_arr);
+        $terms = $wpdb->get_results("SELECT * FROM $wpdb->term_taxonomy WHERE taxonomy IN ($tax_c)");
+		//$terms = get_terms( $taxonomy );
+
+        //print_r($terms );exit;
 
 		foreach( $terms as $term ) {
 			$post_type = str_replace("category", "", $term->taxonomy);
@@ -1434,6 +1444,7 @@ function geodir_get_term_icon($term_id = false,$rebuild=false)
 	}elseif($term_id && !isset($terms_icons[$term_id])) {
 		return get_option('geodir_default_marker_icon');
 	}
+
 
 	return $terms_icons;
 }

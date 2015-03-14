@@ -1807,60 +1807,63 @@ function geodir_popular_post_category_output($args = '', $instance = '')
 
     }
 
-    foreach ($a_terms as $b_key => $b_val) {
-        $b_terms[$b_key] = geodir_sort_terms($b_val, 'count');
-    }
-
-    $tax_change_output = '';
-    if (count($b_terms) > 1) {
-        $tax_change_output .= "<select data-limit='$category_limit' class='geodir-cat-list-tax'  onchange='geodir_get_post_term(this);'>";
-        foreach ($b_terms as $key => $val) {
-            $ptype = get_post_type_object(str_replace("category", "", $key));
-            $tax_change_output .= "<option value='$key' >" . __($ptype->labels->singular_name, GEODIRECTORY_TEXTDOMAIN) . " " . __('Categories', GEODIRECTORY_TEXTDOMAIN) . "</option>";
+    if(!empty($a_terms)) {
+        foreach ($a_terms as $b_key => $b_val) {
+            $b_terms[$b_key] = geodir_sort_terms($b_val, 'count');
         }
-        $tax_change_output .= "</select>";
 
 
-    }
+        $tax_change_output = '';
+        if (count($b_terms) > 1) {
+            $tax_change_output .= "<select data-limit='$category_limit' class='geodir-cat-list-tax'  onchange='geodir_get_post_term(this);'>";
+            foreach ($b_terms as $key => $val) {
+                $ptype = get_post_type_object(str_replace("category", "", $key));
+                $tax_change_output .= "<option value='$key' >" . __($ptype->labels->singular_name, GEODIRECTORY_TEXTDOMAIN) . " " . __('Categories', GEODIRECTORY_TEXTDOMAIN) . "</option>";
+            }
+            $tax_change_output .= "</select>";
 
 
-    if (!empty($b_terms)) {
+        }
 
-        $terms = reset($b_terms);// get the first array
-        global $cat_count;//make global so we can change via function
-        $cat_count = 0;
-        ?>
-        <div class="geodir-category-list-in clearfix">
-            <div class="geodir-cat-list clearfix">
+
+        if (!empty($b_terms)) {
+
+            $terms = reset($b_terms);// get the first array
+            global $cat_count;//make global so we can change via function
+            $cat_count = 0;
+            ?>
+            <div class="geodir-category-list-in clearfix">
+                <div class="geodir-cat-list clearfix">
+                    <?php
+                    echo $before_title . __($title) . $after_title;
+
+                    echo $tax_change_output;
+
+                    echo '<ul class="geodir-popular-cat-list">';
+
+                    geodir_helper_cat_list_output($terms, $category_limit);
+
+                    echo '</ul>';
+                    ?>
+                </div>
                 <?php
-                echo $before_title . __($title) . $after_title;
+                $hide = '';
+                if ($cat_count < $category_limit) {
+                    $hide = 'style="display:none;"';
+                }
+                echo "<div class='geodir-cat-list-more' $hide >";
+                echo '<a href="javascript:void(0)" class="geodir-morecat geodir-showcat">' . __('More Categories', GEODIRECTORY_TEXTDOMAIN) . '</a>';
+                echo '<a href="javascript:void(0)" class="geodir-morecat geodir-hidecat geodir-hide">' . __('Less Categories', GEODIRECTORY_TEXTDOMAIN) . '</a>';
+                echo "</div>";
+                /* add scripts */
+                add_action('wp_footer', 'geodir_popular_category_add_scripts', 100);
 
-                echo $tax_change_output;
 
-                echo '<ul class="geodir-popular-cat-list">';
-
-                geodir_helper_cat_list_output($terms, $category_limit);
-
-                echo '</ul>';
                 ?>
             </div>
-            <?php
-            $hide = '';
-            if ($cat_count < $category_limit) {
-                $hide = 'style="display:none;"';
-            }
-            echo "<div class='geodir-cat-list-more' $hide >";
-            echo '<a href="javascript:void(0)" class="geodir-morecat geodir-showcat">' . __('More Categories', GEODIRECTORY_TEXTDOMAIN) . '</a>';
-            echo '<a href="javascript:void(0)" class="geodir-morecat geodir-hidecat geodir-hide">' . __('Less Categories', GEODIRECTORY_TEXTDOMAIN) . '</a>';
-            echo "</div>";
-            /* add scripts */
-            add_action('wp_footer', 'geodir_popular_category_add_scripts', 100);
+        <?php
 
-
-            ?>
-        </div>
-    <?php
-
+        }
     }
     echo $after_widget;
 
