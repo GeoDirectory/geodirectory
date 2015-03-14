@@ -7,6 +7,7 @@ Options added for detail page default sections to be disabled - ADDED
 Best of widget doesn't set it's own view at first using the last set which is 2x grid - FIXED
 Category icons broken with WPML per language - FIXED
 Custom field wording "Show on detail page" changed for clarity - CHANGED
+Class menu-item-has-children added to GD menu items Listings & Add Listing - FIXED
 
 v1.3.9
 Moved change log into core files as we lost 1.3.9 change log due to SSD failure - CHANGED
