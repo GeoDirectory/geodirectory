@@ -274,13 +274,13 @@ $default = isset($field_info->is_admin)	 ? $field_info->is_admin : '';
                     </td>
                 </tr>
                 <tr>
-                    <td ><strong><?php _e('Show on detail page ? :',GEODIRECTORY_TEXTDOMAIN);?></strong></td>
+                    <td><strong><?php _e( 'Show in More Info tab on detail page? :', GEODIRECTORY_TEXTDOMAIN );?></strong></td>
                     <td align="left">
                         <select name="show_on_detail" id="show_on_detail" >
                         <option value="1" <?php if(isset($field_info->show_on_detail) && $field_info->show_on_detail=='1'){ echo 'selected="selected"';}?>><?php _e('Yes',GEODIRECTORY_TEXTDOMAIN);?></option>
                         <option value="0" <?php if((isset($field_info->show_on_detail) && ($field_info->show_on_detail=='0' || $field_info->show_on_detail=='')) || !isset($field_info->show_on_detail)){ echo 'selected="selected"';}?>><?php _e('No',GEODIRECTORY_TEXTDOMAIN);?></option>
                         </select>
-                        <br />    <span><?php _e('Want to show this on detail page ?',GEODIRECTORY_TEXTDOMAIN);?></span>
+                        <br />    <span><?php _e('Want to show this in More Info tab on detail page?',GEODIRECTORY_TEXTDOMAIN);?></span>
                     </td>
                 </tr>
 				<?php if ( !$default && in_array( $field_type, array( 'text', 'datepicker', 'textarea', 'time', 'phone', 'email', 'select', 'multiselect', 'url', 'html', 'fieldset', 'radio', 'checkbox', 'file' ) ) ) { ?>
