@@ -109,6 +109,10 @@ function geodir_post_package_info($package_info, $post='', $post_type = '')
 
 function geodir_send_inquiry($request){
 	global $wpdb;
+	
+	// strip slashes from text
+	$request = !empty( $request ) ? stripslashes_deep( $request ) : $request;
+	
 	$yourname = $request['inq_name'];
 	$youremail = $request['inq_email'];
 	$inq_phone = $request['inq_phone'];
@@ -151,6 +155,9 @@ function geodir_send_inquiry($request){
 	do_action('geodir_before_send_enquiry_email', $request);
 	if($to_email)
 	{	
+		// strip slashes message
+		$client_message = stripslashes_deep( $client_message );
+		
 		geodir_sendEmail($youremail,$yourname,$to_email,$to_name,'',$client_message,$extra='','send_enquiry',$request['pid']);//To client email
 	}
 	
@@ -169,9 +176,11 @@ function geodir_send_inquiry($request){
 
 }
 
-function geodir_send_friend($request){
-
+function geodir_send_friend( $request ) {
 	global $wpdb;
+	
+	// strip slashes from text
+	$request = !empty( $request ) ? stripslashes_deep( $request ) : $request;
 	
 	$yourname = $request['yourname'];
 	$youremail = $request['youremail'];
