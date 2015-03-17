@@ -1436,7 +1436,7 @@ function geodir_get_widget_listings($query_args = array())
     ########### WPML ###########
     if (function_exists('icl_object_id')) {
         if ($lang_code) {
-            $where .= " AND icl_t.language_code = '$lang_code' ";
+            $where .= " AND icl_t.language_code = '$lang_code' AND icl_t.element_type = 'post_$post_type' ";
         }
     }
     ########### WPML ###########

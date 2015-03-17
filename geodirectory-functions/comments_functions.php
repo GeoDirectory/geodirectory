@@ -327,6 +327,21 @@ function geodir_get_review_total($post_id = 0){
 		return false; 	
 }
 
+function geodir_get_review_count_by_user_id($user_id = 0){
+	global $wpdb;
+	$results =	$wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT COUNT(overall_rating) FROM ".GEODIR_REVIEW_TABLE." WHERE user_id = %d AND status=1 AND overall_rating>0",
+			array($user_id)
+		)
+	);
+
+	if(!empty($results))
+		return $results;
+	else
+		return false;
+}
+
 function geodir_get_post_rating($post_id = 0, $force_query = 0){
 	global $wpdb,$post;
 	
