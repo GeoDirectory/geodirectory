@@ -54,7 +54,7 @@ function geodir_add_nav_menu_items(  ) {
 	$view_posttype_listing = get_option('geodir_add_posttype_in_listing_nav') ;
 	$is_listing_sub_meny_exists = (!empty($view_posttype_listing)) ? true : false ;	
 	if($is_listing_sub_meny_exists)
-	{	$li_class = apply_filters('geodir_menu_li_class','menu-item '.$menu_class);
+	{	$li_class = apply_filters('geodir_menu_li_class','menu-item menu-item-has-children menu-gd-listings '.$menu_class);
 		$sub_li_class = apply_filters('geodir_sub_menu_li_class','menu-item '.$menu_class);
 		$sub_ul_class = apply_filters('geodir_sub_menu_ul_class' ,'sub-menu' );
 		$a_class = apply_filters('geodir_menu_a_class','');
@@ -140,7 +140,7 @@ function geodir_add_nav_menu_items(  ) {
 	{
 	
 		if(get_option('geodir_show_addlisting_nav')){		
-		$li_class = apply_filters('geodir_menu_li_class','menu-item '.$menu_class);
+		$li_class = apply_filters('geodir_menu_li_class','menu-item menu-item-has-children menu-gd-add-listing '.$menu_class);
 		$sub_li_class = apply_filters('geodir_sub_menu_li_class','menu-item '.$menu_class);
 		$sub_ul_class = apply_filters('geodir_sub_menu_ul_class' ,'sub-menu' );
 		$a_class = apply_filters('geodir_menu_a_class','');

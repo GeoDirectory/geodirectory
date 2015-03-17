@@ -1289,13 +1289,24 @@ function geodir_ajax_import_csv() {
 	$return = array();
 	$return['file'] = $uploadedFile;
 	$return['error'] = __( 'The uploaded file is not a valid csv file. Please try again.' , GEODIRECTORY_TEXTDOMAIN );
-	if ( is_file( $target_path ) && file_exists( $target_path ) ) {
+
+	if ( is_file( $target_path ) && file_exists( $target_path ) && $uploadedFile ) {
 		$wp_filetype = wp_check_filetype_and_ext( $target_path, $filename );
 		
 		if ( !empty( $wp_filetype ) && isset( $wp_filetype['ext'] ) && strtolower( $wp_filetype['ext'] ) == 'csv' ) {
 			$return['error'] = NULL;
-			$file = file( $target_path );
-			$return['rows'] = ( !empty( $file ) && count( $file ) > 1 ) ? count( $file ) - 1 : 0;
+			$response = wp_remote_get( $uploadedFile, array( 'sslverify' => false, 'timeout' => 360000 ) );
+
+			$return['rows'] = 0;
+			
+			if ( !is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response ) ) {
+				$file_contents = wp_remote_retrieve_body( $response );
+				$file_contents = trim( $file_contents );
+				$file = explode( PHP_EOL, $file_contents );
+				
+				$return['rows'] = ( !empty( $file ) && count( $file ) > 1 ) && strpos( $file_contents, PHP_EOL ) !== false ? count( $file ) - 1 : 0;
+			}
+	
 			if ( !$return['rows'] > 0 ) {
 				$return['error'] = __( 'No data found in csv file.' , GEODIRECTORY_TEXTDOMAIN );
 			}
@@ -1305,7 +1316,7 @@ function geodir_ajax_import_csv() {
 		echo json_encode($return); 
 		exit;
 	}
-	
+
 	$totRecords = isset( $_POST['gddata']['totRecords'] ) ? $_POST['gddata']['totRecords'] : NULL;
 	$importlimit = isset( $_POST['gddata']['importlimit'] ) ? $_POST['gddata']['importlimit'] : 1;
 	$count = $importlimit;

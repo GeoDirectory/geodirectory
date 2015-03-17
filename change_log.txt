@@ -6,6 +6,10 @@ $_SESSION['listing'] being cleared too early for other addons - FIXED
 Options added for detail page default sections to be disabled - ADDED
 Best of widget doesn't set it's own view at first using the last set which is 2x grid - FIXED
 Category icons broken with WPML per language - FIXED
+Custom field wording "Show on detail page" changed for clarity - CHANGED
+Class menu-item-has-children added to GD menu items Listings & Add Listing - FIXED
+Slashes not stripped from message of send enquiry email - FIXED
+CSV upload not supports formatting in description - FIXED
 WPML bug, can show untranslated posts if category ID matches post ID - FIXED
 
 v1.3.9
