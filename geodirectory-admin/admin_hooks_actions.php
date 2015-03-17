@@ -1290,18 +1290,24 @@ function geodir_ajax_import_csv() {
 	$return['file'] = $uploadedFile;
 	$return['error'] = __( 'The uploaded file is not a valid csv file. Please try again.' , GEODIRECTORY_TEXTDOMAIN );
 
-	if ( is_file( $target_path ) && file_exists( $target_path ) ) {
+	if ( is_file( $target_path ) && file_exists( $target_path ) && $uploadedFile ) {
 		$wp_filetype = wp_check_filetype_and_ext( $target_path, $filename );
 		
 		if ( !empty( $wp_filetype ) && isset( $wp_filetype['ext'] ) && strtolower( $wp_filetype['ext'] ) == 'csv' ) {
 			$return['error'] = NULL;
-			//$file = file( $target_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
-			$file = file_get_contents( $target_path );
-			$file = trim( $file );
-			$file = explode( PHP_EOL, $file );
+			$response = wp_remote_get( $uploadedFile );
+
+			$return['rows'] = 0;
 			
-			$return['rows'] = ( !empty( $file ) && count( $file ) > 1 ) ? count( $file ) - 1 : 0;
-			if ( !$return['rows'] > 0 || strpos( $file, PHP_EOL ) === false ) {
+			if ( !is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response ) ) {
+				$file_contents = wp_remote_retrieve_body( $response );
+				$file_contents = trim( $file_contents );
+				$file = explode( PHP_EOL, $file_contents );
+				
+				$return['rows'] = ( !empty( $file ) && count( $file ) > 1 ) && strpos( $file_contents, PHP_EOL ) !== false ? count( $file ) - 1 : 0;
+			}
+	
+			if ( !$return['rows'] > 0 ) {
 				$return['error'] = __( 'No data found in csv file.' , GEODIRECTORY_TEXTDOMAIN );
 			}
 		}
