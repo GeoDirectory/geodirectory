@@ -1348,7 +1348,7 @@ function gdStartImport(siteurl) {
 					gd_blank_address = gd_blank_address + parseInt(data.blank_address);
 					gd_upload_files = gd_upload_files + parseInt(data.upload_files);
 					gd_invalid_post_type = gd_invalid_post_type + parseInt(data.invalid_post_type);
-					gd_invalid_title = gd_invalid_post_type + parseInt(data.invalid_title);
+					gd_invalid_title = gd_invalid_title + parseInt(data.invalid_title);
 					gd_total_records = gd_total_records + parseInt(data.total_records);
 					
 					jQuery('#gd_rowcount').val(gd_rowcount);
