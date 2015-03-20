@@ -615,19 +615,45 @@ function geodir_detail_page_google_analytics()
  * @since 1.0.0
  * @package GeoDirectory
  * @see geodir_before_detail_page_review_rating action.
- * @see
+ * @see geodir_before_review_rating_stars_on_detail action.
+ * @see geodir_after_review_rating_stars_on_detail action.
+ * @see geodir_after_detail_page_review_rating action.
+ * @see geodir_detail_page_review_rating_html filter.
  */
 function geodir_detail_page_review_rating()
 {
     global $post, $preview, $post_images;
     ob_start(); // Start  buffering;
+    /**
+     * This is called before the rating html in the function geodir_detail_page_review_rating().
+     *
+     * This is called outside the check for an actual rating and the check for preview page.
+     *
+     * @since 1.0.0
+     * @see geodir_detail_page_review_rating function.
+     * @see geodir_before_review_rating_stars_on_detail action.
+     * @see geodir_after_review_rating_stars_on_detail action.
+     * @see geodir_after_detail_page_review_rating action.
+     * @see geodir_detail_page_review_rating_html filter.
+     */
     do_action('geodir_before_detail_page_review_rating');
 
     $comment_count = geodir_get_review_count_total($post->ID);
     $post_avgratings = geodir_get_post_rating($post->ID);
 
     if ($post_avgratings != 0 && !$preview) {
-
+        /**
+         * This is called before the rating html in the function geodir_detail_page_review_rating().
+         *
+         * This is called inside the check for an actual rating and the check for preview page.
+         *
+         * @since 1.0.0
+         * @see geodir_detail_page_review_rating function.
+         * @see geodir_before_detail_page_review_rating action.
+         * @see geodir_after_review_rating_stars_on_detail action.
+         * @see geodir_after_detail_page_review_rating action.
+         * @see geodir_detail_page_review_rating_html filter.
+         */
         do_action('geodir_before_review_rating_stars_on_detail', $post_avgratings, $post->ID);
 
         $html = '<p style=" float:left;">';
@@ -657,35 +683,105 @@ function geodir_detail_page_review_rating()
         $html .= '</span>';
 
         echo $html .= '</div>';
-
+        /**
+         * This is called after the rating html in the function geodir_detail_page_review_rating().
+         *
+         * This is called inside the check for an actual rating and the check for preview page.
+         *
+         * @since 1.0.0
+         * @see geodir_detail_page_review_rating function.
+         * @see geodir_before_detail_page_review_rating action.
+         * @see geodir_before_review_rating_stars_on_detail action.
+         * @see geodir_after_detail_page_review_rating action.
+         * @see geodir_detail_page_review_rating_html filter.
+         */
         do_action('geodir_after_review_rating_stars_on_detail', $post_avgratings, $post->ID);
     }
-
+    /**
+     * This is called before the rating html in the function geodir_detail_page_review_rating().
+     *
+     * This is called outside the check for an actual rating and the check for preview page.
+     *
+     * @since 1.0.0
+     * @see geodir_detail_page_review_rating function.
+     * @see geodir_before_review_rating_stars_on_detail action.
+     * @see geodir_after_review_rating_stars_on_detail action.
+     * @see geodir_before_detail_page_review_rating action.
+     * @see geodir_detail_page_review_rating_html filter.
+     */
     do_action('geodir_after_detail_page_review_rating');
     $content_html = ob_get_clean();
     if (trim($content_html) != '') {
         $content_html = '<div class="geodir-company_info geodir-details-sidebar-rating">' . $content_html . '</div>';
     }
     if ((int)get_option('geodir_disable_rating_info_section') != 1) {
+        /**
+         * Filter the geodir_detail_page_review_rating() function content.
+         *
+         * @since 1.0.0
+         * @param string $content_html The output html of the geodir_detail_page_review_rating() function.
+         * @see geodir_detail_page_review_rating function.
+         * @see geodir_before_review_rating_stars_on_detail action.
+         * @see geodir_after_review_rating_stars_on_detail action.
+         * @see geodir_before_detail_page_review_rating action.
+         * @see geodir_after_detail_page_review_rating action.
+         */
         echo $content_html = apply_filters('geodir_detail_page_review_rating_html', $content_html);
     }
 }
 
-
+/**
+ * This outputs the info section of the details page.
+ *
+ * This outputs the info section fo the details page which includes all the post custom fields.
+ * @since 1.0.0
+ * @package GeoDirectory
+ * @see geodir_show_listing_info function.
+ * @see geodir_before_detail_page_more_info action.
+ * @see geodir_after_detail_page_more_info action.
+ * @see geodir_detail_page_more_info_html filter.
+ */
 function geodir_detail_page_more_info()
 {
-    global $post, $preview, $post_images;
     ob_start(); // Start  buffering;
+    /**
+     * This is called before the info section html.
+     *
+     * @since 1.0.0
+     * @see geodir_detail_page_more_info function.
+     * @see geodir_show_listing_info function.
+     * @see geodir_after_detail_page_more_info action.
+     * @see geodir_detail_page_more_info_html filter.
+     */
     do_action('geodir_before_detail_page_more_info');
     if ($geodir_post_detail_fields = geodir_show_listing_info()) {
         echo $geodir_post_detail_fields;
     }
+    /**
+     * This is called after the info section html.
+     *
+     * @since 1.0.0
+     * @see geodir_detail_page_more_info function.
+     * @see geodir_show_listing_info function.
+     * @see geodir_before_detail_page_more_info action.
+     * @see geodir_detail_page_more_info_html filter.
+     */
     do_action('geodir_after_detail_page_more_info');
 
     $content_html = ob_get_clean();
     if (trim($content_html) != '')
         $content_html = '<div class="geodir-company_info geodir-details-sidebar-listing-info">' . $content_html . '</div>';
     if ((int)get_option('geodir_disable_listing_info_section') != 1) {
+        /**
+         * Filter the output html for function geodir_detail_page_more_info().
+         *
+         * @since 1.0.0
+         * @param string $content_html The output html of the geodir_detail_page_more_info() function.
+         * @see geodir_detail_page_more_info function.
+         * @see geodir_show_listing_info function.
+         * @see geodir_before_detail_page_more_info action.
+         * @see geodir_after_detail_page_more_info action.
+         */
         echo $content_html = apply_filters('geodir_detail_page_more_info_html', $content_html);
     }
 }
