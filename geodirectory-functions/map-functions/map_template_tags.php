@@ -1,10 +1,28 @@
 <?php
+/**
+ * All map related templates used by the plugin
+ *
+ * @since 1.0.0
+ * @package GeoDirectory
+ */
+ 
+/**
+ * Contains all map related functions.
+ *
+ * @since 1.0.0
+ */
 require_once('map_functions.php');
-/*-------------------------------------------------*/
-/* All map related templates
-/*-------------------------------------------------*/
 
-
+/**
+ * Display the google map html.
+ *
+ * @since 1.0.0
+ *
+ * @global array $map_canvas_arr Array of map canvas data.
+ *
+ * @param  array  $map_args Array of map arguements to use in map options.
+ * @return string|void Html content for google map.
+ */
 function geodir_draw_map($map_args = array())
 {
     global $map_canvas_arr;
@@ -16,7 +34,7 @@ function geodir_draw_map($map_args = array())
 
     $map_default_lat = isset($default_location->city_latitude) ? $default_location->city_latitude : '';
     $map_default_lng = isset($default_location->city_longitude) ? $default_location->city_longitude : '';
-    $map_default_zoom = 12;//$default_location->city_zoom;
+    $map_default_zoom = 12;
     // map options default values
     $width = 950;
     $height = 450;
@@ -78,18 +96,37 @@ function geodir_draw_map($map_args = array())
         $geodir_map_options['width'] = $geodir_map_options['width'] . 'px';
     }
 
-    $geodir_map_options = apply_filters('geodir_map_options_' . $map_canvas_name, $geodir_map_options);
-
+    /**
+	 * Filter the options to use in google map.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $geodir_map_options Array of google map options.
+	 */
+	$geodir_map_options = apply_filters('geodir_map_options_' . $map_canvas_name, $geodir_map_options);
 
     $map_canvas_arr[$map_canvas_name] = array();
 
-
-    $post_types = apply_filters('geodir_map_post_type_list_' . $map_canvas_name, geodir_get_posttypes('object'));
-    $exclude_post_types = apply_filters('geodir_exclude_post_type_on_map_' . $map_canvas_name, get_option('geodir_exclude_post_type_on_map'));
+    /**
+	 * Filter the post types to display data on map.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param object Objects of post types.
+	 */
+	$post_types = apply_filters('geodir_map_post_type_list_' . $map_canvas_name, geodir_get_posttypes('object'));
+    
+	/**
+	 * Filter the post types to exclude to display data on map.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array Array of post types to exclude to display data on map.
+	 */
+	$exclude_post_types = apply_filters('geodir_exclude_post_type_on_map_' . $map_canvas_name, get_option('geodir_exclude_post_type_on_map'));
 
     if (count((array)$post_types) != count($exclude_post_types) || ($enable_jason_on_load)):
         // Set default map options
-
         wp_enqueue_script('geodir-map-widget', geodir_plugin_url() . '/geodirectory-functions/map-functions/js/map.js');
 
         wp_localize_script('geodir-map-widget', $map_canvas_name, $geodir_map_options);
@@ -100,7 +137,14 @@ function geodir_draw_map($map_args = array())
             $map_width = $geodir_map_options['width'];
         }
 
-        $map_width = apply_filters('geodir_change_map_width', $map_width);
+        /**
+		 * Filter the width of map.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param int $map_width Width of map box, eg: gd_place.
+		 */
+		$map_width = apply_filters('geodir_change_map_width', $map_width);
         ?>
         <div id="catcher_<?php echo $map_canvas_name;?>"></div>
         <div class="stick_trigger_container">
@@ -111,9 +155,7 @@ function geodir_draw_map($map_args = array())
 
                 <div class="map_background">
                     <div class="top_banner_section_in clearfix">
-                        <div class="<?php echo $map_canvas_name;?>_TopLeft TopLeft"><span class="triggermap"
-                                                                                          id="<?php echo $map_canvas_name;?>_triggermap" <?php if (!$geodir_map_options['enable_map_resize_button']) { ?> <?php }?>><i
-                                    class="fa fa-arrows-alt"></i></span></div>
+                        <div class="<?php echo $map_canvas_name;?>_TopLeft TopLeft"><span class="triggermap" id="<?php echo $map_canvas_name;?>_triggermap" <?php if (!$geodir_map_options['enable_map_resize_button']) { ?> <?php }?>><i class="fa fa-arrows-alt"></i></span></div>
                         <div class="<?php echo $map_canvas_name;?>_TopRight TopRight"></div>
                         <div id="<?php echo $map_canvas_name;?>_wrapper" class="main_map_wrapper"
                              style="height:<?php echo $geodir_map_options['height'];?>;width:<?php echo $map_width;?>;">
@@ -132,12 +174,7 @@ function geodir_draw_map($map_args = array())
                         <div class="<?php echo $map_canvas_name;?>_BottomLeft BottomLeft"></div>
                     </div>
                 </div>
-                <?php
-
-
-
-
-                if ($geodir_map_options['enable_jason_on_load']) { ?>
+                <?php if ($geodir_map_options['enable_jason_on_load']) { ?>
                     <input type="hidden" id="<?php echo $map_canvas_name;?>_jason_enabled" value="1"/>
                 <?php } else {
                     ?>
@@ -159,14 +196,12 @@ function geodir_draw_map($map_args = array())
                     <input type="button" value="<?php _e('Get Directions', GEODIRECTORY_TEXTDOMAIN); ?>"
                            class="<?php echo $map_canvas_name; ?>_getdirection" id="directions"
                            onclick="calcRoute('<?php echo $map_canvas_name; ?>')"/>
-
                     <script>
                         <?php if(geodir_is_page('detail')){?>
                         jQuery(function () {
                             gd_initialize_ac();
                         });
                         <?php }?>
-
                         function gd_initialize_ac() {
                             // Create the autocomplete object, restricting the search
                             // to geographical location types.
@@ -184,10 +219,7 @@ function geodir_draw_map($map_args = array())
                             //submit the form
                             jQuery('#directions').trigger('click');
                         }
-
                     </script>
-
-
                     <div id='directions-options' class="hidden">
                         <select id="travel-mode" onchange="calcRoute('<?php echo $map_canvas_name; ?>')">
                             <option value="driving"><?php _e('Driving', GEODIRECTORY_TEXTDOMAIN); ?></option>
@@ -250,7 +282,6 @@ function geodir_draw_map($map_args = array())
                     </div>
                 </div>
                 <!-- map-category-listings-->
-
                 <?php
                 if ($geodir_map_options['enable_location_filters']) {
 
@@ -269,12 +300,10 @@ function geodir_draw_map($map_args = array())
                         }
 
                     }
-                    //fix for location/me page
+                    // fix for location/me page
                     if (isset($country) && $country == 'me') {
                         $country = '';
                     }
-
-                    //$gd_posttype = 'gd_place';
 
                     ?>
                     <input type="hidden" id="<?php echo $map_canvas_name;?>_location_enabled" value="1"/>
@@ -303,9 +332,17 @@ function geodir_draw_map($map_args = array())
                 if (empty($geodir_default_map_search_pt))
                     $geodir_default_map_search_pt = 'gd_place';
 
-                ?>
+                /**
+				 * Filter the post type to retrive data for map
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param string $geodir_default_map_search_pt Post type, eg: gd_place.
+				 */
+				$map_search_pt = apply_filters('geodir_default_map_search_pt', $geodir_default_map_search_pt);
+				?>
                 <input type="hidden" id="<?php echo $map_canvas_name;?>_posttype" name="gd_posttype"
-                       value="<?php echo apply_filters('geodir_default_map_search_pt', $geodir_default_map_search_pt);?>"/>
+                       value="<?php echo $map_search_pt;?>"/>
 
                 <input type="hidden" name="limitstart" value=""/>
 
@@ -400,8 +437,6 @@ function geodir_draw_map($map_args = array())
             </script>
         <?php
         }
-
-
     endif; // Exclude posttypes if end
 }
 

@@ -660,11 +660,10 @@ function geodir_detail_page_review_rating()
         $html .= geodir_get_rating_stars($post_avgratings, $post->ID);
         $html .= '<div class="average-review" itemscope itemtype="http://data-vocabulary.org/Review-aggregate">';
         $post_avgratings = (is_float($post_avgratings) || (strpos($post_avgratings, ".", 1) == 1 && strlen($post_avgratings) > 3)) ? number_format($post_avgratings, 1, '.', '') : $post_avgratings;
-        if ($comment_count > 1) {
-            $html .= '<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating"><span class="rating" itemprop="average">' . $post_avgratings . '</span> /  <span itemprop="best">5</span> ' . __("based on", GEODIRECTORY_TEXTDOMAIN) . ' <span class="count" itemprop="count">' . $comment_count . '</span> ' . __("reviews", GEODIRECTORY_TEXTDOMAIN) . '</span><br />';
-        } else {
-            $html .= '<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating"><span class="rating" itemprop="average">' . $post_avgratings . '</span> /  <span itemprop="best">5</span> ' . __("based on", GEODIRECTORY_TEXTDOMAIN) . ' <span class="count" itemprop="count">' . $comment_count . '</span> ' . __("review", GEODIRECTORY_TEXTDOMAIN) . '</span><br />';
-        }
+       
+	   $reviews_text = $comment_count > 1 ? __("reviews", GEODIRECTORY_TEXTDOMAIN) : __("review", GEODIRECTORY_TEXTDOMAIN);
+	   
+	   $html .= '<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating"><span class="rating" itemprop="average" content="' . $post_avgratings . '">' . $post_avgratings . '</span> / <span itemprop="best" content="5">5</span> ' . __("based on", GEODIRECTORY_TEXTDOMAIN) . ' </span><span class="count" itemprop="count" content="' . $comment_count . '">' . $comment_count . ' ' . $reviews_text . '</span><br />';
 
         $html .= '<span class="item">';
         $html .= '<span class="fn" itemprop="itemreviewed">' . $post->post_title . '</span>';
@@ -677,7 +676,7 @@ function geodir_detail_page_review_rating()
         }
 
         if (isset($post_img) && $post_img) {
-            $html .= '<br /><img src="' . $post_img . '" class="photo hreview-img"  alt="' . $post->post_title . '" itemprop="photo" />';
+            $html .= '<br /><img src="' . $post_img . '" class="photo hreview-img" alt="' . esc_attr($post->post_title) . '" itemprop="photo" content="' . $post_img . '" class="photo hreview-img" />';
         }
 
         $html .= '</span>';

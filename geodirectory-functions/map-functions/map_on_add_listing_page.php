@@ -1,5 +1,23 @@
 <?php
-global $is_default, $mapzoom;
+/**
+ * Displays the map in add listing map
+ *
+ * @since 1.0.0
+ * @package GeoDirectory
+ */
+ 
+/**
+ * @global int $mapzoom Zoom level value for the map.
+ */
+global $mapzoom;
+
+/**
+ * Filter the map restriction for specific address only
+ *
+ * @since 1.0.0
+ *
+ * @param bool Whether to ristrict the map for specific address only.
+ */
 $is_map_restrict = apply_filters('geodir_add_listing_map_restrict', true);
 $default_location = geodir_get_default_location();
 $defaultcity = isset($default_location->city) ? $default_location->city : '';
@@ -19,10 +37,26 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
     if (isset($_REQUEST['add_hood']))
         $mapzoom = 10;
 }
+
+/**
+ * Filter the auto change address fields values
+ *
+ * @since 1.0.0
+ *
+ * @param bool Whether to auto fill country, state, city values in fields.
+ */
+ $auto_change_map_fields = apply_filters('geodir_auto_change_map_fields', true);
 ?>
 <script type="text/javascript">
     /* <![CDATA[ */
-    <?php do_action('geodir_add_listing_js_start', $prefix);?>
+    <?php 
+	/**
+	 * Fires to add javascript for add listing page map.
+	 *
+	 * @since 1.0.0
+	 */
+	do_action('geodir_add_listing_js_start', $prefix);
+	?>
     user_address = false;
 
     jQuery('#<?php echo $prefix.'address';?>').keypress(function () {
@@ -64,8 +98,6 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
             var getState = '';
             var getCountry = '';
             getCountryISO = '';
-//alert(JSON.stringify(responses[0].address_components));
-            console.log(responses);
             street_number = '';
             premise = ''; // In Russian ;
             route = '';
@@ -172,7 +204,7 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
             getZip = postal_code.long_name;//postal_code
 
 
-//getCountry
+			//getCountry
             if (country.long_name) {
                 getCountry = country.long_name;
             }
@@ -180,13 +212,13 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
                 getCountryISO = country.short_name;
             }
 
-//getState
+			//getState
             if (country.short_name) {
                 rr = country.short_name;
             }
 
-//$country_arr = ["US", "CA", "IN","DE","NL"];
-// fix for regions in GB
+			//$country_arr = ["US", "CA", "IN","DE","NL"];
+			// fix for regions in GB
             $country_arr = ["GB"];
             if (jQuery.inArray(rr, $country_arr) !== -1) {
                 if (administrative_area_level_2.long_name) {
@@ -204,8 +236,8 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
                 }
             }
 
-//getCity
-// fix for cities in Ireland
+			//  get the city name
+			// fix for cities in Ireland
             $country_arr2 = ["IE"];
             if (jQuery.inArray(rr, $country_arr2) !== -1) {
 
@@ -239,20 +271,22 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
                 }
             }
 
-
-            /*if(administrative_area_level_1.long_name){getState = administrative_area_level_1.long_name;}
-             else if(administrative_area_level_2.long_name){getState = administrative_area_level_2.long_name;}*/
-
-//getCountry 
+			// get the country name
             if (country.long_name) {
                 getCountry = country.long_name;
             }
-//getZip 
+			// get the zipcode
             if (postal_code.long_name) {
                 getZip = postal_code.long_name;
             }
-//alert(getState);
-            <?php do_action('geodir_add_listing_geocode_js_vars');?>
+            <?php 
+			/**
+			 * Fires to add javascript variable to use in google map.
+			 *
+			 * @since 1.0.0
+			 */
+			do_action('geodir_add_listing_geocode_js_vars');
+			?>
             <?php if($is_map_restrict){?>
             if (getCity.toLowerCase() != '<?php echo mb_strtolower(esc_attr($city));?>') {
                 alert('<?php printf(__('Please choose any address of the (%s) city only.',GEODIRECTORY_TEXTDOMAIN), $city);?>');
@@ -284,29 +318,29 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
     }
     function updateMarkerPosition(markerlatLng) {
         jQuery("#<?php echo $prefix.'map';?>").goMap();
-//$.goMap.setMap({latitude:markerlatLng.lat(), longitude:markerlatLng.lng()}); 
+		//$.goMap.setMap({latitude:markerlatLng.lat(), longitude:markerlatLng.lng()}); 
         jQuery('#<?php echo $prefix.'latitude';?>').val(markerlatLng.lat());
         jQuery('#<?php echo $prefix.'longitude';?>').val(markerlatLng.lng());
     }
     function updateMarkerAddress(getAddress, getZip, getCity, getState, getCountry) {
-        var set_map_val_in_fields = '<?php echo apply_filters('geodir_auto_change_map_fields', true);?>';
+        var set_map_val_in_fields = '<?php echo $auto_change_map_fields;?>';
         <?php ob_start();?>
         var old_country = jQuery("#<?php echo $prefix.'country';?>").val();
         var old_region = jQuery("#<?php echo $prefix.'region';?>").val();
-//if (getAddress){
+		//if (getAddress){
         if (user_address == false || jQuery('#<?php echo $prefix.'address';?>').val() == '') {
             jQuery("#<?php echo $prefix.'address';?>").val(getAddress);
         }
         if (getAddress) {
             oldstr_address = getAddress;
         }
-// }
-//if (getZip){
+		// }
+		//if (getZip){
         jQuery("#<?php echo $prefix.'zip';?>").val(getZip);
         if (getZip) {
             oldstr_zip = getZip;
         }
-//}	
+		//}	
         if (set_map_val_in_fields) {
             if (getCountry) {
                 jQuery('#<?php echo $prefix.'country';?> option[data-country_code="' + getCountryISO + '"]').attr("selected", true);
@@ -325,7 +359,14 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
             }
         }
         <?php
-        do_action('geodir_update_marker_address', $prefix);
+		/**
+		 * Fires when marker address updated on map.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $prefix Identifier used as a prefix for field name
+		 */
+		do_action('geodir_update_marker_address', $prefix);
         echo $updateMarkerAddress = ob_get_clean();
         ?>
     }
@@ -379,22 +420,34 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
             }
         }
         <?php $codeAddress = ob_get_clean();
+		/**
+		 * Filter the address variable
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $codeAddress Row of address to use in google map.
+		 */
         echo apply_filters('geodir_codeaddress', $codeAddress);
         ?>
         geocoder.geocode({'address': address, 'country': ISO2},
             function (results, status) {
-                console.log(results);
-                console.log(status);
                 jQuery("#<?php echo $prefix.'map';?>").goMap();
                 if (status == google.maps.GeocoderStatus.OK) {
                     baseMarker.setPosition(results[0].geometry.location);
                     jQuery.goMap.map.setCenter(results[0].geometry.location);
                     updateMarkerPosition(baseMarker.getPosition());
-//if(set_on_map && is_restrict){
-//geocodePosition({ 'address': address,'country':   ISO2});
-                    <?php do_action('geodir_add_listing_codeaddress_before_geocode');?>
+					//if(set_on_map && is_restrict){
+					//geocodePosition({ 'address': address,'country':   ISO2});
+                    <?php 
+					/**
+					 * Fires before set geocode position.
+					 *
+					 * @since 1.0.0
+					 */
+					do_action('geodir_add_listing_codeaddress_before_geocode');
+					?>
                     geocodePosition(baseMarker.getPosition(), {'address': address, 'country': ISO2});
-//}
+					//}
                 } else {
                     alert("<?php _e('Geocode was not successful for the following reason:',GEODIRECTORY_TEXTDOMAIN);?> " + status);
                 }
@@ -402,7 +455,6 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
     }
     function showAlert() {
         jQuery("#<?php echo $prefix.'map';?>").goMap();
-// window.alert('DIV clicked');
         jQuery('#<?php echo $prefix.'map';?>').toggleClass('map-fullscreen');
         jQuery('.map_category').toggleClass('map_category_fullscreen');
         jQuery('#<?php echo $prefix;?>trigger').toggleClass('map_category_fullscreen');
@@ -412,9 +464,9 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
         jQuery('#<?php echo $prefix;?>triggermap').toggleClass('triggermap_fullscreen');
         jQuery('.TopLeft').toggleClass('TopLeft_fullscreen');
         window.setTimeout(function () {
-//var center = $.goMap.getCenter(); 
+			//var center = $.goMap.getCenter(); 
             google.maps.event.trigger($.goMap, 'resize');
-//$.goMap.setCenter(center); 
+			//$.goMap.setCenter(center); 
         }, 100);
     }
     jQuery(function ($) {
@@ -447,22 +499,22 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
             var set_on_map = true;
             codeAddress(set_on_map);
         });
-// Add dragging event listeners.
+		// Add dragging event listeners.
         google.maps.event.addListener(baseMarker, 'dragstart', function () {
-//updateMarkerAddress('Dragging...');
+			// updateMarkerAddress('Dragging...');
         });
         google.maps.event.addListener(baseMarker, 'drag', function () {
-// updateMarkerStatus('Dragging...');
+			// updateMarkerStatus('Dragging...');
             updateMarkerPosition(baseMarker.getPosition());
         });
         google.maps.event.addListener(baseMarker, 'dragend', function () {
-// updateMarkerStatus('Drag ended');
+			// updateMarkerStatus('Drag ended');
             centerMap();
             geocodePosition(baseMarker.getPosition());
             updateMarkerPosition(baseMarker.getPosition());
         });
         google.maps.event.addListener($.goMap.map, 'dragend', function () {
-// updateMarkerStatus('Drag ended');
+			// updateMarkerStatus('Drag ended');
             geocodePosition(baseMarker.getPosition());
             centerMarker();
             updateMarkerPosition(baseMarker.getPosition());
@@ -483,7 +535,7 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
             function (results, status) {
                 $("#<?php echo $prefix.'map';?>").goMap();
                 if (status == google.maps.GeocoderStatus.OK) {
-// Bounds for North America
+					// Bounds for North America
                     var bound_lat_lng = String(results[0].geometry.bounds);
                     bound_lat_lng = bound_lat_lng.replace(/[()]/g, "");
                     bound_lat_lng = bound_lat_lng.split(',');
@@ -527,7 +579,7 @@ if (is_admin() && isset($_REQUEST['tab']) && $mapzoom == '') {
         setTimeout(function() { set_location_bound(); }, 500);
         <?php } ?>
         });<?php */?>
-// Limit the zoom level
+		// Limit the zoom level
         google.maps.event.addListener($.goMap.map, 'zoom_changed', function () {
             $("#<?php echo $prefix.'map';?>").goMap();
             if ($.goMap.map.getZoom() < minZoomLevel) $.goMap.map.setZoom(minZoomLevel);
@@ -540,19 +592,16 @@ $set_button_class = 'geodir_button';
 if (is_admin())
     $set_button_class = 'button-primary';
 ?>
-
-<input type="button" id="<?php echo $prefix; ?>set_address_button" class="<?php echo $set_button_class; ?>"
-       value="<?php _e($map_title, GEODIRECTORY_TEXTDOMAIN); ?>" style="float:none;"/>
+<input type="button" id="<?php echo $prefix; ?>set_address_button" class="<?php echo $set_button_class; ?>" value="<?php _e($map_title, GEODIRECTORY_TEXTDOMAIN); ?>" style="float:none;"/>
 <div id="<?php echo $prefix; ?>d_mouseClick"></div>
-<div class="top_banner_section_inn geodir_map_container clearfix" style=" margin-top:10px;">
+<div class="top_banner_section_inn geodir_map_container clearfix" style="margin-top:10px;">
     <div class="TopLeft"><span id="<?php echo $prefix; ?>triggermap" style="margin-top:-11px;margin-left:-12px;"></span>
     </div>
     <div class="TopRight"></div>
     <div id="<?php echo $prefix . 'map'; ?>" class="geodir_map" style="height:300px">
         <!-- new map start -->
         <div class="iprelative">
-            <div id="<?php echo $prefix . 'map'; ?>" style="float:right; height:300px;position:relative; "
-                 class="form_row clearfix"></div>
+            <div id="<?php echo $prefix . 'map'; ?>" style="float:right;height:300px;position:relative;" class="form_row clearfix"></div>
             <div id="<?php echo $prefix; ?>loading_div" style="height:300px"></div>
             <div id="<?php echo $prefix; ?>advmap_counter"></div>
             <div id="<?php echo $prefix; ?>advmap_nofound"><?php echo MAP_NO_RESULTS; ?></div>
