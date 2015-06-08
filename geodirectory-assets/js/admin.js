@@ -140,7 +140,8 @@ jQuery(document).ready(function () {
 
 function gd_copy_translation(url) {
     //alert(url);return;
-    post_id = jQuery("input[name=icl_trid]").val();
+    //post_id = jQuery("input[name=icl_trid]").val();
+    post_id = jQuery("#icl_translation_of_hidden").val();
     jQuery.ajax({
         url: url,
         type: 'POST',

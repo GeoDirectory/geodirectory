@@ -504,6 +504,8 @@ function geodir_bestof_places_by_term($query_args)
     $current_map_canvas_arr = $map_canvas_arr;
     $current_grid_view = $gridview_columns_widget;
     $gridview_columns_widget = null;
+    $gd_listing_view_old = $_SESSION['gd_listing_view'];
+    $_SESSION['gd_listing_view'] = '1';
     $geodir_is_widget_listing = true;
 
 	/**
@@ -519,6 +521,7 @@ function geodir_bestof_places_by_term($query_args)
 	if (!empty($current_post)) {
     	setup_postdata($current_post);
 	}
+    $_SESSION['gd_listing_view'] = $gd_listing_view_old;
     $map_jason = $current_map_jason;
     $map_canvas_arr = $current_map_canvas_arr;
     $gridview_columns_widget = $current_grid_view;
@@ -551,7 +554,7 @@ function geodir_bestof_callback()
         'is_geodir_loop' => true,
         'post_type' => $post_type,
         'gd_location' => $add_location_filter ? true : false,
-        'order_by' => 'high_rating'
+        'order_by' => 'high_review'
     );
 
     if ($character_count >= 0) {
