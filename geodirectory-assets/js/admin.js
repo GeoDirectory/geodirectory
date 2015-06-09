@@ -167,6 +167,43 @@ function gd_copy_translation(url) {
                 });
             }
 
+
+            /////////////////
+
+            if(data.post_latitude && data.post_longitude){
+                latlon = new google.maps.LatLng(data.post_latitude,data.post_longitude);
+                jQuery.goMap.map.setCenter(latlon);
+                updateMarkerPosition(latlon);
+                centerMarker();
+                if(!data.post_address){google.maps.event.trigger(baseMarker, 'dragend');}// geocode address only if no street name present
+
+            }
+
+            if(data.post_country && jQuery('#post_country').length){jQuery('#post_country').val(data.post_country);jQuery("#post_country").trigger("chosen:updated");}
+            if(data.post_region && jQuery('#post_region').length){jQuery('#post_region').val(data.post_region);jQuery("#post_region").trigger("chosen:updated");}
+            if(data.post_city && jQuery('#post_city').length){jQuery('#post_city').val(data.post_city);jQuery("#post_city").trigger("chosen:updated");}
+            if(data.post_zip && jQuery('#post_zip').length){jQuery('#post_zip').val(data.post_zip);}
+
+
+            if(data.post_country && data.post_region && data.post_city && data.post_zip){
+                gdfi_codeaddress = true;
+                gdfi_city = data.post_city;
+                gdfi_street = data.post_address;
+                gdfi_zip= data.post_zip;
+                geodir_codeAddress(true);
+                setTimeout(function(){ google.maps.event.trigger(baseMarker, 'dragend');}, 600);
+
+                //incase the drag marker changes the street and post code we should fix it.
+                setTimeout(function(){
+                    if(data.post_address && jQuery('#post_address').length){jQuery('#post_address').val(data.post_address);}
+                    if(data.post_zip && jQuery('#post_zip').length){jQuery('#post_zip').val(data.post_zip);}
+                }, 1000);
+
+
+
+            }
+            //////////////////////
+
         },
         error: function (xhr, textStatus, errorThrown) {
             alert(textStatus);

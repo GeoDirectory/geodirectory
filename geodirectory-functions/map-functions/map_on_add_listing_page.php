@@ -412,7 +412,7 @@ $auto_change_map_fields = apply_filters('geodir_auto_change_map_fields', true);
         echo $updateMarkerAddress = ob_get_clean();
         ?>
     }
-    function codeAddress(set_on_map) {
+    function geodir_codeAddress(set_on_map) {
         var address = jQuery('#<?php echo $prefix.'address';?>').val();
         var zip = jQuery('#<?php echo $prefix.'zip';?>').val();
         var city = jQuery('#<?php echo $prefix.'city';?>').val();
@@ -542,7 +542,7 @@ $auto_change_map_fields = apply_filters('geodir_auto_change_map_fields', true);
         });
         $("#<?php echo $prefix;?>set_address_button").click(function () {
             var set_on_map = true;
-            codeAddress(set_on_map);
+            geodir_codeAddress(set_on_map);
         });
 // Add dragging event listeners.
         google.maps.event.addListener(baseMarker, 'dragstart', function () {

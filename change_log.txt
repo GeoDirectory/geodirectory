@@ -14,6 +14,7 @@ WPML not translating details page content correctly - FIXED
 Google Analytics for owners stopped working due to API retirement, new improved Analytics added - FIXED
 Category listing sort by rating now uses review count as second sort value - CHANGED
 WPML copy content for translation no longer copying GD custom fields - FIXED
+Function codeAddress changed to geodir_codeAddress for compatibility - CHANGED
 
 v1.4.7
 Search not working for empty keyword search - FIXED
