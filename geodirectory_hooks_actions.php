@@ -559,6 +559,7 @@ function geodir_detail_page_google_analytics()
     do_action('geodir_before_google_analytics');
     if (get_option('geodir_ga_stats') && get_edit_post_link() && is_user_logged_in() && (isset($package_info->google_analytics) && $package_info->google_analytics == '1')) {
         $page_url = $_SERVER['REQUEST_URI'];
+        //$page_url = "/";
         ?>
 
         <script type="text/javascript">
@@ -899,6 +900,15 @@ function geodir_detail_page_google_analytics()
         </script>
 
         <style>
+            #ga_stats #gd-active-users-container {
+                float: right;
+                margin: 0 0 10px;
+            }
+
+            #gdga-select-analytic {
+                clear: both;
+            }
+
             #ga_stats #ga-analytics-title{
                 float: left;
                 font-weight: bold;
