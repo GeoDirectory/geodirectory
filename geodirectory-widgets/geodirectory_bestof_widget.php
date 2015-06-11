@@ -486,7 +486,11 @@ register_widget('geodir_bestof_widget');
  */
 function geodir_bestof_places_by_term($query_args)
 {
+    do_action('geodir_bestof_get_widget_listings_before');
+
     $widget_listings = geodir_get_widget_listings($query_args);
+
+    do_action('geodir_bestof_get_widget_listings_after');
 
     $character_count = isset($query_args['excerpt_length']) ? $query_args['excerpt_length'] : '';
 
