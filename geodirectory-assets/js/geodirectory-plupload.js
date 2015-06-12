@@ -213,6 +213,7 @@ function plu_show_thumbs(imgId) {
             var file_ext = images[i].substring(images[i].lastIndexOf('.') + 1);
             var fileNameIndex = images[i].lastIndexOf("/") + 1;
             var dotIndex = images[i].lastIndexOf('.');
+            if(dotIndex < fileNameIndex){continue;}
             var file_name = images[i].substr(fileNameIndex, dotIndex < fileNameIndex ? loc.length : dotIndex);
 
             /*if (file_ext == 'pdf' || file_ext == 'xlsx' || file_ext == 'xls' || file_ext == 'csv' || file_ext == 'docx' || file_ext == 'doc' || file_ext == 'txt') {

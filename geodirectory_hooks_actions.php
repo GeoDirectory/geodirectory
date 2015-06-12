@@ -681,19 +681,27 @@ function geodir_detail_page_google_analytics()
                         var data = [];
                         var colors = ['#4D5360','#949FB1','#D4CCC5','#E2EAE9','#F7464A'];
 
-                        response.rows.forEach(function(row, i) {
-                            data.push({
-                                label: row[0],
-                                value: +row[1],
-                                color: colors[i]
+                        if(response.rows){
+                            response.rows.forEach(function (row, i) {
+                                data.push({
+                                    label: row[0],
+                                    value: +row[1],
+                                    color: colors[i]
+                                });
                             });
-                        });
 
-                        new Chart(makeCanvas('gdga-chart-container')).Doughnut(data);
-                        generateLegend('gdga-legend-container', data);
+                            new Chart(makeCanvas('gdga-chart-container')).Doughnut(data);
+                            generateLegend('gdga-legend-container', data);
+                        }else{
+                            gdga_noResults();
+                        }
 
             }
 
+            function gdga_noResults(){
+                jQuery('#gdga-chart-container').html('<?php _e('No results available',GEODIRECTORY_TEXTDOMAIN);?>');
+                jQuery('#gdga-legend-container').html('');
+            }
 
             /**
              * Draw the a chart.js bar chart with data from the specified view that
@@ -809,9 +817,28 @@ function geodir_detail_page_google_analytics()
                     var data2 = results[1].rows.map(function(row) { return +row[2]; });
                     var labels = results[1].rows.map(function(row) { return +row[0]; });
 
-                    labels = labels.map(function(label) {
-                        return moment(label, 'YYYYMMDD').format('ddd');
-                    });
+                    <?php
+                    // Here we list the shorthand days of the week so it can be used in translation.
+                    __("Mon",GEODIRECTORY_TEXTDOMAIN);
+                    __("Tue",GEODIRECTORY_TEXTDOMAIN);
+                    __("Wed",GEODIRECTORY_TEXTDOMAIN);
+                    __("Thu",GEODIRECTORY_TEXTDOMAIN);
+                    __("Fri",GEODIRECTORY_TEXTDOMAIN);
+                    __("Sat",GEODIRECTORY_TEXTDOMAIN);
+                    __("Sun",GEODIRECTORY_TEXTDOMAIN);
+                    ?>
+
+                    labels = [
+                        "<?php _e(date('D', strtotime("+1 day")),GEODIRECTORY_TEXTDOMAIN); ?>",
+                        "<?php _e(date('D', strtotime("+2 day")),GEODIRECTORY_TEXTDOMAIN); ?>",
+                        "<?php _e(date('D', strtotime("+3 day")),GEODIRECTORY_TEXTDOMAIN); ?>",
+                        "<?php _e(date('D', strtotime("+4 day")),GEODIRECTORY_TEXTDOMAIN); ?>",
+                        "<?php _e(date('D', strtotime("+5 day")),GEODIRECTORY_TEXTDOMAIN); ?>",
+                        "<?php _e(date('D', strtotime("+6 day")),GEODIRECTORY_TEXTDOMAIN); ?>",
+                        "<?php _e(date('D', strtotime("+7 day")),GEODIRECTORY_TEXTDOMAIN); ?>"
+                    ];
+
+
 
                     var data = {
                         labels : labels,

@@ -74,11 +74,11 @@ function geodir_getGoogleAnalytics($page, $ga_start, $ga_end)
     $start_date = '';
     $end_date = '';
     if(isset($_REQUEST['ga_type']) && $_REQUEST['ga_type']=='thisweek'){
-        if(!$ga_start){$ga_start = date('Y-m-d', strtotime("-7 day"));}
+        if(!$ga_start){$ga_start = date('Y-m-d', strtotime("-6 day"));}
         if(!$ga_end){$ga_end = date('Y-m-d');}
         $dimensions = "&dimensions=ga:date,ga:nthDay";
     }elseif(isset($_REQUEST['ga_type']) && $_REQUEST['ga_type']=='lastweek'){
-        if(!$ga_start){$ga_start = date('Y-m-d', strtotime("-14 day"));}
+        if(!$ga_start){$ga_start = date('Y-m-d', strtotime("-13 day"));}
         if(!$ga_end){$ga_end = date('Y-m-d', strtotime("-7 day"));}
         $dimensions = "&dimensions=ga:date,ga:nthDay";
     }
@@ -117,7 +117,8 @@ function geodir_getGoogleAnalytics($page, $ga_start, $ga_end)
     }
 
     $response =  wp_remote_get($use_url,array('timeout' => 15));
-        echo $response['body'];
+
+    echo $response['body'];
     exit;
 
 }// end GA function
@@ -133,10 +134,15 @@ function geodir_ga_get_token(){
     return $at;
     }else{//else get new access token
 
+        $refresh_at = get_option('gd_ga_refresh_token');
+        if(!$refresh_at){
+            echo json_encode(array('error'=>__('Not authorized, please click authorized in GD > Google analytic settings.', GEODIRECTORY_TEXTDOMAIN)));exit;
+        }
+
         $rat_url = "https://www.googleapis.com/oauth2/v3/token?";
         $client_id = "client_id=".get_option('geodir_ga_client_id');
         $client_secret = "&client_secret=".get_option('geodir_ga_client_secret');
-        $refresh_token = "&refresh_token=".get_option('gd_ga_refresh_token');
+        $refresh_token = "&refresh_token=".$refresh_at;
         $grant_type = "&grant_type=refresh_token";
 
         $rat_url_use = $rat_url.$client_id.$client_secret.$refresh_token.$grant_type;
@@ -150,7 +156,7 @@ function geodir_ga_get_token(){
             return $parts->access_token;
 
         }else{
-            echo __('Login failed', GEODIRECTORY_TEXTDOMAIN) . "\n";exit;
+            echo json_encode(array('error'=>__('Login failed', GEODIRECTORY_TEXTDOMAIN)));exit;
         }
 
 
