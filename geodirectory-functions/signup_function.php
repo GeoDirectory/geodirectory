@@ -535,7 +535,7 @@ function geodir_user_signup()
 
                     }
 
-                    if (isset($_REQUEST['redirect_add_listing']) || $_REQUEST['redirect_add_listing'] != '') {
+                    if (isset($_REQUEST['redirect_add_listing']) && $_REQUEST['redirect_add_listing'] != '') {
 
                         $redirect_to = $_REQUEST['redirect_add_listing'];
                     }
@@ -545,6 +545,18 @@ function geodir_user_signup()
                         $secure_cookie = false;
 
                     $user = wp_signon('', $secure_cookie);
+					
+					$requested_redirect_to = isset($_REQUEST['redirect_add_listing']) && $_REQUEST['redirect_add_listing'] != '' ? $_REQUEST['redirect_add_listing'] : (isset($_REQUEST['redirect_to']) ? $_REQUEST['redirect_to'] : '');
+					/**
+					 * Filter the login redirect URL.
+					 *
+					 * @since 1.4.9
+					 *
+					 * @param string $redirect_to The redirect destination URL.
+					 * @param string $requested_redirect_to The requested redirect destination URL passed as a parameter.
+					 * @param WP_User|WP_Error $user WP_User object if login was successful, WP_Error object otherwise.
+					 */
+					$redirect_to = apply_filters('login_redirect', $redirect_to, $requested_redirect_to, $user);
 
                     if (!is_wp_error($user)) {
                         wp_safe_redirect($redirect_to);
