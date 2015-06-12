@@ -2,6 +2,7 @@ v1.4.9
 Google Analytics extra error messages added to help users debug - ADDED
 Google Analytics days of week now translatable - FIXED
 Broken image link can break the image upload button when editing - FIXED
+Filter login_redirect added for login after GD signup - ADDED
 
 v1.4.8
 Send Enquiry & send to friend options removed from listings page - CHANGED
