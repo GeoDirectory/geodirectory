@@ -33,6 +33,7 @@ Disqus comments plugin now works with blog posts but is disabled on GD posts - F
 Error messaged on user registration border changed from green to red to denote errors - CHANGED
 Date custom field shows value even if no date entered and format can be wrong on edit - FIXED
 Moved login/reg function to be called on wp_loaded rather than init so other plugins have a chance to hook in if needed - CHANGED
+Menu map marker icon margin right added - ADDED
 
 v1.4.9
 Google Analytics extra error messages added to help users debug - ADDED
