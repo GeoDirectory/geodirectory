@@ -9,9 +9,27 @@
 global $geodir_settings;
 
 /**
+ * function to get post type options.
+ *
+ * @since 1.5.1
+ * @package GeoDirectory
+ */
+function geodir_post_type_select_options() {
+    $options = array();
+
+    $post_types = geodir_get_posttypes('object');
+
+    foreach ($post_types as $key => $post_types_obj) {
+        $options[$key] = __($post_types_obj->labels->singular_name, GEODIRECTORY_TEXTDOMAIN);
+    }
+    return $options;
+}
+
+/**
  * Filter GD general settings array.
  *
  * @since 1.0.0
+ * @since 1.5.1 Default posttype in popular categories widget setting added.
  * @package GeoDirectory
  */
 $general_options = apply_filters('geodir_general_options', array(
@@ -131,6 +149,21 @@ $general_options = apply_filters('geodir_general_options', array(
 
 
     array('type' => 'sectionend', 'id' => 'general_options'),
+	
+	array('name' => __('Widget Options', GEODIRECTORY_TEXTDOMAIN), 'type' => 'sectionstart', 'id' => 'general_widget_options'),
+	array(
+		'name' => __( 'Default posttype in popular categories widget', GEODIRECTORY_TEXTDOMAIN ),
+		'desc' => __( 'Set the default post type for popular post category widget.', GEODIRECTORY_TEXTDOMAIN ),
+		'tip' => '',
+		'id' => 'geodir_category_widget_cpt',
+		'css' => 'min-width:300px;',
+		'std' => '',
+		'type' => 'select',
+		'placeholder_text' => __( 'Select post type', GEODIRECTORY_TEXTDOMAIN ),
+		'class' => 'chosen_select',
+		'options' => array_unique(geodir_post_type_select_options())
+	),
+	array('type' => 'sectionend', 'id' => 'general_widget_options'),
 
 ));/* General Options End*/
 
