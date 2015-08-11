@@ -2094,6 +2094,7 @@ add_filter('geodir_googlemap_script_extra', 'geodir_googlemap_script_extra_detai
  * Generates popular post category HTML.
  *
  * @since 1.0.0
+ * @since 1.5.1 Updated to set default posttype in popular categories.
  * @package GeoDirectory
  * @global object $wpdb WordPress Database object.
  * @global string $plugin_prefix Geodirectory plugin table prefix.
@@ -2140,24 +2141,25 @@ function geodir_popular_post_category_output($args = '', $instance = '')
         foreach ($a_terms as $b_key => $b_val) {
             $b_terms[$b_key] = geodir_sort_terms($b_val, 'count');
         }
-
+		
+		$default_post_type = !empty($gd_post_type) ? $gd_post_type : get_option('geodir_category_widget_cpt');
+		$default_taxonomy = isset($b_terms[$default_post_type . 'category']) ? $default_post_type . 'category' : '';
 
         $tax_change_output = '';
-        if (count($b_terms) > 1) {
-            $tax_change_output .= "<select data-limit='$category_limit' class='geodir-cat-list-tax'  onchange='geodir_get_post_term(this);'>";
+        if (count($b_terms) > 1) {			
+			$tax_change_output .= "<select data-limit='$category_limit' class='geodir-cat-list-tax'  onchange='geodir_get_post_term(this);'>";
             foreach ($b_terms as $key => $val) {
                 $ptype = get_post_type_object(str_replace("category", "", $key));
-                $tax_change_output .= "<option value='$key' >" . __($ptype->labels->singular_name, GEODIRECTORY_TEXTDOMAIN) . " " . __('Categories', GEODIRECTORY_TEXTDOMAIN) . "</option>";
+                $tax_change_output .= "<option value='$key' ". selected($key, $default_taxonomy, false) ." >" . __($ptype->labels->singular_name, GEODIRECTORY_TEXTDOMAIN) . " " . __('Categories', GEODIRECTORY_TEXTDOMAIN) . "</option>";
             }
             $tax_change_output .= "</select>";
 
 
         }
 
-
         if (!empty($b_terms)) {
 
-            $terms = reset($b_terms);// get the first array
+            $terms = $default_taxonomy != '' && isset($b_terms[$default_taxonomy]) ? $b_terms[$default_taxonomy] : reset($b_terms);// get the first array
             global $cat_count;//make global so we can change via function
             $cat_count = 0;
             ?>

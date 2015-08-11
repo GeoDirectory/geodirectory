@@ -9,6 +9,7 @@ All widgets changed from PHP4 style constructors to PHP5 __construct, for WordPr
 Image file for custom field can be enlarged using modal - ADDED
 Bottom section widget area inside wrapper div - FIXED
 Review text first paragraph not wrapped in `p` tags - FIXED
+Option added to set default posttype in popular categories widget - CHANGED
 
 v1.5.0
 Google analytic countries throws error - FIXED
