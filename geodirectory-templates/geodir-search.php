@@ -78,6 +78,11 @@ do_action('geodir_wrapper_content_close', 'search-page');
  */
 do_action('geodir_search_sidebar_right');
 
+
+###### WRAPPER CLOSE ######	
+/** This action is documented in geodirectory-templates/add-listing.php */
+do_action('geodir_wrapper_close', 'search-page');
+
 ###### BOTTOM SECTION WIDGET AREA ######
 /**
  * Adds the details bottom section widget area, you can add more classes via ''.
@@ -86,8 +91,4 @@ do_action('geodir_search_sidebar_right');
  */
 do_action('geodir_sidebar_search_bottom_section');
 
-
-###### WRAPPER CLOSE ######	
-/** This action is documented in geodirectory-templates/add-listing.php */
-do_action('geodir_wrapper_close', 'search-page');
 get_footer();  

@@ -367,7 +367,7 @@ function geodir_comment_delete_comment($comment_id)
 
 }
 
-add_filter('comment_text', 'geodir_wrap_comment_text', 10, 2);
+add_filter('comment_text', 'geodir_wrap_comment_text', 40, 2);
 /**
  * Add rating information in comment text.
  *

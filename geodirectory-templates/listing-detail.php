@@ -108,6 +108,10 @@ if (!get_option('geodir_detail_sidebar_left_section')) {
 }
 
 
+###### WRAPPER CLOSE ######	
+/** This action is documented in geodirectory-templates/add-listing.php */
+do_action('geodir_wrapper_close', 'details-page');
+
 ###### BOTTOM SECTION WIDGET AREA ######
 /**
  * Adds the details page bottom section widget area to the details template page.
@@ -115,10 +119,6 @@ if (!get_option('geodir_detail_sidebar_left_section')) {
  * @since 1.1.0
  */
 do_action('geodir_sidebar_detail_bottom_section', '');
-
-###### WRAPPER CLOSE ######	
-/** This action is documented in geodirectory-templates/add-listing.php */
-do_action('geodir_wrapper_close', 'details-page');
 
 
 get_footer();      

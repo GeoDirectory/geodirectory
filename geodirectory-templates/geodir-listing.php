@@ -78,6 +78,13 @@ do_action('geodir_wrapper_content_close', 'listings-page');
 do_action('geodir_listings_sidebar_right');
 
 
+
+
+
+###### WRAPPER CLOSE ######	
+/** This action is documented in geodirectory-templates/add-listing.php */
+do_action('geodir_wrapper_close', 'listings-page');
+
 ###### BOTTOM SECTION WIDGET AREA ######
 /**
  * Adds the listings page bottom widget area to the listings template page if active.
@@ -85,10 +92,5 @@ do_action('geodir_listings_sidebar_right');
  * @since 1.1.0
  */
 do_action('geodir_sidebar_listings_bottom_section');
-
-
-###### WRAPPER CLOSE ######	
-/** This action is documented in geodirectory-templates/add-listing.php */
-do_action('geodir_wrapper_close', 'details-page');
 
 get_footer();  

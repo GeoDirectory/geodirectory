@@ -79,6 +79,10 @@ do_action('geodir_wrapper_content_close', 'author-page');
  */
 do_action('geodir_author_sidebar_right');
 
+###### WRAPPER CLOSE ######	
+/** This action is documented in geodirectory-templates/add-listing.php */
+do_action('geodir_wrapper_close', 'author-page');
+
 ###### BOTTOM SECTION WIDGET AREA ######
 /**
  * Adds the author page bottom widget area to the author template page if active.
@@ -86,9 +90,5 @@ do_action('geodir_author_sidebar_right');
  * @since 1.1.0
  */
 do_action('geodir_sidebar_author_bottom_section');
-
-###### WRAPPER CLOSE ######	
-/** This action is documented in geodirectory-templates/add-listing.php */
-do_action('geodir_wrapper_close', 'author-page');
 
 get_footer();  

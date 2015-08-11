@@ -1848,8 +1848,7 @@ add_action('geodir_sidebar_listings_bottom_section', 'geodir_action_sidebar_list
 function geodir_action_sidebar_listings_bottom_section()
 {
     if (get_option('geodir_show_listing_bottom_section')) { ?>
-        <div
-            class="<?php
+        <div class="<?php
             /** This action is documented in geodirectory_template_actions.php */
             echo apply_filters('geodir_full_page_class', 'geodir_full_page clearfix', 'geodir_listing_bottom'); ?>">
             <?php dynamic_sidebar('geodir_listing_bottom'); ?>

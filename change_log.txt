@@ -7,6 +7,8 @@ Added some code to override reviews template from theme - ADDED
 Some filters added in best of widget - CHANGED
 All widgets changed from PHP4 style constructors to PHP5 __construct, for WordPress 4.3 - CHANGED
 Image file for custom field can be enlarged using modal - ADDED
+Bottom section widget area inside wrapper div - FIXED
+Review text first paragraph not wrapped in `p` tags - FIXED
 
 v1.5.0
 Google analytic countries throws error - FIXED
