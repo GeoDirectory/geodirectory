@@ -829,7 +829,7 @@ function searching_filter_where($where)
 								)
 						) 
 					) 
-				AND $wpdb->posts.post_type in ('$post_types') 
+				AND $wpdb->posts.post_type in ('$post_types')
 				AND ($wpdb->posts.post_status = 'publish') ";
     }
 	
