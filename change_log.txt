@@ -3,7 +3,6 @@ Event after map marker opened extended to prevent FireFox reclosing marker with 
 Map popup image margins and padding set to 0 !important for compatibility - CHANGED
 Bootstrap styles can alter the popular categories count number position - FIXED
 Location switcher ajax search not working with accents chars - FIXED
-Best of widget Option added to display reviews in excerpt - ADDED
 Image gallery lightbox popup image stretches problem with some themes - FIXED
 
 v1.5.3
