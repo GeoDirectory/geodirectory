@@ -85,8 +85,18 @@ class geodir_bestof_widget extends WP_Widget
 		 * @param string $instance['post_type'] The post type.
 		 */
 		$post_type = empty($instance['post_type']) ? 'gd_place' : apply_filters('bestof_widget_post_type', $instance['post_type']);
-        
-		/**
+
+        /**
+         * Filter the excerpt type.
+         *
+         * @since 1.5.4
+         *
+         * @param string $instance['excerpt_type'] The excerpt type.
+         */
+        $excerpt_type = empty($instance['excerpt_type']) ? 'show-desc' : apply_filters('bestof_widget_excerpt_type', $instance['excerpt_type']);
+
+
+        /**
 		 * Filter the listing limit.
 		 *
 		 * @since 1.3.9
@@ -276,6 +286,8 @@ class geodir_bestof_widget extends WP_Widget
         ?>
         <input type="hidden" id="bestof_widget_post_type" name="bestof_widget_post_type"
                value="<?php echo $post_type; ?>">
+        <input type="hidden" id="bestof_widget_excerpt_type" name="bestof_widget_excerpt_type"
+               value="<?php echo $excerpt_type; ?>">
         <input type="hidden" id="bestof_widget_post_limit" name="bestof_widget_post_limit"
                value="<?php echo $post_limit; ?>">
         <input type="hidden" id="bestof_widget_taxonomy" name="bestof_widget_taxonomy"
@@ -307,7 +319,13 @@ class geodir_bestof_widget extends WP_Widget
 				
 				echo '<h3 class="bestof-cat-title">' . wp_sprintf( __( 'Best of %s', 'geodirectory' ), $first_term->name ) . '<a href="' . esc_url($view_all_link) . '">' . __("View all", 'geodirectory') . '</a></h3>';
             }
+            if ($excerpt_type == 'show-reviews') {
+                add_filter('get_the_excerpt', 'best_of_show_review_in_excerpt');
+            }
             geodir_bestof_places_by_term($query_args);
+            if ($excerpt_type == 'show-reviews') {
+                remove_filter('get_the_excerpt', 'best_of_show_review_in_excerpt');
+            }
             echo "</div>";
             ?>
         </div>
@@ -337,6 +355,7 @@ class geodir_bestof_widget extends WP_Widget
         $instance['categ_limit'] = strip_tags($new_instance['categ_limit']);
         $instance['character_count'] = $new_instance['character_count'];
         $instance['tab_layout'] = $new_instance['tab_layout'];
+        $instance['excerpt_type'] = $new_instance['excerpt_type'];
         if (isset($new_instance['add_location_filter']) && $new_instance['add_location_filter'] != '')
             $instance['add_location_filter'] = strip_tags($new_instance['add_location_filter']);
         else
@@ -364,6 +383,7 @@ class geodir_bestof_widget extends WP_Widget
                 'character_count' => '20',
                 'add_location_filter' => '1',
                 'tab_layout' => 'bestof-tabs-on-top',
+                'excerpt_type' => 'show-desc',
                 'use_viewing_post_type' => ''
             )
         );
@@ -373,6 +393,7 @@ class geodir_bestof_widget extends WP_Widget
         $categ_limit = strip_tags($instance['categ_limit']);
         $character_count = strip_tags($instance['character_count']);
         $tab_layout = strip_tags($instance['tab_layout']);
+        $excerpt_type = strip_tags($instance['excerpt_type']);
         $add_location_filter = strip_tags($instance['add_location_filter']);
         $use_viewing_post_type = isset($instance['use_viewing_post_type']) && $instance['use_viewing_post_type'] ? true : false;
 
@@ -464,6 +485,23 @@ class geodir_bestof_widget extends WP_Widget
                         echo 'selected="selected"';
                     } ?>
                         value="bestof-tabs-as-dropdown"><?php _e('Tabs as Dropdown', 'geodirectory'); ?></option>
+                </select>
+            </label>
+        </p>
+
+        <p>
+            <label
+                for="<?php echo $this->get_field_id('excerpt_type'); ?>"><?php _e('Excerpt Type:', 'geodirectory');?>
+
+                <select class="widefat" id="<?php echo $this->get_field_id('excerpt_type'); ?>"
+                        name="<?php echo $this->get_field_name('excerpt_type'); ?>">
+
+                    <option <?php if ($excerpt_type == 'show-desc') {
+                        echo 'selected="selected"';
+                    } ?> value="show-desc"><?php _e('Show Description', 'geodirectory'); ?></option>
+                    <option <?php if ($excerpt_type == 'show-reviews') {
+                        echo 'selected="selected"';
+                    } ?> value="show-reviews"><?php _e('Show Reviews if Available', 'geodirectory'); ?></option>
                 </select>
             </label>
         </p>
@@ -590,6 +628,8 @@ function geodir_bestof_callback()
     $taxonomy = strip_tags(esc_sql($_POST['taxonomy']));
     $add_location_filter = strip_tags(esc_sql($_POST['add_location_filter']));
     $term_id = strip_tags(esc_sql($_POST['term_id']));
+    $excerpt_type = '';
+    $excerpt_type = strip_tags(esc_sql($_POST['excerpt_type']));
 
     $query_args = array(
         'posts_per_page' => $post_limit,
@@ -618,7 +658,13 @@ function geodir_bestof_callback()
 				
 		echo '<h3 class="bestof-cat-title">' . wp_sprintf( __( 'Best of %s', 'geodirectory' ), $term->name ) . '<a href="' . esc_url( $view_all_link ) . '">' . __("View all", 'geodirectory') . '</a></h3>';
     }
+    if ($excerpt_type == 'show-reviews') {
+        add_filter('get_the_excerpt', 'best_of_show_review_in_excerpt');
+    }
     geodir_bestof_places_by_term($query_args);
+    if ($excerpt_type == 'show-reviews') {
+        remove_filter('get_the_excerpt', 'best_of_show_review_in_excerpt');
+    }
     wp_die();
 }
 
@@ -662,6 +708,7 @@ jQuery(document).ready(function() {
 		}
 		
 		var post_type = jQuery(widgetBox).find('#bestof_widget_post_type').val();
+        var excerpt_type = jQuery(widgetBox).find('#bestof_widget_excerpt_type').val();
 		var post_limit = jQuery(widgetBox).find('#bestof_widget_post_limit').val();
 		var taxonomy = jQuery(widgetBox).find('#bestof_widget_taxonomy').val();
 		var char_count = jQuery(widgetBox).find('#bestof_widget_char_count').val();
@@ -671,6 +718,7 @@ jQuery(document).ready(function() {
 			'action': 'geodir_bestof',
 			'geodir_bestof_nonce': '<?php echo $ajax_nonce; ?>',
 			'post_type': post_type,
+            'excerpt_type': excerpt_type,
 			'post_limit': post_limit,
 			'taxonomy': taxonomy,
 			'geodir_ajax': true,
@@ -699,4 +747,28 @@ jQuery(document).ready(function() {
 });
 </script>
 <?php
+}
+
+function best_of_show_review_in_excerpt($excerpt) {
+    global $wpdb, $post;
+//    $args = array(
+//                'status' => 'approve',
+//                'number' => 10,
+//                'parent' => 0,
+//                'post_id' => $post->ID
+//            );
+
+    $review_table = GEODIR_REVIEW_TABLE;
+    $request = "SELECT comment_ID FROM $review_table WHERE post_id = $post->ID ORDER BY post_date DESC, id DESC LIMIT 1";
+    $comments = $wpdb->get_results($request);
+
+    if ($comments) {
+        foreach($comments as $comment) {
+            // Set the extra comment info needed.
+            $comment_extra = $wpdb->get_row("SELECT * FROM $wpdb->comments WHERE comment_ID =$comment->comment_ID");
+            $comment_content = $comment_extra->comment_content;
+            $excerpt = strip_tags( $comment_content );
+        }
+    }
+    return $excerpt;
 }
