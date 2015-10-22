@@ -5191,11 +5191,11 @@ function geodir_ajax_import_export() {
 									
 									if ( wp_update_post( $save_post ) ) {
 										$saved_post_id = $post_id;
-										$updated++;	
+										$updated++;
 									}
 								} else {
 									if ( $saved_post_id = wp_insert_post( $save_post ) ) {
-										$created++;	
+										$created++;
 									}
 								}
 								

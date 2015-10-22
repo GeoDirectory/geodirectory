@@ -733,7 +733,7 @@ function geodir_related_posts_display($request)
         $character_count = (isset($request['character_count']) && !empty($request['character_count'])) ? $request['character_count'] : '';
 
         global $wpdb, $post;
-
+        $origi_post = $post;
         $post_type = '';
         $post_id = '';
         $category_taxonomy = '';
@@ -857,7 +857,7 @@ function geodir_related_posts_display($request)
 
 
             global $gridview_columns, $post;
-            $origi_post = $post;
+
 
             query_posts($query_args);
 

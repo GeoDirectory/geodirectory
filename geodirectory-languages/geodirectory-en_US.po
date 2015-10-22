@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: GeoDirectory 1.5.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-26 18:58-0000\n"
-"PO-Revision-Date: 2015-09-26 18:59-0000\n"
+"PO-Revision-Date: 2015-10-15 17:36-0000\n"
 "Last-Translator: \n"
 "Language-Team: GeoDirectory <info@wpgeodirectory.com>\n"
 "Language: en_US\n"
@@ -6337,7 +6337,7 @@ msgstr ""
 
 #: language.php:345
 msgid "Germany"
-msgstr "Deutschland"
+msgstr ""
 
 #: language.php:346
 msgid "Ghana"

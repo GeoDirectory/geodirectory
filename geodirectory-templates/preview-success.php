@@ -34,7 +34,7 @@
     $username = $user_info->user_login;
     $user_email = $user_info->user_email;
 
-    $message = wpautop(stripslashes(get_option('geodir_post_added_success_msg_content')));
+    $message = wpautop(stripslashes(__(get_option('geodir_post_added_success_msg_content'),'geodirectory')));
 
     $search_array = array('[#submited_information_link#]', '[#listing_link#]', '[#site_name_url#]', '[#post_id#]', '[#site_name#]', '[#user_email#]', '[#username#]', '[#login_url#]', '[#posted_date#]');
     $replace_array = array($productlink, $productlink, $siteurl_link, $post_id, $siteName, $user_email, $username, $loginurl_link, $posted_date);

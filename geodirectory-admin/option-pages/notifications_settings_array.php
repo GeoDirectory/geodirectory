@@ -137,7 +137,7 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
         'id' => 'geodir_post_submited_success_email_content_admin',
         'css' => 'width:500px; height: 150px;',
         'type' => 'textarea',
-        'std' => '<p>Dear Admin,</p><p>A new  listing has been published [#listing_link#]. This email is just for your information.</p><br><p>[#site_name#]</p>'
+        'std' => __('<p>Dear Admin,</p><p>A new  listing has been published [#listing_link#]. This email is just for your information.</p><br><p>[#site_name#]</p>','geodirectory')
     ),
 
 
@@ -162,7 +162,7 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
         'id' => 'geodir_post_submited_success_email_content',
         'css' => 'width:500px; height: 150px;',
         'type' => 'textarea',
-        'std' => '<p>Dear [#client_name#],</p><p>You submitted the below listing information. This email is just for your information.</p><p>[#listing_link#]</p><br><p>Thank you for your contribution.</p><p>[#site_name#]</p>'
+        'std' => __('<p>Dear [#client_name#],</p><p>You submitted the below listing information. This email is just for your information.</p><p>[#listing_link#]</p><br><p>Thank you for your contribution.</p><p>[#site_name#]</p>','geodirectory')
     ),
 
 
@@ -180,7 +180,7 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
         'id' => 'geodir_forgot_password_content',
         'css' => 'width:500px; height: 150px;',
         'type' => 'textarea',
-        'std' => "<p>Dear [#client_name#],<p><p>You requested a new password for [#site_name_url#]</p><p>[#login_details#]</p><p>You can login here: [#login_url#]</p><p>Thank you,<br /><br />[#site_name_url#].</p>"
+        'std' => __("<p>Dear [#client_name#],<p><p>You requested a new password for [#site_name_url#]</p><p>[#login_details#]</p><p>You can login here: [#login_url#]</p><p>Thank you,<br /><br />[#site_name_url#].</p>",'geodirectory')
     ),
 
     array(
@@ -197,7 +197,7 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
         'id' => 'geodir_registration_success_email_content',
         'css' => 'width:500px; height: 150px;',
         'type' => 'textarea',
-        'std' => "<p>Dear [#client_name#],</p><p>You can log in  with the following information:</p><p>[#login_details#]</p><p>You can login here: [#login_url#]</p><p>Thank you,<br /><br />[#site_name_url#].</p>"
+        'std' => __("<p>Dear [#client_name#],</p><p>You can log in  with the following information:</p><p>[#login_details#]</p><p>You can login here: [#login_url#]</p><p>Thank you,<br /><br />[#site_name_url#].</p>",'geodirectory')
     ),
     array(
         'name' => __('Listing published email', 'geodirectory'),
@@ -236,7 +236,7 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
         'id' => 'geodir_email_friend_content',
         'css' => 'width:500px; height: 150px;',
         'type' => 'textarea',
-        'std' => "<p>Dear [#to_name#],<p><p>Your friend has sent you a message from <b>[#site_name#]</b> </p><p>===============================</p><p><b>Subject : [#subject#]</b></p><p>[#comments#] [#listing_link#]</p><p>===============================</p><p>Thank you,<br /><br />[#site_name#].</p>"
+        'std' => __("<p>Dear [#to_name#],<p><p>Your friend has sent you a message from <b>[#site_name#]</b> </p><p>===============================</p><p><b>Subject : [#subject#]</b></p><p>[#comments#] [#listing_link#]</p><p>===============================</p><p>Thank you,<br /><br />[#site_name#].</p>",'geodirectory')
     ),
 
     array(
@@ -253,7 +253,7 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
         'id' => 'geodir_email_enquiry_content',
         'css' => 'width:500px; height: 150px;',
         'type' => 'textarea',
-        'std' => "<p>Dear [#to_name#],<p><p>An enquiry has been sent from <b>[#listing_link#]</b></p><p>===============================</p><p>[#comments#]</p><p>===============================</p><p>Thank you,<br /><br />[#site_name_url#].</p>"
+        'std' => __("<p>Dear [#to_name#],<p><p>An enquiry has been sent from <b>[#listing_link#]</b></p><p>===============================</p><p>[#comments#]</p><p>===============================</p><p>Thank you,<br /><br />[#site_name_url#].</p>",'geodirectory')
     ),
 
     array('type' => 'sectionend', 'id' => 'other_emails'),
@@ -269,7 +269,7 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
         'id' => 'geodir_post_added_success_msg_content',
         'css' => 'width:500px; height: 150px;',
         'type' => 'textarea',
-        'std' => '<p>Thank you, your information has been successfully received.</p><p><a href="[#submited_information_link#]" >View your submitted information &raquo;</a></p><p>Thank you for visiting us at [#site_name#].</p>'
+        'std' => __('<p>Thank you, your information has been successfully received.</p><p><a href="[#submited_information_link#]" >View your submitted information &raquo;</a></p><p>Thank you for visiting us at [#site_name#].</p>','geodirectory')
     ),
 
 

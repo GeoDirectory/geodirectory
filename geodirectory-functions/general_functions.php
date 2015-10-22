@@ -592,25 +592,25 @@ if (!function_exists('geodir_sendEmail')) {
         $to_message = stripslashes_deep($to_message);
 
         if ($message_type == 'send_friend') {
-            $subject = stripslashes(get_option('geodir_email_friend_subject'));
-            $message = stripslashes(get_option('geodir_email_friend_content'));
+            $subject = stripslashes(__(get_option('geodir_email_friend_subject'),'geodirectory'));
+            $message = stripslashes(__(get_option('geodir_email_friend_content'),'geodirectory'));
         } elseif ($message_type == 'send_enquiry') {
-            $subject = stripslashes(get_option('geodir_email_enquiry_subject'));
-            $message = stripslashes(get_option('geodir_email_enquiry_content'));
+            $subject = stripslashes(__(get_option('geodir_email_enquiry_subject'),'geodirectory'));
+            $message = stripslashes(__(get_option('geodir_email_enquiry_content'),'geodirectory'));
         } elseif ($message_type == 'forgot_password') {
-            $subject = stripslashes(get_option('geodir_forgot_password_subject'));
-            $message = stripslashes(get_option('geodir_forgot_password_content'));
+            $subject = stripslashes(__(get_option('geodir_forgot_password_subject'),'geodirectory'));
+            $message = stripslashes(__(get_option('geodir_forgot_password_content'),'geodirectory'));
             $login_details = $to_message;
         } elseif ($message_type == 'registration') {
-            $subject = stripslashes(get_option('geodir_registration_success_email_subject'));
-            $message = stripslashes(get_option('geodir_registration_success_email_content'));
+            $subject = stripslashes(__(get_option('geodir_registration_success_email_subject'),'geodirectory'));
+            $message = stripslashes(__(get_option('geodir_registration_success_email_content'),'geodirectory'));
             $login_details = $to_message;
         } elseif ($message_type == 'post_submit') {
-            $subject = stripslashes(get_option('geodir_post_submited_success_email_subject'));
-            $message = stripslashes(get_option('geodir_post_submited_success_email_content'));
+            $subject = stripslashes(__(get_option('geodir_post_submited_success_email_subject'),'geodirectory'));
+            $message = stripslashes(__(get_option('geodir_post_submited_success_email_content'),'geodirectory'));
         } elseif ($message_type == 'listing_published') {
-            $subject = stripslashes_deep(get_option('geodir_post_published_email_subject'));
-            $message = stripslashes_deep(get_option('geodir_post_published_email_content'));
+            $subject = stripslashes_deep(__(get_option('geodir_post_published_email_subject'),'geodirectory'));
+            $message = stripslashes_deep(__(get_option('geodir_post_published_email_content'),'geodirectory'));
         }
 
         $to_message = nl2br($to_message);
@@ -674,8 +674,8 @@ if (!function_exists('geodir_sendEmail')) {
 
         if ($message_type == 'post_submit') {
 
-            $subject = stripslashes(get_option('geodir_post_submited_success_email_subject_admin'));
-            $message = stripslashes(get_option('geodir_post_submited_success_email_content_admin'));
+            $subject = stripslashes(__(get_option('geodir_post_submited_success_email_subject_admin'),'geodirectory'));
+            $message = stripslashes(__(get_option('geodir_post_submited_success_email_content_admin'),'geodirectory'));
 
 
             $search_array = array('[#listing_link#]', '[#site_name_url#]', '[#post_id#]', '[#site_name#]', '[#to_name#]', '[#from_name#]', '[#subject#]', '[#comments#]', '[#login_url#]', '[#login_details#]', '[#client_name#]', '[#posted_date#]','[#user_login#]','[#username#]');
@@ -766,7 +766,7 @@ function geodir_breadcrumb()
      */
     $separator = apply_filters('geodir_breadcrumb_separator', ' > ');
 
-    if (!is_home()) {
+    if (!geodir_is_page('home')) {
         $breadcrumb = '';
         $url_categoris = '';
         $breadcrumb .= '<div class="geodir-breadcrumb clearfix"><ul id="breadcrumbs">';
@@ -775,7 +775,7 @@ function geodir_breadcrumb()
          *
          * @since 1.0.0
          */
-        $breadcrumb .= '<li>' . apply_filters('geodir_breadcrumb_first_link', '<a href="' . get_option('home') . '">' . __('Home', 'geodirectory') . '</a>') . '</li>';
+        $breadcrumb .= '<li>' . apply_filters('geodir_breadcrumb_first_link', '<a href="' . home_url() . '">' . __('Home', 'geodirectory') . '</a>') . '</li>';
 
         $gd_post_type = geodir_get_current_posttype();
         $post_type_info = get_post_type_object($gd_post_type);
@@ -1200,35 +1200,35 @@ if (!function_exists('adminEmail')) {
     {
         global $wpdb;
         if ($message_type == 'expiration') {
-            $subject = stripslashes(get_option('renew_email_subject'));
-            $client_message = stripslashes(get_option('renew_email_content'));
+            $subject = stripslashes(__(get_option('renew_email_subject'),'geodirectory'));
+            $client_message = stripslashes(__(get_option('renew_email_content'),'geodirectory'));
         } elseif ($message_type == 'post_submited') {
-            $subject = get_option('post_submited_success_email_subject_admin');
-            $client_message = get_option('post_submited_success_email_content_admin');
+            $subject = __(get_option('post_submited_success_email_subject_admin'),'geodirectory');
+            $client_message = __(get_option('post_submited_success_email_content_admin'),'geodirectory');
         } elseif ($message_type == 'renew') {
-            $subject = get_option('post_renew_success_email_subject_admin');
-            $client_message = get_option('post_renew_success_email_content_admin');
+            $subject = __(get_option('post_renew_success_email_subject_admin'),'geodirectory');
+            $client_message = __(get_option('post_renew_success_email_content_admin'),'geodirectory');
         } elseif ($message_type == 'upgrade') {
-            $subject = get_option('post_upgrade_success_email_subject_admin');
-            $client_message = get_option('post_upgrade_success_email_content_admin');
+            $subject = __(get_option('post_upgrade_success_email_subject_admin'),'geodirectory');
+            $client_message = __(get_option('post_upgrade_success_email_content_admin'),'geodirectory');
         } elseif ($message_type == 'claim_approved') {
-            $subject = get_option('claim_approved_email_subject');
-            $client_message = get_option('claim_approved_email_content');
+            $subject = __(get_option('claim_approved_email_subject'),'geodirectory');
+            $client_message = __(get_option('claim_approved_email_content'),'geodirectory');
         } elseif ($message_type == 'claim_rejected') {
-            $subject = get_option('claim_rejected_email_subject');
-            $client_message = get_option('claim_rejected_email_content');
+            $subject = __(get_option('claim_rejected_email_subject'),'geodirectory');
+            $client_message = __(get_option('claim_rejected_email_content'),'geodirectory');
         } elseif ($message_type == 'claim_requested') {
-            $subject = get_option('claim_email_subject_admin');
-            $client_message = get_option('claim_email_content_admin');
+            $subject = __(get_option('claim_email_subject_admin'),'geodirectory');
+            $client_message = __(get_option('claim_email_content_admin'),'geodirectory');
         } elseif ($message_type == 'auto_claim') {
-            $subject = get_option('auto_claim_email_subject');
-            $client_message = get_option('auto_claim_email_content');
+            $subject = __(get_option('auto_claim_email_subject'),'geodirectory');
+            $client_message = __(get_option('auto_claim_email_content'),'geodirectory');
         } elseif ($message_type == 'payment_success') {
-            $subject = get_option('post_payment_success_admin_email_subject');
-            $client_message = get_option('post_payment_success_admin_email_content');
+            $subject = __(get_option('post_payment_success_admin_email_subject'),'geodirectory');
+            $client_message = __(get_option('post_payment_success_admin_email_content'),'geodirectory');
         } elseif ($message_type == 'payment_fail') {
-            $subject = get_option('post_payment_fail_admin_email_subject');
-            $client_message = get_option('post_payment_fail_admin_email_content');
+            $subject = __(get_option('post_payment_fail_admin_email_subject'),'geodirectory');
+            $client_message = __(get_option('post_payment_fail_admin_email_content'),'geodirectory');
         }
         $transaction_details = $custom_1;
         $fromEmail = get_option('site_email');
@@ -1291,18 +1291,18 @@ if (!function_exists('sendEmail')) {
     {
         $login_details = '';
         if ($message_type == 'send_friend') {
-            $subject = stripslashes(get_option('email_friend_subject'));
-            $message = stripslashes(get_option('email_friend_content'));
+            $subject = stripslashes(__(get_option('email_friend_subject'),'geodirectory'));
+            $message = stripslashes(__(get_option('email_friend_content'),'geodirectory'));
         } elseif ($message_type == 'send_enquiry') {
-            $subject = get_option('email_enquiry_subject');
-            $message = get_option('email_enquiry_content');
+            $subject = __(get_option('email_enquiry_subject'),'geodirectory');
+            $message = __(get_option('email_enquiry_content'),'geodirectory');
         } elseif ($message_type == 'forgot_password') {
-            $subject = get_option('forgot_password_subject');
-            $message = get_option('forgot_password_content');
+            $subject = __(get_option('forgot_password_subject'),'geodirectory');
+            $message = __(get_option('forgot_password_content'),'geodirectory');
             $login_details = $to_message;
         } elseif ($message_type == 'registration') {
-            $subject = get_option('registration_success_email_subject');
-            $message = get_option('registration_success_email_content');
+            $subject = __(get_option('registration_success_email_subject'),'geodirectory');
+            $message = __(get_option('registration_success_email_content'),'geodirectory');
             $login_details = $to_message;
         }
         $to_message = nl2br($to_message);
@@ -3538,4 +3538,54 @@ function geodir_get_client_name($user_id) {
 	}
 	
 	return $client_name;
+}
+
+
+//add_filter( 'home_url', 'geodir_geo_home_link',10,2 );
+function geodir_geo_home_link( $url, $path){
+
+    // If direct home path then we edit it.
+    if(!$path || $path=='/'){
+
+        global $geodir_add_location_url;
+        $include_location = false;
+
+        if ($geodir_add_location_url != NULL && $geodir_add_location_url != '') {
+            if ($geodir_add_location_url && get_option('geodir_add_location_url')) {
+                $include_location = true;
+            }
+
+        } elseif (get_option('geodir_add_location_url') && isset($_SESSION['gd_multi_location']) && $_SESSION['gd_multi_location'] == 1)
+            $include_location = true;
+
+
+        if ($include_location) {
+
+            $request_term = geodir_get_current_location_terms('query_vars');
+
+            if (!empty($request_term)) {
+
+
+                if (get_option('permalink_structure') != '') {
+
+                    $location_slug = get_post_field( 'post_name', geodir_location_page_id() );
+
+
+                    $request_term = implode("/", $request_term);
+                    $new_listing_slug = '/' . $location_slug . '/' . $request_term . '/';
+
+                    $url = trim($url,'/').$new_listing_slug;
+
+                } else {
+                    $url = geodir_getlink($url, $request_term);
+                }
+
+            }
+        }
+
+    }
+
+
+    return $url;
+
 }

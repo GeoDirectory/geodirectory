@@ -1406,6 +1406,10 @@ function geodir_get_custom_fields_html($package_id = '', $default = 'custom', $p
                 } ?>" name="<?php echo $prefix . 'mapzoom'; ?>" id="<?php echo $prefix . 'mapzoom'; ?>"/>
             <?php }?>
         <?php } elseif ($type == 'text') {
+
+            //number and float validation
+           // if(isset($val['data_type']) && $val['data_type']=='INT'){$type = 'number';}
+            //elseif(isset($val['data_type']) && $val['data_type']=='FLOAT'){$type = 'float';}
             ?>
 
             <div id="<?php echo $name;?>_row"
