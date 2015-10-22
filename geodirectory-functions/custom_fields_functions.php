@@ -2266,9 +2266,9 @@ if (!function_exists('geodir_show_listing_info')) {
                             $html .= '<span class="geodir-i-location" style="' . $field_icon . '">' . $field_icon_af;
                             $html .= (trim($type['site_title'])) ? __($type['site_title'], 'geodirectory') . ': ' : '&nbsp;';
                             $html .= '</span>';
-                            //print_r($_POST);
+							
                             if ($preview) {
-                                $html .= stripslashes($post->$html_var) . $addition_fields . '</p></div>';
+                                $html .= stripslashes($post->$html_var) . $addition_fields . '</p>';
                             } else {
                                 if ($post->post_address) {
                                     $html .= '<span itemprop="streetAddress">' . $post->post_address . '</span><br>';
@@ -2285,10 +2285,11 @@ if (!function_exists('geodir_show_listing_info')) {
                                 if ($post->post_country) {
                                     $html .= '<span itemprop="addressCountry">' . __($post->post_country, 'geodirectory') . '</span><br>';
                                 }
-                                $html .= '</div>';
                             }
-
-
+							$html .= '</div>';
+							if (isset($post->post_latitude) && isset($post->post_longitude) && !empty($post->post_latitude) && !empty($post->post_longitude)) {
+								$html .= '<div itemscope itemtype="http://schema.org/GeoCoordinates" style="display:none"><meta itemprop="latitude" content="' . esc_attr($post->post_latitude) . '" /><meta itemprop="longitude" content="' . esc_attr($post->post_longitude) . '" /></div>';
+							}
                         endif;
 
                         $variables_array['value'] = $post->$html_var;
