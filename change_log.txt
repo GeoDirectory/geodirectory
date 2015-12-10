@@ -1,3 +1,6 @@
+v1.5.7
+Refactored session_start() function to make it compatible with unit testing - CHANGED
+
 v1.5.6
 In add listing form sub-categories are no longer showing in hierarchy for checkbox display type - FIXED
 Tick parent category should not tick sub-categories but untick parent category should untick sub-categories - CHANGED

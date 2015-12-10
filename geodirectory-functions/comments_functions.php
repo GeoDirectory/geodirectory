@@ -241,7 +241,10 @@ add_action('wp_set_comment_status', 'geodir_update_rating_status_change', 10, 2)
  */
 function geodir_update_rating_status_change($comment_id, $status)
 {
-
+    if ($status == 'delete') {
+        return;
+    }
+    
     global $wpdb, $plugin_prefix, $user_ID;
 
     $comment_info = get_comment($comment_id);

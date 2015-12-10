@@ -15,7 +15,9 @@
  */
 function geodir_session_start()
 {
-    if (!session_id()) session_start();
+
+    geodir_maybe_start_session();
+
     global $geodir_add_location_url;
 
     $geodir_add_location_url = NULL;

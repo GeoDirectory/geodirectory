@@ -47,7 +47,11 @@ function geodir_plugin_url()
  */
 function geodir_plugin_path()
 {
-    return WP_PLUGIN_DIR . "/" . plugin_basename(dirname(dirname(__FILE__)));
+    if ( defined( 'GD_TESTING_MODE' ) && GD_TESTING_MODE ) {
+        return dirname(dirname(__FILE__));
+    } else {
+        return WP_PLUGIN_DIR . "/" . plugin_basename(dirname(dirname(__FILE__)));
+    }
 }
 
 /**
