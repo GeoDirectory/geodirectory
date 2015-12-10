@@ -28,7 +28,7 @@ Tested up to: 4.4
  */
 define("GEODIRECTORY_VERSION", "1.5.6");
 
-if (!session_id()) session_start();
+geodir_maybe_start_session();
 
 /*
  * CHECK FOR OLD COMPATIBILITY PACKS AND DISABLE IF THEY ARE ACTIVE
@@ -149,7 +149,7 @@ include_once('geodirectory_template_actions.php');
 /*
  * Admin init + activation hooks
  */
-if (is_admin()) {
+if (is_admin() || geodir_is_testing_mode()) {
 
     /**
      * Include functions used in admin area only.
@@ -207,6 +207,41 @@ if (is_admin()) {
         $hook = "in_plugin_update_message-{$folder}/{$file}";
         //echo $hook;
         add_action( 'in_plugin_update_message-geodirectory/geodirectory.php', 'geodire_admin_upgrade_notice', 20, 2 );
+    }
+
+}
+
+/**
+ * Starts session if no session id exists.
+ *
+ * @package Geodirectory
+ * @since 1.5.7
+ */
+function geodir_maybe_start_session() {
+
+    $start_session = true;
+
+    if ( defined( 'GD_USE_PHP_SESSIONS' ) && ! GD_USE_PHP_SESSIONS ) {
+        $start_session = false;
+    }
+
+    if( ! session_id() && ! headers_sent() && $start_session) {
+        session_start();
+    }
+}
+
+/**
+ * Checking whether testing mode enabled
+ *
+ * @package Geodirectory
+ * @since 1.5.7
+ */
+function geodir_is_testing_mode() {
+
+    if ( defined( 'GD_TESTING_MODE' ) && GD_TESTING_MODE ) {
+        return true;
+    } else {
+        return false;
     }
 
 }
