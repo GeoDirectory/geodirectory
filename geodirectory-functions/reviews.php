@@ -24,6 +24,8 @@ if (post_password_required())
 
     <?php // You can start editing here -- including this comment! ?>
 
+    <?php do_action('geodir_before_review_list'); ?>
+
     <?php if (have_comments()) : ?>
         <h2 class="comments-title">
             <?php
@@ -31,6 +33,8 @@ if (post_password_required())
                 number_format_i18n(get_comments_number()), get_the_title());
             ?>
         </h2>
+
+        <?php do_action('geodir_after_review_list_title'); ?>
 
         <ol class="commentlist">
             <?php $reverse_top_level = is_plugin_active('geodir_review_rating_manager/geodir_review_rating_manager.php') ? false : null; ?>
@@ -59,6 +63,9 @@ if (post_password_required())
 
     <?php endif; // have_comments() ?>
 
+    <?php do_action('geodir_after_review_list'); ?>
+    <?php do_action('geodir_before_review_form'); ?>
+
     <?php
     $args = apply_filters('geodir_review_form_args', array(
         'title_reply' => __('Leave a Review', 'geodirectory'),
@@ -68,5 +75,7 @@ if (post_password_required())
     ));
     comment_form($args);
     ?>
+
+    <?php do_action('geodir_after_review_form'); ?>
 
 </div><!-- #comments .comments-area -->
