@@ -738,6 +738,80 @@ if (!function_exists('geodir_sendEmail')) {
         $headers .= 'From: ' . $sitefromEmailName . ' <' . $sitefromEmail . '>' . "\r\n";
 
         $to = $toEmail;
+
+        /**
+         * Filter the client email to address.
+         *
+         * @since 1.6.1
+         * @package GeoDirectory
+         * @param string $to The email address the email is being sent to.
+         * @param string $fromEmail Sender email address.
+         * @param string $fromEmailName Sender name.
+         * @param string $toEmail Receiver email address.
+         * @param string $toEmailName Receiver name.
+         * @param string $to_subject Email subject.
+         * @param string $to_message Email content.
+         * @param string $extra Not being used.
+         * @param string $message_type The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+         * @param string $post_id The post ID.
+         * @param string $user_id The user ID.
+         */
+        $to = apply_filters('geodir_sendEmail_to',$to,$fromEmail, $fromEmailName, $toEmail, $toEmailName, $to_subject, $to_message, $extra, $message_type, $post_id, $user_id );
+        /**
+         * Filter the client email subject.
+         *
+         * @since 1.6.1
+         * @package GeoDirectory_Payment_Manager
+         * @param string $subject The email subject.
+         * @param string $fromEmail Sender email address.
+         * @param string $fromEmailName Sender name.
+         * @param string $toEmail Receiver email address.
+         * @param string $toEmailName Receiver name.
+         * @param string $to_subject Email subject.
+         * @param string $to_message Email content.
+         * @param string $extra Not being used.
+         * @param string $message_type The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+         * @param string $post_id The post ID.
+         * @param string $user_id The user ID.
+         */
+        $subject = apply_filters('geodir_sendEmail_subject',$subject,$fromEmail, $fromEmailName, $toEmail, $toEmailName, $to_subject, $to_message, $extra, $message_type, $post_id, $user_id );
+        /**
+         * Filter the client email message.
+         *
+         * @since 1.6.1
+         * @package GeoDirectory_Payment_Manager
+         * @param string $message The email message text.
+         * @param string $fromEmail Sender email address.
+         * @param string $fromEmailName Sender name.
+         * @param string $toEmail Receiver email address.
+         * @param string $toEmailName Receiver name.
+         * @param string $to_subject Email subject.
+         * @param string $to_message Email content.
+         * @param string $extra Not being used.
+         * @param string $message_type The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+         * @param string $post_id The post ID.
+         * @param string $user_id The user ID.
+         */
+        $message = apply_filters('geodir_sendEmail_message',$message,$fromEmail, $fromEmailName, $toEmail, $toEmailName, $to_subject, $to_message, $extra, $message_type, $post_id, $user_id );
+        /**
+         * Filter the client email headers.
+         *
+         * @since 1.6.1
+         * @package GeoDirectory_Payment_Manager
+         * @param string $headers The email headers.
+         * @param string $fromEmail Sender email address.
+         * @param string $fromEmailName Sender name.
+         * @param string $toEmail Receiver email address.
+         * @param string $toEmailName Receiver name.
+         * @param string $to_subject Email subject.
+         * @param string $to_message Email content.
+         * @param string $extra Not being used.
+         * @param string $message_type The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+         * @param string $post_id The post ID.
+         * @param string $user_id The user ID.
+         */
+        $headers = apply_filters('geodir_sendEmail_headers',$headers,$fromEmail, $fromEmailName, $toEmail, $toEmailName, $to_subject, $to_message, $extra, $message_type, $post_id, $user_id );
+
         $sent = wp_mail($to, $subject, $message, $headers);
 
         if( ! $sent ) {
@@ -1426,6 +1500,59 @@ if (!function_exists('adminEmail')) {
 
         $to = $fromEmail;
         $message = $client_message;
+
+
+        /**
+         * Filter the admin email to address.
+         *
+         * @since 1.6.1
+         * @package GeoDirectory
+         * @param string $to The email address the email is being sent to.
+         * @param int|string $page_id Page ID.
+         * @param int|string $user_id User ID.
+         * @param string $message_type Can be 'expiration','post_submited','renew','upgrade','claim_approved','claim_rejected','claim_requested','auto_claim','payment_success','payment_fail'.
+         * @param string $custom_1 Custom data to be sent.
+         */
+        $to = apply_filters('geodir_adminEmail_to',$to,$page_id, $user_id, $message_type, $custom_1 );
+        /**
+         * Filter the admin email subject.
+         *
+         * @since 1.6.1
+         * @package GeoDirectory_Payment_Manager
+         * @param string $subject The email subject.
+         * @param int|string $page_id Page ID.
+         * @param int|string $user_id User ID.
+         * @param string $message_type Can be 'expiration','post_submited','renew','upgrade','claim_approved','claim_rejected','claim_requested','auto_claim','payment_success','payment_fail'.
+         * @param string $custom_1 Custom data to be sent.
+         */
+        $subject = apply_filters('geodir_adminEmail_subject',$subject,$page_id, $user_id, $message_type, $custom_1);
+        /**
+         * Filter the admin email message.
+         *
+         * @since 1.6.1
+         * @package GeoDirectory_Payment_Manager
+         * @param string $message The email message text.
+         * @param int|string $page_id Page ID.
+         * @param int|string $user_id User ID.
+         * @param string $message_type Can be 'expiration','post_submited','renew','upgrade','claim_approved','claim_rejected','claim_requested','auto_claim','payment_success','payment_fail'.
+         * @param string $custom_1 Custom data to be sent.
+         */
+        $message = apply_filters('geodir_adminEmail_message',$message,$page_id, $user_id, $message_type, $custom_1);
+        /**
+         * Filter the admin email headers.
+         *
+         * @since 1.6.1
+         * @package GeoDirectory_Payment_Manager
+         * @param string $headers The email headers.
+         * @param int|string $page_id Page ID.
+         * @param int|string $user_id User ID.
+         * @param string $message_type Can be 'expiration','post_submited','renew','upgrade','claim_approved','claim_rejected','claim_requested','auto_claim','payment_success','payment_fail'.
+         * @param string $custom_1 Custom data to be sent.
+         */
+        $headers = apply_filters('geodir_adminEmail_headers',$headers,$page_id, $user_id, $message_type, $custom_1);
+
+
+
         $sent = wp_mail($to, $subject, $message, $headers);
         if( ! $sent ) {
             if ( is_array( $to ) ) {

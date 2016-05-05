@@ -81,6 +81,9 @@ if (have_posts() && !$preview) {
      * @since 1.1.0
      */
     do_action('geodir_action_geodir_set_preview_post'); // set the $post to the preview values
+    if (defined( 'GD_TESTING_MODE' )) {
+        global $post;
+    }
     /** This action is documented in geodirectory-templates/listing-detail.php */
     do_action('geodir_details_main_content', $post);
 }

@@ -138,7 +138,7 @@ class GeoDirectoryTests extends WP_UnitTestCase
         $this->assertContains('gd-cptcat-title', $output);
     }
 
-    public function testGDWisgetListView() {
+    public function testGDWidgetListView() {
         global $gridview_columns_widget, $geodir_is_widget_listing;
 
         $_REQUEST['sgeo_lat'] = '40.7127837';
@@ -186,6 +186,119 @@ class GeoDirectoryTests extends WP_UnitTestCase
         $this->assertContains('Sign In', $output);
     }
 
+    public function testInfoTemplate() {
+        wp_set_current_user(1);
+        global $information;
+        $information = "hello world";
+
+        $template = geodir_plugin_path() . '/geodirectory-templates/geodir-information.php';
+
+        ob_start();
+        include($template);
+        $output = ob_get_contents();
+        ob_end_clean();
+        $this->assertContains('hello world', $output);
+    }
+
+    public function testSuccessPage() {
+        wp_set_current_user(1);
+
+        $query_args = array(
+            'post_status' => 'publish',
+            'post_type' => 'gd_place',
+            'posts_per_page' => 1,
+        );
+
+        $all_posts = new WP_Query( $query_args );
+        $post_id = null;
+        while ( $all_posts->have_posts() ) : $all_posts->the_post();
+            $post_id = get_the_ID();
+        endwhile;
+
+        $this->assertTrue(is_int($post_id));
+
+        $_REQUEST['listing_type'] = 'gd_place';
+        $_REQUEST['pid'] = $post_id;
+        ob_start();
+        $this->go_to( get_permalink(geodir_success_page_id()) );
+        $this->load_template();
+        $output = ob_get_contents();
+        ob_end_clean();
+        $this->assertContains('View your submitted information', $output);
+    }
+
+    public function testPreviewPage() {
+        wp_set_current_user(1);
+
+        $query_args = array(
+            'post_status' => 'publish',
+            'post_type' => 'gd_place',
+            'posts_per_page' => 1,
+        );
+
+        $all_posts = new WP_Query( $query_args );
+        $post_id = null;
+        while ( $all_posts->have_posts() ) : $all_posts->the_post();
+            $post_id = get_the_ID();
+        endwhile;
+
+        $this->assertTrue(is_int($post_id));
+
+        $_REQUEST = array(
+            'pid' => $post_id,
+            'listing_type' => 'gd_place',
+            'post_title' => 'Test Listing Title Modified',
+            'post_desc' => 'Test Desc',
+            'post_tags' => 'test1,test2',
+            'post_address' => 'New York City Hall',
+            'post_zip' => '10007',
+            'post_latitude' => '40.7127837',
+            'post_longitude' => '-74.00594130000002',
+            'post_mapview' => 'ROADMAP',
+            'post_mapzoom' => '10',
+            'geodir_timing' => '10.00 am to 6 pm every day',
+            'geodir_contact' => '1234567890',
+            'geodir_email' => 'test@test.com',
+            'geodir_website' => 'http://test.com',
+            'geodir_twitter' => 'http://twitter.com/test',
+            'geodir_facebook' => 'http://facebook.com/test',
+            'geodir_special_offers' => 'Test offer',
+            'preview' => true,
+            'post_category' => array(
+                'gd_placecategory' => ''
+            )
+        );
+
+        ob_start();
+        $this->go_to( get_permalink(geodir_preview_page_id()) );
+        $this->load_template();
+        $output = ob_get_contents();
+        ob_end_clean();
+        $this->assertContains('This is a preview of your listing', $output);
+    }
+
+    public function testAddListingPage() {
+        wp_set_current_user(1);
+
+        ob_start();
+        $this->go_to( get_permalink(geodir_add_listing_page_id()) );
+        $this->load_template();
+        $output = ob_get_contents();
+        ob_end_clean();
+        $this->assertContains('Enter Listing Details', $output);
+    }
+
+    public function testLocationPage() {
+        wp_set_current_user(1);
+
+        ob_start();
+        $this->go_to( get_permalink(geodir_location_page_id()) );
+        $this->load_template();
+        $output = ob_get_contents();
+        ob_end_clean();
+        $this->assertContains('Location', $output);
+    }
+
     public function testTemplates() {
 
         global $current_user;
@@ -215,13 +328,6 @@ class GeoDirectoryTests extends WP_UnitTestCase
         $output = ob_get_contents();
         ob_end_clean();
         $this->assertContains('All Places', $output);
-
-        ob_start();
-        $this->go_to( home_url('/?geodir_search=1&stype=gd_place&s=test&snear=&sgeo_lat=&sgeo_lon=') );
-        $this->load_template();
-        $output = ob_get_contents();
-        ob_end_clean();
-        $this->assertContains('Search Results for', $output);
 
         $query_args = array(
             'post_status' => 'publish',
@@ -255,6 +361,75 @@ class GeoDirectoryTests extends WP_UnitTestCase
         ob_end_clean();
         $this->assertContains('gd_list_view', $output);
 
+    }
+
+    public function testSearchPage() {
+        ob_start();
+        $_REQUEST['geodir_search'] = "1";
+        $_REQUEST['stype'] = 'gd_place';
+        $this->go_to( home_url('/?geodir_search=1&stype=gd_place&s=test&snear=&sgeo_lat=&sgeo_lon=') );
+        $this->load_template();
+        $output = ob_get_contents();
+        ob_end_clean();
+        $this->assertContains('Search Results for', $output);
+
+    }
+
+    public function testPopupSendEnquiryTemplate() {
+
+        $query_args = array(
+            'post_status' => 'publish',
+            'post_type' => 'gd_place',
+            'posts_per_page' => 1,
+        );
+
+        $all_posts = new WP_Query( $query_args );
+        $post_id = null;
+        while ( $all_posts->have_posts() ) : $all_posts->the_post();
+            $post_id = get_the_ID();
+        endwhile;
+
+        $this->assertTrue(is_int($post_id));
+
+        $_REQUEST['popuptype'] = 'b_send_inquiry';
+        $_REQUEST['post_id'] = $post_id;
+        add_filter('wp_redirect', '__return_false');
+        ob_start();
+        geodir_ajax_handler();
+        $output = ob_get_contents();
+        ob_end_clean();
+        $this->assertContains('send_inqury', $output);
+        remove_filter('wp_redirect', '__return_false');
+
+    }
+
+    public function texstPopupSendToFrndTemplate() {
+
+        //include template problem. its already loaded. find a way to fix this
+
+        $query_args = array(
+            'post_status' => 'publish',
+            'post_type' => 'gd_place',
+            'posts_per_page' => 1,
+        );
+
+        $all_posts = new WP_Query( $query_args );
+        $post_id = null;
+        while ( $all_posts->have_posts() ) : $all_posts->the_post();
+            $post_id = get_the_ID();
+        endwhile;
+
+        $this->assertTrue(is_int($post_id));
+
+        $_REQUEST['popuptype'] = 'b_sendtofriend';
+        $_REQUEST['post_id'] = $post_id;
+        add_filter('wp_redirect', '__return_false');
+        ob_start();
+        geodir_ajax_handler();
+        $output = ob_get_contents();
+        ob_end_clean();
+        $this->assertContains('send_inqury', $output);
+        remove_filter('wp_redirect', '__return_false');
     }
 
     public function testNavMenus() {

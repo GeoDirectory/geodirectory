@@ -198,7 +198,7 @@ function geodir_ajax_handler() {
         if ($_REQUEST['popuptype'] == 'b_send_inquiry' || $_REQUEST['popuptype'] == 'b_sendtofriend')
             require_once(geodir_plugin_path() . '/geodirectory-templates/popup-forms.php');
 
-        exit;
+        gd_die();
     }
 
     /*if(isset($_REQUEST['geodir_ajax']) && $_REQUEST['geodir_ajax'] == 'filter_ajax'){
