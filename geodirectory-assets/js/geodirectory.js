@@ -181,6 +181,9 @@ jQuery(window).load(function () {
     tabNoRun = false;
     function activateTab(tab) {
 
+        if ( !jQuery( ".geodir-tab-head" ).length ) {
+            return;
+        }
         // change name for mobile tabs menu
         tabName = urlHash = tab.find('a').html();
         if(tabName && jQuery('.geodir-mobile-active-tab').length){

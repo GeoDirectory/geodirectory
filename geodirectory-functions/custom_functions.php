@@ -1491,15 +1491,18 @@ function geodir_show_detail_page_tabs()
         $active_tab = $default_tab;
         $active_tab_name = $default_tab_name;
     }
+    $tab_list = (get_option('geodir_disable_tabs',true)) ? true : false;
     ?>
     <div class="geodir-tabs" id="gd-tabs" style="position:relative;">
-        <div id="geodir-tab-mobile-menu" >
+        <?php if(!$tab_list){ ?>
+        <div id="geodir-tab-mobile-menu">
             <i class="fa fa-bars"></i>
-            <span class="geodir-mobile-active-tab"><?php echo $active_tab_name;?></span>
+            <span class="geodir-mobile-active-tab"><?php echo $active_tab_name; ?></span>
             <i class="fa fa-sort-desc"></i>
         </div>
         <dl class="geodir-tab-head">
             <?php
+            }
             /**
              * Called before the details page tab list headings, inside the `dl` tag.
              *
@@ -1508,16 +1511,34 @@ function geodir_show_detail_page_tabs()
              */
             do_action('geodir_before_tab_list'); ?>
             <?php
+
             foreach ($arr_detail_page_tabs as $tab_index => $detail_page_tab) {
                 if ($detail_page_tab['is_display']) {
-                    ?>
-                    <dt></dt> <!-- added to comply with validation -->
-                    <dd <?php if ($detail_page_tab['is_active_tab']){ ?>class="geodir-tab-active"<?php }?> ><a data-tab="#<?php echo $tab_index;?>" data-status="enable"><?php _e($detail_page_tab['heading_text'],'geodirectory');?></a>
-                    </dd>
-                    <?php
+
+                    if(!$tab_list) {
+                        ?>
+                        <dt></dt> <!-- added to comply with validation -->
+                        <dd <?php if ($detail_page_tab['is_active_tab']){ ?>class="geodir-tab-active"<?php } ?> ><a
+                                data-tab="#<?php echo $tab_index; ?>"
+                                data-status="enable"><?php _e($detail_page_tab['heading_text'], 'geodirectory'); ?></a>
+                        </dd>
+                        <?php
+                    }
                     ob_start() // start tab content buffering
                     ?>
                     <li id="<?php echo $tab_index;?>Tab">
+                        <?php if($tab_list){
+                            $tab_title = '<span class="gd-tab-list-title" ><a href="#'.$tab_index.'">'.__($detail_page_tab['heading_text'],'geodirectory').'</a></span><hr />';
+                            /**
+                             * Filter the tab list title html.
+                             *
+                             * @since 1.6.1
+                             * @param string $tab_title The html for the tab title.
+                             * @param string $tab_index The tab index type.
+                             * @param array $detail_page_tab The array of values including title text.
+                             */
+                            echo apply_filters('geodir_tab_list_title',$tab_title ,$tab_index ,$detail_page_tab);
+                        }?>
                         <div id="<?php echo $tab_index;?>" class="hash-offset"></div>
                         <?php
                         /**
@@ -1626,7 +1647,7 @@ function geodir_show_detail_page_tabs()
              */
             do_action('geodir_after_tab_list');
             ?>
-        </dl>
+            <?php if(!$tab_list){?></dl><?php }?>
         <ul class="geodir-tabs-content entry-content" style="position:relative;">
             <?php
             foreach ($arr_detail_page_tabs as $detail_page_tab) {
@@ -1644,6 +1665,7 @@ function geodir_show_detail_page_tabs()
         </ul>
         <!--gd-tabs-content ul end-->
     </div>
+    <?php if(!$tab_list){ ?>
     <script>
         if (window.location.hash && window.location.hash.indexOf('&') === -1 && jQuery(window.location.hash + 'Tab').length) {
             hashVal = window.location.hash;
@@ -1661,6 +1683,7 @@ function geodir_show_detail_page_tabs()
 
         });
     </script>
+    <?php }?>
 
 <?php
 

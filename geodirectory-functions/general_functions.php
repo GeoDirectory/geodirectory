@@ -2795,7 +2795,20 @@ function geodir_listing_slider_widget_output($args = '', $instance = '')
 
                 $title = '';
                 if ($show_title) {
-                    $title = '<div class="geodir-slider-title"><a href="' . get_permalink($post->ID) . '">' . get_the_title($post->ID) . '</a></div>';
+                    $title_html = '<div class="geodir-slider-title"><a href="' . get_permalink($post->ID) . '">' . get_the_title($post->ID) . '</a></div>';
+                    $post_id = $post->ID;
+                    $post_permalink = get_permalink($post->ID);
+                    $post_title = get_the_title($post->ID);
+                    /**
+                     * Filter the listing slider widget title.
+                     *
+                     * @since 1.6.1
+                     * @param string $title_html The html output of the title.
+                     * @param int $post_id The post id.
+                     * @param string $post_permalink The post permalink url.
+                     * @param string $post_title The post title text.
+                     */
+                    $title = apply_filters('geodir_listing_slider_title',$title_html,$post_id,$post_permalink,$post_title);
                 }
 
                 $widget_main_slides .= $title . '<img src="' . $widget_image->src . '" alt="' . $widget_image->title . '" title="' . $widget_image->title . '" style="max-height:200px;margin:0 auto;" /></li>';

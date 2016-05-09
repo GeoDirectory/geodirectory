@@ -570,6 +570,14 @@ $geodir_settings['design_settings'] = apply_filters('geodir_design_settings', ar
         'options' => array_unique(geodir_detail_page_tabs_key_value_array())
     ),
 
+    array(
+        'name' => __('Show as list', 'geodirectory'),
+        'desc' => __('Show as list instead of tabs', 'geodirectory'),
+        'id' => 'geodir_disable_tabs',
+        'type' => 'checkbox',
+        'std' => '0'
+    ),
+
 
     array('type' => 'sectionend', 'id' => 'geodir_detail_page_tab_settings'),
     /* ---------- DETAIL PAGE TAB SETTING END*/

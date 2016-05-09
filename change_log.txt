@@ -4,6 +4,8 @@ Log the WP error in debug.log with csv row number when fail to import listing - 
 Single select extra info value not showing when output - FIXED
 Function geodir_get_post_meta() returns false value when field has value 0(zero) - FIXED
 Added filters for client and admin emails - ADDED
+Option added to remove details page tabs and show as list - ADDED
+Added filter hook to listing slider widget - ADDED
 
 v1.6.0
 GD export should not export deleted listings - CHANGED
