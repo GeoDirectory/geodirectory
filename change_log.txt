@@ -6,6 +6,7 @@ Function geodir_get_post_meta() returns false value when field has value 0(zero)
 Added filters for client and admin emails - ADDED
 Option added to remove details page tabs and show as list - ADDED
 Added filter hook to listing slider widget - ADDED
+Hide the empty categories on the map - CHANGED
 
 v1.6.0
 GD export should not export deleted listings - CHANGED

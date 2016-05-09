@@ -177,6 +177,9 @@ function home_map_taxonomy_walker($cat_taxonomy, $cat_parent = 0, $hide_empty = 
     }
 
     $cat_terms = get_terms($cat_taxonomy, array('parent' => $cat_parent, 'exclude' => $exclude_cat_str, 'hide_empty ' => $hide_empty));
+    if ($hide_empty) {
+        $cat_terms = geodir_filter_empty_terms($cat_terms);
+    }
 
     $main_list_class = '';
     //If there are terms, start displaying
