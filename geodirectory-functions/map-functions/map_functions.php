@@ -108,7 +108,17 @@ function send_marker_jason_to_js()
     if (is_array($map_canvas_arr) && !empty($map_canvas_arr)) {
         foreach ($map_canvas_arr as $canvas => $jason) {
             if (is_array($map_jason) && !empty($map_jason)) {
+                if ($canvas == 'detail_page_map_canvas') {
+                    global $post;
+                    foreach($map_jason as $key => $content)
+                    {
+                        $content = json_decode($content);
+                        if ( $content->id != $post->ID ) {
+                            unset($map_jason[$key]);
+                        }
+                    }
 
+                }
                 $canvas_jason = $canvas . "_jason";
                 $map_canvas_arr[$canvas] = array_unique($map_jason);
                 unset($cat_content_info);

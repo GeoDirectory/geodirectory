@@ -24,7 +24,7 @@
  */
 do_action('geodir_before_listing_listview');
 
-global $gridview_columns, $gd_session;
+global $gridview_columns, $gd_session, $related_nearest, $related_parent_lat, $related_parent_lon;
 
 /**
  * Filter the default grid view class.
@@ -173,9 +173,13 @@ if ($gd_session->get('gd_listing_view') && !isset($before_widget) && !isset($rel
                             do_action('geodir_after_listing_post_title', 'listview', $post); ?>
 
                             <?php /// Print Distance
-                            if (isset($_REQUEST['sgeo_lat']) && $_REQUEST['sgeo_lat'] != '') {
+                            if ((isset($_REQUEST['sgeo_lat']) && $_REQUEST['sgeo_lat'] != '') || $related_nearest) {
 
-                                $startPoint = array('latitude' => $_REQUEST['sgeo_lat'], 'longitude' => $_REQUEST['sgeo_lon']);
+                                if ($related_nearest) {
+                                    $startPoint = array('latitude' => $related_parent_lat, 'longitude' => $related_parent_lon);
+                                } else {
+                                    $startPoint = array('latitude' => $_REQUEST['sgeo_lat'], 'longitude' => $_REQUEST['sgeo_lon']);
+                                }
 
                                 $endLat = $post->post_latitude;
                                 $endLon = $post->post_longitude;

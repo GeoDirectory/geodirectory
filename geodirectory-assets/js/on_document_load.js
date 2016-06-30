@@ -7,17 +7,24 @@ function geodir_click_search($this) {
 
 function addToFavourite(post_id, action) {
     var fav_url;
+    var ajax_action;
     
     if (action == 'add') {
-        fav_url = geodir_all_js_msg.geodir_admin_ajax_url + '?action=geodir_ajax_action&geodir_ajax=favorite&ajax_action=add&pid=' + post_id;
+        ajax_action = 'add';
     } else {
-        fav_url = geodir_all_js_msg.geodir_admin_ajax_url + '?action=geodir_ajax_action&geodir_ajax=favorite&ajax_action=remove&pid=' + post_id;
+        ajax_action = 'remove';
     }
     
     jQuery.ajax({
-        url: fav_url,
+        url: geodir_all_js_msg.geodir_admin_ajax_url,
         type: 'GET',
         dataType: 'html',
+        data: {
+            action: 'geodir_ajax_action',
+            geodir_ajax: 'favorite',
+            ajax_action: ajax_action,
+            pid: post_id
+        },
         timeout: 20000,
         error: function() {
             alert(geodir_all_js_msg.loading_listing_error_favorite);

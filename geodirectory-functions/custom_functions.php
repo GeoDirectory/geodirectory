@@ -710,7 +710,9 @@ function geodir_related_posts_display($request) {
         $list_sort = (isset($request['list_sort']) && !empty($request['list_sort'])) ? $request['list_sort'] : 'latest';
         $character_count = (isset($request['character_count']) && !empty($request['character_count'])) ? $request['character_count'] : '';
 
-        global $wpdb, $post, $gd_session;
+        global $wpdb, $post, $gd_session, $related_nearest, $related_parent_lat, $related_parent_lon;
+        $related_parent_lat = $post->post_latitude;
+        $related_parent_lon = $post->post_longitude;
         $origi_post = $post;
         $post_type = '';
         $post_id = '';
@@ -825,6 +827,7 @@ function geodir_related_posts_display($request) {
                 'order_by' => $list_sort,
                 'post__not_in' => array($post_id),
                 'excerpt_length' => $character_count,
+                'related_listings' => true
             );
 
             $tax_query = array('taxonomy' => $category_taxonomy,
@@ -849,6 +852,12 @@ function geodir_related_posts_display($request) {
             }
             $related_posts = true;
 
+            $related_nearest = false;
+            if ($list_sort == 'nearest') {
+                $related_nearest = true;
+            }
+
+
             /**
              * Filters related listing listview template.
              *
@@ -865,6 +874,7 @@ function geodir_related_posts_display($request) {
 
             wp_reset_query();
             $post = $origi_post;
+            $related_nearest = false;
             ?>
 
         </div>

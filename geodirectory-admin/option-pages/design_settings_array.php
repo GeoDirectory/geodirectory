@@ -673,6 +673,7 @@ $geodir_settings['design_settings'] = apply_filters('geodir_design_settings', ar
             'high_review' => __('Review', 'geodirectory'),
             'high_rating' => __('Rating', 'geodirectory'),
             'random' => __('Random', 'geodirectory'),
+            'nearest' => __('Nearest', 'geodirectory'),
         ))
     ),
 
