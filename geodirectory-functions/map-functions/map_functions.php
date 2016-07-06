@@ -108,7 +108,6 @@ function send_marker_jason_to_js()
     if (is_array($map_canvas_arr) && !empty($map_canvas_arr)) {
         foreach ($map_canvas_arr as $canvas => $jason) {
             if (is_array($map_jason) && !empty($map_jason)) {
-
                 $canvas_jason = $canvas . "_jason";
                 $map_canvas_arr[$canvas] = array_unique($map_jason);
                 unset($cat_content_info);

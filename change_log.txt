@@ -5,6 +5,7 @@ Claimed column added in exported listings csv file - FIXED
 Imported images with spaces are not loaded via the lazyload function - FIXED
 GD Listings shortcode extended with the "tags" parameter to filter listings by tags - ADDED
 fgetcsv ignores special characters when they are at the beginning of line - FIXED
+Nearest option added to related listings - ADDED
 
 v1.6.4
 Date custom field can sometimes display default date on preview page - FIXED

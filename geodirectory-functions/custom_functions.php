@@ -710,7 +710,9 @@ function geodir_related_posts_display($request) {
         $list_sort = (isset($request['list_sort']) && !empty($request['list_sort'])) ? $request['list_sort'] : 'latest';
         $character_count = (isset($request['character_count']) && !empty($request['character_count'])) ? $request['character_count'] : '';
 
-        global $wpdb, $post, $gd_session;
+        global $wpdb, $post, $gd_session, $related_nearest, $related_parent_lat, $related_parent_lon;
+        $related_parent_lat = $post->post_latitude;
+        $related_parent_lon = $post->post_longitude;
         $origi_post = $post;
         $post_type = '';
         $post_id = '';
@@ -825,6 +827,7 @@ function geodir_related_posts_display($request) {
                 'order_by' => $list_sort,
                 'post__not_in' => array($post_id),
                 'excerpt_length' => $character_count,
+                'related_listings' => true
             );
 
             $tax_query = array('taxonomy' => $category_taxonomy,
@@ -849,6 +852,12 @@ function geodir_related_posts_display($request) {
             }
             $related_posts = true;
 
+            $related_nearest = false;
+            if ($list_sort == 'nearest') {
+                $related_nearest = true;
+            }
+
+
             /**
              * Filters related listing listview template.
              *
@@ -865,6 +874,7 @@ function geodir_related_posts_display($request) {
 
             wp_reset_query();
             $post = $origi_post;
+            $related_nearest = false;
             ?>
 
         </div>
@@ -1385,6 +1395,8 @@ function geodir_show_detail_page_tabs()
 
     $geodir_post_detail_fields = geodir_show_listing_info('detail');
 
+    $arr_detail_page_tabs = geodir_detail_page_tabs_list();// get this sooner so we can get the active tab for the user
+
     if (geodir_is_page('detail')) {
         $video = geodir_get_video($post->ID);
         $special_offers = geodir_get_special_offers($post->ID);
@@ -1393,7 +1405,7 @@ function geodir_show_detail_page_tabs()
             $related_listing_array = get_option('geodir_add_related_listing_posttypes');
 
         $related_listing = '';
-        if (in_array($post->post_type, $related_listing_array)) {
+        if (in_array($post->post_type, $related_listing_array) && $arr_detail_page_tabs['related_listing']['is_display']) {
             $request = array('post_number' => get_option('geodir_related_post_count'),
                 'relate_to' => get_option('geodir_related_post_relate_to'),
                 'layout' => get_option('geodir_related_post_listing_view'),
@@ -1492,8 +1504,6 @@ function geodir_show_detail_page_tabs()
         $map_args['enable_map_direction'] = true;
         $map_args['map_class_name'] = 'geodir-map-preview-page';
     }
-
-    $arr_detail_page_tabs = geodir_detail_page_tabs_list();// get this sooner so we can get the active tab for the user
 
     $active_tab = '';
     $active_tab_name = '';

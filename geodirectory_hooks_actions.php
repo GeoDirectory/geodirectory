@@ -1377,7 +1377,9 @@ add_action('admin_bar_menu', 'geodir_admin_bar_site_menu', 31);
 function geodir_admin_bar_site_menu($wp_admin_bar)
 {
     if (get_option("geodir_installed")) {
-        $wp_admin_bar->add_menu(array('parent' => 'appearance', 'id' => 'geodirectory', 'title' => __('GeoDirectory', 'geodirectory'), 'href' => admin_url('?page=geodirectory')));
+        if (current_user_can('manage_options')) {
+            $wp_admin_bar->add_menu(array('parent' => 'appearance', 'id' => 'geodirectory', 'title' => __('GeoDirectory', 'geodirectory'), 'href' => admin_url('?page=geodirectory')));
+        }
     }
 }
 
