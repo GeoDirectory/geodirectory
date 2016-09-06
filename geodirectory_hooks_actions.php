@@ -2429,7 +2429,7 @@ function geodir_detail_page_custom_field_tab($tabs_arr)
     if (!empty($tabs_arr) && $post_type != '' && in_array($post_type, $all_postypes) && (geodir_is_page('detail') || geodir_is_page('preview'))) {
         $package_info = array();
         $package_info = geodir_post_package_info($package_info, $post);
-        $post_package_id = $package_info->pid;
+        $post_package_id = !empty($package_info->pid) ? $package_info->pid : '';
         $fields_location = 'owntab';
 
         $custom_fields = geodir_post_custom_fields($post_package_id, 'all', $post_type, $fields_location);

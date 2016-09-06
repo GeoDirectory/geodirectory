@@ -402,7 +402,7 @@ if (!function_exists('geodir_custom_field_save')) {
                 $package_info = array();
 
                 $package_info = geodir_post_package_info($package_info, '', $post_type);
-                $price_pkg = $package_info->pid;
+                $price_pkg = !empty($package_info->pid) ? $package_info->pid : '';
             }
 
 
@@ -1380,7 +1380,7 @@ if (!function_exists('geodir_show_listing_info')) {
         $package_info = array();
 
         $package_info = geodir_post_package_info($package_info, $post);
-        $post_package_id = $package_info->pid;
+        $post_package_id = !empty($package_info->pid) ? $package_info->pid : '';
         $p_type = !empty($post->post_type) ? $post->post_type : geodir_get_current_posttype();
         $send_to_friend = false;
 

@@ -2400,7 +2400,7 @@ function geodir_action_add_listing_form()
         else
             $svalue = '';
 
-        $image_limit = $package_info->image_limit;
+        $image_limit = isset($package_info->image_limit) ? $package_info->image_limit : '0';
         $show_image_input_box = ($image_limit != '0');
         /**
          * Filter to be able to show/hide the image upload section of the add listing form.

@@ -234,7 +234,7 @@ if (!function_exists('geodir_admin_scripts')) {
             wp_enqueue_script('geodirectory-listing-validation-script', geodir_plugin_url() . '/geodirectory-assets/js/listing_validation_admin.js');
         }
 
-        $ajax_cons_data = array('url' => __(get_option('siteurl') . '?geodir_ajax=true'));
+        $ajax_cons_data = array('url' => esc_url(__(get_option('siteurl') . '?geodir_ajax=true')));
         wp_localize_script('geodirectory-admin-script', 'geodir_ajax', $ajax_cons_data);
 
     }
