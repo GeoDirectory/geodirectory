@@ -1,6 +1,7 @@
 v1.6.8
 Address field output containd class post instead of post_address - FIXED
 Video and special offers tabs can show twice - FIXED
+With Avada theme "GD Home Top Section" widgets doesn't working on GD Home page - FIXED
 
 v1.6.7
 Original custom fields hook htmlvar broken - FIXED

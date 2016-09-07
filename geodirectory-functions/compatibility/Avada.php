@@ -157,10 +157,8 @@ add_action('avada_before_main', 'gd_compat_add_top_section_back', 10);
  * @since 1.0.0
  * @package GeoDirectory
  */
-function gd_compat_add_top_section_back()
-{
-
-    if (is_page_geodir_home() || geodir_is_page('location')) {
+function gd_compat_add_top_section_back() {
+    if (geodir_is_page('home') || geodir_is_page('location')) {
         geodir_action_geodir_sidebar_home_top();
     } elseif (geodir_is_page('listing')) {
         geodir_action_geodir_sidebar_listings_top();
@@ -171,10 +169,7 @@ function gd_compat_add_top_section_back()
     } elseif (geodir_is_page('author')) {
         geodir_action_geodir_sidebar_author_top();
     }
-
-
 }
-
 
 add_filter('body_class', 'gd_compat_body_class');
 /**
