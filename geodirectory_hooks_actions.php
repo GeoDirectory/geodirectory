@@ -2434,6 +2434,26 @@ function geodir_detail_page_custom_field_tab($tabs_arr)
 
         $custom_fields = geodir_post_custom_fields($post_package_id, 'all', $post_type, $fields_location);
 
+        //remove video and special offers if it is already set to show
+        if(isset($tabs_arr['post_video']['is_display']) && $tabs_arr['post_video']['is_display']){
+            $unset_video = true;
+        }
+
+        if(isset($tabs_arr['special_offers']['is_display']) && $tabs_arr['special_offers']['is_display']){
+            $unset_special_offers = true;
+        }
+        if(isset($unset_video) || isset($unset_special_offers) && !empty($custom_fields)){
+            foreach($custom_fields as $key => $custom_field){
+                if($custom_field['name']=='geodir_video' && isset($unset_video)){
+                    unset($custom_fields[$key]);
+                }
+                if($custom_field['name']=='geodir_special_offers' && isset($unset_special_offers)){
+                    unset($custom_fields[$key]);
+                }
+            }
+        }
+
+
 
         if (!empty($custom_fields)) {
             $parse_custom_fields = array();

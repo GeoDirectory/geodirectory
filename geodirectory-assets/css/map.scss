@@ -172,11 +172,11 @@
     margin-right: 3px;
 }
 
-.geodir-bubble-meta-side .geodir_more_info.post span[itemprop="addressLocality"],
-.geodir-bubble-meta-side .geodir_more_info.post span[itemprop="addressRegion"],
-.geodir-bubble-meta-side .geodir_more_info.post span[itemprop="postalCode"],
-.geodir-bubble-meta-side .geodir_more_info.post span[itemprop="addressCountry"],
-.geodir-bubble-meta-side .geodir_more_info.post br{
+.geodir-bubble-meta-side .geodir_more_info.post_address span[itemprop="addressLocality"],
+.geodir-bubble-meta-side .geodir_more_info.post_address span[itemprop="addressRegion"],
+.geodir-bubble-meta-side .geodir_more_info.post_address span[itemprop="postalCode"],
+.geodir-bubble-meta-side .geodir_more_info.post_address span[itemprop="addressCountry"],
+.geodir-bubble-meta-side .geodir_more_info.post_address br{
    display:none;
 }
 

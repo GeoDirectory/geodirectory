@@ -1,3 +1,7 @@
+v1.6.8
+Address field output containd class post instead of post_address - FIXED
+Video and special offers tabs can show twice - FIXED
+
 v1.6.7
 Original custom fields hook htmlvar broken - FIXED
 Default custom fields not able to show in custom tab - FIXED
