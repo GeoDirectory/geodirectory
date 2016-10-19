@@ -1,3 +1,6 @@
+v1.6.11
+Font awesome rating validation not working - FIXED
+
 v1.6.10
 Search can fail if more than one CPT but one is empty - FIXED
 Search with near field can fire before geolocation returned - FIXED

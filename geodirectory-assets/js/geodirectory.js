@@ -498,7 +498,7 @@ jQuery(document).ready(function() {
     /* Show Hide Rating for reply */
     jQuery('.gd_comment_replaylink a').bind('click', function() {
         jQuery('#commentform #err_no_rating').remove();
-        jQuery('#commentform .gd_rating').hide();
+        jQuery('#commentform .gd_rating, #commentform .gd-fa-rating').hide();
         jQuery('#commentform .br-wrapper.br-theme-fontawesome-stars').hide();
         jQuery('#commentform #geodir_overallrating').val('0');
         jQuery('#respond .form-submit input#submit').val(geodir_all_js_msg.gd_cmt_btn_post_reply);
@@ -507,20 +507,20 @@ jQuery(document).ready(function() {
     
     jQuery('.gd-cancel-replaylink a').bind('click', function() {
         jQuery('#commentform #err_no_rating').remove();
-        jQuery('#commentform .gd_rating').show();
+        jQuery('#commentform .gd_rating, #commentform .gd-fa-rating').show();
         jQuery('#commentform .br-wrapper.br-theme-fontawesome-stars').show();
         jQuery('#commentform #geodir_overallrating').val('0');
         jQuery('#respond .form-submit input#submit').val(geodir_all_js_msg.gd_cmt_btn_post_review);
         jQuery('#respond .comment-form-comment label').html(geodir_all_js_msg.gd_cmt_btn_review_text);
     });
     
-    jQuery('#commentform .gd_rating').each(function() {
+    jQuery('#commentform .gd_rating, #commentform .gd-fa-rating').each(function() {
         var rat_obj = this;
         var $frm_obj = jQuery(rat_obj).closest('#commentform');
         
         if (parseInt($frm_obj.find('#comment_parent').val()) > 0) {
             jQuery('#commentform #err_no_rating').remove();
-            jQuery('#commentform .gd_rating').hide();
+            jQuery('#commentform .gd_rating, #commentform .gd-fa-rating').hide();
             jQuery('#respond .form-submit input#submit').val(geodir_all_js_msg.gd_cmt_btn_post_reply);
             jQuery('#respond .comment-form-comment label').html(geodir_all_js_msg.gd_cmt_btn_reply_text);
         }
