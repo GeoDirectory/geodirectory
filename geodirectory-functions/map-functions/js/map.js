@@ -3,6 +3,7 @@ zoom_listener = '';
 gd_current_query = '';
 gd_map_first_load = true;
 gd_fullscreen_parent = '';
+firstrender = true;
 
 function initMap(map_options) {
     if (window.gdMaps == 'osm') {
@@ -456,11 +457,21 @@ function parse_marker_jason(data, map_canvas_var) {
         if (eval(map_canvas_var).autozoom && parseInt(jsonData[0].totalcount) > 1) {
 
             if (eval(map_canvas_var).enable_marker_cluster_no_reposition) {}//dont reposition after load
-            else{jQuery.goMap.map.fitBounds(bounds); }
+            else{
+                if(firstrender){
+                    jQuery.goMap.map.fitBounds(bounds); 
+                    firstrender = false;
+                } 
+            }
         }
         else {
             if(eval(map_canvas_var).enable_marker_cluster_no_reposition) {}//dont reposition after load
-            else{jQuery.goMap.map.setCenter(center);}
+            else{
+                if(firstrender){
+                    jQuery.goMap.map.setCenter(center);
+                    firstrender = false;
+                }
+            }
         }
 
         if (jQuery.goMap.map.getZoom() > eval(map_canvas_var).maxZoom) {
