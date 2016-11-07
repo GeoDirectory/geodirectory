@@ -4,6 +4,7 @@ gd_current_query = '';
 gd_map_first_load = true;
 gd_fullscreen_parent = '';
 isFetchingLocation = false;
+failedFetchingLocation = false;
 
 function initMap(map_options) {
     if (window.gdMaps == 'osm') {
@@ -136,7 +137,10 @@ function initMap(map_options) {
         firstChild.appendChild(secondChild);
 
         google.maps.event.addListener(jQuery.goMap.map, 'dragstart', function() {
-            jQuery('#your_location_img').css('background-position', '0px 0px');
+            if(failedFetchingLocation)
+                jQuery('#your_location_img').css('background-position', '-18px 0px');
+            else
+                jQuery('#your_location_img').css('background-position', '0px 0px');
         });
         
         
@@ -156,10 +160,12 @@ function initMap(map_options) {
                     clearInterval(animationInterval);
                     jQuery('#your_location_img').css('background-position', '-144px 0px');
                     isFetchingLocation = false;
+                    failedFetchingLocation = false;
                 }, function(){
                     clearInterval(animationInterval);
                     jQuery('#your_location_img').css('background-position', '-18px 0px');
                     isFetchingLocation = false;
+                    failedFetchingLocation = true;
                 });
             }
         });
