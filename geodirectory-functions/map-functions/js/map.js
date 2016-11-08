@@ -3,6 +3,8 @@ zoom_listener = '';
 gd_current_query = '';
 gd_map_first_load = true;
 gd_fullscreen_parent = '';
+isFetchingLocation = false;
+failedFetchingLocation = false;
 
 function initMap(map_options) {
     if (window.gdMaps == 'osm') {
@@ -103,6 +105,72 @@ function initMap(map_options) {
         jQuery(maxMap).addClass('gd-triggered-map');
         google.maps.event.addDomListener(maxMap, 'click', gdMaxMap);
     }
+    
+    
+    //show location control only if browser supports geolocating
+    if(navigator.geolocation && !jQuery('#locateMeContainer').length){
+        var controlDiv = document.createElement('div');
+        controlDiv.id = "locateMeContainer";
+        var firstChild = document.createElement('button');
+        firstChild.style.backgroundColor = '#fff';
+        firstChild.style.border = 'none';
+        firstChild.style.outline = 'none';
+        firstChild.style.width = '28px';
+        firstChild.style.height = '28px';
+        firstChild.style.borderRadius = '2px';
+        firstChild.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+        firstChild.style.cursor = 'pointer';
+        firstChild.style.marginLeft = '10px';
+        firstChild.style.padding = '0px';
+        firstChild.title = 'Your Location';
+        controlDiv.appendChild(firstChild);
+
+        var secondChild = document.createElement('div');
+        secondChild.style.margin = '5px';
+        secondChild.style.width = '18px';
+        secondChild.style.height = '18px';
+        secondChild.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-1x.png)';
+        secondChild.style.backgroundSize = '180px 18px';
+        secondChild.style.backgroundPosition = '0px 0px';
+        secondChild.style.backgroundRepeat = 'no-repeat';
+        secondChild.id = 'your_location_img';
+        firstChild.appendChild(secondChild);
+
+        google.maps.event.addListener(jQuery.goMap.map, 'center_changed', function() {
+            if(failedFetchingLocation)
+                jQuery('#your_location_img').css('background-position', '-18px 0px');
+            else
+                jQuery('#your_location_img').css('background-position', '0px 0px');
+        });
+        
+        firstChild.addEventListener('click', function() {
+            if(!isFetchingLocation){
+                isFetchingLocation = true;
+                var imgX = '0';
+                var animationInterval = setInterval(function(){
+                    if(imgX == '-18') imgX = '0';
+                    else imgX = '-18';
+                    jQuery('#your_location_img').css('background-position', imgX+'px 0px');
+                }, 500);
+
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    jQuery.goMap.map.panTo(latlng);
+                    clearInterval(animationInterval);
+                    jQuery('#your_location_img').css('background-position', '-144px 0px');
+                    isFetchingLocation = false;
+                    failedFetchingLocation = false;
+                }, function(){
+                    clearInterval(animationInterval);
+                    jQuery('#your_location_img').css('background-position', '-18px 0px');
+                    isFetchingLocation = false;
+                    failedFetchingLocation = true;
+                });
+            }
+        });
+    }
+
+    jQuery.goMap.map.controls[google.maps.ControlPosition.LEFT_CENTER].push(controlDiv);
 
 
     function gdMaxMap() {
