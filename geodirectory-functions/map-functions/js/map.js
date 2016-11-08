@@ -136,13 +136,12 @@ function initMap(map_options) {
         secondChild.id = 'your_location_img';
         firstChild.appendChild(secondChild);
 
-        google.maps.event.addListener(jQuery.goMap.map, 'dragstart', function() {
+        google.maps.event.addListener(jQuery.goMap.map, 'center_changed', function() {
             if(failedFetchingLocation)
                 jQuery('#your_location_img').css('background-position', '-18px 0px');
             else
                 jQuery('#your_location_img').css('background-position', '0px 0px');
         });
-        
         
         firstChild.addEventListener('click', function() {
             if(!isFetchingLocation){
