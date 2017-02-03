@@ -199,7 +199,7 @@ function geodir_curPageURL() {
 		$pageURL .= "s";
 	}
 	$pageURL .= "://";
-	
+
 	/*
 	 * Since we are assigning the URI from the server variables, we first need
 	 * to determine if we are running on apache or IIS.  If PHP_SELF and REQUEST_URI
@@ -218,13 +218,13 @@ function geodir_curPageURL() {
 		 * IIS uses the SCRIPT_NAME variable instead of a REQUEST_URI variable... thanks, MS
 		 */
 		$pageURL .= $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
-		
+
 		// If the query string exists append it to the URI string
 		if (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) {
 			$pageURL .= '?' . $_SERVER['QUERY_STRING'];
 		}
 	}
-	
+
 	/**
 	 * Filter the current page URL returned by function geodir_curPageURL().
 	 *
@@ -816,7 +816,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 		$siteurl_link  = '<a href="' . $siteurl . '">' . $siteurl . '</a>';
 		$loginurl      = geodir_login_url();
 		$loginurl_link = '<a href="' . $loginurl . '">login</a>';
-        
+
 		$post_author_id   = ! empty( $post_info ) ? $post_info->post_author : 0;
 		$post_author_data = $post_author_id ? get_userdata( $post_author_id ) : NULL;
 		$post_author_name = geodir_get_client_name( $post_author_id );
@@ -1223,7 +1223,7 @@ function geodir_wpml_post_type_archive_link($link, $post_type){
 					'WordPress',
 					'URL slug: ' . $slug,
 					$language_code );
-                    
+
 				if ( ! $slug ) {
 					$slug = $org_slug;
 				} else {
@@ -1901,8 +1901,8 @@ if ( ! function_exists( 'adminEmail' ) ) {
 		);
 		$client_message = str_replace( $search_array, $replace_array, $client_message );
 		$subject        = str_replace( $search_array, $replace_array, $subject );
-		
-		
+
+
 		$headers  = array();
 		$headers[] = 'Content-type: text/html; charset=UTF-8';
 		$headers[] = 'From: ' . $fromEmailName . ' <' . $fromEmail . '>';
@@ -1954,7 +1954,7 @@ if ( ! function_exists( 'adminEmail' ) ) {
 		 * Filter the admin email headers.
 		 *
 		 * @since   1.6.1
-		 * @since 1.6.11 $headers changed from string to an array.         
+		 * @since 1.6.11 $headers changed from string to an array.
 		 *
 		 * @param array $headers      The email headers.
 		 * @param int|string $page_id  Page ID.
@@ -3487,11 +3487,15 @@ function geodir_loginwidget_output( $args = '', $instance = '' ) {
 					 *
 					 * @since 1.0.0
 					 */
-					?>
-					<a href="<?php echo geodir_login_url( array( 'signup' => true ) ); ?>"
-					   class="goedir-newuser-link"><?php echo NEW_USER_TEXT; ?></a>
+    				$is_enable_signup = get_option( 'users_can_register' );
 
+    				if ( $is_enable_signup ) {
+					?>
+						<a href="<?php echo geodir_login_url( array( 'signup' => true ) ); ?>"
+					   		class="goedir-newuser-link"><?php echo NEW_USER_TEXT; ?></a>
 					<?php
+    				}
+
 					/**
 					 * Filter signup page forgot password form link.
 					 *
@@ -4302,7 +4306,7 @@ function geodir_load_custom_field_translation( $translation_texts = array() ) {
 			if ( ! empty( $row->required_msg ) ) {
 				$translation_texts[] = stripslashes_deep( $row->required_msg );
 			}
-            
+
 			if ( ! empty( $row->validation_msg ) ) {
 				$translation_texts[] = stripslashes_deep( $row->validation_msg );
 			}
@@ -4522,7 +4526,7 @@ function geodir_wpseo_replacements( $vars ) {
 			$location_array['gd_neighbourhood'] = get_query_var( 'gd_neighbourhood_full' );
 		}
 	}
-	
+
 	/**
 	 * Filter the location terms variables.
 	 *
@@ -4703,7 +4707,7 @@ function geodir_filter_title_variables( $title, $gd_page, $sep = '' ) {
 	// location variables
 	$gd_post_type   = geodir_get_current_posttype();
 	$location_array = geodir_get_current_location_terms( 'query_vars', $gd_post_type );
-	
+
 	/**
 	 * Filter the title variables location variables array
 	 *
@@ -4716,7 +4720,7 @@ function geodir_filter_title_variables( $title, $gd_page, $sep = '' ) {
 	 * @param string $sep           The separator, default: `|`.
 	 */
 	$location_array  = apply_filters( 'geodir_filter_title_variables_location_arr', $location_array, $title, $gd_page, $sep );
-	
+
 	if ( $gd_page == 'location' && get_query_var( 'gd_country_full' ) ) {
 		if ( get_query_var( 'gd_country_full' ) ) {
 			$location_array['gd_country'] = get_query_var( 'gd_country_full' );
@@ -4731,7 +4735,7 @@ function geodir_filter_title_variables( $title, $gd_page, $sep = '' ) {
 			$location_array['gd_neighbourhood'] = get_query_var( 'gd_neighbourhood_full' );
 		}
 	}
-	
+
 	/**
 	 * Filter the location terms variables.
 	 *
@@ -4744,7 +4748,7 @@ function geodir_filter_title_variables( $title, $gd_page, $sep = '' ) {
 	 * @param string $sep           The separator, default: `|`.
 	 */
 	$title = apply_filters( 'geodir_replace_location_variables', $title, $location_array, $gd_page, $sep );
-	
+
 	if ( strpos( $title, '%%search_term%%' ) !== false ) {
 		$search_term = '';
 		if ( isset( $_REQUEST['s'] ) ) {

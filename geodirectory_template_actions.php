@@ -1113,7 +1113,7 @@ function geodir_action_details_taxonomies()
         $post_type = $post->post_type;
         $post_taxonomy = $post_type . 'category';
     }
-//{	
+//{
     $post_type_info = get_post_type_object($post_type);
     $listing_label = __($post_type_info->labels->singular_name, 'geodirectory');
 
@@ -1205,7 +1205,7 @@ function geodir_action_details_taxonomies()
             $post_term = explode(",", trim($post->{$post_taxonomy}, ","));
         } else {
             $post_term = $post->{$post_taxonomy};
-			
+
 			if ($preview && !$is_backend_preview) {
 				$post_term = geodir_add_parent_terms($post_term, $post_taxonomy);
 			}
@@ -1469,7 +1469,7 @@ function geodir_action_before_single_post()
      * @param object $post The current post object.
      * @global WP_Post|null $post The current post, if available.
      */
-    do_action('geodir_before_single_post', $post); // extra action	
+    do_action('geodir_before_single_post', $post); // extra action
 }
 
 /**
@@ -1486,7 +1486,7 @@ function geodir_action_after_single_post($post)
      * @since 1.0.0
      * @param object $post The current post object.
      */
-    do_action('geodir_after_single_post', $post); // extra action	
+    do_action('geodir_after_single_post', $post); // extra action
 }
 
 add_action('geodir_details_main_content', 'geodir_action_before_single_post', 10);
@@ -2187,7 +2187,7 @@ function geodir_action_add_listing_form()
     $post_type_info = geodir_get_posttype_info($listing_type);
 
     $cpt_singular_name = (isset($post_type_info['labels']['singular_name']) && $post_type_info['labels']['singular_name']) ? __($post_type_info['labels']['singular_name'], 'geodirectory') : __('Listing','geodirectory');
-    
+
     $package_info = array();
     $package_info = geodir_post_package_info($package_info, $post);
     ?>
@@ -2201,7 +2201,7 @@ function geodir_action_add_listing_form()
         <?php } if (isset($_REQUEST['backandedit'])) { ?>
             <input type="hidden" name="backandedit" value="<?php echo sanitize_text_field($_REQUEST['backandedit']);?>"/>
         <?php
-        } 
+        }
         /**
          * Called at the very top of the add listing page form for frontend.
          *
@@ -2279,7 +2279,7 @@ function geodir_action_add_listing_form()
          * @param int $desc_limit The character limit numer if any.
          */
         $desc_limit_msg = apply_filters('geodir_description_field_desc_limit_msg', $desc_limit_msg, $desc_limit);
-        
+
         $desc_class = '';
         if ($desc_limit === '' || (int)$desc_limit > 0) {
             /**
@@ -2288,7 +2288,7 @@ function geodir_action_add_listing_form()
              * @since 1.0.0
              */
             do_action('geodir_before_description_field');
-            
+
             $desc_class = ' required_field';
         } else {
             $desc_class = ' hidden';
@@ -2330,7 +2330,7 @@ function geodir_action_add_listing_form()
              */
             do_action('geodir_after_description_field');
         }
-        
+
         $kw_tags = esc_attr(stripslashes($kw_tags));
         $kw_tags_count = TAGKW_TEXT_COUNT;
         $kw_tags_msg = TAGKW_MSG;
@@ -2359,7 +2359,7 @@ function geodir_action_add_listing_form()
          * @param int $kw_tags_count The character count limit if any.
          */
         $kw_tags_msg = apply_filters('geodir_listing_tags_field_tags_msg', $kw_tags_msg, $kw_tags_count);
-        
+
         $tags_class = '';
         if ($kw_tags_count === '' || (int)$kw_tags_count > 0) {
             /**
@@ -2387,12 +2387,12 @@ function geodir_action_add_listing_form()
              */
             do_action('geodir_after_listing_tags_field');
         }
-        
+
         $package_info = array();
         $package_info = geodir_post_package_info($package_info, $post);
-        
+
         geodir_get_custom_fields_html($package_info->pid, 'all', $listing_type);
-        
+
         // adjust values here
         $id = "post_images"; // this will be the name of form field. Image url(s) will be submitted in $_POST using this key. So if $id == �img1� then $_POST[�img1�] will have all the image urls
 
@@ -2611,6 +2611,8 @@ function geodir_action_signup_forms()
 
     global $user_login;
 
+    $is_enable_signup = get_option( 'users_can_register' );
+
     ?>
     <script type="text/javascript">
         <?php if ( $user_login ) { ?>
@@ -2675,7 +2677,7 @@ function geodir_action_signup_forms()
             include(geodir_plugin_path() . "/geodirectory-templates/login_frm.php"); ?>
         </div>
 
-    <?php } elseif (isset($_REQUEST['page']) && $_REQUEST['page'] == 'login' && isset($_REQUEST['page1']) && $_REQUEST['page1'] == 'sign_up') { ?>
+    <?php } elseif (isset($_REQUEST['page']) && $_REQUEST['page'] == 'login' && isset($_REQUEST['page1']) && $_REQUEST['page1'] == 'sign_up' && $is_enable_signup ) { ?>
 
         <div class="registration_form">
             <?php
@@ -2698,15 +2700,18 @@ function geodir_action_signup_forms()
              */
             include(geodir_plugin_path() . "/geodirectory-templates/login_frm.php"); ?>
         </div>
-        <div class="registration_form_r">
-            <?php
-            /**
-             * Contains registration form template.
-             *
-             * @since 1.0.0
-             */
-            include(geodir_plugin_path() . "/geodirectory-templates/reg_frm.php"); ?>
-        </div>
+
+        <?php if ( $is_enable_signup ) { ?>
+            <div class="registration_form_r">
+                <?php
+                /**
+                 * Contains registration form template.
+                 *
+                 * @since 1.0.0
+                 */
+                include(geodir_plugin_path() . "/geodirectory-templates/reg_frm.php"); ?>
+            </div>
+        <?php } ?>
 
     <?php }?>
     <script type="text/javascript">
@@ -3459,7 +3464,7 @@ function geodir_add_page_content( $position = 'before', $gd_page = '' ) {
     if (!$gd_page_id > 0) {
         return;
     }
-    
+
     $display = 'before';
     /**
      * Filter the position to display the page content.
@@ -3476,7 +3481,7 @@ function geodir_add_page_content( $position = 'before', $gd_page = '' ) {
     }
 
     $gd_post = $post;
-    
+
     setup_postdata(get_post($gd_page_id));
 
     if (get_the_content()) {
