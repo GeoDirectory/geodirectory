@@ -218,7 +218,6 @@ function build_map_ajax_search_param(map_canvas_var, reload_cat_list, catObj, hi
     if (jQuery.goMap.map && eval(map_canvas_var).enable_marker_cluster_server) { // map loaded so we know the bounds
         bounds = jQuery.goMap.map.getBounds();
         gd_zl = jQuery.goMap.map.getZoom();
-        
         if (window.gdMaps == 'osm') {
             gd_lat_ne = bounds.getNorthEast().lat;
             gd_lon_ne = bounds.getNorthEast().lng;
@@ -383,7 +382,6 @@ function map_ajax_search(map_canvas_var, search_query_string, marker_jason, hide
         jQuery('#sticky_map_' + map_canvas_var).find('.' + map_canvas_var + '_TopRight').hide();
         return false;
     }
-    
     if (hide_loading) {} //dont reposition after load
     else { jQuery('#' + map_canvas_var + '_loading_div').show(); }
     if (marker_jason != '') {
@@ -452,7 +450,6 @@ function parse_marker_jason(data, map_canvas_var) {
         var mapcenter = new google.maps.LatLng(eval(map_canvas_var).latitude, eval(map_canvas_var).longitude);
         list_markers(jsonData, map_canvas_var);
         var center = bounds.getCenter();
-        
         if (eval(map_canvas_var).autozoom && parseInt(jsonData[0].totalcount) > 1) {
 
             if (eval(map_canvas_var).enable_marker_cluster_no_reposition) {}//dont reposition after load
@@ -484,10 +481,8 @@ function list_markers(input, map_canvas_var) {
         for (var i = 0; i < input.length; i++) {
             var marker = create_marker(input[i], map_canvas_var);
         }
-        
         if (window.gdMaps == 'osm') {
             jQuery.goMap.map.addLayer(jQuery.goMap.gdlayers);
-            
             try {
                 if (jQuery.goMap.gdUmarker) {
                     bounds.extend(jQuery.goMap.gdUmarker.getLatLng());
@@ -611,7 +606,6 @@ function geodir_fix_marker_pos(map_canvas_var) {
     } else {
         var iwOuter = jQuery('#' + map_canvas_var + ' .gm-style-iw');
     }
-    
     var iwBackground = iwOuter.parent();
     org_height = iwBackground.height();
     jQuery('#' + map_canvas_var + ' .geodir-bubble_desc').attr('style', 'height:' + org_height + 'px !important');
@@ -621,9 +615,7 @@ function openMarker(map_canvas, id) {
     if (!window.gdMaps) {
         return;
     }
-    
     jQuery("#" + map_canvas).goMap();
-    
     if (jQuery('.stickymap').legnth) {} else {
         mTag = false;
         if (jQuery(".geodir-sidebar-wrap .stick_trigger_container").offset()) {
@@ -654,7 +646,9 @@ function animate_marker(map_canvas, id) {
     jQuery("#" + map_canvas).goMap();
     try {
         if (window.gdMaps == 'google') {
-            jQuery.goMap.mapId.data(id).setAnimation(google.maps.Animation.BOUNCE);
+            if (jQuery.goMap.mapId.data(id) != null) {
+                jQuery.goMap.mapId.data(id).setAnimation(google.maps.Animation.BOUNCE);
+            }
         } else if(window.gdMaps == 'osm') {
             jQuery.goMap.gdlayers.eachLayer(function(marker) {
                 if (id && marker.options.id == id){
@@ -673,7 +667,7 @@ function stop_marker_animation(map_canvas, id) {
     jQuery("#" + map_canvas).goMap();
     try {
         if (window.gdMaps == 'google') {
-            if (jQuery.goMap.mapId.data(id).getAnimation() != null) {
+            if (jQuery.goMap.mapId.data(id) != null) {
                 jQuery.goMap.mapId.data(id).setAnimation(null);
             }
         } else if(window.gdMaps == 'osm') {
@@ -709,10 +703,8 @@ function map_sticky(map_options) {
     if (!window.gdMaps) {
         return;
     }
-    
     var optionsname = map_options;
     map_options = eval(map_options);
-    
     if (map_options.sticky && jQuery(window).width() > 1250) {
         jQuery.fn.scrollBottom = function() {
             return this.scrollTop() + this.height();
@@ -726,24 +718,19 @@ function map_sticky(map_options) {
         var mapheight = jQuery("#sticky_map_" + optionsname + "").height();
         var widthpx = sticky.width();
         var widthmap = map_options.width;
-        
         if (widthmap.indexOf('%') != -1) {
             jQuery('.main_map_wrapper', sticky).width('100%');
             jQuery('.geodir_marker_cluster', sticky).width('100%');
         }
-        
         jQuery(window).scroll(function() {
             jQuery("#" + optionsname + "").goMap();
-            
             // get the bounds of the map
             if (window.gdMaps == 'osm') {
                 bounds = new L.LatLngBounds([]);
             } else {
                 bounds =  new google.maps.LatLngBounds();
             }
-            
             var wheight = jQuery(window).height();
-            
             if (jQuery(window).scrollTop() >= catcher.offset().top) {
                 if (!sticky.hasClass('stickymap')) {
                     sticky.addClass('stickymap');
@@ -783,7 +770,6 @@ function map_sticky(map_options) {
                 });
                 sticky_show_hide_trigger.show();
             }
-            
             if (jQuery(window).scrollTop() < catcher.offset().top) {
                 if (sticky.hasClass('stickymap')) {
                     sticky.appendTo(map_parent);
@@ -820,7 +806,6 @@ function calcRoute(map_canvas) {
     initMap(map_canvas);
     var optionsname = map_canvas;
     var map_options = eval(optionsname);
-    
     if (window.gdMaps == 'osm') {
         try {
             var control = L.Routing.control({
@@ -847,9 +832,7 @@ function calcRoute(map_canvas) {
                 }
             });
             control.addTo(jQuery.goMap.map);
-            
             L.Routing.errorControl(control).addTo(jQuery.goMap.map);
-            
             jQuery('.leaflet-routing-geocoders .leaflet-routing-search-info').append('<span title="' + geodir_all_js_msg.geoMyLocation + '" onclick="gdMyGeoDirection();" id="detail_page_map_canvas_mylocation" class="gd-map-mylocation"><i class="fa fa-crosshairs" aria-hidden="true"></i></span>');
         } catch(e) {
             console.log(e);
@@ -992,7 +975,6 @@ function initMapOSM(map_options) {
     var enable_marker_cluster = options.enable_marker_cluster;
     options.token = '68f48005e256696074e1da9bf9f67f06';
     options.navigationControlOptions = { position: 'topleft' };
-    
     // Create map
     jQuery("#" + map_canvas).goMap(options);
 
@@ -1003,11 +985,9 @@ function initMapOSM(map_options) {
             { visibility: "off" }
         ]
     }];
-    
     if (typeof geodir_custom_map_style !== 'undefined') {
         styles = geodir_custom_map_style;
     }
-    
     /* custom google map style */
     if (typeof options.mapStyles != 'undefined') {
         try {
@@ -1019,23 +999,18 @@ function initMapOSM(map_options) {
             console.log(err.message);
         }
     }
-    
     /* custom google map style */ // TODO for styles
     //jQuery.goMap.map = L.Util.setOptions(jQuery.goMap.map, { styles: styles });
-    
     // check if control al ready triggered
     var hasControl = jQuery('#' + map_canvas).find('.gd-control-div').hasClass(map_canvas + '-control-div');
-    
     /* add option that allows enable/disable map dragging to phone devices */
     if (geodir_all_js_msg.geodir_is_mobile && typeof geodir_all_js_msg.geodir_onoff_dragging != 'undefined' && geodir_all_js_msg.geodir_onoff_dragging && !hasControl) {
         var centerControlDiv = document.createElement('div');
         centerControlDiv.index = 1;
         jQuery(centerControlDiv).addClass('gd-control-div');
         jQuery(centerControlDiv).addClass(map_canvas + '-control-div');
-        
         var centerControl = new gdCustomControl(centerControlDiv, options.enable_cat_filters, jQuery.goMap.map);
         var controlPosition = options.enable_cat_filters ? 'bottomleft' : 'bottomright';
-        
         //jQuery.goMap.map.controls[controlPosition].push(centerControlDiv);
     }
 
@@ -1054,9 +1029,7 @@ function initMapOSM(map_options) {
             }
         }
     });
-    
     var maxMap = document.getElementById(map_canvas + '_triggermap');
-    
     if (!jQuery(maxMap).hasClass('gd-triggered-map')) { // skip multiple click listener after reload map via ajax
         jQuery(maxMap).addClass('gd-triggered-map');
         L.DomEvent.addListener(maxMap, 'click', gdMaxMapOSM);
@@ -1074,7 +1047,6 @@ function initMapOSM(map_options) {
         jQuery('.map-places-listing').toggleClass('triggermap_fullscreen');
         jQuery('.' + map_canvas + '_TopLeft').toggleClass('TopLeft_fullscreen');
         jQuery('#' + map_canvas + '_triggermap').closest('.geodir_map_container').toggleClass('geodir_map_container_fullscreen');
-        
         window.setTimeout(function() {
             setGeodirMapSize(true);
             jQuery.goMap.map._onResize();
@@ -1083,7 +1055,7 @@ function initMapOSM(map_options) {
     }
 }
 
-function parse_marker_jason_osm(data, map_canvas_var) {    
+function parse_marker_jason_osm(data, map_canvas_var) {
     if (jQuery('#' + map_canvas_var).val() == '') { // if map not loaded then load it
         initMapOSM(map_canvas_var);
     } else {
@@ -1091,20 +1063,15 @@ function parse_marker_jason_osm(data, map_canvas_var) {
     }
     // get the bounds of the map
     bounds = new L.LatLngBounds([]);
-    
     // clear old markers
     jQuery.goMap.clearMarkers();
-    
     //json evaluate returned data
     jsonData = jQuery.parseJSON(data);
-    
     // if no markers found, display home_map_nofound div with no search criteria met message
     if (jsonData[0].totalcount <= 0) {
         document.getElementById(map_canvas_var + '_map_nofound').style.display = 'block';
         var mapcenter = new L.latLng(eval(map_canvas_var).latitude, eval(map_canvas_var).longitude);
-        
         list_markers(jsonData, map_canvas_var);
-        
         if (eval(map_canvas_var).enable_marker_cluster_no_reposition) {
         } //dont reposition after load
         else {
@@ -1112,14 +1079,12 @@ function parse_marker_jason_osm(data, map_canvas_var) {
         }
     } else {
         document.getElementById(map_canvas_var + '_map_nofound').style.display = 'none';
-        
         if (map_canvas_var === 'detail_page_map_canvas') {
             jsonData[0].totalcount = 1;
             jsonData = [jsonData[0]];
         }
 
         list_markers(jsonData, map_canvas_var);
-        
         var center = bounds.getCenter();
         if (eval(map_canvas_var).autozoom && parseInt(jsonData[0].totalcount) > 1) {
             if (eval(map_canvas_var).enable_marker_cluster_no_reposition) {
@@ -1139,7 +1104,6 @@ function parse_marker_jason_osm(data, map_canvas_var) {
             jQuery.goMap.map.setZoom(parseInt(eval(map_canvas_var).maxZoom));
         }
     }
-    
     jQuery('#' + map_canvas_var + '_loading_div').hide();
     jQuery("body").trigger("map_show", map_canvas_var);
 }
@@ -1149,9 +1113,7 @@ function create_marker_osm(input, map_canvas_var) {
         gd_single_marker_lat = input.lt;
         gd_single_marker_lon = input.ln;
     }
-    
     jQuery("#" + map_canvas_var).goMap();
-    
     if (input.lt && input.ln) {
         var coord = new L.latLng(input.lt, input.ln);
         var marker_id = 0;
@@ -1166,9 +1128,7 @@ function create_marker_osm(input, map_canvas_var) {
             input.w = geodir_all_js_msg.geodir_default_marker_w;
             input.h = geodir_all_js_msg.geodir_default_marker_h;
         }
-        
         cs = input.cs;
-        
         var marker = jQuery.goMap.createMarker({
             id: marker_id,
             title: title,
@@ -1181,7 +1141,6 @@ function create_marker_osm(input, map_canvas_var) {
             h: input.h,
             clustered: (parseInt(options.enable_marker_cluster) === 1) && typeof input.cs !== 'undefined' ? true : false
         });
-        
         if ((parseInt(options.enable_marker_cluster) === 1) && cs) {
             var labels = cs.split("_");
             bounds.extend(new L.latLng(labels[1], labels[2]));
@@ -1191,34 +1150,27 @@ function create_marker_osm(input, map_canvas_var) {
         } else {
             bounds.extend(coord);
         }
-        
         // Adding a click event to the marker
         L.DomEvent.addListener(marker, 'click', function() {
             if (marker.options.clustered) {
                 jQuery("#" + map_canvas_var).goMap();
-                
                 marker.closePopup().unbindPopup();
                 var fitBounds = false;
                 if (marker.options.label) {
                     var labels = marker.options.label.split("_");
                     var newBounds = new L.LatLngBounds([]);
-                    
                     var lat1 = labels[1];
                     var lng1 = labels[2];
                     var lat2 = labels[3];
                     var lng2 = labels[4];
-                    
                     newBounds.extend(new L.latLng(lat1, lng1));
-                    
                     if (lat1 == lat2 && lng1 == lng2) {
                         var lat2 = lat2 * 1.00000001;
                         var lng2 = lng2 * 1.00000001;
                     }
-                                        
                     newBounds.extend(new L.latLng(lat2, lng2));
                     jQuery.goMap.map.fitBounds(newBounds);
                     bounds = newBounds;
-                    
                     if (jQuery.goMap.map.getZoom() > parseInt(eval(map_canvas_var).maxZoom)) {
                         jQuery.goMap.map.setZoom(parseInt(eval(map_canvas_var).maxZoom));
                     }
@@ -1231,13 +1183,10 @@ function create_marker_osm(input, map_canvas_var) {
                 is_zooming = true;
                 jQuery("#" + map_canvas_var).goMap();
             }
-            
             var preview_query_str = '';
-            
             if (input.post_preview) {
                 preview_query_str = '&post_preview=' + input.post_preview;
             }
-            
             if (eval(map_canvas_var).bubble_size) {
                 var marker_url = eval(map_canvas_var).ajax_url + "&geodir_ajax=map_ajax&ajax_action=info&m_id=" + input.id + "&small=1" + preview_query_str;
             } else {
@@ -1245,7 +1194,6 @@ function create_marker_osm(input, map_canvas_var) {
             }
             var loading = '<div id="map_loading"></div>';
             marker.closePopup().unbindPopup().bindPopup(loading).openPopup();
-            
             jQuery.ajax({
                 type: "GET",
                 url: marker_url,
@@ -1265,7 +1213,6 @@ function create_marker_osm(input, map_canvas_var) {
             });
             return;
         });
-        
         // Adding a visible_changed event to the marker
         L.DomEvent.addListener(marker, 'visible_changed', function() {
             marker.closePopup();
