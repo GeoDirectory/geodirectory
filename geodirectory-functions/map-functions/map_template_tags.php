@@ -402,7 +402,14 @@ function geodir_draw_map($map_args = array())
 
                 <?php if ($geodir_map_options['enable_post_type_filters']) {
                     $post_types = geodir_get_posttypes('object');
-                    if (count((array)($post_types)) > 1) {
+                    $all_post_types = geodir_get_posttypes('names');
+                    $exclude_post_types = get_option('geodir_exclude_post_type_on_map');
+                    if (is_array($exclude_post_types)) {
+                        $map_post_types = array_diff($all_post_types, $exclude_post_types);
+                    } else {
+                        $map_post_types = $all_post_types;
+                    }
+                    if (count($map_post_types) > 1) {
                         ?>
                         <div class="map-places-listing" id="<?php echo $map_canvas_name;?>_posttype_menu"
                              style="max-width:<?php echo $map_width;?>!important;">
@@ -411,7 +418,7 @@ function geodir_draw_map($map_args = array())
                             <div class="geodir-map-posttype-list"><?php } ?>
                                 <ul class="clearfix place-list">
                                     <?php
-                                    $exclude_post_types = get_option('geodir_exclude_post_type_on_map');
+
 
                                     foreach ($post_types as $post_type => $args) {
                                         if (!in_array($post_type, $exclude_post_types)) {

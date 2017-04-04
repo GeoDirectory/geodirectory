@@ -23,6 +23,7 @@ Post date should be updated via CSV import - CHANGED
 In [gd_listings] shortcode if category has no posts then it shows all the results - FIXED
 [gd_popular_post_view] shortcode character_count=0 not working - FIXED
 
+
 v1.6.17
 Changes for batch WPML duplicates feature - CHANGED
 Yoast SEO location replacement tags no longer working - FIXED
