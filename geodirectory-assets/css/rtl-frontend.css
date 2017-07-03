@@ -4,7 +4,8 @@
 *[dir="rtl"] .geodir_form_row .geodir_textfield,
 *[dir="rtl"] .geodir_textarea,
 *[dir="rtl"] .geodir_form_row select,
-*[dir="rtl"] .geodir-breadcrumb ul li {
+*[dir="rtl"] .geodir-breadcrumb ul li,
+*[dir="rtl"] dl.geodir-tab-head dd{
     float: right
 }
 

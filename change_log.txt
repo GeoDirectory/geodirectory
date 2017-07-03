@@ -9,6 +9,7 @@ Fix flexslider JS conflict - FIXED
 Option added in popular post widget to hide widget if no listings found - ADDED
 Disable review submitting on draft/trash/pending listing - CHANGED
 Don't translate GD post types/taxonomies if disabled in WPML settings - CHANGED
+RTL, details page tabs not RTL - FIXED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED
