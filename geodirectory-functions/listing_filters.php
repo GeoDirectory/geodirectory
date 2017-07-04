@@ -658,7 +658,7 @@ function geodir_default_where($where)
     //print_r($wp_query);
     ########### WPML ###########
 
-    if (function_exists('icl_object_id')) {
+    if (geodir_is_wpml()) {
         global $sitepress, $table_prefix;
         $lang_code = ICL_LANGUAGE_CODE;
         $default_lang_code = $sitepress->get_default_language();

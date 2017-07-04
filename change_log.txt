@@ -12,6 +12,7 @@ Don't translate GD post types/taxonomies if disabled in WPML settings - CHANGED
 RTL, details page tabs not RTL - FIXED
 On detail page show no. images as per plan allowed - FIXED
 Remove grey X from default custom field - CHANGED
+WPML v3.2+ compatibility changes - CHANGED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED

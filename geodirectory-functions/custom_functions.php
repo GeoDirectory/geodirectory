@@ -2516,7 +2516,7 @@ add_action( 'wp_ajax_nopriv_geodir_search_form', 'geodir_search_form' );
  * @return True if WPML is active else False.
  */
 function geodir_is_wpml() {
-    if (function_exists('icl_object_id')) {
+    if (class_exists('SitePress') && function_exists('icl_object_id')) {
         return true;
     }
 
@@ -3180,4 +3180,31 @@ function geodir_wpml_is_post_type_translated( $post_type ) {
     }
     
     return false;
+}
+
+/**
+ * Get the element in the WPML current language.
+ *
+ * @since 1.6.22
+ *
+ * @param int         $element_id                 Use term_id for taxonomies, post_id for posts
+ * @param string      $element_type               Use post, page, {custom post type name}, nav_menu, nav_menu_item, category, tag, etc.
+ *                                                You can also pass 'any', to let WPML guess the type, but this will only work for posts.
+ * @param bool        $return_original_if_missing Optional, default is FALSE. If set to true it will always return a value (the original value, if translation is missing).
+ * @param string|NULL $language_code              Optional, default is NULL. If missing, it will use the current language.
+ *                                                If set to a language code, it will return a translation for that language code or
+ *                                                the original if the translation is missing and $return_original_if_missing is set to TRUE.
+ *
+ * @return int|NULL
+ */
+function geodir_wpml_object_id( $element_id, $element_type = 'post', $return_original_if_missing = false, $ulanguage_code = null ) {
+    if ( geodir_is_wpml() ) {
+        if ( function_exists( 'wpml_object_id_filter' ) ) {
+            return apply_filters( 'wpml_object_id', $element_id, $element_type, $return_original_if_missing, $ulanguage_code );
+        } else {
+            return icl_object_id( $element_id, $element_type, $return_original_if_missing, $ulanguage_code );
+        }
+    }
+    
+    return $element_id;
 }

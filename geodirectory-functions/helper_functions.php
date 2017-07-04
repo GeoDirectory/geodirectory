@@ -16,8 +16,8 @@
 function geodir_add_listing_page_id(){
     $gd_page_id = get_option('geodir_add_listing_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     return $gd_page_id;
@@ -33,8 +33,8 @@ function geodir_add_listing_page_id(){
 function geodir_preview_page_id(){
     $gd_page_id = get_option('geodir_preview_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     return $gd_page_id;
@@ -50,8 +50,8 @@ function geodir_preview_page_id(){
 function geodir_success_page_id(){
     $gd_page_id = get_option('geodir_success_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     return $gd_page_id;
@@ -67,8 +67,8 @@ function geodir_success_page_id(){
 function geodir_location_page_id(){
     $gd_page_id = get_option('geodir_location_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     return $gd_page_id;
@@ -84,8 +84,8 @@ function geodir_location_page_id(){
 function geodir_home_page_id(){
     $gd_page_id = get_option('geodir_home_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     return $gd_page_id;
@@ -101,8 +101,8 @@ function geodir_home_page_id(){
 function geodir_info_page_id(){
     $gd_page_id = get_option('geodir_info_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     return $gd_page_id;
@@ -118,8 +118,8 @@ function geodir_info_page_id(){
 function geodir_login_page_id(){
     $gd_page_id = get_option('geodir_login_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     return $gd_page_id;
@@ -136,8 +136,8 @@ function geodir_login_page_id(){
 function geodir_login_url($args=array()){
     $gd_page_id = get_option('geodir_login_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     if (function_exists('geodir_location_geo_home_link')) {
@@ -192,8 +192,8 @@ function geodir_login_url($args=array()){
 function geodir_info_url($args=array()){
     $gd_page_id = get_option('geodir_info_page');
 
-    if (function_exists('icl_object_id')) {
-        $gd_page_id =  icl_object_id($gd_page_id, 'page', true);
+    if (geodir_is_wpml()) {
+        $gd_page_id =  geodir_wpml_object_id($gd_page_id, 'page', true);
     }
 
     if (function_exists('geodir_location_geo_home_link')) {

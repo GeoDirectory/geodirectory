@@ -262,7 +262,7 @@ function home_map_taxonomy_walker($cat_taxonomy, $cat_parent = 0, $hide_empty = 
                     if (geodir_wpml_is_taxonomy_translated($post_type . 'category')) { // if WPML
                         global $sitepress;
                         $default_lang = $sitepress->get_default_language();
-                        $term_id = icl_object_id($cat_term->term_id, $post_type.'category', true, $default_lang);
+                        $term_id = geodir_wpml_object_id($cat_term->term_id, $post_type.'category', true, $default_lang);
                     }else{
                         $term_id = $cat_term->term_id;
                     }

@@ -48,7 +48,7 @@ function geodir_locate_template($template = '')
                 $listing_page_id = geodir_add_listing_page_id();
             }
             
-            $is_wpml = function_exists('icl_object_id') ? true : false;
+            $is_wpml = geodir_is_wpml() ? true : false;
 
             if ($listing_page_id != '' && (is_page($listing_page_id) || ($is_wpml && !empty($wp->query_vars['page_id']))) && isset($_REQUEST['listing_type'])
                 && in_array($_REQUEST['listing_type'], $gd_post_types)) {
