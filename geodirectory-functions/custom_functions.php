@@ -1452,6 +1452,11 @@ function geodir_show_detail_page_tabs() {
 
 	$geodir_post_detail_fields = geodir_show_listing_info( 'moreinfo' );
 
+	$package_info = geodir_post_package_info(array(), $post, (!empty($post->post_type) ? $post->post_type : ''));
+	$image_limit = '';
+	if (defined('GEODIRPAYMENT_VERSION') && !empty($package_info) && isset($package_info->image_limit) && $package_info->image_limit !== '') {
+		$image_limit = (int)$package_info->image_limit;
+	}
 
 	if ( geodir_is_page( 'detail' ) ) {
 		$video                 = geodir_get_video( $post->ID );
@@ -1460,7 +1465,6 @@ function geodir_show_detail_page_tabs() {
 		if ( get_option( 'geodir_add_related_listing_posttypes' ) ) {
 			$related_listing_array = get_option( 'geodir_add_related_listing_posttypes' );
 		}
-
 
 		$excluded_tabs = get_option( 'geodir_detail_page_tabs_excluded' );
 		if ( ! $excluded_tabs ) {
@@ -1489,11 +1493,16 @@ function geodir_show_detail_page_tabs() {
 		$post_images = geodir_get_images( $post->ID, 'thumbnail' );
 		$thumb_image = '';
 		if ( ! empty( $post_images ) ) {
+			$count = 1;
 			foreach ( $post_images as $image ) {
+				if ($image_limit !== '' && $count > $image_limit) {
+					 break;
+				}
 				$caption = ( ! empty( $image->caption ) ) ? $image->caption : '';
 				$thumb_image .= '<a href="' . $image->src . '" title="' . $caption . '">';
 				$thumb_image .= geodir_show_image( $image, 'thumbnail', true, false );
 				$thumb_image .= '</a>';
+				$count++;
 			}
 		}
 
@@ -1529,11 +1538,16 @@ function geodir_show_detail_page_tabs() {
 
 		$thumb_image = '';
 		if ( ! empty( $post_images ) ) {
+			$count = 1;
 			foreach ( $post_images as $image ) {
 				if ( $image != '' ) {
+					if ($image_limit !== '' && $count > $image_limit) {
+						 break;
+					}
 					$thumb_image .= '<a href="' . $image . '">';
 					$thumb_image .= geodir_show_image( array( 'src' => $image ), 'thumbnail', true, false );
 					$thumb_image .= '</a>';
+					$count++;
 				}
 			}
 		}
