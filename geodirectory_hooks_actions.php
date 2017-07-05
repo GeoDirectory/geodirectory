@@ -2828,7 +2828,7 @@ function geodir_wpml_filter_locale($locale) {
  * @package GeoDirectory
  */
 function geodir_wpml_set_filter() {
-    if (function_exists('icl_object_id')) {
+    if (geodir_is_wpml()) {
         global $sitepress;
         
         if ($sitepress->get_setting('sync_comments_on_duplicates')) {

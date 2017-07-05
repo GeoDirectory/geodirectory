@@ -1782,14 +1782,14 @@ function geodir_term_link($termlink, $term, $taxonomy) {
 
         // Alter the CPT slug is WPML is set to do so
         /* we can replace this with the below function
-        if(function_exists('icl_object_id')){
+        if(geodir_is_wpml()){
             global $sitepress;
             $post_type = str_replace("category","",$taxonomy);
             $termlink = $sitepress->post_type_archive_link_filter( $termlink, $post_type);
         }*/
 
         // Alter the CPT slug if WPML is set to do so
-        if (function_exists('icl_object_id')) {
+        if (geodir_is_wpml()) {
             $post_types = get_option('geodir_post_types');
             $post_type = str_replace("category","",$taxonomy);
             $post_type = str_replace("_tags","",$post_type);

@@ -266,10 +266,10 @@ function geodir_listing_rewrite_rules($rules) {
 		$newrules[$location_prefix . '/([^/]+)/?$'] = 'index.php?page_id=' . $location_page . '&gd_country=$matches[1]';
 	}
 
-    if ($location_page && function_exists('icl_object_id')) {
+    if ($location_page && geodir_is_wpml()) {
         foreach(icl_get_languages('skip_missing=N') as $lang){
             $alt_page_id = '';
-            $alt_page_id = icl_object_id($location_page, 'page', false,$lang['language_code']);
+            $alt_page_id = geodir_wpml_object_id($location_page, 'page', false,$lang['language_code']);
             if($alt_page_id){
                 $location_prefix = $wpdb->get_var($wpdb->prepare("SELECT post_name FROM $wpdb->posts WHERE post_type='page' AND ID=%d", $alt_page_id));
 
@@ -418,8 +418,8 @@ function geodir_set_location_var_in_session_in_core($wp) {
         $page_for_posts = get_option('page_for_posts');
         $real_page_id = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_name=%s",$wp->query_vars['pagename']));
 
-        if (function_exists('icl_object_id')) {
-            $real_page_id = icl_object_id($real_page_id, 'page', true, ICL_LANGUAGE_CODE);
+        if (geodir_is_wpml()) {
+            $real_page_id = geodir_wpml_object_id($real_page_id, 'page', true, ICL_LANGUAGE_CODE);
         }
         if ($real_page_id && $real_page_id!=$page_for_posts) {
             $wp->query_vars['page_id'] = $real_page_id;

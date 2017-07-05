@@ -1211,7 +1211,7 @@ function geodir_taxonomy_breadcrumb() {
 }
 
 function geodir_wpml_post_type_archive_link($link, $post_type){
-	if (function_exists('icl_object_id')) {
+	if (geodir_is_wpml()) {
 		$post_types   = get_option( 'geodir_post_types' );
 		
 		if ( isset( $post_types[ $post_type ] ) ) {
@@ -2004,10 +2004,10 @@ Language translation helper functions
  * @return array Category IDs.
  */
 function gd_lang_object_ids( $ids_array, $type ) {
-	if ( function_exists( 'icl_object_id' ) ) {
+	if ( geodir_is_wpml() ) {
 		$res = array();
 		foreach ( $ids_array as $id ) {
-			$xlat = icl_object_id( $id, $type, false );
+			$xlat = geodir_wpml_object_id( $id, $type, false );
 			if ( ! is_null( $xlat ) ) {
 				$res[] = $xlat;
 			}
@@ -2145,7 +2145,7 @@ function get_page_id_geodir_add_listing_page( $page_id ) {
  * @return bool Returns true when sitepress multilingual CMS active. else returns false.
  */
 function geodir_wpml_multilingual_status() {
-	if ( function_exists( 'icl_object_id' ) ) {
+	if ( geodir_is_wpml() ) {
 		return true;
 	}
 

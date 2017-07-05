@@ -1000,6 +1000,12 @@ function geodir_action_details_slider()
             $post->post_images = implode(',', $preview_post_images);
         }
     }
+    
+    $package_info = geodir_post_package_info(array(), $post, (!empty($post->post_type) ? $post->post_type : ''));
+    $image_limit = '';
+    if (defined('GEODIRPAYMENT_VERSION') && !empty($package_info) && isset($package_info->image_limit) && $package_info->image_limit !== '') {
+        $image_limit = (int)$package_info->image_limit;
+    }
 
     if ($preview) {
         $post_images = array();
@@ -1014,6 +1020,9 @@ function geodir_action_details_slider()
 
         if (!empty($post_images)) {
             foreach ($post_images as $image) {
+                if ($image_limit !== '' && ($slides+1) > $image_limit) {
+                     break;
+                }
                 if (!empty($image)) {
                     $sizes = getimagesize(trim($image));
                     $width = !empty($sizes) && isset($sizes[0]) ? $sizes[0] : 0;
@@ -1055,6 +1064,9 @@ function geodir_action_details_slider()
 
         if (!empty($post_images)) {
             foreach ($post_images as $image) {
+                if ($image_limit !== '' && ($slides+1) > $image_limit) {
+                     break;
+                }
                 if ($image->height >= 400) {
                     $spacer_height = 0;
                 } else {

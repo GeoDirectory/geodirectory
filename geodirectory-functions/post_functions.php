@@ -2935,7 +2935,7 @@ function geodir_set_wp_featured_image($post_id)
  */
 function gd_copy_original_translation()
 {
-    if (function_exists('icl_object_id')) {
+    if (geodir_is_wpml()) {
         global $wpdb, $table_prefix, $plugin_prefix;
         $post_id = absint($_POST['post_id']);
         $upload_dir = wp_upload_dir();
@@ -2968,7 +2968,7 @@ function gd_copy_original_translation()
         $cat_arr = array_filter(explode(",", $cats));
         $trans_cat = array();
         foreach ($cat_arr as $cat) {
-            $trans_cat[] = icl_object_id($cat, $post_arr[0]['post_type'] . 'category', false);
+            $trans_cat[] = geodir_wpml_object_id($cat, $post_arr[0]['post_type'] . 'category', false);
         }
 
 
