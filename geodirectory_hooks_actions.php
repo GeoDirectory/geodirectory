@@ -256,6 +256,11 @@ function geodir_add_post_filters()
      * @package GeoDirectory
      */
     include_once('geodirectory-functions/listing_filters.php');
+    
+    // Theme My Login compatibility fix
+    if ( isset( $_REQUEST['geodir_search'] ) && class_exists( 'Theme_My_Login' ) ) {
+        remove_action( 'pre_get_posts', array( Theme_My_Login::get_object(), 'pre_get_posts' ) );
+    }
 }
 
 
