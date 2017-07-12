@@ -14,6 +14,7 @@ On detail page show no. images as per plan allowed - FIXED
 Remove grey X from default custom field - CHANGED
 WPML v3.2+ compatibility changes - CHANGED
 Theme My Login compatibility fix - FIXED
+Can't disable BCC notification to admin on post submit success - CHANGED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED
