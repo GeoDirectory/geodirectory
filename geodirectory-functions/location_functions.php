@@ -467,11 +467,13 @@ function geodir_get_osm_address_by_lat_lan($lat, $lng) {
  * Get normal untranslated country name.
  *
  * @since 1.6.16
+ * @since 1.6.22 $default parameter added.
  * @package GeoDirectory
  * @param string $country The country name.
+ * @param string $default If '1', returns default value on country not found.
  * @return string Returns the country.
  */
-function geodir_get_normal_country($country) {
+function geodir_get_normal_country($country, $default = '1') {
     global $wpdb;
     if ($result = geodir_get_country_by_name($country)) {
         return $result;
@@ -497,6 +499,10 @@ function geodir_get_normal_country($country) {
                 }
             }
         }
+    }
+    
+    if ( $default === '0' ) {
+        return NULL;
     }
     
     $default_location = geodir_get_default_location();
