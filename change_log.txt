@@ -16,6 +16,7 @@ WPML v3.2+ compatibility changes - CHANGED
 Theme My Login compatibility fix - FIXED
 Can't disable BCC notification to admin on post submit success - CHANGED
 Backend should load content in language that user has selected in his profile - FIXED
+geodir_date() function not working for already translated date - FIXED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED
