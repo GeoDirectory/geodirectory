@@ -799,6 +799,33 @@ function searching_filter_where($where) {
         $terms_where = apply_filters("geodir_search_terms_where"," AND ($wpdb->terms.name LIKE \"$s\" OR $wpdb->terms.name LIKE \"$s%\" OR $wpdb->terms.name LIKE \"% $s%\" OR $wpdb->terms.name IN ($s_A)) ");
 	}
 
+
+    // get term sql
+    $term_sql = "              SELECT $wpdb->term_taxonomy.term_id                     
+									FROM $wpdb->term_taxonomy,  $wpdb->terms, $wpdb->term_relationships
+                                    WHERE $wpdb->term_taxonomy.term_id =  $wpdb->terms.term_id
+                                    AND $wpdb->term_relationships.term_taxonomy_id =  $wpdb->term_taxonomy.term_taxonomy_id
+                                    AND $wpdb->term_taxonomy.taxonomy in ( {$taxonomies} )
+                                    $terms_where
+                                    GROUP BY $wpdb->term_taxonomy.term_id";
+
+    $term_results = $wpdb->get_results($term_sql);
+    $term_ids = array();
+    $terms_sql = '';
+
+    if(!empty($term_results)){
+        foreach($term_results as $term_id){
+            $term_ids[] = $term_id;
+        }
+        if(!empty( $term_ids)){
+
+            foreach($term_ids as $term){
+                $terms_sql .= " OR FIND_IN_SET($term->term_id , ".$table.".".$post_types."category) ";
+            }
+        }
+    }
+
+
     if ($snear != '') {
 
 
@@ -819,15 +846,7 @@ function searching_filter_where($where) {
 
 	    $where .= " AND ( ( $wpdb->posts.post_title LIKE \"$s\" $better_search_terms)
 			                    $content_where 
-								OR ($wpdb->posts.ID IN( 
-										SELECT $wpdb->term_relationships.object_id as post_id 
-										FROM $wpdb->term_taxonomy,  $wpdb->terms, $wpdb->term_relationships 
-										WHERE $wpdb->term_taxonomy.term_id =  $wpdb->terms.term_id
-										AND $wpdb->term_relationships.term_taxonomy_id =  $wpdb->term_taxonomy.term_taxonomy_id
-										AND $wpdb->term_taxonomy.taxonomy in ({$taxonomies})
-										$terms_where 
-										)
-									) 
+								$terms_sql 
 							)
 						AND $wpdb->posts.post_type in ('{$post_types}')
 						AND ($wpdb->posts.post_status = 'publish')
@@ -840,18 +859,14 @@ function searching_filter_where($where) {
         }
 
     } else {
+
+
+
         $where .= " AND (	( $wpdb->posts.post_title LIKE \"$s\" $better_search_terms)
                             $content_where  
-							OR ( $wpdb->posts.ID IN(	
-									SELECT $wpdb->term_relationships.object_id as post_id                     
-									FROM $wpdb->term_taxonomy,  $wpdb->terms, $wpdb->term_relationships
-								WHERE $wpdb->term_taxonomy.term_id =  $wpdb->terms.term_id
-								AND $wpdb->term_relationships.term_taxonomy_id =  $wpdb->term_taxonomy.term_taxonomy_id
-								AND $wpdb->term_taxonomy.taxonomy in ( {$taxonomies} )
-								$terms_where 
-								)
-						) 
-					) 
+							$terms_sql 
+					    ) 
+					
 				AND $wpdb->posts.post_type in ('$post_types')
 				AND ($wpdb->posts.post_status = 'publish') ";
     }

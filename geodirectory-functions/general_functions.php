@@ -1698,6 +1698,10 @@ function fetch_remote_file( $url ) {
 		return new WP_Error( 'import_file_error', $headers->get_error_message() );
 	}
 
+	// clear cache to make compat with EWWW Image Optimizer
+	if(defined( 'EWWW_IMAGE_OPTIMIZER_PLUGIN_FILE')){
+		clearstatcache();
+	}
 	$filesize = filesize( $upload['file'] );
 	// request failed
 	if ( ! $headers ) {
