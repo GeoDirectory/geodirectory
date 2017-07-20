@@ -571,8 +571,11 @@ function geodir_date_format_php_to_jqueryui( $php_format ) {
  *
  * @return string The untranslated date string.
  * @since 1.6.5
+ * @since 1.6.22 Genitive month added.
  */
-function geodir_maybe_untranslate_date($date){
+function geodir_maybe_untranslate_date($date) {
+	global $wp_locale;
+    
 	$english_long_months = array(
 		'January',
 		'February',
@@ -603,7 +606,10 @@ function geodir_maybe_untranslate_date($date){
 		__('December'),
 	);
 	$date = str_replace($non_english_long_months,$english_long_months,$date);
-
+    
+	if ( !empty( $wp_locale ) ) {
+		$date = str_replace( array_values( $wp_locale->month_genitive ), $english_long_months, $date );
+	}
 
 	$english_short_months = array(
 		' Jan ',
@@ -645,32 +651,40 @@ function geodir_maybe_untranslate_date($date){
  * Convert date to given format.
  *
  * @since 1.6.7
+ * @since 1.6.22 $locale parameter added to fix already translated dates.
  *
  * @param string $date_input The date string.
  * @param string $date_to The destination date format.
  * @param string $date_from The source date format.
+ * @param bool $locale True to retrieve the date in localized format. Default false.
  * @return string The formatted date.
  */
-function geodir_date($date_input, $date_to, $date_from = '') {
-    if (empty($date_input) || empty($date_to)) {
+function geodir_date( $date_input, $date_to, $date_from = '', $locale = false ) {
+    if ( empty( $date_input ) || empty( $date_to ) ) {
         return NULL;
     }
     
-    $date = '';
-    if (!empty($date_from)) {
-        $datetime = date_create_from_format($date_from, $date_input);
-        
-        if (!empty($datetime)) {
-            $date = $datetime->format($date_to);
+    $date_input = geodir_maybe_untranslate_date( $date_input );
+    
+    $timestamp = 0;
+    if (!empty( $date_from ) && function_exists( 'date_create_from_format' ) ) {
+        $datetime = date_create_from_format( $date_from, $date_input );
+        if ( !empty( $datetime ) ) {
+            $timestamp = $datetime->getTimestamp();
         }
     }
     
-    if (empty($date)) {
-        $date = strpos($date_input, '/') !== false ? str_replace('/', '-', $date_input) : $date_input;
-        $date = date_i18n($date_to, strtotime($date));
+    if ( empty( $timestamp ) ) {
+        $date = strpos( $date_input, '/' ) !== false ? str_replace( '/', '-', $date_input ) : $date_input;
+        $timestamp = strtotime( $date );
     }
     
-    $date = geodir_maybe_untranslate_date($date);
+    $date = date_i18n( $date_to, $timestamp );
+    
+    if ( !$locale ) {
+        $date = geodir_maybe_untranslate_date( $date );
+    }
+    
     /**
      * Filter the the date format conversion.
      *
@@ -681,8 +695,9 @@ function geodir_date($date_input, $date_to, $date_from = '') {
      * @param string $date_input The date input.
      * @param string $date_to The destination date format.
      * @param string $date_from The source date format.
+     * @param bool $locale True to retrieve the date in localized format.
      */
-    return apply_filters('geodir_date', $date, $date_input, $date_to, $date_from);
+    return apply_filters( 'geodir_date', $date, $date_input, $date_to, $date_from, $locale );
 }
 
 /**

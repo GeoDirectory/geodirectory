@@ -38,12 +38,6 @@ function geodir_register_taxonomies()
     }
 }
 
-
-/**
- * Get available custom posttypes and taxonomies and register them.
- */
-_x('places', 'URL slug', 'geodirectory');
-
 /**
  * Register the post types.
  *
@@ -51,9 +45,13 @@ _x('places', 'URL slug', 'geodirectory');
  *
  * @global array $wp_post_types List of post types.
  */
-function geodir_register_post_types() 
-{
+function geodir_register_post_types() {
     global $wp_post_types;
+    
+    /**
+     * Get available custom posttypes and taxonomies and register them.
+     */
+    _x('places', 'URL slug', 'geodirectory');
 
     $post_types = array();
     $post_types = get_option('geodir_post_types');

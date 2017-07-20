@@ -1025,7 +1025,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 			$message_raw2 = explode( "</p>", $message_raw[1], 2 );
 			$message      = $message_raw[0] . __( 'Password:', 'geodirectory' ) . ' **********</p>' . $message_raw2[1];
 		}
-		if ( $message_type == 'post_submit' ) {
+		if ( $message_type == 'post_submit' && ( get_option( 'geodir_notify_post_submit' ) || get_option( 'geodir_notify_post_submit', '-1' ) == '-1' ) ) {
 			$subject = __( stripslashes_deep( get_option( 'geodir_post_submited_success_email_subject_admin' ) ), 'geodirectory' );
 			$message = __( stripslashes_deep( get_option( 'geodir_post_submited_success_email_content_admin' ) ), 'geodirectory' );
 
