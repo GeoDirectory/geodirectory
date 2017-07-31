@@ -218,6 +218,15 @@ class geodir_map_listingpage extends WP_Widget
             
             $map_args['enable_marker_cluster'] = defined('GDCLUSTER_VERSION') && !empty($instance['marker_cluster']) ? true : false;
 
+            // on near search change default location to searched place
+            if(isset($_REQUEST['geodir_search']) && $_REQUEST['geodir_search']=='1'){
+                if(isset($_REQUEST['sgeo_lat']) && isset($_REQUEST['sgeo_lon']) && is_float(floatval($_REQUEST['sgeo_lat'])) && is_float(floatval($_REQUEST['sgeo_lon'])) ){
+                    $map_args['latitude'] = sanitize_text_field(floatval($_REQUEST['sgeo_lat']));
+                    $map_args['longitude'] = sanitize_text_field(floatval($_REQUEST['sgeo_lon']));
+                }
+            }
+
+
             echo $before_widget;
             geodir_draw_map($map_args);
             echo $after_widget;

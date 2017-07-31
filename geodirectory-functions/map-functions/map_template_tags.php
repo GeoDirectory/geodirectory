@@ -122,6 +122,8 @@ function geodir_draw_map($map_args = array())
         'navigationControlOptions' => array('position' => 'TOP_LEFT', 'style' => 'ZOOM_PAN')
     );
 
+
+
     if (!empty($map_args)) {
         foreach ($map_args as $map_option_key => $map_option_value) {
             $geodir_map_options[$map_option_key] = $map_option_value;
