@@ -778,7 +778,7 @@ if (!function_exists('register_geodir_widgets')) {
                 <div class="geodir-flickr clearfix">
 
                     <script type="text/javascript"
-                            src="http://www.flickr.com/badge_code_v2.gne?count=<?php echo $number; ?>&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=<?php echo $id; ?>"></script>
+                            src="https://www.flickr.com/badge_code_v2.gne?count=<?php echo $number; ?>&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=<?php echo $id; ?>"></script>
 
                 </div>
 

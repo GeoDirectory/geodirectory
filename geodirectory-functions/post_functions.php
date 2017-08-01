@@ -3124,18 +3124,51 @@ add_action('wp_head', 'geodir_fb_like_thumbnail');
  * Adds the featured image to the place details page header so facebook can use it when sharing the link.
  *
  * @since 1.4.9
+ * @since 1.6.22 Added image from location page.
  * @package GeoDirectory
  */
 function geodir_fb_like_thumbnail(){
 
-    // return if not a single post
-    if(!is_single()){return;}
+    $facebook_image = '';
 
-    global $post;
-    if(isset($post->featured_image) && $post->featured_image){
-        $upload_dir = wp_upload_dir();
-        $thumb = $upload_dir['baseurl'].$post->featured_image;
-        echo "\n\n<!-- GD Facebook Like Thumbnail -->\n<link rel=\"image_src\" href=\"$thumb\" />\n<!-- End GD Facebook Like Thumbnail -->\n\n";
+    if(is_single()){// single post
+        global $post;
+        if(isset($post->featured_image) && $post->featured_image){
+            $upload_dir = wp_upload_dir();
+            $facebook_image = $upload_dir['baseurl'].$post->featured_image;
 
+        }
+    }elseif(geodir_is_page('location')){// location page
+        if (function_exists('geodir_get_location_seo')) {
+            $seo = geodir_get_location_seo();
+            if (isset($seo->seo_image) && $seo->seo_image) {
+                $image = wp_get_attachment_image_src($seo->seo_image, 'full');
+                $facebook_image = isset($image[0]) ? $image[0] : '';
+            }
+        }
+
+        if(!$facebook_image){
+            global $post;
+
+            if (has_post_thumbnail( $post->ID ) ){
+                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+                $facebook_image = isset($image[0]) ? $image[0] : '';
+            }
+        }
     }
+
+
+    /**
+     * Filter the facebook share image.
+     *
+     * @since 1.6.22
+     * @param string $facebook_image The image URL or blank.
+     */
+    $facebook_image = apply_filters('geodir_fb_share_image',$facebook_image);
+
+    if($facebook_image){
+        echo "\n\n<!-- GD Facebook Like Thumbnail -->\n<link rel=\"image_src\" href=\"$facebook_image\" />\n<!-- End GD Facebook Like Thumbnail -->\n\n";
+    }
+
+
 }
