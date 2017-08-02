@@ -19,6 +19,7 @@ Backend should load content in language that user has selected in his profile - 
 geodir_date() function not working for already translated date - FIXED
 Disable quick edit links for GD CPTs - CHANGED
 If nothing found during Near search the Near location will be used as the map default location - CHANGED
+Popular post view widget, added filter to sort by option - ADDED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED
