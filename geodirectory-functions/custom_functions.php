@@ -1984,7 +1984,7 @@ function geodir_exif( $file ) {
  *
  * @return string Returns the recent reviews html.
  */
-function geodir_get_recent_reviews( $g_size = 60, $no_comments = 10, $comment_lenth = 60, $show_pass_post = false ) {
+function geodir_get_recent_reviews( $g_size = 60, $no_comments = 5, $comment_lenth = 60, $show_pass_post = false ) {
 	global $wpdb, $tablecomments, $tableposts, $rating_table_name, $gd_session, $table_prefix;
 	$tablecomments = $wpdb->comments;
 	$tableposts    = $wpdb->posts;
@@ -2020,7 +2020,7 @@ function geodir_get_recent_reviews( $g_size = 60, $no_comments = 10, $comment_le
 		}
 	}
 	
-	$request = "SELECT r.id AS ID, r.post_type, r.comment_id AS comment_ID, r.post_date AS comment_date, r.overall_rating, r.user_id, r.post_id FROM " . GEODIR_REVIEW_TABLE . " AS r JOIN " . $wpdb->comments . " AS c ON c.comment_ID = r.comment_id JOIN " . $wpdb->posts . " AS p ON p.ID = c.comment_post_ID " . $join . " WHERE c.comment_parent = 0 AND c.comment_approved = 1 AND r.status = 1 AND r.overall_rating >= 1 AND p.post_status = 'publish' " . $where . " ORDER BY r.post_date DESC, r.id DESC LIMIT 5";
+	$request = "SELECT r.id AS ID, r.post_type, r.comment_id AS comment_ID, r.post_date AS comment_date, r.overall_rating, r.user_id, r.post_id FROM " . GEODIR_REVIEW_TABLE . " AS r JOIN " . $wpdb->comments . " AS c ON c.comment_ID = r.comment_id JOIN " . $wpdb->posts . " AS p ON p.ID = c.comment_post_ID " . $join . " WHERE c.comment_parent = 0 AND c.comment_approved = 1 AND r.status = 1 AND r.overall_rating >= 1 AND p.post_status = 'publish' " . $where . " ORDER BY r.post_date DESC, r.id DESC LIMIT ". $no_comments;
 	
 	$comments = $wpdb->get_results( $request );
 	
