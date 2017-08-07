@@ -66,4 +66,4 @@ do_action('geodir_author_sidebar_right');
 /** This action is documented in geodirectory-templates/add-listing.php */
 do_action('geodir_wrapper_close', 'success-page');
 
-get_footer();   
+get_footer();

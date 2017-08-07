@@ -93,4 +93,4 @@ do_action('geodir_wrapper_close', 'listings-page');
  */
 do_action('geodir_sidebar_listings_bottom_section');
 
-get_footer();  
+get_footer();

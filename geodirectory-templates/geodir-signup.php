@@ -77,4 +77,4 @@ do_action('geodir_wrapper_content_close', 'signup-page');
 /** This action is documented in geodirectory-templates/add-listing.php */
 do_action('geodir_wrapper_close', 'signup-page');
 
-get_footer();  
+get_footer();
