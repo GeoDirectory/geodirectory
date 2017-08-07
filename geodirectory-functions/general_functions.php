@@ -2919,9 +2919,10 @@ function geodir_popular_post_category_output( $args = '', $instance = '' ) {
 			}
 			$a_terms = !empty( $sort_taxonomies ) ? $sort_taxonomies : $a_terms;
 		}
-		
+
+		$sort_by = apply_filters('geodir_pp_category_sort', 'count');
 		foreach ( $a_terms as $b_key => $b_val ) {
-			$b_terms[ $b_key ] = geodir_sort_terms( $b_val, 'count' );
+			$b_terms[ $b_key ] = geodir_sort_terms( $b_val, $sort_by );
 		}
 
 		$default_taxonomy = $default_post_type != '' && isset( $b_terms[ $default_post_type . 'category' ] ) ? $default_post_type . 'category' : '';
@@ -4160,6 +4161,7 @@ function geodir_sort_terms( $terms, $sort = 'count' ) {
 	if ( $sort == 'review_count' ) {
 		return geodir_sort_terms_by_review_count( $terms );
 	}
+	return $terms;
 }
 
 /*-----------------------------------------------------------------------------------*/
