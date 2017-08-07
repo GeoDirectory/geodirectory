@@ -1,3 +1,26 @@
+v1.6.22
+Comment replies should not add review structured data - FIXED
+Hooks added to customize texts in location description when for empty location - ADDED
+Popular post widget view all link should have url with current language - FIXED
+Mobile details page tabs now close and scroll to show tab title - CHANGED
+Sometime click on pinpoint doesn't opens the map infowindow - FIXED
+Category top description not saved from new category form - FIXED
+Fix flexslider JS conflict - FIXED
+Option added in popular post widget to hide widget if no listings found - ADDED
+Disable review submitting on draft/trash/pending listing - CHANGED
+Don't translate GD post types/taxonomies if disabled in WPML settings - CHANGED
+RTL, details page tabs not RTL - FIXED
+On detail page show no. images as per plan allowed - FIXED
+Remove grey X from default custom field - CHANGED
+WPML v3.2+ compatibility changes - CHANGED
+Theme My Login compatibility fix - FIXED
+Can't disable BCC notification to admin on post submit success - CHANGED
+Backend should load content in language that user has selected in his profile - FIXED
+geodir_date() function not working for already translated date - FIXED
+Disable quick edit links for GD CPTs - CHANGED
+If nothing found during Near search the Near location will be used as the map default location - CHANGED
+Popular post view widget, added filter to sort by option - ADDED
+
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED
 Changed "Get Directions" custom field to apple maps link as it redirects better on all devices - CHANGED

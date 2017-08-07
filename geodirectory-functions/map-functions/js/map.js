@@ -670,11 +670,11 @@ function openMarker(map_canvas, id) {
     }
     try {
         if (window.gdMaps == 'google') {
-            google.maps.event.trigger(jQuery.goMap.mapId.data(id), 'click');
+            google.maps.event.trigger(jQuery.goMap.mapId.data(id), 'spider_click');
         } else if(window.gdMaps == 'osm') {
             jQuery.goMap.gdlayers.eachLayer(function(marker) {
                 if (id && marker.options.id == id){
-                    marker.fireEvent('click');
+                    marker.fireEvent('spider_click');
                 }
             });
         }

@@ -256,6 +256,11 @@ function geodir_add_post_filters()
      * @package GeoDirectory
      */
     include_once('geodirectory-functions/listing_filters.php');
+    
+    // Theme My Login compatibility fix
+    if ( isset( $_REQUEST['geodir_search'] ) && class_exists( 'Theme_My_Login' ) ) {
+        remove_action( 'pre_get_posts', array( Theme_My_Login::get_object(), 'pre_get_posts' ) );
+    }
 }
 
 
@@ -2479,8 +2484,8 @@ function geodir_detail_page_custom_field_tab($tabs_arr)
                         $i++;
                         $variables_array['post_id'] = $post->ID;
                         $variables_array['label'] = __($type['site_title'], 'geodirectory');
-                        $variables_array['value'] = '';
-                        $variables_array['value'] = $post->{$type['htmlvar_name']};
+                        $variables_array['value'] = isset($post->{$type['htmlvar_name']}) ? $post->{$type['htmlvar_name']} : '';
+
                     }else{
                         $i = 0;
                         $fieldset_count++;
@@ -2828,7 +2833,7 @@ function geodir_wpml_filter_locale($locale) {
  * @package GeoDirectory
  */
 function geodir_wpml_set_filter() {
-    if (function_exists('icl_object_id')) {
+    if (geodir_is_wpml()) {
         global $sitepress;
         
         if ($sitepress->get_setting('sync_comments_on_duplicates')) {
@@ -3002,7 +3007,7 @@ function geodir_check_post_to_term_slug( $slug, $post_ID, $post_status, $post_ty
         $wpml_term_join = "";
         $wpml_term_where = "";
         
-        if (geodir_is_wpml()) {
+        if (geodir_wpml_is_post_type_translated($post_type)) {
             $post_language = $post_ID ? $sitepress->post_translations()->get_element_lang_code($post_ID) : $sitepress->get_current_language();
             $post_language = $post_language ? $post_language : $sitepress->post_translations()->get_save_post_lang($post_ID, $sitepress);
             if (!$post_language) {
@@ -3084,7 +3089,7 @@ function geodir_check_term_to_post_slug( $slug_exists, $slug, $term_id ) {
     $wpml_post_join = "";
     $wpml_post_where = "";
     
-    if (geodir_is_wpml()) {
+    if (geodir_wpml_is_taxonomy_translated($taxonomy) || geodir_wpml_is_post_type_translated($post_type)) {
         $term_language = $term_id ? geodir_get_language_for_element($term_id, 'tax_' . $taxonomy) : $sitepress->get_current_language();
         if (!$term_language) {
             $term_language = $sitepress->get_current_language();

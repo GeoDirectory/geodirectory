@@ -69,7 +69,7 @@ define('FACEBOOK_TEXT', __('Facebook', 'geodirectory'));
 define('PLACE_CATEGORY_TEXT', __('Category', 'geodirectory'));
 define('TAGKW_TEXT', __('Tag Keywords', 'geodirectory'));
 
-define('PRO_PHOTO_TEXT', __('Add Images : <small>(You can upload more than one images to create image gallery on detail page)</small>', 'geodirectory'));
+define('PRO_PHOTO_TEXT', __('Add Images : <small>(You can upload images to create image gallery on detail page)</small>', 'geodirectory'));
 define('PHOTOES_BUTTON', __('Select Images', 'geodirectory'));
 
 define('PRO_VIDEO_TEXT', __('Video code', 'geodirectory'));

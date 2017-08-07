@@ -648,7 +648,7 @@ function geodir_sc_gd_listings_output($args = array()) {
         $category_taxonomy = geodir_get_taxonomies($post_type);
 
         ######### WPML #########
-        if (function_exists('icl_object_id')) {
+        if (geodir_wpml_is_taxonomy_translated($category_taxonomy[0])) {
             $category = gd_lang_object_ids($category, $category_taxonomy[0]);
         }
         ######### WPML #########

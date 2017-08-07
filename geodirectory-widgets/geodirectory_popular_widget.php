@@ -200,6 +200,7 @@ class geodir_popular_postview extends WP_Widget
         $instance['with_pics_only'] = isset($new_instance['with_pics_only']) && $new_instance['with_pics_only'] ? 1 : 0;
         $instance['with_videos_only'] = isset($new_instance['with_videos_only']) && $new_instance['with_videos_only'] ? 1 : 0;
         $instance['use_viewing_post_type'] = isset($new_instance['use_viewing_post_type']) && $new_instance['use_viewing_post_type'] ? 1 : 0;
+        $instance['hide_if_empty'] = !empty($new_instance['hide_if_empty']) ? 1 : 0;
 
         return $instance;
     }
@@ -231,7 +232,8 @@ class geodir_popular_postview extends WP_Widget
                 'show_special_only' => '',
                 'with_pics_only' => '',
                 'with_videos_only' => '',
-                'use_viewing_post_type' => ''
+                'use_viewing_post_type' => '',
+                'hide_if_empty' => ''
             )
         );
 
@@ -262,9 +264,9 @@ class geodir_popular_postview extends WP_Widget
         $with_pics_only = isset($instance['with_pics_only']) && $instance['with_pics_only'] ? true : false;
         $with_videos_only = isset($instance['with_videos_only']) && $instance['with_videos_only'] ? true : false;
         $use_viewing_post_type = isset($instance['use_viewing_post_type']) && $instance['use_viewing_post_type'] ? true : false;
+        $hide_if_empty = !empty($instance['hide_if_empty']) ? true : false;
 
         ?>
-
         <p>
             <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'geodirectory');?>
                 <small>(%posttype_singular_label% ,
@@ -356,36 +358,35 @@ class geodir_popular_postview extends WP_Widget
         </p>
 
         <p>
-            <label
-                for="<?php echo $this->get_field_id('list_sort'); ?>"><?php _e('Sort by:', 'geodirectory');?>
+            <label for="<?php echo $this->get_field_id('list_sort'); ?>"><?php _e('Sort by:', 'geodirectory');?>
+
+                <?php
+                $list_sort_arr = array(
+                    "az"        =>  __('A-Z', 'geodirectory'),
+                    "latest"        =>  __('Latest', 'geodirectory'),
+                    "featured"        =>  __('Featured', 'geodirectory'),
+                    "high_review"        =>  __('Review', 'geodirectory'),
+                    "high_rating"        =>  __('Rating', 'geodirectory'),
+                    "random"        =>  __('Random', 'geodirectory'),
+                );
+
+                /**
+                 * Filter the Popular post view widget sorting options.
+                 *
+                 * @since 1.6.22
+                 * @param array $list_sort_arr The array of key value pairs of settings.
+                 * @param array $instance The array of widget settings.
+                 */
+                $list_sort_arr = apply_filters('geodir_popular_post_view_list_sort',$list_sort_arr,$instance);
+                ?>
 
                 <select class="widefat" id="<?php echo $this->get_field_id('list_sort'); ?>"
                         name="<?php echo $this->get_field_name('list_sort'); ?>">
-
-                    <option <?php if ($list_sort == 'az') {
-                        echo 'selected="selected"';
-                    } ?> value="az"><?php _e('A-Z', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'latest') {
-                        echo 'selected="selected"';
-                    } ?> value="latest"><?php _e('Latest', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'featured') {
-                        echo 'selected="selected"';
-                    } ?> value="featured"><?php _e('Featured', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'high_review') {
-                        echo 'selected="selected"';
-                    } ?> value="high_review"><?php _e('Review', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'high_rating') {
-                        echo 'selected="selected"';
-                    } ?> value="high_rating"><?php _e('Rating', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'random') {
-                        echo 'selected="selected"';
-                    } ?> value="random"><?php _e('Random', 'geodirectory'); ?></option>
-
+                    <?php
+                    foreach($list_sort_arr as $sort_val => $sort_title){
+                        echo "<option value='$sort_val' ".selected($list_sort,$sort_val)." >$sort_title</option>";
+                    }
+                    ?>
                 </select>
             </label>
         </p>
@@ -496,6 +497,10 @@ class geodir_popular_postview extends WP_Widget
                        name="<?php echo $this->get_field_name('use_viewing_post_type'); ?>" <?php if ($use_viewing_post_type) {
                     echo 'checked="checked"';
                 } ?>  value="1"/>
+            </label>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('hide_if_empty'); ?>"><?php _e('Hide if no posts:', 'geodirectory'); ?> <input id="<?php echo $this->get_field_id('hide_if_empty'); ?>" name="<?php echo $this->get_field_name('hide_if_empty'); ?>" type="checkbox" value="1" <?php checked($hide_if_empty, true); ?> />
             </label>
         </p>
 

@@ -343,12 +343,13 @@ jQuery(window).load(function() {
         
         if (history.pushState && window.location.hash && jQuery('#publish_listing').length === 0) {
             if (jQuery(window).width() < 1060) {
+                jQuery('#gd-tabs .geodir-tab-head').toggle();
                 jQuery('html, body').animate({
-                    scrollTop: jQuery(urlHash).offset().top
+                    scrollTop: jQuery('#geodir-tab-mobile-menu').offset().top
                 }, 500);
             }
         }
-    }
+    } // end activateTab()
     
     jQuery('dl.geodir-tab-head').each(function() {
         //Get all tabs
