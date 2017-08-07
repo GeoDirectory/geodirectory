@@ -1066,3 +1066,23 @@ function geodir_jetpack_disable_comments(){
 }
 
 add_action('plugins_loaded','geodir_jetpack_disable_comments');
+
+/**
+ * Check whether the current post is open for reviews.
+ *
+ * @since 1.6.22
+ *
+ * @param bool $open    Whether the current post is open for reviews.
+ * @param int  $post_id The post ID.
+ * @return bool True if allowed otherwise False.
+ */
+function geodir_check_reviews_open( $open, $post_id ) {
+    if ( $open && $post_id && geodir_is_page( 'detail' ) ) {
+        if ( in_array( get_post_status( $post_id ), array( 'draft', 'pending', 'auto-draft', 'trash' ) ) ) {
+            $open = false;
+        }
+    }
+    
+    return $open;
+}
+add_filter( 'comments_open', 'geodir_check_reviews_open', 10, 2 );

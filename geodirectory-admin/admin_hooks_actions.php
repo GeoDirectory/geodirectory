@@ -2543,3 +2543,54 @@ function geodir_diagnose_reload_db_countries()
     echo $fix_button_txt;
     echo "</ul>";
 }
+
+/**
+ * Disable quick edit links for GD post types.
+ *
+ * @since 1.6.22
+ * @package GeoDirectory
+ * @param array $actions An array of row action links.
+ * @param object $row The post|taxonomy object.
+ * @return array Filtered actions.
+ */
+function geodir_disable_quick_edit( $actions = array(), $row = null ) {
+    if ( isset( $actions['inline hide-if-no-js'] ) ) {
+        unset( $actions['inline hide-if-no-js'] );
+    }
+
+    return $actions;
+}
+
+/**
+ * Set hooks to disable quick edit links for GD post types.
+ *
+ * @since 1.6.22
+ * @package GeoDirectory
+ *
+ * @global string $pagenow The current screen.
+ * @global object $current_screen The current screen object.
+ * @global bool $gd_cpt_screen True if current scrrrn has GD post type.
+ */
+function geodir_check_quick_edit() {
+    global $pagenow, $current_screen, $gd_cpt_screen;
+
+    if ( ( $pagenow == 'edit.php' || $pagenow == 'edit-tags.php' ) && !empty( $current_screen->post_type ) ) {
+        if ( empty( $gd_cpt_screen ) ) {
+            if ( in_array( $current_screen->post_type, geodir_get_posttypes() ) ) {
+                $gd_cpt_screen = 'y';
+            } else {
+                $gd_cpt_screen = 'n';
+            }
+        }
+
+        if ( $gd_cpt_screen == 'y' ) {
+            if ( $pagenow == 'edit.php' ) {
+                add_filter( 'post_row_actions', 'geodir_disable_quick_edit', 10, 2 );
+                add_filter( 'page_row_actions', 'geodir_disable_quick_edit', 10, 2 );
+            } elseif ( $pagenow == 'edit-tags.php' && !empty( $current_screen->taxonomy ) ) {
+                add_filter( $current_screen->taxonomy . '_row_actions', 'geodir_disable_quick_edit', 10, 2 );
+            }
+        }
+    }
+}
+add_action( 'admin_head', 'geodir_check_quick_edit', 10 );

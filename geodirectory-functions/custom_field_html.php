@@ -91,9 +91,7 @@ if(isset($cf['name']) && $cf['name']){
         $nonce = wp_create_nonce('custom_fields_' . $result_str);
         ?>
 
-        <?php if ($default): ?>
-            <div title="<?php _e('Default field, should not be removed.', 'geodirectory'); ?>" class="handlediv move gd-default-remove"><i class="fa fa-times" aria-hidden="true"></i></div>
-        <?php else: ?>
+        <?php if (!$default): ?>
             <div title="<?php _e('Click to remove field', 'geodirectory'); ?>"
                  onclick="delete_field('<?php echo $result_str; ?>', '<?php echo $nonce; ?>')"
                  class="handlediv close"><i class="fa fa-times" aria-hidden="true"></i></div>

@@ -48,7 +48,7 @@ function geodir_locate_template($template = '')
                 $listing_page_id = geodir_add_listing_page_id();
             }
             
-            $is_wpml = function_exists('icl_object_id') ? true : false;
+            $is_wpml = geodir_is_wpml() ? true : false;
 
             if ($listing_page_id != '' && (is_page($listing_page_id) || ($is_wpml && !empty($wp->query_vars['page_id']))) && isset($_REQUEST['listing_type'])
                 && in_array($_REQUEST['listing_type'], $gd_post_types)) {
@@ -226,7 +226,7 @@ function geodir_template_loader($template)
         // check if pid exists in the record if yes then check if this post belongs to the user who is logged in.
         if (isset($_REQUEST['pid']) && $_REQUEST['pid'] != '') {
             /// WPML
-            if (geodir_is_wpml() && $duplicate_of = wpml_get_master_post_from_duplicate((int)$_GET['pid'])) {
+            if (geodir_wpml_is_post_type_translated(get_post_type((int)$_GET['pid'])) && $duplicate_of = wpml_get_master_post_from_duplicate((int)$_GET['pid'])) {
                 global $sitepress;
                 
                 $lang_of_duplicate = geodir_get_language_for_element($duplicate_of, 'post_' . get_post_type($duplicate_of));

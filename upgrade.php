@@ -49,6 +49,10 @@ if (get_option('geodirectory' . '_db_version') != GEODIRECTORY_VERSION) {
     if (GEODIRECTORY_VERSION <= '1.6.18') {
         add_action('init', 'geodir_upgrade_1618', 11);
     }
+    
+    if (GEODIRECTORY_VERSION <= '1.6.22') {
+        add_action('init', 'geodir_upgrade_1622', 11);
+    }
 
     add_action('init', 'gd_fix_cpt_rewrite_slug', 11);// this needs to be kept for a few versions
 
@@ -954,6 +958,21 @@ function geodir_upgrade_1618() {
     
     if ($flush_rewrite_rules) {
         flush_rewrite_rules();
+    }
+    
+    return true;
+}
+
+/**
+ * Upgrade options for version 1.6.22.
+ *
+ * @since 1.6.22
+ * @package GeoDirectory
+ * @return bool
+ */
+function geodir_upgrade_1622() {
+    if ( get_option( 'geodir_notify_post_submit', '-1' ) == '-1' ) {
+        update_option( 'geodir_notify_post_submit', '1' );
     }
     
     return true;

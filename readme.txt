@@ -1,7 +1,7 @@
 === GeoDirectory - Business Directory Plugin ===
 Contributors: stiofansisland, paoltaia, ayecode
 Donate link: https://wpgeodirectory.com
-Tags:  directory plugin, business directory, listings, classifieds, real estate
+Tags:  directory plugin, business directory, listings, classifieds, real estate, address book, addressbook, addresses, bio, biographies, bios, business, business directory plugin, business-directory, businesses, church, directories, directory, directory widget, geodirectory, googlemap, googlemaps, google maps, list, lists, member directory, members directories, members directory, microformat, microformats, multisite, profile, profiles, staff, user, users, vcard, wordpress business directory, wordpress directory, wordpress directory plugin, yelp clone, tripadvisor clone, yellow pages clone, wordpress business directory plugin, wordpress directory theme, wordpress business directory theme, wordpress city directory plugin, wordpress local directory plugin, city directory
 Requires at least: 3.1
 Tested up to: 4.8
 Stable tag: 1.6.21

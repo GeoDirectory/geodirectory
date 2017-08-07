@@ -1025,7 +1025,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 			$message_raw2 = explode( "</p>", $message_raw[1], 2 );
 			$message      = $message_raw[0] . __( 'Password:', 'geodirectory' ) . ' **********</p>' . $message_raw2[1];
 		}
-		if ( $message_type == 'post_submit' ) {
+		if ( $message_type == 'post_submit' && ( get_option( 'geodir_notify_post_submit' ) || get_option( 'geodir_notify_post_submit', '-1' ) == '-1' ) ) {
 			$subject = __( stripslashes_deep( get_option( 'geodir_post_submited_success_email_subject_admin' ) ), 'geodirectory' );
 			$message = __( stripslashes_deep( get_option( 'geodir_post_submited_success_email_content_admin' ) ), 'geodirectory' );
 
@@ -1211,25 +1211,28 @@ function geodir_taxonomy_breadcrumb() {
 }
 
 function geodir_wpml_post_type_archive_link($link, $post_type){
-	if (function_exists('icl_object_id')) {
+	if (geodir_is_wpml()) {
 		$post_types   = get_option( 'geodir_post_types' );
-		$slug         = $post_types[ $post_type ]['rewrite']['slug'];
+		
+		if ( isset( $post_types[ $post_type ] ) ) {
+			$slug = $post_types[ $post_type ]['rewrite']['slug'];
 
-		// Alter the CPT slug if WPML is set to do so
-		if ( function_exists( 'icl_object_id' ) ) {
-			if ( gd_wpml_slug_translation_turned_on( $post_type ) && $language_code = gd_wpml_get_lang_from_url( $link) ) {
+			// Alter the CPT slug if WPML is set to do so
+			if ( geodir_wpml_is_post_type_translated( $post_type ) ) {
+				if ( gd_wpml_slug_translation_turned_on( $post_type ) && $language_code = gd_wpml_get_lang_from_url( $link) ) {
 
-				$org_slug = $slug;
-				$slug     = apply_filters( 'wpml_translate_single_string',
-					$slug,
-					'WordPress',
-					'URL slug: ' . $slug,
-					$language_code );
+					$org_slug = $slug;
+					$slug     = apply_filters( 'wpml_translate_single_string',
+						$slug,
+						'WordPress',
+						'URL slug: ' . $slug,
+						$language_code );
                     
-				if ( ! $slug ) {
-					$slug = $org_slug;
-				} else {
-					$link = str_replace( $org_slug, $slug, $link );
+					if ( ! $slug ) {
+						$slug = $org_slug;
+					} else {
+						$link = str_replace( $org_slug, $slug, $link );
+					}
 				}
 			}
 		}
@@ -1695,6 +1698,10 @@ function fetch_remote_file( $url ) {
 		return new WP_Error( 'import_file_error', $headers->get_error_message() );
 	}
 
+	// clear cache to make compat with EWWW Image Optimizer
+	if(defined( 'EWWW_IMAGE_OPTIMIZER_PLUGIN_FILE')){
+		clearstatcache();
+	}
 	$filesize = filesize( $upload['file'] );
 	// request failed
 	if ( ! $headers ) {
@@ -2001,10 +2008,10 @@ Language translation helper functions
  * @return array Category IDs.
  */
 function gd_lang_object_ids( $ids_array, $type ) {
-	if ( function_exists( 'icl_object_id' ) ) {
+	if ( geodir_is_wpml() ) {
 		$res = array();
 		foreach ( $ids_array as $id ) {
-			$xlat = icl_object_id( $id, $type, false );
+			$xlat = geodir_wpml_object_id( $id, $type, false );
 			if ( ! is_null( $xlat ) ) {
 				$res[] = $xlat;
 			}
@@ -2142,7 +2149,7 @@ function get_page_id_geodir_add_listing_page( $page_id ) {
  * @return bool Returns true when sitepress multilingual CMS active. else returns false.
  */
 function geodir_wpml_multilingual_status() {
-	if ( function_exists( 'icl_object_id' ) ) {
+	if ( geodir_is_wpml() ) {
 		return true;
 	}
 
@@ -2286,6 +2293,7 @@ function geodir_get_widget_listings( $query_args = array(), $count_only = false 
 
 	$post_type = empty( $query_args['post_type'] ) ? 'gd_place' : $query_args['post_type'];
 	$table     = $plugin_prefix . $post_type . '_detail';
+	$supports_wpml = geodir_wpml_is_post_type_translated( $post_type );
 
 	$fields = $wpdb->posts . ".*, " . $table . ".*";
 	/**
@@ -2303,7 +2311,7 @@ function geodir_get_widget_listings( $query_args = array(), $count_only = false 
 
 	########### WPML ###########
 
-	if ( function_exists( 'icl_object_id' ) ) {
+	if ( $supports_wpml ) {
 		global $sitepress;
 		$lang_code = ICL_LANGUAGE_CODE;
 		if ( $lang_code ) {
@@ -2328,7 +2336,7 @@ function geodir_get_widget_listings( $query_args = array(), $count_only = false 
 	$where = " AND ( " . $wpdb->posts . ".post_status = 'publish' " . $post_status . " ) AND " . $wpdb->posts . ".post_type = '" . $post_type . "'";
 
 	########### WPML ###########
-	if ( function_exists( 'icl_object_id' ) ) {
+	if ( $supports_wpml ) {
 		if ( $lang_code ) {
 			$where .= " AND icl_t.language_code = '$lang_code' AND icl_t.element_type = 'post_$post_type' ";
 		}
@@ -3610,8 +3618,6 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 	// prints the widget
 	extract( $args, EXTR_SKIP );
 
-	echo $before_widget;
-
 	/** This filter is documented in geodirectory_widgets.php */
 	$title = empty( $instance['title'] ) ? geodir_ucwords( $instance['category_title'] ) : apply_filters( 'widget_title', __( $instance['title'], 'geodirectory' ) );
 	/**
@@ -3686,6 +3692,17 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 
 	$title = str_replace( "%posttype_plural_label%", $posttype_plural_label, $title );
 	$title = str_replace( "%posttype_singular_label%", $posttype_singular_label, $title );
+    
+	$categories = $category;
+	if ( ! empty( $category ) && $category[0] != '0' ) {
+		$category_taxonomy = geodir_get_taxonomies( $post_type );
+		
+		######### WPML #########
+		if ( geodir_wpml_is_taxonomy_translated( $category_taxonomy[0] ) ) {
+			$category = gd_lang_object_ids( $category, $category_taxonomy[0] );
+		}
+		######### WPML #########
+	}
 
 	if ( isset( $instance['character_count'] ) ) {
 		/**
@@ -3795,17 +3812,9 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 	if ( ! empty( $instance['with_videos_only'] ) ) {
 		$query_args['with_videos_only'] = 1;
 	}
-	$with_no_results = ! empty( $instance['without_no_results'] ) ? false : true;
+	$hide_if_empty = ! empty( $instance['hide_if_empty'] ) ? true : false;
 
-	if ( ! empty( $category ) && $category[0] != '0' ) {
-		$category_taxonomy = geodir_get_taxonomies( $post_type );
-
-		######### WPML #########
-		if ( function_exists( 'icl_object_id' ) ) {
-			$category = gd_lang_object_ids( $category, $category_taxonomy[0] );
-		}
-		######### WPML #########
-
+	if ( ! empty( $categories ) && $categories[0] != '0' && !empty( $category_taxonomy ) ) {
 		$tax_query = array(
 			'taxonomy' => $category_taxonomy[0],
 			'field'    => 'id',
@@ -3818,84 +3827,86 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 	global $gridview_columns_widget, $geodir_is_widget_listing;
 
 	$widget_listings = geodir_get_widget_listings( $query_args );
+    
+	if ( $hide_if_empty && empty( $widget_listings ) ) {
+		return;
+	}
+    
+	echo $before_widget;
 
-	if ( ! empty( $widget_listings ) || $with_no_results ) {
-		?>
-		<div class="geodir_locations geodir_location_listing">
+	?>
+	<div class="geodir_locations geodir_location_listing">
 
-			<?php
-			/**
-			 * Called before the div containing the title and view all link in popular post view widget.
-			 *
-			 * @since 1.0.0
-			 */
-			do_action( 'geodir_before_view_all_link_in_widget' ); ?>
-			<div class="geodir_list_heading clearfix">
-				<?php echo $before_title . $title . $after_title; ?>
-				<a href="<?php echo $viewall_url; ?>"
-				   class="geodir-viewall"><?php _e( 'View all', 'geodirectory' ); ?></a>
-			</div>
-			<?php
-			/**
-			 * Called after the div containing the title and view all link in popular post view widget.
-			 *
-			 * @since 1.0.0
-			 */
-			do_action( 'geodir_after_view_all_link_in_widget' ); ?>
-			<?php
-			if ( strstr( $layout, 'gridview' ) ) {
-				$listing_view_exp        = explode( '_', $layout );
-				$gridview_columns_widget = $layout;
-				$layout                  = $listing_view_exp[0];
-			} else {
-				$gridview_columns_widget = '';
-			}
-
-			/**
-			 * Filter the widget listing listview template path.
-			 *
-			 * @since 1.0.0
-			 */
-			$template = apply_filters( "geodir_template_part-widget-listing-listview", geodir_locate_template( 'widget-listing-listview' ) );
-			if ( ! isset( $character_count ) ) {
-				/**
-				 * Filter the widget's excerpt character count.
-				 *
-				 * @since 1.0.0
-				 *
-				 * @param int $instance ['character_count'] Excerpt character count.
-				 */
-				$character_count = $character_count == '' ? 50 : apply_filters( 'widget_character_count', $character_count );
-			}
-
-			global $post, $map_jason, $map_canvas_arr;
-
-			$current_post             = $post;
-			$current_map_jason        = $map_jason;
-			$current_map_canvas_arr   = $map_canvas_arr;
-			$geodir_is_widget_listing = true;
-
-			/**
-			 * Includes related listing listview template.
-			 *
-			 * @since 1.0.0
-			 */
-			include( $template );
-
-			$geodir_is_widget_listing = false;
-
-			$GLOBALS['post'] = $current_post;
-			if ( ! empty( $current_post ) ) {
-				setup_postdata( $current_post );
-			}
-			$map_jason      = $current_map_jason;
-			$map_canvas_arr = $current_map_canvas_arr;
-			?>
+		<?php
+		/**
+		 * Called before the div containing the title and view all link in popular post view widget.
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'geodir_before_view_all_link_in_widget' ); ?>
+		<div class="geodir_list_heading clearfix">
+			<?php echo $before_title . $title . $after_title; ?>
+			<a href="<?php echo $viewall_url; ?>"
+			   class="geodir-viewall"><?php _e( 'View all', 'geodirectory' ); ?></a>
 		</div>
 		<?php
-	}
-	echo $after_widget;
+		/**
+		 * Called after the div containing the title and view all link in popular post view widget.
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'geodir_after_view_all_link_in_widget' ); ?>
+		<?php
+		if ( strstr( $layout, 'gridview' ) ) {
+			$listing_view_exp        = explode( '_', $layout );
+			$gridview_columns_widget = $layout;
+			$layout                  = $listing_view_exp[0];
+		} else {
+			$gridview_columns_widget = '';
+		}
+			/**
+		 * Filter the widget listing listview template path.
+		 *
+		 * @since 1.0.0
+		 */
+		$template = apply_filters( "geodir_template_part-widget-listing-listview", geodir_locate_template( 'widget-listing-listview' ) );
+		if ( ! isset( $character_count ) ) {
+			/**
+			 * Filter the widget's excerpt character count.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param int $instance ['character_count'] Excerpt character count.
+			 */
+			$character_count = $character_count == '' ? 50 : apply_filters( 'widget_character_count', $character_count );
+		}
 
+		global $post, $map_jason, $map_canvas_arr;
+
+		$current_post             = $post;
+		$current_map_jason        = $map_jason;
+		$current_map_canvas_arr   = $map_canvas_arr;
+		$geodir_is_widget_listing = true;
+
+		/**
+		 * Includes related listing listview template.
+		 *
+		 * @since 1.0.0
+		 */
+		include( $template );
+
+		$geodir_is_widget_listing = false;
+
+		$GLOBALS['post'] = $current_post;
+		if ( ! empty( $current_post ) ) {
+			setup_postdata( $current_post );
+		}
+		$map_jason      = $current_map_jason;
+		$map_canvas_arr = $current_map_canvas_arr;
+		?>
+	</div>
+	<?php
+	echo $after_widget;
 }
 
 
@@ -4986,7 +4997,13 @@ function geodir_remove_location_terms( $location_terms = array() ) {
 		}
 	}
 
-	return $location_terms;
+	/**
+	 * Filter the remove location terms array.
+	 * 
+	 * @since 1.6.22
+	 * @param array $location_terms The array of location terms.
+	 */
+	return apply_filters('geodir_remove_location_terms',$location_terms);
 }
 
 /**

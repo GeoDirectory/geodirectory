@@ -240,7 +240,7 @@ if (is_admin() || defined( 'GD_TESTING_MODE' ) || ( defined( 'WP_CLI' ) && WP_CL
      * @since 1.5.6
      */
     global $pagenow;
-   if ( 'plugins.php' === $pagenow )
+    if ( 'plugins.php' === $pagenow )
     {
         // Better update message
         $file   = basename( __FILE__ );

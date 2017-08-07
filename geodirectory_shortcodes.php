@@ -330,7 +330,7 @@ function geodir_sc_listing_map($atts) {
             $category_taxonomy = geodir_get_taxonomies( $params['post_type'] );
 
             ######### WPML #########
-            if ( function_exists( 'icl_object_id' ) ) {
+            if ( geodir_wpml_is_taxonomy_translated( $category_taxonomy[0] ) ) {
                 $category = gd_lang_object_ids( $params['category'], $category_taxonomy[0] );
             }
             ######### WPML #########
@@ -751,6 +751,7 @@ add_shortcode('gd_popular_post_view', 'geodir_sc_popular_post_view');
  *
  * @since 1.0.0
  * @since 1.6.18 [gd_popular_post_view] shortcode character_count=0 not working - FIXED
+ * @since 1.6.22 $hide_if_empty parameter added.
  * @package GeoDirectory
  * @param array $atts {
  *     Attributes of the shortcode.
@@ -775,6 +776,7 @@ add_shortcode('gd_popular_post_view', 'geodir_sc_popular_post_view');
  *     @type string $use_viewing_post_type  Filter using viewing post type. Default. 1.
  *     @type string $with_pics_only         Only display listings which has image available. Default empty. Default. 0.
  *     @type string $with_videos_only       Only display listings which has video available. Default. 0.
+ *     @type string $hide_if_empty          Hide widget if no listings found. Default. 0.
  *
  * }
  * @return string Popular post view HTML.
@@ -796,6 +798,7 @@ function geodir_sc_popular_post_view($atts)
         'show_special_only' => '0',
         'with_pics_only' => '0',
         'with_videos_only' => '0',
+        'hide_if_empty' => '0',
         'before_widget' => '',
         'after_widget' => '',
         'before_title' => '<h3 class="widget-title">',
@@ -858,6 +861,7 @@ function geodir_sc_popular_post_view($atts)
     $params['with_pics_only'] = gdsc_to_bool_val($params['with_pics_only']);
     $params['with_videos_only'] = gdsc_to_bool_val($params['with_videos_only']);
     $params['use_viewing_post_type'] = gdsc_to_bool_val($params['use_viewing_post_type']);
+    $params['hide_if_empty'] = gdsc_to_bool_val($params['hide_if_empty']);
 
     /**
      * End of validation

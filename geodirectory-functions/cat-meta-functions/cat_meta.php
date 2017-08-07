@@ -10,7 +10,7 @@ Author URI: http://en.bainternet.info
 
 //include the main class file
 require_once("Tax-meta-class.php");
-if (is_admin()) {
+function geodir_set_tax_meta_fields() {
     /*
      * prefix of meta keys, optional
      * use underscore (_) at the beginning to make keys hidden, for example $prefix = '_ba_';
@@ -49,129 +49,108 @@ if (is_admin()) {
      *
      * @since 1.5.7
      */
-        apply_filters('geodir_cat_schemas',array(
-            '' => __('Default (LocalBusiness)', 'geodirectory'),
-            'AccountingService' => 'AccountingService',
-            'Attorney' => 'Attorney',
-            'AutoBodyShop' => 'AutoBodyShop',
-            'AutoDealer' => 'AutoDealer',
-            'AutoPartsStore' => 'AutoPartsStore',
-            'AutoRental' => 'AutoRental',
-            'AutoRepair' => 'AutoRepair',
-            'AutoWash' => 'AutoWash',
-            'Bakery' => 'Bakery',
-            'BarOrPub' => 'BarOrPub',
-            'BeautySalon' => 'BeautySalon',
-            'BedAndBreakfast' => 'BedAndBreakfast',
-            'BikeStore' => 'BikeStore',
-            'BookStore' => 'BookStore',
-            'CafeOrCoffeeShop' => 'CafeOrCoffeeShop',
-            'Campground' => 'Campground',
-            'ChildCare' => 'ChildCare',
-            'ClothingStore' => 'ClothingStore',
-            'ComputerStore' => 'ComputerStore',
-            'DaySpa' => 'DaySpa',
-            'Dentist' => 'Dentist',
-            'DryCleaningOrLaundry' => 'DryCleaningOrLaundry',
-            'Electrician' => 'Electrician',
-            'ElectronicsStore' => 'ElectronicsStore',
-            'EmergencyService' => 'EmergencyService',
-            'EntertainmentBusiness' => 'EntertainmentBusiness',
-            'Event' => 'Event',
-            'EventVenue' => 'EventVenue',
-            'ExerciseGym' => 'ExerciseGym',
-            'FinancialService' => 'FinancialService',
-            'Florist' => 'Florist',
-            'FoodEstablishment' => 'FoodEstablishment',
-            'FurnitureStore' => 'FurnitureStore',
-            'GardenStore' => 'GardenStore',
-            'GeneralContractor' => 'GeneralContractor',
-            'GolfCourse' => 'GolfCourse',
-            'HairSalon' => 'HairSalon',
-            'HardwareStore' => 'HardwareStore',
-            'HealthAndBeautyBusiness' => 'HealthAndBeautyBusiness',
-            'HobbyShop' => 'HobbyShop',
-            'HomeAndConstructionBusiness' => 'HomeAndConstructionBusiness',
-            'HomeGoodsStore' => 'HomeGoodsStore',
-            'Hospital' => 'Hospital',
-            'Hostel' => 'Hostel',
-            'Hotel' => 'Hotel',
-            'HousePainter' => 'HousePainter',
-            'HVACBusiness' => 'HVACBusiness',
-            'InsuranceAgency' => 'InsuranceAgency',
-            'JewelryStore' => 'JewelryStore',
-            'LiquorStore' => 'LiquorStore',
-            'Locksmith' => 'Locksmith',
-            'LodgingBusiness' => 'LodgingBusiness',
-            'MedicalClinic' => 'MedicalClinic',
-            'MensClothingStore' => 'MensClothingStore',
-            'MobilePhoneStore' => 'MobilePhoneStore',
-            'Motel' => 'Motel',
-            'MotorcycleDealer' => 'MotorcycleDealer',
-            'MotorcycleRepair' => 'MotorcycleRepair',
-            'MovingCompany' => 'MovingCompany',
-            'MusicStore' => 'MusicStore',
-            'NailSalon' => 'NailSalon',
-            'NightClub' => 'NightClub',
-            'Notary' => 'Notary',
-            'OfficeEquipmentStore' => 'OfficeEquipmentStore',
-            'Optician' => 'Optician',
-            'PetStore' => 'PetStore',
-            'Physician' => 'Physician',
-            'Plumber' => 'Plumber',
-            'ProfessionalService' => 'ProfessionalService',
-            'RealEstateAgent' => 'RealEstateAgent',
-            'Residence' => 'Residence',
-            'Restaurant' => 'Restaurant',
-            'RoofingContractor' => 'RoofingContractor',
-            'RVPark' => 'RVPark',
-            'School' => 'School',
-            'SelfStorage' => 'SelfStorage',
-            'ShoeStore' => 'ShoeStore',
-            'SkiResort' => 'SkiResort',
-            'SportingGoodsStore' => 'SportingGoodsStore',
-            'SportsClub' => 'SportsClub',
-            'Store' => 'Store',
-            'TattooParlor' => 'TattooParlor',
-            'Taxi' => 'Taxi',
-            'TennisComplex' => 'TennisComplex',
-            'TireShop' => 'TireShop',
-            'TouristAttraction' => 'TouristAttraction',
-            'ToyStore' => 'ToyStore',
-            'TravelAgency' => 'TravelAgency',
-            //'VacationRentals' => 'VacationRentals', // Not recognised by google yet
-            'VeterinaryCare' => 'VeterinaryCare',
-            'WholesaleStore' => 'WholesaleStore',
-            'Winery' => 'Winery'
-        )),
-        array('name' => __('Schema Type', 'geodirectory'), 'desc' => __('Select the Schema to use for this category', 'geodirectory') . "", 'std' => array('selectkey2')));
+    apply_filters('geodir_cat_schemas',array(
+        '' => __('Default (LocalBusiness)', 'geodirectory'),
+        'AccountingService' => 'AccountingService',
+        'Attorney' => 'Attorney',
+        'AutoBodyShop' => 'AutoBodyShop',
+        'AutoDealer' => 'AutoDealer',
+        'AutoPartsStore' => 'AutoPartsStore',
+        'AutoRental' => 'AutoRental',
+        'AutoRepair' => 'AutoRepair',
+        'AutoWash' => 'AutoWash',
+        'Bakery' => 'Bakery',
+        'BarOrPub' => 'BarOrPub',
+        'BeautySalon' => 'BeautySalon',
+        'BedAndBreakfast' => 'BedAndBreakfast',
+        'BikeStore' => 'BikeStore',
+        'BookStore' => 'BookStore',
+        'CafeOrCoffeeShop' => 'CafeOrCoffeeShop',
+        'Campground' => 'Campground',
+        'ChildCare' => 'ChildCare',
+        'ClothingStore' => 'ClothingStore',
+        'ComputerStore' => 'ComputerStore',
+        'DaySpa' => 'DaySpa',
+        'Dentist' => 'Dentist',
+        'DryCleaningOrLaundry' => 'DryCleaningOrLaundry',
+        'Electrician' => 'Electrician',
+        'ElectronicsStore' => 'ElectronicsStore',
+        'EmergencyService' => 'EmergencyService',
+        'EntertainmentBusiness' => 'EntertainmentBusiness',
+        'Event' => 'Event',
+        'EventVenue' => 'EventVenue',
+        'ExerciseGym' => 'ExerciseGym',
+        'FinancialService' => 'FinancialService',
+        'Florist' => 'Florist',
+        'FoodEstablishment' => 'FoodEstablishment',
+        'FurnitureStore' => 'FurnitureStore',
+        'GardenStore' => 'GardenStore',
+        'GeneralContractor' => 'GeneralContractor',
+        'GolfCourse' => 'GolfCourse',
+        'HairSalon' => 'HairSalon',
+        'HardwareStore' => 'HardwareStore',
+        'HealthAndBeautyBusiness' => 'HealthAndBeautyBusiness',
+        'HobbyShop' => 'HobbyShop',
+        'HomeAndConstructionBusiness' => 'HomeAndConstructionBusiness',
+        'HomeGoodsStore' => 'HomeGoodsStore',
+        'Hospital' => 'Hospital',
+        'Hostel' => 'Hostel',
+        'Hotel' => 'Hotel',
+        'HousePainter' => 'HousePainter',
+        'HVACBusiness' => 'HVACBusiness',
+        'InsuranceAgency' => 'InsuranceAgency',
+        'JewelryStore' => 'JewelryStore',
+        'LiquorStore' => 'LiquorStore',
+        'Locksmith' => 'Locksmith',
+        'LodgingBusiness' => 'LodgingBusiness',
+        'MedicalClinic' => 'MedicalClinic',
+        'MensClothingStore' => 'MensClothingStore',
+        'MobilePhoneStore' => 'MobilePhoneStore',
+        'Motel' => 'Motel',
+        'MotorcycleDealer' => 'MotorcycleDealer',
+        'MotorcycleRepair' => 'MotorcycleRepair',
+        'MovingCompany' => 'MovingCompany',
+        'MusicStore' => 'MusicStore',
+        'NailSalon' => 'NailSalon',
+        'NightClub' => 'NightClub',
+        'Notary' => 'Notary',
+        'OfficeEquipmentStore' => 'OfficeEquipmentStore',
+        'Optician' => 'Optician',
+        'PetStore' => 'PetStore',
+        'Physician' => 'Physician',
+        'Plumber' => 'Plumber',
+        'ProfessionalService' => 'ProfessionalService',
+        'RealEstateAgent' => 'RealEstateAgent',
+        'Residence' => 'Residence',
+        'Restaurant' => 'Restaurant',
+        'RoofingContractor' => 'RoofingContractor',
+        'RVPark' => 'RVPark',
+        'School' => 'School',
+        'SelfStorage' => 'SelfStorage',
+        'ShoeStore' => 'ShoeStore',
+        'SkiResort' => 'SkiResort',
+        'SportingGoodsStore' => 'SportingGoodsStore',
+        'SportsClub' => 'SportsClub',
+        'Store' => 'Store',
+        'TattooParlor' => 'TattooParlor',
+        'Taxi' => 'Taxi',
+        'TennisComplex' => 'TennisComplex',
+        'TireShop' => 'TireShop',
+        'TouristAttraction' => 'TouristAttraction',
+        'ToyStore' => 'ToyStore',
+        'TravelAgency' => 'TravelAgency',
+        //'VacationRentals' => 'VacationRentals', // Not recognised by google yet
+        'VeterinaryCare' => 'VeterinaryCare',
+        'WholesaleStore' => 'WholesaleStore',
+        'Winery' => 'Winery'
+    )),
+    array('name' => __('Schema Type', 'geodirectory'), 'desc' => __('Select the Schema to use for this category', 'geodirectory') . "", 'std' => array('selectkey2')));
 
-    /*$my_meta->addSelect($prefix.'cat_sort',array(''=>__('Default' , 'geodirectory'),
-    'random'=>__('Random','geodirectory'),
-    'az'=>__('Alphabetical' , 'geodirectory'),
-    'newest'=>__('Newest','geodirectory'),
-    'oldest'=>__('Oldest','geodirectory'),
-    'high_rating'=>__('Highest Rating','geodirectory'),
-    'low_rating'=>__('Lowest Rating','geodirectory'),
-    'high_review'=>__('Highest Reviews','geodirectory'),
-    'low_review'=>__('Lowest Reviews','geodirectory')),
-    array('name'=> __('Sort By','geodirectory'),'desc' => __('Select the default sort option.' ,'geodirectory'), 'std'=> array('selectkey2')));*/
-
-    // Show options for placecategories only
-    /*	if(isset($_REQUEST['taxonomy']) && in_array($_REQUEST['taxonomy'],$config['pages']) ){
-        // Exclude sort options
-        $my_meta->addCheckbox($prefix.'cat_exclude_rating',array('name'=> __('<b>Exclude</b> Rating sort option','geodirectory')));
-        $my_meta->addCheckbox($prefix.'cat_exclude_reviews',array('name'=> __('<b>Exclude</b> Reviews sort option','geodirectory')));
-
-        // Include sort options
-        $my_meta->addCheckbox($prefix.'cat_include_random',array('name'=> __('Include Random sort option','geodirectory')));
-        $my_meta->addCheckbox($prefix.'cat_include_newest',array('name'=> __('Include Newest/Oldest sort option','geodirectory')));
-        $my_meta->addCheckbox($prefix.'cat_include_az',array('name'=> __('Include Alphabetical sort option','geodirectory')));
-
-        }*/
-
-    //Finish Meta Box Declaration
+    // Finish Meta Box Declaration
     $my_meta->Finish();
+}
+if ( is_admin() ) {
+    add_action( 'init', 'geodir_set_tax_meta_fields', 10 );
 }
 
 
@@ -257,13 +236,20 @@ function geodir_get_default_catimage($term_id, $post_type = 'gd_place')
 
 //Clear custom fields
 add_action('in_admin_footer', 'geodir_tax_meta_clear_custom_field');
-function geodir_tax_meta_clear_custom_field()
-{
+function geodir_tax_meta_clear_custom_field() {
     if (isset($_REQUEST['taxonomy']) && !empty($_REQUEST['taxonomy'])):
         ?>
         <script type="text/javascript">
             jQuery(document).ready(function () {
                 jQuery('#addtag #submit').click(function () {
+                    try {
+                        var mceField = typeof tinymce != 'undefined' && typeof tinymce.editors != 'undefined' && typeof tinymce.editors['ct_cat_top_desc'] == 'object' ? tinymce.editors['ct_cat_top_desc'] : null;
+                        if (mceField) {
+                            mceField.editorManager.triggerSave();
+                        }
+                    } catch(e) {
+                        console.log(e);
+                    }
                     setTimeout(function () {
                         if (!jQuery('#addtag .form-invalid').length) {
                             jQuery('#addtag .rw-checkbox').prop('checked', false);

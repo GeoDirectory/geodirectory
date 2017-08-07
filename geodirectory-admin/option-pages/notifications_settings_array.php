@@ -124,6 +124,24 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
     array('name' => __('Admin Emails', 'geodirectory'), 'type' => 'sectionstart', 'id' => 'admin_emails'),
 
     array(
+        'name' => __('Notify to admin on post submit', 'geodirectory'),
+        'desc' => __('Yes', 'geodirectory'),
+        'id' => 'geodir_notify_post_submit',
+        'std' => '1',
+        'type' => 'radio',
+        'value' => '1',
+        'radiogroup' => 'start'
+    ),
+    array(
+        'name' => __('Notify to admin on post submit', 'geodirectory'),
+        'desc' => __('No', 'geodirectory'),
+        'id' => 'geodir_notify_post_submit',
+        'std' => '1',
+        'type' => 'radio',
+        'value' => '0',
+        'radiogroup' => 'end'
+    ),
+    array(
         'name' => __('Post submit success to admin email', 'geodirectory'),
         'desc' => '',
         'id' => 'geodir_post_submited_success_email_subject_admin',

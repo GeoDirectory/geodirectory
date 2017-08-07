@@ -136,6 +136,36 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
             postal_code_prefix = '';
             rr = '';
             has_address_been_set = false;
+
+            // get the proper response as somtimes the GPS results will return names in English when they should not.
+            responses.forEach(function(response) {
+                if(response.types[0] == "locality"){
+
+                    for (var i = 0; i < response.address_components.length; i++) {
+                        var addr = response.address_components[i];
+                        if (addr.types[0] == 'administrative_area_level_1') {
+                            administrative_area_level_1 = addr;
+                        }
+                        if (addr.types[0] == 'administrative_area_level_2') {
+                            administrative_area_level_2 = addr;
+                        }
+                        if (addr.types[0] == 'administrative_area_level_3') {
+                            administrative_area_level_3 = addr;
+                        }
+                        if (addr.types[0] == 'sublocality_level_1') {
+                            sublocality_level_1 = addr;
+                        }
+                        if (addr.types[0] == 'postal_town') {
+                            postal_town = addr;
+                        }
+                        if (addr.types[0] == 'locality') {
+                            locality = addr;
+                        }
+                    }
+
+                }
+            });
+
             
             for (var i = 0; i < responses[0].address_components.length; i++) {
                 var addr = responses[0].address_components[i];
@@ -148,22 +178,22 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
                 if (addr.types[0] == 'premise') {
                     premise = addr;
                 }
-                if (addr.types[0] == 'administrative_area_level_1') {
+                if (administrative_area_level_1 == '' && addr.types[0] == 'administrative_area_level_1') {
                     administrative_area_level_1 = addr;
                 }
-                if (addr.types[0] == 'administrative_area_level_2') {
+                if (administrative_area_level_2 == '' && addr.types[0] == 'administrative_area_level_2') {
                     administrative_area_level_2 = addr;
                 }
-                if (addr.types[0] == 'administrative_area_level_3') {
+                if (administrative_area_level_3 == '' && addr.types[0] == 'administrative_area_level_3') {
                     administrative_area_level_3 = addr;
                 }
-                if (addr.types[0] == 'sublocality_level_1') {
+                if (sublocality_level_1 == '' && addr.types[0] == 'sublocality_level_1') {
                     sublocality_level_1 = addr;
                 }
-                if (addr.types[0] == 'postal_town') {
+                if (postal_town == '' && addr.types[0] == 'postal_town') {
                     postal_town = addr;
                 }
-                if (addr.types[0] == 'locality') {
+                if (locality == '' && addr.types[0] == 'locality') {
                     locality = addr;
                 }
                 if (addr.types[0] == 'country') {

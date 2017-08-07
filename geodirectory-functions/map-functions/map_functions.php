@@ -83,7 +83,14 @@ function create_marker_jason_of_posts($post)
             $icon_size = array('w' => 36, 'h' => 45);
         }
 
-        $post_json = '{"id":"' . $post->ID . '","t": "' . $title . '","lt": "' . $post->post_latitude . '","ln": "' . $post->post_longitude . '","mk_id":"' . $post->ID . '_' . $post->default_category . '","i":"' . $icon . '","w":"' . $icon_size['w'] . '","h":"' . $icon_size['h'] . '"}';
+        $post_json = '{"id":"' . $post->ID
+                     . '","t": "' . $title
+                     . '","lt": "' . $post->post_latitude
+                     . '","ln": "' . $post->post_longitude
+                     . '","mk_id":"' . $post->ID . '_' . $post->default_category
+                     . '","i":"' . $icon
+                     . '","w":"' . $icon_size['w']
+                     . '","h":"' . $icon_size['h'] . '"}';
 
         /**
          * Filter the json data when creating output for post json marker..
@@ -252,10 +259,10 @@ function home_map_taxonomy_walker($cat_taxonomy, $cat_parent = 0, $hide_empty = 
 
                 // Untick the category by default on home map
                 if ($is_home_map && $geodir_home_map_untick = get_option('geodir_home_map_untick')) {
-                    if (function_exists('icl_object_id')) { // if WPML
+                    if (geodir_wpml_is_taxonomy_translated($post_type . 'category')) { // if WPML
                         global $sitepress;
                         $default_lang = $sitepress->get_default_language();
-                        $term_id = icl_object_id($cat_term->term_id, $post_type.'category', true, $default_lang);
+                        $term_id = geodir_wpml_object_id($cat_term->term_id, $post_type.'category', true, $default_lang);
                     }else{
                         $term_id = $cat_term->term_id;
                     }

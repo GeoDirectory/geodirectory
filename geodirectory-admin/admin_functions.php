@@ -3971,7 +3971,7 @@ function geodir_ajax_import_export() {
                             
                             if ( $term_id ) {
                                 // WPML
-                                if ($is_wpml && $cat_id_original > 0 && $cat_language != '') {
+                                if ($is_wpml && geodir_wpml_is_taxonomy_translated($taxonomy) && $cat_id_original > 0 && $cat_language != '') {
                                     $wpml_element_type = 'tax_' . $taxonomy;
                                     $source_language = geodir_get_language_for_element( $cat_id_original, $wpml_element_type );
                                     $source_language = $source_language != '' ? $source_language : $sitepress->get_default_language();
@@ -4356,7 +4356,7 @@ function geodir_ajax_import_export() {
                             $xtimings['###6'] = microtime(true)-$xstart;
                             if ( (int)$saved_post_id > 0 ) {
                                 // WPML
-                                if ($is_wpml && $original_post_id > 0 && $language != '') {
+                                if ($is_wpml && geodir_wpml_is_post_type_translated($post_type) && $original_post_id > 0 && $language != '') {
                                     $wpml_post_type = 'post_' . $post_type;
                                     $source_language = geodir_get_language_for_element( $original_post_id, $wpml_post_type );
                                     $source_language = $source_language != '' ? $source_language : $sitepress->get_default_language();
@@ -5169,7 +5169,7 @@ function geodir_imex_get_posts( $post_type, $per_page = 0, $page_no = 0 ) {
 			$csv_row[] = !empty($post_ypes[$post_type]['linkable_to']) ? 'linked_' . $post_ypes[$post_type]['linkable_to'] . '_ID' : 'linked_cpt_ID';
 		}
 		// WPML
-		$is_wpml = geodir_is_wpml();
+		$is_wpml = geodir_wpml_is_post_type_translated( $post_type );
 		if ($is_wpml) {
 			$csv_row[] = 'language';
 			$csv_row[] = 'original_post_id';
@@ -5637,7 +5637,7 @@ function geodir_imex_get_terms( $post_type, $per_page = 0, $page_no = 0 ) {
 		$csv_row[] = 'cat_parent';
 		$csv_row[] = 'cat_schema';
         // WPML
-		$is_wpml = geodir_is_wpml();
+		$is_wpml = geodir_wpml_is_taxonomy_translated( $taxonomy );
 		if ($is_wpml) {
 			$csv_row[] = 'cat_language';
             $csv_row[] = 'cat_id_original';

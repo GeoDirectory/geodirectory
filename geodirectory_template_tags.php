@@ -20,12 +20,13 @@ include_once('geodirectory-functions/map-functions/map_template_tags.php');
  * @since 1.0.0
  * @package GeoDirectory
  */
+/*
 function geodir_core_dequeue_script()
 {
     wp_dequeue_script('flexslider');
 }
-
 add_action('wp_print_scripts', 'geodir_core_dequeue_script', 100);
+*/
 
 /**
  * Handles loading of all geodirectory javascripts and its dependencies.
@@ -798,3 +799,15 @@ function geodir_show_badges_on_image($which, $post, $link)
     
     return $return;
 }
+
+/**
+ * Dequeue scripts to fix JS conflicts.
+ *
+ * @since 1.6.22
+ */
+function geodir_fix_script_conflict() {
+    if ( wp_script_is( 'flexslider', 'enqueued' ) && wp_script_is( 'geodirectory-jquery-flexslider-js', 'enqueued' ) ) {
+        wp_dequeue_script( 'flexslider' );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'geodir_fix_script_conflict', 100 );
