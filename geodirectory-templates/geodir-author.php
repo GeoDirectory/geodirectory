@@ -91,4 +91,4 @@ do_action('geodir_wrapper_close', 'author-page');
  */
 do_action('geodir_sidebar_author_bottom_section');
 
-get_footer();  
+get_footer();

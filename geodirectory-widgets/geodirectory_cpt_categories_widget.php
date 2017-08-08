@@ -438,6 +438,8 @@ function geodir_cpt_categories_output($params) {
             if ($sort_by == 'count') {
                 $categories = geodir_sort_terms($categories, 'count');
             }
+            
+            $categories = apply_filters('geodir_custom_sort_cpt_terms', $categories);
 
             if (!empty($categories)) {
                 $term_icons = !$hide_icon ? geodir_get_term_icon() : array();
