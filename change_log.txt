@@ -22,6 +22,8 @@ If nothing found during Near search the Near location will be used as the map de
 Popular post view widget, added filter to sort by option - ADDED
 Recent reviews no. of reviews limit not working - FIXED
 Function geodir_user_post_listing_count() using current user id instead of user_id arg - FIXED
+Widget listing should show nearest results when location filter enabled and lat/lon set - CHANGED
+On login/signup page redirect_to parameter not working for logged user - FIXED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED
