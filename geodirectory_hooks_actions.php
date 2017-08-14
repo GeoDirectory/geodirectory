@@ -261,6 +261,11 @@ function geodir_add_post_filters()
     if ( isset( $_REQUEST['geodir_search'] ) && class_exists( 'Theme_My_Login' ) ) {
         remove_action( 'pre_get_posts', array( Theme_My_Login::get_object(), 'pre_get_posts' ) );
     }
+    
+    if ( isset( $_REQUEST['geodir_search'] ) ) {
+        add_filter( 'geodir_filter_widget_listings_fields', 'geodir_search_widget_location_filter_fields', 100, 3 );
+        add_filter( 'geodir_filter_widget_listings_orderby', 'geodir_search_widget_location_filter_orderby', 100, 3 );
+    }
 }
 
 

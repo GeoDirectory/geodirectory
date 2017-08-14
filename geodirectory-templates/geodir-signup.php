@@ -17,6 +17,8 @@ if (get_current_user_id()) {
     $_redirect = home_url();
     if (isset($_REQUEST['redirect_add_listing'])) {
         $_redirect = $_REQUEST['redirect_add_listing'];
+    } elseif (!empty($_REQUEST['redirect_to'])) {
+        $_redirect = $_REQUEST['redirect_to'];
     }
 
     wp_safe_redirect($_redirect , 302);

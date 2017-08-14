@@ -1044,3 +1044,66 @@ function geodir_prepare_custom_sorting( $sorting, $table ) {
 
     return $orderby;
 }
+
+/**
+ * Set distance field in widget listing query fields search for location filter.
+ *
+ * @since   1.6.22
+ *
+ * @global object $wpdb WordPress Database object.
+ * @global array  $gd_query_args_widgets Widget query args.
+ * @global string $snear Nearest location to search.
+ * @global object $gd_session GeoDirectory Session object.
+ *
+ * @param string $fields    Fields SQL.
+ * @param string $table     Table name.
+ * @param string $post_type Post type.
+ *
+ * @return string Modified fields SQL.
+ */
+function geodir_search_widget_location_filter_fields( $fields, $table, $post_type ) {
+    global $wpdb, $gd_query_args_widgets, $snear, $gd_session;
+
+    if ( !empty( $gd_query_args_widgets['gd_location'] ) && geodir_is_page( 'search' ) && !empty( $_REQUEST['sgeo_lat'] ) && !empty( $_REQUEST['sgeo_lon'] ) ) {
+        $location_allowed = function_exists( 'geodir_cpt_no_location' ) && geodir_cpt_no_location( $post_type ) ? false : true;
+
+        if ( $location_allowed && strpos( strtolower( $fields ), ' as distance ' ) === false && ( $snear != '' || $gd_session->get( 'all_near_me' ) ) ) {
+            $latitude = sanitize_text_field( $_REQUEST['sgeo_lat'] );
+            $longitude = sanitize_text_field( $_REQUEST['sgeo_lon'] );
+            $radius = geodir_getDistanceRadius( get_option( 'geodir_search_dist_1' ) );
+
+            $fields .= $wpdb->prepare( ", (" . $radius . " * 2 * ASIN(SQRT(POWER(SIN((ABS(%s) - ABS(" . $table . ".post_latitude)) * PI() / 180 / 2), 2) + COS(ABS(%s) * PI() / 180) * COS(ABS(" . $table . ".post_latitude) * PI() / 180) * POWER(SIN((%s - " . $table . ".post_longitude) * PI() / 180 / 2), 2)))) AS distance ", $latitude, $latitude, $longitude );
+        }
+    }
+
+    return $fields;
+}
+
+/**
+ * Set distance sorting in widget listing query for search location filter.
+ *
+ * @since   1.6.22
+ *
+ * @global array  $gd_query_args_widgets Widget query args.
+ * @global string $snear Nearest location to search.
+ * @global object $gd_session GeoDirectory Session object.
+ *
+ * @param string $orderby   Orderby SQL.
+ * @param string $table     Table name.
+ * @param string $post_type Post type.
+ *
+ * @return string Modified fields SQL.
+ */
+function geodir_search_widget_location_filter_orderby( $orderby, $table, $post_type ) {
+    global $gd_query_args_widgets, $snear, $gd_session;
+
+    if ( !empty( $gd_query_args_widgets['gd_location'] ) && geodir_is_page( 'search' ) && !empty( $_REQUEST['sgeo_lat'] ) && !empty( $_REQUEST['sgeo_lon'] ) ) {
+        $location_allowed = function_exists( 'geodir_cpt_no_location' ) && geodir_cpt_no_location( $post_type ) ? false : true;
+
+        if ( $location_allowed && ( $snear != '' || $gd_session->get( 'all_near_me' ) ) ) {
+            $orderby = "distance ASC, " . $orderby;
+        }
+    }
+
+    return $orderby;
+}
