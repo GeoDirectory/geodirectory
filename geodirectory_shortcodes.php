@@ -1256,22 +1256,24 @@ function geodir_sc_gd_listings($atts, $content = '') {
     $params['post_number']  = $params['post_number'] > 0 ? $params['post_number'] : 10;
     
     // Post_number needs to be a positive integer
-    if (!empty($atts['post_author'])) {
-
+    if (!empty($params['post_author'])) {
         // 'current' left for backwards compatibility
-        if ( ($atts['post_author'] == 'current' || $atts['post_author'] == 'current_author') && !empty($post) && isset($post->post_author) && $post->post_type != 'page') {
-            $params['post_author'] = $post->post_author;
-        } else if ($atts['post_author'] == 'current_user' ) {
-            if($uid = get_current_user_id()){
-                $params['post_author'] = absint($uid);
-            }else{
-                $params['post_author'] = -1;// if not logged in then don't show any listings.
+        if ( $params['post_author'] == 'current' || $params['post_author'] == 'current_author') {
+            if (!empty($post) && $post->post_type != 'page' && isset($post->post_author)) {
+                $params['post_author'] = $post->post_author;
+            } else {
+                $params['post_author'] = -1; // Don't show any listings.
             }
-
-        } else if ($atts['post_author'] != 'current' && absint($atts['post_author']) > 0) {
-            $params['post_author'] = absint($atts['post_author']);
+        } else if ($params['post_author'] == 'current_user' ) {
+            if ($current_user_id = get_current_user_id()) {
+                $params['post_author'] = $current_user_id;
+            } else {
+                $params['post_author'] = -1; // If not logged in then don't show any listings.
+            }
+        } else if (absint($params['post_author']) > 0) {
+            $params['post_author'] = absint($params['post_author']);
         } else {
-            unset($params['post_author']);
+            $params['post_author'] = -1; // Don't show any listings.
         }
     } else {
         unset($params['post_author']);
@@ -1306,12 +1308,20 @@ function geodir_sc_gd_listings($atts, $content = '') {
     // User favorites
     $params['show_favorites_only']  = gdsc_to_bool_val($params['show_favorites_only']);
     if (!empty($params['show_favorites_only'])) {
-        if ($params['favorites_by_user'] == 'current' && !empty($post) && isset($post->post_author) && $post->post_type != 'page') {
-            $params['favorites_by_user'] = $post->post_author;
-        } else if ($params['favorites_by_user'] != 'current' && absint($params['favorites_by_user']) > 0) {
-            $params['favorites_by_user'] = absint($atts['favorites_by_user']);
-        } else if ($params['favorites_by_user'] != 'current' && $current_user_id = get_current_user_id()) {
-            $params['favorites_by_user'] = $current_user_id;
+        if ( $params['favorites_by_user'] == 'current' || $params['favorites_by_user'] == 'current_author') {
+            if (!empty($post) && $post->post_type != 'page' && isset($post->post_author)) {
+                $params['favorites_by_user'] = $post->post_author;
+            } else {
+                $params['favorites_by_user'] = 0;
+            }
+        } else if ($params['favorites_by_user'] == 'current_user' || empty($params['favorites_by_user'])) {
+            if ($current_user_id = get_current_user_id()) {
+                $params['favorites_by_user'] = $current_user_id;
+            } else {
+                $params['favorites_by_user'] = 0;
+            }
+        } else if (absint($params['favorites_by_user']) > 0) {
+            $params['favorites_by_user'] = absint($params['favorites_by_user']);
         } else {
             $params['favorites_by_user'] = 0;
         }
