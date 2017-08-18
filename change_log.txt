@@ -25,6 +25,7 @@ Function geodir_user_post_listing_count() using current user id instead of user_
 Widget listing should show nearest results when location filter enabled and lat/lon set - CHANGED
 On login/signup page redirect_to parameter not working for logged user - FIXED
 Problem occurs when using "tag" string in post type name - FIXED
+gd_listings shortcode shows all listings if post_author has no listings - FIXED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED
