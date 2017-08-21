@@ -3543,11 +3543,11 @@ function geodir_loginwidget_output( $args = '', $instance = '' ) {
 		<form name="loginform" class="loginform1"
 		      action="<?php echo geodir_login_url(); ?>"
 		      method="post">
-			<div class="geodir_form_row"><input placeholder="<?php _e( 'Email', 'geodirectory' ); ?>" name="log"
+			<div class="geodir_form_row"><input placeholder="<?php echo apply_filters('gd_login_wid_login_placeholder', __( 'Email', 'geodirectory' )); ?>" name="<?php echo apply_filters('gd_login_wid_login_name', 'log'); ?>"
 			                                    type="text" class="textfield user_login1"/> <span
 					class="user_loginInfo"></span></div>
 			<div class="geodir_form_row"><input placeholder="<?php _e( 'Password', 'geodirectory' ); ?>"
-			                                    name="pwd" type="password"
+			                                    name="<?php echo apply_filters('gd_login_wid_login_pwd', 'pwd'); ?>" type="password"
 			                                    class="textfield user_pass1 input-text"/><span
 					class="user_passInfo"></span></div>
 
