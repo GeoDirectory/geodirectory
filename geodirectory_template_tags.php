@@ -101,7 +101,7 @@ function geodir_templates_scripts()
          * @param string $var The string to filter, default is empty string.
          */
         $map_extra = apply_filters('geodir_googlemap_script_extra', '');
-        wp_enqueue_script('geodirectory-googlemap-script', 'https://maps.google.com/maps/api/js?' . $map_lang . $map_key . $map_extra , '', NULL);
+        wp_enqueue_script('google-maps-api', 'https://maps.google.com/maps/api/js?' . $map_lang . $map_key . $map_extra , '', NULL);
         
         // Overlapping Marker Spiderfier
         wp_register_script('geodirectory-g-overlappingmarker-script', geodir_plugin_url() . '/geodirectory-assets/jawj/oms.min.js', array(), GEODIRECTORY_VERSION);

@@ -2664,7 +2664,15 @@ function geodir_excerpt_more($more)
     global $post;
     $all_postypes = geodir_get_posttypes();
     if (is_array($all_postypes) && in_array($post->post_type, $all_postypes)) {
-        return ' <a href="' . get_permalink($post->ID) . '">' . READ_MORE_TXT . '</a>';
+        $out = ' <a class="excerpt-read-more" href="' .  get_permalink($post->ID) . '" title="' . get_the_title($post->ID) . '">';
+        /**
+         * Filter excerpt read more text.
+         *
+         * @since 1.0.0
+         */
+        $out .= apply_filters( 'geodir_max_excerpt_end', __( 'Read more [...]', 'geodirectory' ) );
+        $out .= '</a>';
+        return $out;
     }
 
     return $more;

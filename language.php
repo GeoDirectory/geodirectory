@@ -89,9 +89,9 @@ define('CAPTCHA', __('Word Verification', 'geodirectory'));
 
 define('PRO_PREVIEW_BUTTON', __('Review Your Listing', 'geodirectory'));
 
-define('GOING_TO_PAY_MSG', __('This is a preview of your listing and its not published yet. <br />If there is something wrong then "Go back and edit" or if you want to add listing then click on "Publish".<br> You are going to pay <b>%s</b> &  alive days are <b>%s</b> as %s listing', 'geodirectory'));
-define('GOING_TO_UPDATE_MSG', __('This is a preview of your listing and its not updated yet. <br />If there is something wrong then "Go back and edit" or if you want to update listing then click on "Update now"', 'geodirectory'));
-define('GOING_TO_FREE_MSG', __('This is a preview of your listing and its not published yet. <br />If there is something wrong then "Go back and edit" or if you want to add listing then click on "Publish".<br> Your %s listing will published for <b>%s</b> days', 'geodirectory'));
+define('GOING_TO_PAY_MSG', __('This is a preview of your listing and it has not been published yet. <br />If there is something wrong then "Go back and edit" or if you want to add listing then click on "Publish".<br> You are going to pay <b>%s</b> &  alive days are <b>%s</b> as %s listing', 'geodirectory'));
+define('GOING_TO_UPDATE_MSG', __('This is a preview of your listing and it has been not updated yet. <br />If there is something wrong then "Go back and edit" or if you want to update listing then click on "Update now"', 'geodirectory'));
+define('GOING_TO_FREE_MSG', __('This is a preview of your listing and it is not published yet. <br />If there is something wrong then "Go back and edit" or if you want to add listing then click on "Publish".<br> Your %s listing will published for <b>%s</b> days', 'geodirectory'));
 define('UNLIMITED', __('Unlimited', 'geodirectory'));
 define('BASIC_INFO_TEXT', __('Home Information', 'geodirectory'));
 define('PRO_BACK_AND_EDIT_TEXT', __('&laquo; Go Back and Edit', 'geodirectory'));
