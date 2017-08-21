@@ -88,4 +88,4 @@ do_action('geodir_wrapper_close', 'home-page');
 do_action('geodir_sidebar_home_bottom_section');
 
 //get footer
-get_footer();    
+get_footer();

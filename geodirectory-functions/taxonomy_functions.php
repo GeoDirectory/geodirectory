@@ -552,32 +552,28 @@ if (!function_exists('geodir_get_taxonomies')) {
      * @param bool $tages_taxonomies Is this a tag taxonomy?. Default: false.
      * @return array|bool Taxonomies on success. false on failure.
      */
-    function geodir_get_taxonomies($post_type = '', $tages_taxonomies = false)
-    {
-
+    function geodir_get_taxonomies($post_type = '', $tages_taxonomies = false) {
         $taxonomies = array();
         $gd_taxonomies = array();
 
         if ($taxonomies = get_option('geodir_taxonomies')) {
-
-
             $gd_taxonomies = array_keys($taxonomies);
 
-
-            if ($post_type != '')
+            if ($post_type != '') {
                 $gd_taxonomies = array();
+            }
 
             $i = 0;
             foreach ($taxonomies as $taxonomy => $args) {
-
-                if ($post_type != '' && $args['object_type'] == $post_type)
+                if ($post_type != '' && $args['object_type'] == $post_type) {
                     $gd_taxonomies[] = $taxonomy;
-
-                if ($tages_taxonomies === false && strpos($taxonomy, '_tag') !== false) {
-                    if (array_search($taxonomy, $gd_taxonomies) !== false)
-                        unset($gd_taxonomies[array_search($taxonomy, $gd_taxonomies)]);
                 }
 
+                if ($tages_taxonomies === false && substr($taxonomy , -5) == '_tags') {
+                    if (array_search($taxonomy, $gd_taxonomies) !== false) {
+                        unset($gd_taxonomies[array_search($taxonomy, $gd_taxonomies)]);
+                    }
+                }
             }
 
             $gd_taxonomies = array_values($gd_taxonomies);
@@ -1631,8 +1627,7 @@ function geodir_listing_permalink_structure($post_link, $post_obj, $leavename, $
 
                 $term_request = '';
                 $taxonomies = geodir_get_taxonomies($post->post_type);
-
-                $taxonomies = end($taxonomies);
+                $taxonomies = !empty($taxonomies) && is_array($taxonomies) ? end($taxonomies) : '';
 
                 if (!empty($post->default_category)) {
                     $post_terms = $post->default_category;

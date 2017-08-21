@@ -261,6 +261,11 @@ function geodir_add_post_filters()
     if ( isset( $_REQUEST['geodir_search'] ) && class_exists( 'Theme_My_Login' ) ) {
         remove_action( 'pre_get_posts', array( Theme_My_Login::get_object(), 'pre_get_posts' ) );
     }
+    
+    if ( isset( $_REQUEST['geodir_search'] ) ) {
+        add_filter( 'geodir_filter_widget_listings_fields', 'geodir_search_widget_location_filter_fields', 100, 3 );
+        add_filter( 'geodir_filter_widget_listings_orderby', 'geodir_search_widget_location_filter_orderby', 100, 3 );
+    }
 }
 
 
@@ -2353,19 +2358,17 @@ function geodir_default_rating_star_icon()
  * @global string $plugin_prefix Geodirectory plugin table prefix.
  * @return array User listing count for each post type.
  */
-function geodir_user_post_listing_count($user_id=null)
+function geodir_user_post_listing_count($user_id = 0)
 {
     global $wpdb, $plugin_prefix, $current_user;
     if(!$user_id){
         $user_id = $current_user->ID;
     }
 
-    $user_id = $current_user->ID;
-    $all_postypes = geodir_get_posttypes();
     $all_posts = get_option('geodir_listing_link_user_dashboard');
 
     $user_listing = array();
-    if (is_array($all_posts) && !empty($all_posts)) {
+    if ($user_id && is_array($all_posts) && !empty($all_posts)) {
         foreach ($all_posts as $ptype) {
             $total_posts = $wpdb->get_var("SELECT count( ID ) FROM " . $wpdb->prefix . "posts WHERE post_author=" . $user_id . " AND post_type='" . $ptype . "' AND ( post_status = 'publish' OR post_status = 'draft' OR post_status = 'private' )");
 
