@@ -2618,6 +2618,8 @@ function geodir_add_post_status_author_page()
             $status_icon = '<i class="fa fa-play"></i>';
             if ($real_status == 'publish') {
                 $status .= __('Published', 'geodirectory');
+            }elseif ($real_status == 'pending') {
+                $status .= __('Awaiting Review', 'geodirectory');
             } else {
                 $status .= __('Not published', 'geodirectory');
                 $status_icon = '<i class="fa fa-pause"></i>';

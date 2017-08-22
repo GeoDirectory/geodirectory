@@ -2594,3 +2594,4 @@ function geodir_check_quick_edit() {
     }
 }
 add_action( 'admin_head', 'geodir_check_quick_edit', 10 );
+
