@@ -387,7 +387,7 @@ add_action('admin_footer', 'geodir_map_load_script', 10);
  * @package GeoDirectory
  */
 function geodir_map_load_script() {
-    if (in_array(geodir_map_name(), array('auto', 'google')) && wp_script_is( 'geodirectory-googlemap-script', 'done')) {
+    if (in_array(geodir_map_name(), array('auto', 'google')) && wp_script_is( 'google-maps-api', 'done')) {
         $plugin_url = geodir_plugin_url();
 ?>
 <script type="text/javascript">
