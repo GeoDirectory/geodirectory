@@ -2370,7 +2370,7 @@ function geodir_user_post_listing_count($user_id = 0)
     $user_listing = array();
     if ($user_id && is_array($all_posts) && !empty($all_posts)) {
         foreach ($all_posts as $ptype) {
-            $total_posts = $wpdb->get_var("SELECT count( ID ) FROM " . $wpdb->prefix . "posts WHERE post_author=" . $user_id . " AND post_type='" . $ptype . "' AND ( post_status = 'publish' OR post_status = 'draft' OR post_status = 'private' )");
+            $total_posts = $wpdb->get_var("SELECT count( ID ) FROM " . $wpdb->prefix . "posts WHERE post_author=" . $user_id . " AND post_type='" . $ptype . "' AND ( post_status = 'publish' OR post_status = 'draft' OR post_status = 'private' OR post_status = 'pending' )");
 
             if ($total_posts > 0) {
                 $user_listing[$ptype] = $total_posts;
