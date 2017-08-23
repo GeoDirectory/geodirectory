@@ -28,6 +28,7 @@ Problem occurs when using "tag" string in post type name - FIXED
 gd_listings shortcode shows all listings if post_author has no listings - FIXED
 UsersWP login widget redirects to /login page - FIXED
 Added beta map cache settings to GD>Design>Map section - ADDED
+GD css conflict with Woocommerce - FIXED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED
