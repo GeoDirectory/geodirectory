@@ -561,7 +561,7 @@ function geodir_set_location_var_in_session_in_core($wp) {
 					'name' => $geodir_last_term,
 					'posts_per_page' => 1,
 					'post_type' => $geodir_post_type,
-					'post_status' => 'draft',
+					'post_status' => array('draft', 'pending'),
 					'suppress_filters' => false,
 
 				));
