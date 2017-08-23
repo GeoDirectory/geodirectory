@@ -3180,3 +3180,49 @@ function geodir_fb_like_thumbnail(){
 
 
 }
+
+add_action( 'save_post', 'geodir_clear_map_cache_on_save', 10,2 );
+
+
+/**
+ * Delete the map cache files.
+ *
+ * @since 1.6.22
+ */
+function geodir_delete_map_cache(){
+    $files = glob(realpath(dirname(__FILE__))."/map-functions/map-cache/*.json"); // get all file names
+    foreach($files as $file){ // iterate files
+        if(is_file($file))
+            unlink($file); // delete file
+    }
+}
+
+
+/**
+ * Clear the map cache on post save.
+ *
+ * @since 1.6.22
+ * @param object $post WordPress Post object.
+ * @param int $post_id The post ID.
+ */
+function geodir_clear_map_cache_on_save($post_id, $post) {
+
+    if(!get_option('geodir_enable_map_cache')){
+        return;
+    }
+
+    if ( isset( $post->post_type ) && ( $post->post_type == 'nav_menu_item' || $post->post_type == 'page' || $post->post_type == 'post' ) ) {
+        return;
+    }
+
+    $geodir_posttypes = geodir_get_posttypes();
+
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+
+    if ( ! wp_is_post_revision( $post_id ) && isset( $post->post_type ) && in_array( $post->post_type, $geodir_posttypes ) ) {
+        geodir_delete_map_cache();
+    }
+
+}

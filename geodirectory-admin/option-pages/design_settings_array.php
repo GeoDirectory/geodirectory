@@ -269,12 +269,14 @@ $geodir_settings['design_settings'] = apply_filters('geodir_design_settings', ar
         'tip' => '',
         'id' => 'geodir_new_post_default_status',
         'css' => 'min-width:300px;',
-        'std' => 'publish',
+        'std' => 'pending',
         'type' => 'select',
         'class' => 'chosen_select',
         'options' => array_unique(array(
-            'publish' => __('publish', 'geodirectory'),
+	        'pending' => __('Pending Review', 'geodirectory'),
             'draft' => __('draft', 'geodirectory'),
+	        'publish' => __('publish', 'geodirectory'),
+
         ))
     ),
 
@@ -1165,6 +1167,26 @@ $geodir_settings['design_settings'] = apply_filters('geodir_design_settings', ar
     ),
 
     array('type' => 'sectionend', 'id' => 'geodir_map_settings'),
+
+
+
+	array(
+		'name' => __('Map Cache (Beta)', 'geodirectory'),
+		'type' => 'sectionstart',
+		'desc' => '',
+		'id' => 'geodir_map_cache_section'
+	),
+	array(
+		'name' => __('Enable map cache', 'geodirectory'),
+		'desc' => __('This will cache the map JSON for 24 hours or until a GD listing is saved.', 'geodirectory'),
+		'id' => 'geodir_enable_map_cache',
+		'type' => 'checkbox',
+		'std' => '0' // Default value to show home top section
+	),
+	array(
+		'type' => 'sectionend',
+		'id' => 'geodir_map_cache_section'
+	),
     /* Map Settings End */
 
 )); // End Design settings
