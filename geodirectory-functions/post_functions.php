@@ -3075,7 +3075,7 @@ function geodir_function_post_updated($post_ID, $post_after, $post_before)
 
     if ($post_type != '' && in_array($post_type, geodir_get_posttypes())) {
         // send notification to client when post moves from draft to publish
-        if (!empty($post_after->post_status) && $post_after->post_status == 'publish' && !empty($post_before->post_status) && ($post_before->post_status == 'draft' || $post_before->post_status == 'auto-draft')) {
+        if (!empty($post_after->post_status) && $post_after->post_status == 'publish' && !empty($post_before->post_status) && ($post_before->post_status == 'draft' || $post_before->post_status == 'auto-draft' || $post_before->post_status == 'pending')) {
             $post_author_id = !empty($post_after->post_author) ? $post_after->post_author : NULL;
             $post_author_data = get_userdata($post_author_id);
 
