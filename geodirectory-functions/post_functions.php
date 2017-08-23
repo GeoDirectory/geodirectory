@@ -3226,3 +3226,21 @@ function geodir_clear_map_cache_on_save($post_id, $post) {
     }
 
 }
+
+/**
+ * Set the post name for the pending listing.
+ *
+ * @since 1.6.22
+ *
+ * @param array $data    An array of slashed post data.
+ * @param array $postarr An array of sanitized, but otherwise unmodified post data.
+ * @return array Filtered post data.
+ */
+function geodir_fix_pending_listing_post_name( $data, $postarr ) {
+    if ( empty( $data['post_name'] ) && !empty( $data['post_type'] ) && in_array( $data['post_type'], geodir_get_posttypes() ) ) {
+        $data['post_name'] = wp_unique_post_slug( sanitize_title( $data['post_title'] ), ( !empty( $postarr['ID'] ) ? $postarr['ID'] : 0 ), '', $data['post_type'], $data['post_parent'] );
+    }
+
+    return $data;
+}
+add_filter( 'wp_insert_post_data', 'geodir_fix_pending_listing_post_name', 10, 2 );
