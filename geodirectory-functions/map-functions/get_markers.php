@@ -116,6 +116,10 @@ function geodir_save_map_cache($map_json){
 
 
     global $wp_filesystem;
+    if (empty($wp_filesystem)) {
+        require_once (ABSPATH . '/wp-admin/includes/file.php');
+        WP_Filesystem();
+    }
     $wp_filesystem->put_contents(
         $file_path.$file_name.".json",
         $map_json,
