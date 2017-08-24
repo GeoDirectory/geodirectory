@@ -3718,7 +3718,8 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 	}
 
 	if ( empty( $title ) || $title == 'All' ) {
-		$title .= ' ' . __( get_post_type_plural_label( $post_type ), 'geodirectory' );
+		$title = empty( $title ) ? '' : __( 'All', 'geodirectory' ) . ' ';
+		$title .= __( get_post_type_plural_label( $post_type ), 'geodirectory' );
 	}
 
 	$location_url = array();
