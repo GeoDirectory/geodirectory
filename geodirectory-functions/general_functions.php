@@ -3718,8 +3718,8 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 	}
 
 	if ( empty( $title ) || $title == 'All' ) {
-		$title = empty( $title ) ? '' : __( 'All', 'geodirectory' ) . ' ';
-		$title .= __( get_post_type_plural_label( $post_type ), 'geodirectory' );
+		$post_type_name = __( get_post_type_plural_label( $post_type ), 'geodirectory' );
+		$title = !empty( $title ) ? wp_sprintf( __( 'All %s', 'geodirectory' ), $post_type_name ) : $post_type_name;
 	}
 
 	$location_url = array();
