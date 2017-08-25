@@ -2,6 +2,7 @@ v1.6.23
 "All" string is not translated in popular post widget title - FIXED
 Fix post name for autosaved listing from backend - FIXED
 Added filter to the geodir_listing_belong_to_current_user() function - ADDED
+Search by tag keyword not working properly - FIXED
 
 v1.6.22
 Comment replies should not add review structured data - FIXED
