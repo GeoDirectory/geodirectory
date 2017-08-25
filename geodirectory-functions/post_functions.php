@@ -2073,22 +2073,29 @@ if (!function_exists('geodir_get_infowindow_html')) {
 }
 
 
-if (!function_exists('geodir_new_post_default_status')) {
-    /**
-     * Default post status for new posts.
-     *
-     * @since 1.0.0
-     * @package GeoDirectory
-     * @return string Returns the default post status for new posts. Ex: draft, publish etc.
-     */
-    function geodir_new_post_default_status()
-    {
-        if (get_option('geodir_new_post_default_status'))
-            return get_option('geodir_new_post_default_status');
-        else
-            return 'publish';
+/**
+ * Default post status for new posts.
+ *
+ * @since 1.0.0
+ * @package GeoDirectory
+ * @return string Returns the default post status for new posts. Ex: draft, publish etc.
+ */
+function geodir_new_post_default_status()
+{
 
+    $status = get_option( 'geodir_new_post_default_status' );
+
+    if ( empty( $status ) ) {
+        $status = 'publish';
     }
+
+    /**
+     * Filter the new post status.
+     *
+     * @since 1.6.23
+     */
+    return apply_filters( 'geodir_new_post_default_status', $status );
+
 }
 
 if (!function_exists('geodir_change_post_status')) {
@@ -2814,7 +2821,19 @@ function geodir_listing_belong_to_current_user($listing_id = '', $exclude_admin 
         }
     }
 
-    return geodir_lisiting_belong_to_user($listing_id, $current_user->ID);
+    $result = geodir_lisiting_belong_to_user($listing_id, $current_user->ID);
+
+    /**
+     * Filter if the listing belongs to a user.
+     *
+     * @since 1.6.23
+     * @param bool $result The result, true:false
+     * @param int $listing_id The post ID.
+     * @param int $current_user->ID The current user ID.
+     * @param bool $exclude_admin Do you want to exclude admin from the check?. Default true.
+     * return bool
+     */
+    return apply_filters('geodir_listing_belong_to_current_user',$result,$listing_id,$current_user->ID,$exclude_admin);
 }
 
 
