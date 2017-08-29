@@ -1,3 +1,9 @@
+v1.6.23
+"All" string is not translated in popular post widget title - FIXED
+Fix post name for autosaved listing from backend - FIXED
+Added filter to the geodir_listing_belong_to_current_user() function - ADDED
+Search by tag keyword not working properly - FIXED
+
 v1.6.22
 Comment replies should not add review structured data - FIXED
 Hooks added to customize texts in location description when for empty location - ADDED
@@ -27,6 +33,8 @@ On login/signup page redirect_to parameter not working for logged user - FIXED
 Problem occurs when using "tag" string in post type name - FIXED
 gd_listings shortcode shows all listings if post_author has no listings - FIXED
 UsersWP login widget redirects to /login page - FIXED
+Added beta map cache settings to GD>Design>Map section - ADDED
+GD css conflict with Woocommerce - FIXED
 
 v1.6.21
 Recent reviews doesn't work well with WPML - FIXED

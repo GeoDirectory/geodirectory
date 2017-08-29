@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: GeoDirectory 1.6.21\n"
+"Project-Id-Version: GeoDirectory 1.6.23\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-13 12:07+0100\n"
-"PO-Revision-Date: 2017-06-13 12:07+0100\n"
+"POT-Creation-Date: 2017-08-26 11:39+0100\n"
+"PO-Revision-Date: 2017-08-26 11:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: GeoDirectory <info@wpgeodirectory.com>\n"
 "Language: en_US\n"
@@ -67,8 +67,8 @@ msgid "Insert data"
 msgstr ""
 
 #: geodirectory-admin/admin_dummy_data_functions.php:410
-#: geodirectory-functions/map-functions/map_on_add_listing_page.php:587
-#: geodirectory-functions/map-functions/map_on_add_listing_page.php:733
+#: geodirectory-functions/map-functions/map_on_add_listing_page.php:617
+#: geodirectory-functions/map-functions/map_on_add_listing_page.php:763
 msgid "Geocode was not successful for the following reason:"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgid "Inserting data..."
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:179
-#: geodirectory_template_tags.php:180
+#: geodirectory_template_tags.php:181
 msgid "Allowed Files"
 msgstr ""
 
@@ -191,7 +191,7 @@ msgid "Location (ID)"
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:738
-#: geodirectory-admin/option-pages/design_settings_array.php:626
+#: geodirectory-admin/option-pages/design_settings_array.php:628
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:225
 msgid "Categories"
 msgstr ""
@@ -503,39 +503,39 @@ msgstr ""
 
 #: geodirectory-admin/admin_functions.php:1759
 #: geodirectory-admin/admin_functions.php:1762
-#: geodirectory_template_actions.php:2458
-#: geodirectory_template_actions.php:2461
+#: geodirectory_template_actions.php:2474
+#: geodirectory_template_actions.php:2477
 msgid "You can upload"
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:1759
-#: geodirectory_template_actions.php:2458
+#: geodirectory_template_actions.php:2474
 msgid "image with this package"
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:1762
-#: geodirectory_template_actions.php:2461
+#: geodirectory_template_actions.php:2477
 msgid "images with this package"
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:1765
-#: geodirectory_template_actions.php:2464
+#: geodirectory_template_actions.php:2480
 msgid "You can upload unlimited images with this package"
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:1804
-#: geodirectory_template_actions.php:2479
+#: geodirectory_template_actions.php:2495
 msgid "Drop files to upload"
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:1806
 #: geodirectory-functions/custom_fields_input_functions.php:1482
-#: geodirectory_template_actions.php:2481
+#: geodirectory_template_actions.php:2497
 msgid "Select Files"
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:1819
-#: geodirectory_template_actions.php:2496
+#: geodirectory_template_actions.php:2512
 msgid "Please drag &amp; drop the images to rearrange the order"
 msgstr ""
 
@@ -552,11 +552,12 @@ msgstr ""
 #: geodirectory-admin/option-pages/notifications_settings_array.php:63
 #: geodirectory-admin/option-pages/notifications_settings_array.php:82
 #: geodirectory-admin/option-pages/notifications_settings_array.php:101
-#: geodirectory-admin/option-pages/notifications_settings_array.php:144
-#: geodirectory-functions/custom_field_html.php:303
-#: geodirectory-functions/custom_field_html.php:342
-#: geodirectory-functions/custom_field_html.php:583
-#: geodirectory-functions/custom_field_html.php:755
+#: geodirectory-admin/option-pages/notifications_settings_array.php:128
+#: geodirectory-admin/option-pages/notifications_settings_array.php:162
+#: geodirectory-functions/custom_field_html.php:301
+#: geodirectory-functions/custom_field_html.php:340
+#: geodirectory-functions/custom_field_html.php:581
+#: geodirectory-functions/custom_field_html.php:753
 #: geodirectory-functions/custom_fields_functions.php:2301
 #: geodirectory-functions/custom_fields_functions.php:2366
 #: geodirectory-functions/custom_fields_functions.php:2476
@@ -578,11 +579,12 @@ msgstr ""
 #: geodirectory-admin/option-pages/notifications_settings_array.php:72
 #: geodirectory-admin/option-pages/notifications_settings_array.php:91
 #: geodirectory-admin/option-pages/notifications_settings_array.php:110
-#: geodirectory-admin/option-pages/notifications_settings_array.php:153
-#: geodirectory-functions/custom_field_html.php:309
-#: geodirectory-functions/custom_field_html.php:348
-#: geodirectory-functions/custom_field_html.php:589
-#: geodirectory-functions/custom_field_html.php:761
+#: geodirectory-admin/option-pages/notifications_settings_array.php:137
+#: geodirectory-admin/option-pages/notifications_settings_array.php:171
+#: geodirectory-functions/custom_field_html.php:307
+#: geodirectory-functions/custom_field_html.php:346
+#: geodirectory-functions/custom_field_html.php:587
+#: geodirectory-functions/custom_field_html.php:759
 #: geodirectory-functions/custom_fields_functions.php:2307
 #: geodirectory-functions/custom_fields_functions.php:2372
 #: geodirectory-functions/custom_fields_functions.php:2482
@@ -690,7 +692,7 @@ msgstr ""
 #: geodirectory-admin/admin_functions.php:2531
 #: geodirectory-widgets/geodirectory_bestof_widget.php:418
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:166
-#: geodirectory-widgets/geodirectory_popular_widget.php:282
+#: geodirectory-widgets/geodirectory_popular_widget.php:284
 msgid "Post Type:"
 msgstr ""
 
@@ -907,7 +909,9 @@ msgstr ""
 
 #: geodirectory-admin/admin_functions.php:4682
 #: geodirectory-admin/admin_functions.php:4778
-msgid "File you are uploading is not valid. Columns does not matching."
+msgid ""
+"The file you are uploading is not valid. There are problems with the file "
+"columns."
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:4686
@@ -1067,7 +1071,7 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:3502
 #: geodirectory-functions/custom_fields_functions.php:3504
 #: geodirectory-functions/custom_fields_functions.php:3512
-#: geodirectory-functions/general_functions.php:3535
+#: geodirectory-functions/general_functions.php:3546
 #: geodirectory-templates/popup-forms.php:156 language.php:39 language.php:64
 #: language.php:167 language.php:188
 msgid "Email"
@@ -1366,7 +1370,7 @@ msgid "Post icon"
 msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:1503
-#: geodirectory-functions/custom_functions.php:1375 language.php:153
+#: geodirectory-functions/custom_functions.php:1382 language.php:153
 msgid "Reviews"
 msgstr ""
 
@@ -1389,7 +1393,7 @@ msgstr ""
 #: geodirectory-admin/admin_hooks_actions.php:1620
 #: geodirectory-admin/admin_install.php:108
 #: geodirectory-admin/option-pages/permalink_settings_array.php:130
-#: upgrade.php:141
+#: upgrade.php:145
 msgid "GD Home page"
 msgstr ""
 
@@ -1411,8 +1415,8 @@ msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:1645
 #: geodirectory-admin/admin_install.php:109
-#: geodirectory-functions/general_functions.php:3398
-#: geodirectory-functions/general_functions.php:3400
+#: geodirectory-functions/general_functions.php:3407
+#: geodirectory-functions/general_functions.php:3409
 #: geodirectory-functions/taxonomy_functions.php:248
 msgid "Add Listing"
 msgstr ""
@@ -1476,7 +1480,7 @@ msgid "Info page is missing."
 msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:1721
-#: geodirectory-admin/admin_install.php:115 upgrade.php:130
+#: geodirectory-admin/admin_install.php:115 upgrade.php:134
 msgid "Info"
 msgstr ""
 
@@ -1497,7 +1501,7 @@ msgid "Login page is missing."
 msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:1746
-#: geodirectory-admin/admin_install.php:116 language.php:32 upgrade.php:131
+#: geodirectory-admin/admin_install.php:116 language.php:32 upgrade.php:135
 msgid "Login"
 msgstr ""
 
@@ -1519,7 +1523,7 @@ msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:1771
 #: geodirectory-admin/admin_install.php:112
-#: geodirectory-functions/general_functions.php:1569
+#: geodirectory-functions/general_functions.php:1572
 msgid "Location"
 msgstr ""
 
@@ -1560,8 +1564,8 @@ msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:2462
 msgid ""
-"Select the plugins that you would like to completely remove all of its data "
-"when the plugin is deleted."
+"Select the plugin(s) for which all data should be completely removed when "
+"the plugin is deleted."
 msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:2526
@@ -1572,7 +1576,7 @@ msgstr ""
 msgid "Something went wrong."
 msgstr ""
 
-#: geodirectory-admin/admin_install.php:108 upgrade.php:141
+#: geodirectory-admin/admin_install.php:108 upgrade.php:145
 msgid "gd-home"
 msgstr ""
 
@@ -1592,18 +1596,18 @@ msgstr ""
 msgid "location"
 msgstr ""
 
-#: geodirectory-admin/admin_install.php:115 upgrade.php:130
+#: geodirectory-admin/admin_install.php:115 upgrade.php:134
 msgid "gd-info"
 msgstr ""
 
-#: geodirectory-admin/admin_install.php:116 upgrade.php:131
+#: geodirectory-admin/admin_install.php:116 upgrade.php:135
 msgid "gd-login"
 msgstr ""
 
 #: geodirectory-admin/admin_install.php:212
 #: geodirectory-admin/admin_install.php:228
 #: geodirectory-admin/admin_install.php:242
-#: geodirectory-functions/general_functions.php:2865
+#: geodirectory-functions/general_functions.php:2873
 msgid "Popular Categories"
 msgstr ""
 
@@ -1616,8 +1620,8 @@ msgstr ""
 #: geodirectory-admin/admin_install.php:246
 #: geodirectory-admin/admin_install.php:255
 #: geodirectory-admin/admin_install.php:266
-#: geodirectory-functions/general_functions.php:1525
-#: geodirectory-functions/general_functions.php:3335
+#: geodirectory-functions/general_functions.php:1528
+#: geodirectory-functions/general_functions.php:3344
 msgid "My Dashboard"
 msgstr ""
 
@@ -1656,7 +1660,7 @@ msgstr ""
 #: geodirectory-admin/admin_template_tags.php:462
 #: geodirectory-admin/admin_template_tags.php:494
 #: geodirectory-admin/admin_template_tags.php:511
-#: geodirectory_hooks_actions.php:1273
+#: geodirectory_hooks_actions.php:1283
 msgid "This field is required."
 msgstr ""
 
@@ -2216,7 +2220,7 @@ msgid "Enter your company Url"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:41
-#: geodirectory-functions/general_functions.php:1272
+#: geodirectory-functions/general_functions.php:1275
 #: tests/test-GeoDirectory.php:447
 msgid "Home"
 msgstr ""
@@ -2282,7 +2286,7 @@ msgid "Width of home left section"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:110
-#: geodirectory-admin/option-pages/design_settings_array.php:759
+#: geodirectory-admin/option-pages/design_settings_array.php:761
 msgid "Enter the width of left section of home page in %"
 msgstr ""
 
@@ -2319,7 +2323,7 @@ msgid "Listing top section"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:150
-#: geodirectory-admin/option-pages/design_settings_array.php:476
+#: geodirectory-admin/option-pages/design_settings_array.php:478
 msgid "Show the top section of listing page"
 msgstr ""
 
@@ -2348,46 +2352,46 @@ msgid "Set the listing view of listing page"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:183
-#: geodirectory-admin/option-pages/design_settings_array.php:366
-#: geodirectory-admin/option-pages/design_settings_array.php:640
-#: geodirectory-admin/option-pages/design_settings_array.php:732
-#: geodirectory-widgets/geodirectory_popular_widget.php:412
+#: geodirectory-admin/option-pages/design_settings_array.php:368
+#: geodirectory-admin/option-pages/design_settings_array.php:642
+#: geodirectory-admin/option-pages/design_settings_array.php:734
+#: geodirectory-widgets/geodirectory_popular_widget.php:413
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:241
 msgid "Grid View (Two Columns)"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:184
-#: geodirectory-admin/option-pages/design_settings_array.php:367
-#: geodirectory-admin/option-pages/design_settings_array.php:641
-#: geodirectory-admin/option-pages/design_settings_array.php:733
-#: geodirectory-widgets/geodirectory_popular_widget.php:416
+#: geodirectory-admin/option-pages/design_settings_array.php:369
+#: geodirectory-admin/option-pages/design_settings_array.php:643
+#: geodirectory-admin/option-pages/design_settings_array.php:735
+#: geodirectory-widgets/geodirectory_popular_widget.php:417
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:245
 msgid "Grid View (Three Columns)"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:185
-#: geodirectory-admin/option-pages/design_settings_array.php:368
-#: geodirectory-admin/option-pages/design_settings_array.php:642
-#: geodirectory-admin/option-pages/design_settings_array.php:734
-#: geodirectory-widgets/geodirectory_popular_widget.php:420
+#: geodirectory-admin/option-pages/design_settings_array.php:370
+#: geodirectory-admin/option-pages/design_settings_array.php:644
+#: geodirectory-admin/option-pages/design_settings_array.php:736
+#: geodirectory-widgets/geodirectory_popular_widget.php:421
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:249
 msgid "Grid View (Four Columns)"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:186
-#: geodirectory-admin/option-pages/design_settings_array.php:369
-#: geodirectory-admin/option-pages/design_settings_array.php:643
-#: geodirectory-admin/option-pages/design_settings_array.php:735
-#: geodirectory-widgets/geodirectory_popular_widget.php:424
+#: geodirectory-admin/option-pages/design_settings_array.php:371
+#: geodirectory-admin/option-pages/design_settings_array.php:645
+#: geodirectory-admin/option-pages/design_settings_array.php:737
+#: geodirectory-widgets/geodirectory_popular_widget.php:425
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:253
 msgid "Grid View (Five Columns)"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:187
-#: geodirectory-admin/option-pages/design_settings_array.php:370
-#: geodirectory-admin/option-pages/design_settings_array.php:644
-#: geodirectory-admin/option-pages/design_settings_array.php:736
-#: geodirectory-widgets/geodirectory_popular_widget.php:427
+#: geodirectory-admin/option-pages/design_settings_array.php:372
+#: geodirectory-admin/option-pages/design_settings_array.php:646
+#: geodirectory-admin/option-pages/design_settings_array.php:738
+#: geodirectory-widgets/geodirectory_popular_widget.php:428
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:256
 msgid "List view"
 msgstr ""
@@ -2421,7 +2425,7 @@ msgid "Listing bottom section"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:219
-#: geodirectory-admin/option-pages/design_settings_array.php:484
+#: geodirectory-admin/option-pages/design_settings_array.php:486
 msgid "Show the bottom section of listing page"
 msgstr ""
 
@@ -2438,7 +2442,7 @@ msgid "Set the size of the image to use on the listing pages and widgets."
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:245
-#: geodirectory-admin/option-pages/design_settings_array.php:776
+#: geodirectory-admin/option-pages/design_settings_array.php:778
 msgid "Description word limit"
 msgstr ""
 
@@ -2463,625 +2467,629 @@ msgid "Select new listing default status."
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:276
-msgid "publish"
+msgid "Pending Review"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:277
 msgid "draft"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:282
+#: geodirectory-admin/option-pages/design_settings_array.php:278
+msgid "publish"
+msgstr ""
+
+#: geodirectory-admin/option-pages/design_settings_array.php:284
 msgid "New listings settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:283
+#: geodirectory-admin/option-pages/design_settings_array.php:285
 msgid ""
 "Enter number of days a listing will appear new.(enter 0 to disable feature)"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:293
+#: geodirectory-admin/option-pages/design_settings_array.php:295
 msgid "Add Listing Form Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:296
+#: geodirectory-admin/option-pages/design_settings_array.php:298
 msgid "Enable \"Accept Terms and Conditions\""
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:297
+#: geodirectory-admin/option-pages/design_settings_array.php:299
 msgid "Show the \"Accept Terms and Conditions\" field on add listing."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:305
+#: geodirectory-admin/option-pages/design_settings_array.php:307
 msgid "Show description field as editor"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:306
+#: geodirectory-admin/option-pages/design_settings_array.php:308
 msgid "Select post types to show advanced editor on add listing page."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:312
-#: geodirectory-admin/option-pages/design_settings_array.php:612
-#: geodirectory-admin/option-pages/design_settings_array.php:851
-#: geodirectory-admin/option-pages/design_settings_array.php:864
-#: geodirectory-admin/option-pages/design_settings_array.php:877
-#: geodirectory-admin/option-pages/design_settings_array.php:890
-#: geodirectory-admin/option-pages/design_settings_array.php:921
-#: geodirectory-admin/option-pages/design_settings_array.php:934
-#: geodirectory-admin/option-pages/design_settings_array.php:947
+#: geodirectory-admin/option-pages/design_settings_array.php:314
+#: geodirectory-admin/option-pages/design_settings_array.php:614
+#: geodirectory-admin/option-pages/design_settings_array.php:853
+#: geodirectory-admin/option-pages/design_settings_array.php:866
+#: geodirectory-admin/option-pages/design_settings_array.php:879
+#: geodirectory-admin/option-pages/design_settings_array.php:892
+#: geodirectory-admin/option-pages/design_settings_array.php:923
+#: geodirectory-admin/option-pages/design_settings_array.php:936
+#: geodirectory-admin/option-pages/design_settings_array.php:949
 #: geodirectory-admin/option-pages/general_settings_array.php:85
-#: geodirectory-functions/custom_functions.php:3113
+#: geodirectory-functions/custom_functions.php:3134
 msgid "Select post types"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:323
+#: geodirectory-admin/option-pages/design_settings_array.php:325
 #: geodirectory-admin/option-pages/general_settings_array.php:225
-#: geodirectory_template_actions.php:1624
-#: geodirectory_template_actions.php:2767
-#: geodirectory_template_actions.php:3011
-#: geodirectory_template_actions.php:3424 geodirectory_widgets.php:1007
+#: geodirectory_template_actions.php:1640
+#: geodirectory_template_actions.php:2783
+#: geodirectory_template_actions.php:3027
+#: geodirectory_template_actions.php:3440 geodirectory_widgets.php:1007
 #: language.php:21
 msgid "Search"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:326
+#: geodirectory-admin/option-pages/design_settings_array.php:328
 msgid "Search Page Layout Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:332
+#: geodirectory-admin/option-pages/design_settings_array.php:334
 msgid "Search top section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:333
+#: geodirectory-admin/option-pages/design_settings_array.php:335
 msgid "Show the top section of search page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:340
+#: geodirectory-admin/option-pages/design_settings_array.php:342
 msgid "Search right section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:341
+#: geodirectory-admin/option-pages/design_settings_array.php:343
 msgid "Show the right section of search page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:348
+#: geodirectory-admin/option-pages/design_settings_array.php:350
 msgid "Width of search right section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:349
+#: geodirectory-admin/option-pages/design_settings_array.php:351
 msgid "Enter the width of right section of search page in %"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:358
+#: geodirectory-admin/option-pages/design_settings_array.php:360
 msgid "Search content section view"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:359
+#: geodirectory-admin/option-pages/design_settings_array.php:361
 msgid "Set the listing view of search page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:375
+#: geodirectory-admin/option-pages/design_settings_array.php:377
 msgid "Width of search content section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:376
+#: geodirectory-admin/option-pages/design_settings_array.php:378
 msgid "Enter the width of content section of search page in %"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:384
+#: geodirectory-admin/option-pages/design_settings_array.php:386
 msgid "Search left section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:385
+#: geodirectory-admin/option-pages/design_settings_array.php:387
 msgid "Show the left section of search page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:392
+#: geodirectory-admin/option-pages/design_settings_array.php:394
 msgid "Width of search left section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:393
+#: geodirectory-admin/option-pages/design_settings_array.php:395
 msgid "Enter the width of left section of search in %"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:401
+#: geodirectory-admin/option-pages/design_settings_array.php:403
 msgid "Search bottom section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:402
+#: geodirectory-admin/option-pages/design_settings_array.php:404
 msgid "Show the bottom section of search page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:409
+#: geodirectory-admin/option-pages/design_settings_array.php:411
 msgid "Show advanced pagination details"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:410
+#: geodirectory-admin/option-pages/design_settings_array.php:412
 msgid ""
 "This will add extra pagination info like \"Showing listings x-y of z\" after/"
 "before pagination."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:417
+#: geodirectory-admin/option-pages/design_settings_array.php:419
 msgid "Never Display"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:418
+#: geodirectory-admin/option-pages/design_settings_array.php:420
 msgid "After Pagination"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:419
+#: geodirectory-admin/option-pages/design_settings_array.php:421
 msgid "Before Pagination"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:426
+#: geodirectory-admin/option-pages/design_settings_array.php:428
 msgid "Search form settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:429
+#: geodirectory-admin/option-pages/design_settings_array.php:431
 msgid "Use old non-styled form"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:430
+#: geodirectory-admin/option-pages/design_settings_array.php:432
 msgid ""
 "Will show the old type form (not recommended unless you had added your own "
 "styles)"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:437
+#: geodirectory-admin/option-pages/design_settings_array.php:439
 msgid "Search field default value"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:438
+#: geodirectory-admin/option-pages/design_settings_array.php:440
 msgid "Show the search text box 'placeholder' value on search form."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:446
+#: geodirectory-admin/option-pages/design_settings_array.php:448
 msgid "Near field default value"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:447
+#: geodirectory-admin/option-pages/design_settings_array.php:449
 msgid "Show the near text box 'placeholder' value on search form."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:455
+#: geodirectory-admin/option-pages/design_settings_array.php:457
 msgid "Search button label"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:456
+#: geodirectory-admin/option-pages/design_settings_array.php:458
 msgid "Show the search button label on search form."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:470
+#: geodirectory-admin/option-pages/design_settings_array.php:472
 msgid "Detail"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:472
+#: geodirectory-admin/option-pages/design_settings_array.php:474
 msgid "Detail/Single Page Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:475
+#: geodirectory-admin/option-pages/design_settings_array.php:477
 msgid "Detail top section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:483
+#: geodirectory-admin/option-pages/design_settings_array.php:485
 msgid "Detail bottom section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:490
+#: geodirectory-admin/option-pages/design_settings_array.php:492
 msgid "Detail sidebar section on left side"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:491
+#: geodirectory-admin/option-pages/design_settings_array.php:493
 msgid "Display detail sidebar section on left side of the detail page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:497
+#: geodirectory-admin/option-pages/design_settings_array.php:499
 msgid "Disable GD modal"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:498
+#: geodirectory-admin/option-pages/design_settings_array.php:500
 msgid "Disable GD modal that displays slideshow images in popup"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:504
+#: geodirectory-admin/option-pages/design_settings_array.php:506
 msgid "Disable Tweet, Fb Like, Google+ buttons section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:505
+#: geodirectory-admin/option-pages/design_settings_array.php:507
 msgid ""
 "Disable Tweet, Fb Like, Google+ buttons section that displays on Detail page "
 "sidebar"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:511
+#: geodirectory-admin/option-pages/design_settings_array.php:513
 msgid "Disable Google Analytics section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:512
+#: geodirectory-admin/option-pages/design_settings_array.php:514
 msgid "Disable Google Analytics section that displays on Detail page sidebar"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:518
+#: geodirectory-admin/option-pages/design_settings_array.php:520
 msgid "Disable User Links section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:519
+#: geodirectory-admin/option-pages/design_settings_array.php:521
 msgid ""
 "Disable User Links section (Edit post, Favorite etc..) that displays on "
 "Detail page sidebar"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:525
+#: geodirectory-admin/option-pages/design_settings_array.php:527
 msgid "Disable Rating Info section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:526
+#: geodirectory-admin/option-pages/design_settings_array.php:528
 msgid "Disable Rating Info section that displays on Detail page sidebar"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:532
+#: geodirectory-admin/option-pages/design_settings_array.php:534
 msgid "Disable Listing Info section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:533
+#: geodirectory-admin/option-pages/design_settings_array.php:535
 msgid "Disable Listing Info section that displays on Detail page sidebar"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:544
+#: geodirectory-admin/option-pages/design_settings_array.php:546
 msgid "Detail Page Tab Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:547
+#: geodirectory-admin/option-pages/design_settings_array.php:549
 msgid "Exclude selected tabs from detail page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:548
+#: geodirectory-admin/option-pages/design_settings_array.php:550
 msgid ""
 "Select tabs to exclude from the list of all appearing tabs on detail page."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:554
+#: geodirectory-admin/option-pages/design_settings_array.php:556
 msgid "Select tabs"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:560
+#: geodirectory-admin/option-pages/design_settings_array.php:562
 msgid "Show as list"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:561
+#: geodirectory-admin/option-pages/design_settings_array.php:563
 msgid "Show as list instead of tabs"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:571
+#: geodirectory-admin/option-pages/design_settings_array.php:573
 msgid "Default Rating Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:574
+#: geodirectory-admin/option-pages/design_settings_array.php:576
 msgid "Upload default rating star icon"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:582
+#: geodirectory-admin/option-pages/design_settings_array.php:584
 msgid "Enable Font Awesome"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:583
+#: geodirectory-admin/option-pages/design_settings_array.php:585
 msgid ""
 "When enabled all rating images will be using font awesome rating icons as "
 "images."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:589
+#: geodirectory-admin/option-pages/design_settings_array.php:591
 msgid "Rating Icon Color"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:590
+#: geodirectory-admin/option-pages/design_settings_array.php:592
 msgid "Enter hexadecimal color for font awesome rating icons. Default: #757575"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:602
+#: geodirectory-admin/option-pages/design_settings_array.php:604
 msgid "Related Post Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:605
+#: geodirectory-admin/option-pages/design_settings_array.php:607
 msgid "Show related post listing on"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:606
+#: geodirectory-admin/option-pages/design_settings_array.php:608
 msgid "Select the post types to display related listing on detail page."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:618
+#: geodirectory-admin/option-pages/design_settings_array.php:620
 msgid "Relate to"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:619
+#: geodirectory-admin/option-pages/design_settings_array.php:621
 msgid "Set the relation between current post to related posts."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:627
+#: geodirectory-admin/option-pages/design_settings_array.php:629
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:228
 msgid "Tags"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:632
+#: geodirectory-admin/option-pages/design_settings_array.php:634
 msgid "Layout"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:633
+#: geodirectory-admin/option-pages/design_settings_array.php:635
 msgid "Set the listing view of relate post on detail page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:649
+#: geodirectory-admin/option-pages/design_settings_array.php:651
 msgid "Sort by"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:650
+#: geodirectory-admin/option-pages/design_settings_array.php:652
 msgid "Set the related post listing sort by view"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:657
+#: geodirectory-admin/option-pages/design_settings_array.php:659
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:148
-#: geodirectory-widgets/geodirectory_popular_widget.php:371
+#: geodirectory-widgets/geodirectory_popular_widget.php:366
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:188
 msgid "Latest"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:658
+#: geodirectory-admin/option-pages/design_settings_array.php:660
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:149
-#: geodirectory-widgets/geodirectory_popular_widget.php:375
+#: geodirectory-widgets/geodirectory_popular_widget.php:367
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:192
 msgid "Featured"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:659
+#: geodirectory-admin/option-pages/design_settings_array.php:661
 #: geodirectory-functions/custom_fields_functions.php:1918
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:150
-#: geodirectory-widgets/geodirectory_popular_widget.php:379
+#: geodirectory-widgets/geodirectory_popular_widget.php:368
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:196
 #: language.php:151
 msgid "Review"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:660
+#: geodirectory-admin/option-pages/design_settings_array.php:662
 #: geodirectory-functions/custom_fields_functions.php:1927
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:151
-#: geodirectory-widgets/geodirectory_popular_widget.php:383
+#: geodirectory-widgets/geodirectory_popular_widget.php:369
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:200
 msgid "Rating"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:661
+#: geodirectory-admin/option-pages/design_settings_array.php:663
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:152
-#: geodirectory-widgets/geodirectory_popular_widget.php:387
+#: geodirectory-widgets/geodirectory_popular_widget.php:370
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:204
 msgid "Random"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:662
+#: geodirectory-admin/option-pages/design_settings_array.php:664
 msgid "Nearest"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:667
+#: geodirectory-admin/option-pages/design_settings_array.php:669
 #: geodirectory-widgets/geodirectory_bestof_widget.php:450
-#: geodirectory-widgets/geodirectory_popular_widget.php:396
+#: geodirectory-widgets/geodirectory_popular_widget.php:397
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:211
 msgid "Number of posts:"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:668
+#: geodirectory-admin/option-pages/design_settings_array.php:670
 msgid "Enter number of posts to display on related posts listing"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:676
+#: geodirectory-admin/option-pages/design_settings_array.php:678
 msgid "Post excerpt"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:677
+#: geodirectory-admin/option-pages/design_settings_array.php:679
 msgid "Post content excerpt character count"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:690
+#: geodirectory-admin/option-pages/design_settings_array.php:692
 msgid "Author"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:693
+#: geodirectory-admin/option-pages/design_settings_array.php:695
 msgid "Author Page Layout Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:699
+#: geodirectory-admin/option-pages/design_settings_array.php:701
 msgid "Author top section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:700
+#: geodirectory-admin/option-pages/design_settings_array.php:702
 msgid "Show the top section of author page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:707
+#: geodirectory-admin/option-pages/design_settings_array.php:709
 msgid "Author right section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:708
+#: geodirectory-admin/option-pages/design_settings_array.php:710
 msgid "Show the right section of author page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:715
+#: geodirectory-admin/option-pages/design_settings_array.php:717
 msgid "Width of author right section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:716
+#: geodirectory-admin/option-pages/design_settings_array.php:718
 msgid "Enter the width of right section of author page in %"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:724
+#: geodirectory-admin/option-pages/design_settings_array.php:726
 msgid "Author content section view"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:725
+#: geodirectory-admin/option-pages/design_settings_array.php:727
 msgid "Set the listing view of author page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:741
+#: geodirectory-admin/option-pages/design_settings_array.php:743
 msgid "Width of author content section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:742
+#: geodirectory-admin/option-pages/design_settings_array.php:744
 msgid "Enter the width of content section of author page in %"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:750
+#: geodirectory-admin/option-pages/design_settings_array.php:752
 msgid "Author left section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:751
+#: geodirectory-admin/option-pages/design_settings_array.php:753
 msgid "Show the left section of author page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:758
+#: geodirectory-admin/option-pages/design_settings_array.php:760
 msgid "Width of author left section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:767
+#: geodirectory-admin/option-pages/design_settings_array.php:769
 msgid "Author bottom section"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:768
+#: geodirectory-admin/option-pages/design_settings_array.php:770
 msgid "Show the bottom section of author page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:789
+#: geodirectory-admin/option-pages/design_settings_array.php:791
 msgid "Navigation"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:794
+#: geodirectory-admin/option-pages/design_settings_array.php:796
 msgid "Navigation Locations"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:800
+#: geodirectory-admin/option-pages/design_settings_array.php:802
 msgid "Show geodirectory navigation in selected menu locations"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:807
+#: geodirectory-admin/option-pages/design_settings_array.php:809
 msgid "Select menu locations"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:814
+#: geodirectory-admin/option-pages/design_settings_array.php:816
 msgid "Navigation Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:821
+#: geodirectory-admin/option-pages/design_settings_array.php:823
 msgid "Show add listing navigation in menu"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:822
+#: geodirectory-admin/option-pages/design_settings_array.php:824
 msgid ""
 "Show add listing navigation in main menu? (untick to disable) If you disable "
 "this option, none of the add listing link will appear in main navigation."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:829
+#: geodirectory-admin/option-pages/design_settings_array.php:831
 msgid "Show listings navigation in menu"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:830
+#: geodirectory-admin/option-pages/design_settings_array.php:832
 msgid ""
 "Show listing navigation in main menu? (untick to disable) If you disable "
 "this option, none of the listing link will appear in main navigation."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:839
+#: geodirectory-admin/option-pages/design_settings_array.php:841
 msgid "Post Type Navigation Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:844
+#: geodirectory-admin/option-pages/design_settings_array.php:846
 msgid "Show listing link in main navigation"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:857
+#: geodirectory-admin/option-pages/design_settings_array.php:859
 msgid "Show listing link in listing navigation"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:870
+#: geodirectory-admin/option-pages/design_settings_array.php:872
 msgid "Allow post type to add from frontend"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:883
+#: geodirectory-admin/option-pages/design_settings_array.php:885
 msgid "Show add listing link in main navigation"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:896
+#: geodirectory-admin/option-pages/design_settings_array.php:898
 msgid "Show add listing link in add listing navigation"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:910
+#: geodirectory-admin/option-pages/design_settings_array.php:912
 msgid "User Dashboard Post Type Navigation Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:914
+#: geodirectory-admin/option-pages/design_settings_array.php:916
 msgid "Show add listing link in user dashboard"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:927
+#: geodirectory-admin/option-pages/design_settings_array.php:929
 msgid "Show favorite link in user dashboard"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:928
+#: geodirectory-admin/option-pages/design_settings_array.php:930
 msgid ""
 "Option will not appear if user does not have a favorite of that post type"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:940
+#: geodirectory-admin/option-pages/design_settings_array.php:942
 msgid "Show listing link in user dashboard"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:941
+#: geodirectory-admin/option-pages/design_settings_array.php:943
 msgid ""
 "Option will not appear if user does not have his/her own listing of that "
 "post type"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:956
+#: geodirectory-admin/option-pages/design_settings_array.php:958
 msgid "Scripts"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:984
+#: geodirectory-admin/option-pages/design_settings_array.php:986
 msgid "GD Lazy Load Images"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:990
+#: geodirectory-admin/option-pages/design_settings_array.php:992
 msgid "Enable lazy load images?"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:991
+#: geodirectory-admin/option-pages/design_settings_array.php:993
 msgid "GD images will be loaded only when visible on the page"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:999
+#: geodirectory-admin/option-pages/design_settings_array.php:1001
 msgid "Script Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1005
+#: geodirectory-admin/option-pages/design_settings_array.php:1007
 msgid "Custom style css code"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1014
+#: geodirectory-admin/option-pages/design_settings_array.php:1016
 msgid "Header script code"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1023
+#: geodirectory-admin/option-pages/design_settings_array.php:1025
 msgid "Footer script code"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1035
-#: geodirectory-functions/custom_functions.php:1368
+#: geodirectory-admin/option-pages/design_settings_array.php:1037
+#: geodirectory-functions/custom_functions.php:1375
 msgid "Map"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1040
-#: geodirectory-admin/option-pages/design_settings_array.php:1046
+#: geodirectory-admin/option-pages/design_settings_array.php:1042
+#: geodirectory-admin/option-pages/design_settings_array.php:1048
 msgid "Google Maps API KEY"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1048
+#: geodirectory-admin/option-pages/design_settings_array.php:1050
 #, php-format
 msgid ""
 "This is a requirement to use Google Maps, you can get a key from <a href=\"%s"
@@ -3090,59 +3098,59 @@ msgid ""
 "to add a Google API KEY?</a>)"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1063
+#: geodirectory-admin/option-pages/design_settings_array.php:1065
 msgid "Home Map Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1069
+#: geodirectory-admin/option-pages/design_settings_array.php:1071
 msgid "Select category to untick by default on map"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1070
+#: geodirectory-admin/option-pages/design_settings_array.php:1072
 msgid "Select category to untick by default on the home map."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1076
+#: geodirectory-admin/option-pages/design_settings_array.php:1078
 msgid "Select category"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1086
+#: geodirectory-admin/option-pages/design_settings_array.php:1088
 msgid "Add Listing Map Settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1092
+#: geodirectory-admin/option-pages/design_settings_array.php:1094
 msgid "Disable mouse scroll on details page map tab"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1093
+#: geodirectory-admin/option-pages/design_settings_array.php:1095
 msgid ""
 "Stops the mouse scroll zooming the map (home and listings settings set from "
 "widget)"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1104
+#: geodirectory-admin/option-pages/design_settings_array.php:1106
 msgid "Default map settings"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1119
+#: geodirectory-admin/option-pages/design_settings_array.php:1121
 msgid "Upload map default marker icon"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1128
+#: geodirectory-admin/option-pages/design_settings_array.php:1130
 msgid "Show button control on map to enable/disable dragging"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1129
+#: geodirectory-admin/option-pages/design_settings_array.php:1131
 msgid ""
 "If checked, it displays button control to enable/disable dragging on google "
 "maps for phone devices"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1135
+#: geodirectory-admin/option-pages/design_settings_array.php:1137
 msgid "Select Maps API"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1136
+#: geodirectory-admin/option-pages/design_settings_array.php:1138
 msgid ""
 "- Google Maps API will force to load Google JS library only.<br>- "
 "OpenStreetMap API will force to load OpenStreetMap JS library only.<br>- "
@@ -3152,32 +3160,45 @@ msgid ""
 "will disable and hides maps for entire site."
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1142
+#: geodirectory-admin/option-pages/design_settings_array.php:1144
 msgid "Select Map"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1144
+#: geodirectory-admin/option-pages/design_settings_array.php:1146
 msgid "Load Automatic"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1145
+#: geodirectory-admin/option-pages/design_settings_array.php:1147
 msgid "Load Google Maps API"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1146
+#: geodirectory-admin/option-pages/design_settings_array.php:1148
 msgid "Load OpenStreetMap API"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1147
+#: geodirectory-admin/option-pages/design_settings_array.php:1149
 msgid "Disable Maps"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1153
+#: geodirectory-admin/option-pages/design_settings_array.php:1155
 msgid "Show / hide post type and category on map"
 msgstr ""
 
-#: geodirectory-admin/option-pages/design_settings_array.php:1159
+#: geodirectory-admin/option-pages/design_settings_array.php:1161
 msgid "Select Map Category"
+msgstr ""
+
+#: geodirectory-admin/option-pages/design_settings_array.php:1174
+msgid "Map Cache (Beta)"
+msgstr ""
+
+#: geodirectory-admin/option-pages/design_settings_array.php:1180
+msgid "Enable map cache"
+msgstr ""
+
+#: geodirectory-admin/option-pages/design_settings_array.php:1181
+msgid ""
+"This will cache the map JSON for 24 hours or until a GD listing is saved."
 msgstr ""
 
 #: geodirectory-admin/option-pages/general_settings_array.php:21
@@ -3347,12 +3368,12 @@ msgid "Show search distances in miles or km"
 msgstr ""
 
 #: geodirectory-admin/option-pages/general_settings_array.php:240
-#: geodirectory-functions/map-functions/map_template_tags.php:294
+#: geodirectory-functions/map-functions/map_template_tags.php:296
 msgid "Miles"
 msgstr ""
 
 #: geodirectory-admin/option-pages/general_settings_array.php:249
-#: geodirectory-functions/map-functions/map_template_tags.php:297
+#: geodirectory-functions/map-functions/map_template_tags.php:299
 msgid "Kilometers"
 msgstr ""
 
@@ -3451,7 +3472,7 @@ msgstr ""
 
 #: geodirectory-admin/option-pages/notifications_settings_array.php:81
 #: geodirectory-admin/option-pages/notifications_settings_array.php:90
-#: geodirectory-admin/option-pages/notifications_settings_array.php:260
+#: geodirectory-admin/option-pages/notifications_settings_array.php:278
 msgid "Send to friend"
 msgstr ""
 
@@ -3466,34 +3487,39 @@ msgid "Admin Emails"
 msgstr ""
 
 #: geodirectory-admin/option-pages/notifications_settings_array.php:127
+#: geodirectory-admin/option-pages/notifications_settings_array.php:136
+msgid "Notify to admin on post submit"
+msgstr ""
+
+#: geodirectory-admin/option-pages/notifications_settings_array.php:145
 msgid "Post submit success to admin email"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:132
-#: geodirectory-admin/option-pages/notifications_settings_array.php:191
+#: geodirectory-admin/option-pages/notifications_settings_array.php:150
+#: geodirectory-admin/option-pages/notifications_settings_array.php:209
 msgid "Post Submitted Successfully"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:140
+#: geodirectory-admin/option-pages/notifications_settings_array.php:158
 msgid ""
 "<p>Dear Admin,</p><p>A new  listing has been published [#listing_link#]. "
 "This email is just for your information.</p><br><p>[#site_name#]</p>"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:143
-#: geodirectory-admin/option-pages/notifications_settings_array.php:152
+#: geodirectory-admin/option-pages/notifications_settings_array.php:161
+#: geodirectory-admin/option-pages/notifications_settings_array.php:170
 msgid "Notify Admin when listing edited by Author"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:161
+#: geodirectory-admin/option-pages/notifications_settings_array.php:179
 msgid "Listing edited by Author"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:166
+#: geodirectory-admin/option-pages/notifications_settings_array.php:184
 msgid "[[#site_name#]] Listing edited by Author"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:174
+#: geodirectory-admin/option-pages/notifications_settings_array.php:192
 msgid ""
 "<p>Dear Admin,</p><p>A listing [#listing_link#] has been edited by it's "
 "author [#post_author_name#].</p><br><p><b>Listing Details:</b></p><p>Listing "
@@ -3502,79 +3528,79 @@ msgid ""
 "p><p>[#site_name#]</p>"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:181
-#: geodirectory-admin/option-pages/notifications_settings_array.php:183
+#: geodirectory-admin/option-pages/notifications_settings_array.php:199
+#: geodirectory-admin/option-pages/notifications_settings_array.php:201
 msgid "Client Emails"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:186
+#: geodirectory-admin/option-pages/notifications_settings_array.php:204
 msgid "Post submit success to client email"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:199
+#: geodirectory-admin/option-pages/notifications_settings_array.php:217
 msgid ""
 "<p>Dear [#client_name#],</p><p>You submitted the below listing information. "
 "This email is just for your information.</p><p>[#listing_link#]</"
 "p><br><p>Thank you for your contribution.</p><p>[#site_name#]</p>"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:204
+#: geodirectory-admin/option-pages/notifications_settings_array.php:222
 msgid "User forgot password email"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:209
+#: geodirectory-admin/option-pages/notifications_settings_array.php:227
 msgid "[#site_name#] - Your new password"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:217
+#: geodirectory-admin/option-pages/notifications_settings_array.php:235
 msgid ""
 "<p>Dear [#client_name#],<p><p>You requested a new password for "
 "[#site_name_url#]</p><p>[#login_details#]</p><p>You can login here: "
 "[#login_url#]</p><p>Thank you,<br /><br />[#site_name_url#].</p>"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:221
+#: geodirectory-admin/option-pages/notifications_settings_array.php:239
 msgid "Registration success email"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:226
+#: geodirectory-admin/option-pages/notifications_settings_array.php:244
 msgid "Your Log In Details"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:234
+#: geodirectory-admin/option-pages/notifications_settings_array.php:252
 msgid ""
 "<p>Dear [#client_name#],</p><p>You can log in  with the following "
 "information:</p><p>[#login_details#]</p><p>You can login here: "
 "[#login_url#]</p><p>Thank you,<br /><br />[#site_name_url#].</p>"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:237
+#: geodirectory-admin/option-pages/notifications_settings_array.php:255
 msgid "Listing published email"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:242
-#: geodirectory-functions/post_functions.php:3087
+#: geodirectory-admin/option-pages/notifications_settings_array.php:260
+#: geodirectory-functions/post_functions.php:3114
 msgid "Listing Published Successfully"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:250
-#: geodirectory-functions/post_functions.php:3091
+#: geodirectory-admin/option-pages/notifications_settings_array.php:268
+#: geodirectory-functions/post_functions.php:3118
 msgid ""
 "<p>Dear [#client_name#],</p><p>Your listing [#listing_link#] has been "
 "published. This email is just for your information.</p><p>[#listing_link#]</"
 "p><br><p>Thank you for your contribution.</p><p>[#site_name#]</p>"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:255
-#: geodirectory-admin/option-pages/notifications_settings_array.php:257
+#: geodirectory-admin/option-pages/notifications_settings_array.php:273
+#: geodirectory-admin/option-pages/notifications_settings_array.php:275
 msgid "Other Emails"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:265
+#: geodirectory-admin/option-pages/notifications_settings_array.php:283
 msgid "[#from_name#] thought you might be interested in.."
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:273
+#: geodirectory-admin/option-pages/notifications_settings_array.php:291
 msgid ""
 "<p>Dear [#to_name#],<p><p>Your friend has sent you a message from "
 "<b>[#site_name#]</b> </p><p>===============================</"
@@ -3583,15 +3609,15 @@ msgid ""
 ">[#site_name#].</p>"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:277
+#: geodirectory-admin/option-pages/notifications_settings_array.php:295
 msgid "Email enquiry"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:282
+#: geodirectory-admin/option-pages/notifications_settings_array.php:300
 msgid "Website Enquiry"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:290
+#: geodirectory-admin/option-pages/notifications_settings_array.php:308
 msgid ""
 "<p>Dear [#to_name#],<p><p>An enquiry has been sent from <b>[#listing_link#]</"
 "b></p><p>===============================</p><p>[#comments#]</"
@@ -3599,16 +3625,16 @@ msgid ""
 ">[#site_name_url#].</p>"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:296
-#: geodirectory-admin/option-pages/notifications_settings_array.php:298
+#: geodirectory-admin/option-pages/notifications_settings_array.php:314
+#: geodirectory-admin/option-pages/notifications_settings_array.php:316
 msgid "Messages"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:301
+#: geodirectory-admin/option-pages/notifications_settings_array.php:319
 msgid "Post submitted success"
 msgstr ""
 
-#: geodirectory-admin/option-pages/notifications_settings_array.php:306
+#: geodirectory-admin/option-pages/notifications_settings_array.php:324
 msgid ""
 "<p>Thank you, your information has been successfully received.</p><p><a href="
 "\"[#submited_information_link#]\" >View your submitted information &raquo;</"
@@ -4171,7 +4197,7 @@ msgstr ""
 #: geodirectory-functions/cat-meta-functions/Tax-meta-class.php:592
 #: geodirectory-functions/cat-meta-functions/Tax-meta-class.php:635
 #: geodirectory-functions/cat-meta-functions/Tax-meta-class.php:904
-#: geodirectory_hooks_actions.php:1294
+#: geodirectory_hooks_actions.php:1304
 msgid "Remove"
 msgstr ""
 
@@ -4200,8 +4226,8 @@ msgid "Remove Image"
 msgstr ""
 
 #: geodirectory-functions/cat-meta-functions/Tax-meta-class.php:973
-#: geodirectory-functions/cat-meta-functions/cat_meta.php:275
-#: geodirectory-functions/cat-meta-functions/cat_meta.php:276
+#: geodirectory-functions/cat-meta-functions/cat_meta.php:261
+#: geodirectory-functions/cat-meta-functions/cat_meta.php:262
 msgid "Upload Image"
 msgstr ""
 
@@ -4310,11 +4336,11 @@ msgstr ""
 msgid "Select the Schema to use for this category"
 msgstr ""
 
-#: geodirectory-functions/cat-meta-functions/cat_meta.php:198
+#: geodirectory-functions/cat-meta-functions/cat_meta.php:177
 msgid "Default Image"
 msgstr ""
 
-#: geodirectory-functions/cat-meta-functions/cat_meta.php:199
+#: geodirectory-functions/cat-meta-functions/cat_meta.php:178
 msgid "Cat ID"
 msgstr ""
 
@@ -4470,198 +4496,194 @@ msgid "Double Click to toggle and drag-drop to sort"
 msgstr ""
 
 #: geodirectory-functions/custom_field_html.php:95
-msgid "Default field, should not be removed."
-msgstr ""
-
-#: geodirectory-functions/custom_field_html.php:97
 #: geodirectory-functions/custom_fields_functions.php:2253
 msgid "Click to remove field"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:106
+#: geodirectory-functions/custom_field_html.php:104
 msgid "Fieldset:"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:176
+#: geodirectory-functions/custom_field_html.php:174
 msgid "Admin title :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:178
+#: geodirectory-functions/custom_field_html.php:176
 msgid "This is used as the field setting name here in the backend only."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:204
+#: geodirectory-functions/custom_field_html.php:202
 msgid "Frontend title :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:206
+#: geodirectory-functions/custom_field_html.php:204
 msgid "This will be the title for the field on the frontend."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:232
+#: geodirectory-functions/custom_field_html.php:230
 msgid "Frontend description :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:234
+#: geodirectory-functions/custom_field_html.php:232
 msgid "This will be shown below the field on the add listing form."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:260
+#: geodirectory-functions/custom_field_html.php:258
 msgid "HTML variable name :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:262
+#: geodirectory-functions/custom_field_html.php:260
 msgid ""
 "This is a unique identifier used in the HTML, it MUST NOT contain spaces or "
 "special characters."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:266
+#: geodirectory-functions/custom_field_html.php:264
 msgid "Must not contain spaces or special characters"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:292
+#: geodirectory-functions/custom_field_html.php:290
 msgid "Is active :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:294
+#: geodirectory-functions/custom_field_html.php:292
 msgid "If no is selected then the field will not be displayed anywhere."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:331
+#: geodirectory-functions/custom_field_html.php:329
 msgid "For admin use only? :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:333
+#: geodirectory-functions/custom_field_html.php:331
 msgid "If yes is selected then only site admin can see and edit this field."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:370
+#: geodirectory-functions/custom_field_html.php:368
 msgid "Default value :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:374
+#: geodirectory-functions/custom_field_html.php:372
 msgid "Should the checkbox be checked by default?"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:376
+#: geodirectory-functions/custom_field_html.php:374
 msgid "A default value for the field, usually blank. Ex: info@mysite.com"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:378
+#: geodirectory-functions/custom_field_html.php:376
 msgid ""
 "A default value for the field, usually blank. (for \"link\" this will be "
 "used as the link text)"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:386
+#: geodirectory-functions/custom_field_html.php:384
 msgid "Unchecked"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:387
+#: geodirectory-functions/custom_field_html.php:385
 msgid "Checked"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:390
+#: geodirectory-functions/custom_field_html.php:388
 msgid "info@mysite.com"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:414
+#: geodirectory-functions/custom_field_html.php:412
 msgid "Show in what locations?:"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:416
+#: geodirectory-functions/custom_field_html.php:414
 msgid "Select in what locations you want to display this field."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:427
+#: geodirectory-functions/custom_field_html.php:425
 msgid "Details page sidebar"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:428
+#: geodirectory-functions/custom_field_html.php:426
 msgid "More info tab"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:429
+#: geodirectory-functions/custom_field_html.php:427
 msgid "Listings page"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:430
+#: geodirectory-functions/custom_field_html.php:428
 msgid "Details page own tab"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:431
+#: geodirectory-functions/custom_field_html.php:429
 msgid "Map bubble"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:463
+#: geodirectory-functions/custom_field_html.php:461
 msgid "Select locations"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:571
+#: geodirectory-functions/custom_field_html.php:569
 msgid "Is required :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:573
+#: geodirectory-functions/custom_field_html.php:571
 msgid "Select yes to set field as required"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:613
+#: geodirectory-functions/custom_field_html.php:611
 msgid "Required message:"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:615
+#: geodirectory-functions/custom_field_html.php:613
 msgid ""
 "Enter text for the error message if the field is required and has not "
 "fulfilled the requirements."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:657
+#: geodirectory-functions/custom_field_html.php:655
 msgid "Custom css"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:661
+#: geodirectory-functions/custom_field_html.php:659
 msgid "Upload icon :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:663
+#: geodirectory-functions/custom_field_html.php:661
 msgid ""
 "Upload icon using media and enter its url path, or enter <a href=\"http://"
 "fortawesome.github.io/Font-Awesome/icons/\" target=\"_blank\" >font awesome "
 "</a>class eg:\"fa fa-home\""
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:692
+#: geodirectory-functions/custom_field_html.php:690
 msgid "Css class :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:694
+#: geodirectory-functions/custom_field_html.php:692
 msgid "Enter custom css class for field custom style."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:695
+#: geodirectory-functions/custom_field_html.php:693
 msgid "(Enter class `gd-comma-list` to show list as comma separated)"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:739
+#: geodirectory-functions/custom_field_html.php:737
 msgid "Posts sort options"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:743
+#: geodirectory-functions/custom_field_html.php:741
 msgid "Include this field in sorting options :"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:745
+#: geodirectory-functions/custom_field_html.php:743
 msgid ""
 "Lets you use this filed as a sorting option, set from sorting options above."
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:800
+#: geodirectory-functions/custom_field_html.php:798
 #: geodirectory-functions/custom_fields_functions.php:2503
 msgid "Save"
 msgstr ""
 
-#: geodirectory-functions/custom_field_html.php:803
+#: geodirectory-functions/custom_field_html.php:801
 #: geodirectory-functions/custom_fields_functions.php:2505
 #: geodirectory-templates/listing-listview.php:373
 #: geodirectory-templates/widget-listing-listview.php:243 language.php:172
@@ -4686,13 +4708,13 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:1049
 msgid ""
 "Column creation failed, you may have too many columns or the default value "
-"must have in valid date format."
+"might have a invalid date format."
 msgstr ""
 
 #: geodirectory-functions/custom_fields_functions.php:1064
 msgid ""
 "Column creation failed, you may have too many columns or the default value "
-"must have in valid time format."
+"might have a invalid time format."
 msgstr ""
 
 #: geodirectory-functions/custom_fields_functions.php:1902
@@ -4716,8 +4738,8 @@ msgid "Sort by the overall rating value"
 msgstr ""
 
 #: geodirectory-functions/custom_fields_functions.php:1936
-#: geodirectory-functions/map-functions/get_markers.php:123
-#: geodirectory-functions/map-functions/map_template_tags.php:346
+#: geodirectory-functions/map-functions/get_markers.php:262
+#: geodirectory-functions/map-functions/map_template_tags.php:348
 #: geodirectory_widgets.php:599
 msgid "Title"
 msgstr ""
@@ -5159,7 +5181,7 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:3562
 #: geodirectory-functions/custom_fields_functions.php:3564
 #: geodirectory-functions/custom_fields_functions.php:3572
-#: geodirectory-functions/custom_functions.php:1354
+#: geodirectory-functions/custom_functions.php:1361
 msgid "Video"
 msgstr ""
 
@@ -5170,7 +5192,7 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:3577
 #: geodirectory-functions/custom_fields_functions.php:3579
 #: geodirectory-functions/custom_fields_functions.php:3587
-#: geodirectory-functions/custom_functions.php:1361 language.php:61
+#: geodirectory-functions/custom_functions.php:1368 language.php:61
 msgid "Special Offers"
 msgstr ""
 
@@ -5187,7 +5209,7 @@ msgid "Choose"
 msgstr ""
 
 #: geodirectory-functions/custom_fields_input_functions.php:1077
-#: geodirectory-functions/map-functions/map_template_tags.php:240
+#: geodirectory-functions/map-functions/map_template_tags.php:242
 msgid "My location"
 msgstr ""
 
@@ -5197,19 +5219,19 @@ msgstr ""
 
 #: geodirectory-functions/custom_fields_input_functions.php:1181
 #: geodirectory-widgets/home_map_widget.php:172
-#: geodirectory-widgets/listing_map_widget.php:309
+#: geodirectory-widgets/listing_map_widget.php:318
 msgid "Satellite Map"
 msgstr ""
 
 #: geodirectory-functions/custom_fields_input_functions.php:1188
 #: geodirectory-widgets/home_map_widget.php:175
-#: geodirectory-widgets/listing_map_widget.php:312
+#: geodirectory-widgets/listing_map_widget.php:321
 msgid "Hybrid Map"
 msgstr ""
 
 #: geodirectory-functions/custom_fields_input_functions.php:1194
 #: geodirectory-widgets/home_map_widget.php:177
-#: geodirectory-widgets/listing_map_widget.php:314
+#: geodirectory-widgets/listing_map_widget.php:323
 msgid "Terrain Map"
 msgstr ""
 
@@ -5223,7 +5245,7 @@ msgstr ""
 
 #: geodirectory-functions/custom_fields_input_functions.php:1335
 #: geodirectory-functions/custom_fields_input_functions.php:1339
-#: geodirectory-functions/taxonomy_functions.php:1190
+#: geodirectory-functions/taxonomy_functions.php:1186
 #: geodirectory-widgets/geodirectory_bestof_widget.php:218
 msgid "Select Category"
 msgstr ""
@@ -5320,7 +5342,7 @@ msgid ""
 msgstr ""
 
 #: geodirectory-functions/custom_fields_predefined.php:453
-#: geodirectory-functions/map-functions/map_template_tags.php:243
+#: geodirectory-functions/map-functions/map_template_tags.php:245
 msgid "Get Directions"
 msgstr ""
 
@@ -5350,6 +5372,7 @@ msgstr ""
 
 #: geodirectory-functions/custom_functions.php:130
 #: geodirectory-functions/custom_functions.php:143
+#: geodirectory-functions/post_functions.php:2680
 msgid "Read more [...]"
 msgstr ""
 
@@ -5378,107 +5401,107 @@ msgid "Related Listings"
 msgstr ""
 
 #: geodirectory-functions/custom_functions.php:1096
-#: geodirectory-functions/custom_functions.php:1177
+#: geodirectory-functions/custom_functions.php:1184
 msgid "Posts related to Category:"
 msgstr ""
 
 #: geodirectory-functions/custom_functions.php:1098
-#: geodirectory-functions/custom_functions.php:1180
+#: geodirectory-functions/custom_functions.php:1187
 msgid "Posts related to Tag:"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1122
+#: geodirectory-functions/custom_functions.php:1129
 msgid "Everywhere"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1334
+#: geodirectory-functions/custom_functions.php:1341
 msgid "Profile"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1340
+#: geodirectory-functions/custom_functions.php:1347
 msgid "More Info"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1347
+#: geodirectory-functions/custom_functions.php:1354
 msgid "Photos"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1382
+#: geodirectory-functions/custom_functions.php:1389
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:48
 msgid "Related Listing"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1698
+#: geodirectory-functions/custom_functions.php:1719
 msgid "Video Preview Placeholder"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2026
+#: geodirectory-functions/custom_functions.php:2047
 msgid "Read more"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2091
+#: geodirectory-functions/custom_functions.php:2112
 msgid "reviewed"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2120
-#: geodirectory-functions/general_functions.php:2935
+#: geodirectory-functions/custom_functions.php:2141
+#: geodirectory-functions/general_functions.php:2944
 #, php-format
 msgid "%s Categories"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2155
+#: geodirectory-functions/custom_functions.php:2176
 #: geodirectory_widgets.php:376
 msgid "Tweet"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2251
+#: geodirectory-functions/custom_functions.php:2272
 msgid "Pinpoint"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3044
+#: geodirectory-functions/custom_functions.php:3065
 msgid "Translate Listing"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3046
+#: geodirectory-functions/custom_functions.php:3067
 msgid "Language"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3046
+#: geodirectory-functions/custom_functions.php:3067
 msgid "Translate"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3058
+#: geodirectory-functions/custom_functions.php:3079
 msgid "(duplicate)"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3069
+#: geodirectory-functions/custom_functions.php:3090
 msgid "Create duplicate"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3077
+#: geodirectory-functions/custom_functions.php:3098
 msgid "Duplicate"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3106
+#: geodirectory-functions/custom_functions.php:3127
 msgid "Disable WPML duplicate translation"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3107
+#: geodirectory-functions/custom_functions.php:3128
 msgid ""
 "Select post types to disable front end WPML duplicate translation. For "
 "selected post types the WPML duplicate option will be disabled from listing "
 "detail page sidebar."
 msgstr ""
 
-#: geodirectory-functions/custom_taxonomy_hooks_actions.php:45
+#: geodirectory-functions/custom_taxonomy_hooks_actions.php:54
 msgid "places"
 msgstr ""
 
-#: geodirectory-functions/custom_taxonomy_hooks_actions.php:804
+#: geodirectory-functions/custom_taxonomy_hooks_actions.php:802
 msgid "Virtual"
 msgstr ""
 
-#: geodirectory-functions/custom_taxonomy_hooks_actions.php:809
+#: geodirectory-functions/custom_taxonomy_hooks_actions.php:807
 #, php-format
 msgid "Virtual <span class=\"count\">(%s)</span>"
 msgid_plural "Virtual <span class=\"count\">(%s)</span>"
@@ -5544,7 +5567,7 @@ msgstr ""
 
 #: geodirectory-functions/general_functions.php:1009
 #: geodirectory-functions/general_functions.php:1168
-#: geodirectory-functions/general_functions.php:1977
+#: geodirectory-functions/general_functions.php:1984
 #, php-format
 msgid ""
 "Email from GeoDirectory failed to send.\n"
@@ -5561,111 +5584,116 @@ msgstr ""
 msgid "Password:"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1545
+#: geodirectory-functions/general_functions.php:1548
 msgid "My"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1578
-#: geodirectory-functions/general_functions.php:1582
-#: geodirectory-functions/general_functions.php:1586
+#: geodirectory-functions/general_functions.php:1581
+#: geodirectory-functions/general_functions.php:1585
+#: geodirectory-functions/general_functions.php:1589
 msgid " Archive for"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1590
+#: geodirectory-functions/general_functions.php:1593
 msgid " Author Archive"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1593
+#: geodirectory-functions/general_functions.php:1596
 msgid "Blog Archives"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1596
+#: geodirectory-functions/general_functions.php:1599
 msgid " Search Results"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1701
+#: geodirectory-functions/general_functions.php:1708
 msgid "Remote server did not respond"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1704
+#: geodirectory-functions/general_functions.php:1711
 #, php-format
 msgid "Remote server returned error response %1$d %2$s"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1706
+#: geodirectory-functions/general_functions.php:1713
 msgid "Remote file is incorrect size"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1708
+#: geodirectory-functions/general_functions.php:1715
 msgid "Zero size file downloaded"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1714
+#: geodirectory-functions/general_functions.php:1721
 msgid "GeoDirectory: fetch_remote_file() failed to delete temp file."
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2741
+#: geodirectory-functions/general_functions.php:2749
 msgid "% Comments"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2743
+#: geodirectory-functions/general_functions.php:2751
 msgid "No Comments"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2745
+#: geodirectory-functions/general_functions.php:2753
 msgid "1 Comment"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2749
+#: geodirectory-functions/general_functions.php:2757
 msgid "% Reviews"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2751
+#: geodirectory-functions/general_functions.php:2759
 #: geodirectory-widgets/geodirectory_bestof_widget.php:251
 msgid "No Reviews"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2753
+#: geodirectory-functions/general_functions.php:2761
 #: geodirectory-widgets/geodirectory_bestof_widget.php:255
 msgid "1 Review"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2965
+#: geodirectory-functions/general_functions.php:2974
 msgid "More Categories"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2966
+#: geodirectory-functions/general_functions.php:2975
 msgid "Less Categories"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3354 language.php:165
+#: geodirectory-functions/general_functions.php:3363 language.php:165
 #: language.php:181
 msgid "Logout"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3447
-#: geodirectory-functions/general_functions.php:3449
+#: geodirectory-functions/general_functions.php:3457
+#: geodirectory-functions/general_functions.php:3459
 #: geodirectory-functions/user_functions.php:98 language.php:110
 msgid "My Favorites"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3494
-#: geodirectory-functions/general_functions.php:3496
+#: geodirectory-functions/general_functions.php:3505
+#: geodirectory-functions/general_functions.php:3507
 #: geodirectory-functions/user_functions.php:164
 msgid "My Listings"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3538 language.php:189
+#: geodirectory-functions/general_functions.php:3549 language.php:189
 msgid "Password"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3833
+#: geodirectory-functions/general_functions.php:3722
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: geodirectory-functions/general_functions.php:3851
 #: geodirectory-widgets/geodirectory_bestof_widget.php:326
 #: geodirectory-widgets/geodirectory_bestof_widget.php:667
 msgid "View all"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:5070
+#: geodirectory-functions/general_functions.php:5092
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr ""
@@ -5684,108 +5712,108 @@ msgstr ""
 msgid "Login failed"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:592
+#: geodirectory-functions/helper_functions.php:595
 msgid "January"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:593
+#: geodirectory-functions/helper_functions.php:596
 msgid "February"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:594
+#: geodirectory-functions/helper_functions.php:597
 msgid "March"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:595
+#: geodirectory-functions/helper_functions.php:598
 msgid "April"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:596
-#: geodirectory-functions/helper_functions.php:628
-#: geodirectory_hooks_actions.php:721
+#: geodirectory-functions/helper_functions.php:599
+#: geodirectory-functions/helper_functions.php:634
+#: geodirectory_hooks_actions.php:731
 msgid "May"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:597
+#: geodirectory-functions/helper_functions.php:600
 msgid "June"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:598
+#: geodirectory-functions/helper_functions.php:601
 msgid "July"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:599
+#: geodirectory-functions/helper_functions.php:602
 msgid "August"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:600
+#: geodirectory-functions/helper_functions.php:603
 msgid "September"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:601
+#: geodirectory-functions/helper_functions.php:604
 msgid "October"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:602
+#: geodirectory-functions/helper_functions.php:605
 msgid "November"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:603
+#: geodirectory-functions/helper_functions.php:606
 msgid "December"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:624
-#: geodirectory_hooks_actions.php:717
+#: geodirectory-functions/helper_functions.php:630
+#: geodirectory_hooks_actions.php:727
 msgid "Jan"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:625
-#: geodirectory_hooks_actions.php:718
+#: geodirectory-functions/helper_functions.php:631
+#: geodirectory_hooks_actions.php:728
 msgid "Feb"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:626
-#: geodirectory_hooks_actions.php:719
+#: geodirectory-functions/helper_functions.php:632
+#: geodirectory_hooks_actions.php:729
 msgid "Mar"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:627
-#: geodirectory_hooks_actions.php:720
+#: geodirectory-functions/helper_functions.php:633
+#: geodirectory_hooks_actions.php:730
 msgid "Apr"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:629
-#: geodirectory_hooks_actions.php:722
+#: geodirectory-functions/helper_functions.php:635
+#: geodirectory_hooks_actions.php:732
 msgid "Jun"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:630
-#: geodirectory_hooks_actions.php:723
+#: geodirectory-functions/helper_functions.php:636
+#: geodirectory_hooks_actions.php:733
 msgid "Jul"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:631
-#: geodirectory_hooks_actions.php:724
+#: geodirectory-functions/helper_functions.php:637
+#: geodirectory_hooks_actions.php:734
 msgid "Aug"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:632
-#: geodirectory_hooks_actions.php:725
+#: geodirectory-functions/helper_functions.php:638
+#: geodirectory_hooks_actions.php:735
 msgid "Sep"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:633
-#: geodirectory_hooks_actions.php:726
+#: geodirectory-functions/helper_functions.php:639
+#: geodirectory_hooks_actions.php:736
 msgid "Oct"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:634
-#: geodirectory_hooks_actions.php:727
+#: geodirectory-functions/helper_functions.php:640
+#: geodirectory_hooks_actions.php:737
 msgid "Nov"
 msgstr ""
 
-#: geodirectory-functions/helper_functions.php:635
-#: geodirectory_hooks_actions.php:728
+#: geodirectory-functions/helper_functions.php:641
+#: geodirectory_hooks_actions.php:738
 msgid "Dec"
 msgstr ""
 
@@ -5793,38 +5821,38 @@ msgstr ""
 msgid "Select Country"
 msgstr ""
 
-#: geodirectory-functions/location_functions.php:681
-#: geodirectory-functions/location_functions.php:683
-#: geodirectory-functions/location_functions.php:689
+#: geodirectory-functions/location_functions.php:716
+#: geodirectory-functions/location_functions.php:718
+#: geodirectory-functions/location_functions.php:724
 #, php-format
 msgid "in %s"
 msgstr ""
 
-#: geodirectory-functions/map-functions/get_markers.php:37
+#: geodirectory-functions/map-functions/get_markers.php:163
 msgid "No marker data found"
 msgstr ""
 
-#: geodirectory-functions/map-functions/get_markers.php:341
-#: geodirectory-functions/map-functions/get_markers.php:412
+#: geodirectory-functions/map-functions/get_markers.php:480
+#: geodirectory-functions/map-functions/get_markers.php:551
 msgid "to"
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_functions.php:288
+#: geodirectory-functions/map-functions/map_functions.php:295
 msgid "No category"
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_on_add_listing_page.php:378
-#: geodirectory-functions/map-functions/map_on_add_listing_page.php:638
+#: geodirectory-functions/map-functions/map_on_add_listing_page.php:408
+#: geodirectory-functions/map-functions/map_on_add_listing_page.php:668
 #, php-format
 msgid "Please choose any address of the (%s) city only."
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_on_add_listing_page.php:388
-#: geodirectory-functions/map-functions/map_on_add_listing_page.php:648
+#: geodirectory-functions/map-functions/map_on_add_listing_page.php:418
+#: geodirectory-functions/map-functions/map_on_add_listing_page.php:678
 msgid "Cannot determine address at this location."
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_on_add_listing_page.php:798
+#: geodirectory-functions/map-functions/map_on_add_listing_page.php:828
 msgid "<h3>Map Not Loaded</h3><p>Sorry, unable to load Maps API."
 msgstr ""
 
@@ -5832,23 +5860,23 @@ msgstr ""
 msgid "Title or Keyword"
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_template_tags.php:215
+#: geodirectory-functions/map-functions/map_template_tags.php:217
 msgid "<h3>Google Map Not Loaded</h3><p>Sorry, unable to load Google Maps API."
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_template_tags.php:287
+#: geodirectory-functions/map-functions/map_template_tags.php:289
 msgid "Driving"
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_template_tags.php:288
+#: geodirectory-functions/map-functions/map_template_tags.php:290
 msgid "Walking"
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_template_tags.php:289
+#: geodirectory-functions/map-functions/map_template_tags.php:291
 msgid "Bicycling"
 msgstr ""
 
-#: geodirectory-functions/map-functions/map_template_tags.php:290
+#: geodirectory-functions/map-functions/map_template_tags.php:292
 msgid "Public Transport"
 msgstr ""
 
@@ -5883,11 +5911,11 @@ msgstr ""
 msgid "Leave a Review"
 msgstr ""
 
-#: geodirectory-functions/reviews.php:101 geodirectory_hooks_actions.php:1283
+#: geodirectory-functions/reviews.php:101 geodirectory_hooks_actions.php:1293
 msgid "Post Review"
 msgstr ""
 
-#: geodirectory-functions/reviews.php:102 geodirectory_hooks_actions.php:1284
+#: geodirectory-functions/reviews.php:102 geodirectory_hooks_actions.php:1294
 msgid "Review text"
 msgstr ""
 
@@ -5897,12 +5925,12 @@ msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr ""
 
 #: geodirectory-functions/shortcode_functions.php:668
-#: geodirectory_shortcodes.php:1319
+#: geodirectory_shortcodes.php:1333
 msgid ","
 msgstr ""
 
 #: geodirectory-functions/shortcode_functions.php:892
-#: geodirectory_template_tags.php:429
+#: geodirectory_template_tags.php:430
 #, php-format
 msgid "Showing listings %d-%d of %d"
 msgstr ""
@@ -6015,7 +6043,7 @@ msgid ""
 msgstr ""
 
 #: geodirectory-functions/taxonomy_functions.php:118
-#: geodirectory_template_actions.php:2189
+#: geodirectory_template_actions.php:2205
 msgid "Listing"
 msgstr ""
 
@@ -6025,216 +6053,216 @@ msgstr ""
 msgid "Add %s"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:622
+#: geodirectory-functions/taxonomy_functions.php:618
 #: geodirectory-widgets/geodirectory_cpt_categories_widget.php:255
 #: geodirectory-widgets/geodirectory_cpt_categories_widget.php:279
 #: geodirectory-widgets/geodirectory_cpt_categories_widget.php:288
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:201
-#: geodirectory-widgets/geodirectory_popular_widget.php:335
-#: geodirectory-widgets/geodirectory_popular_widget.php:353
-#: geodirectory_template_actions.php:1520
-#: geodirectory_template_actions.php:2749
+#: geodirectory-widgets/geodirectory_popular_widget.php:337
+#: geodirectory-widgets/geodirectory_popular_widget.php:355
+#: geodirectory_template_actions.php:1536
+#: geodirectory_template_actions.php:2765
 msgid "All"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:906
+#: geodirectory-functions/taxonomy_functions.php:902
 #, php-format
 msgid "You have reached category limit of %d categories."
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1079
+#: geodirectory-functions/taxonomy_functions.php:1075
 #, php-format
 msgid "Add listing in %s category"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1087
+#: geodirectory-functions/taxonomy_functions.php:1083
 #, php-format
 msgid "Set %s as default category"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1095
+#: geodirectory-functions/taxonomy_functions.php:1091
 msgid "Add listing in category"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1228
+#: geodirectory-functions/taxonomy_functions.php:1224
 #, php-format
 msgid "%s updated. <a href=\"%s\">View %s</a>"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1229
+#: geodirectory-functions/taxonomy_functions.php:1225
 msgid "Custom field updated."
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1230
+#: geodirectory-functions/taxonomy_functions.php:1226
 msgid "Custom field deleted."
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1231
+#: geodirectory-functions/taxonomy_functions.php:1227
 #, php-format
 msgid "%s updated."
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1232
+#: geodirectory-functions/taxonomy_functions.php:1228
 #, php-format
 msgid "%s restored to revision from %s"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1233
+#: geodirectory-functions/taxonomy_functions.php:1229
 #, php-format
 msgid "%s published. <a href=\"%s\">View %s</a>"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1234
+#: geodirectory-functions/taxonomy_functions.php:1230
 #, php-format
 msgid "%s saved."
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1235
+#: geodirectory-functions/taxonomy_functions.php:1231
 #, php-format
 msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview %s</a>"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1236
+#: geodirectory-functions/taxonomy_functions.php:1232
 #, php-format
 msgid ""
 "%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
 "\">Preview %s</a>"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1236
+#: geodirectory-functions/taxonomy_functions.php:1232
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1237
+#: geodirectory-functions/taxonomy_functions.php:1233
 #, php-format
 msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview %s</a>"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1279
+#: geodirectory-functions/taxonomy_functions.php:1275
 msgid "Place Tags"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1280
+#: geodirectory-functions/taxonomy_functions.php:1276
 msgid "Place Tag"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1281
+#: geodirectory-functions/taxonomy_functions.php:1277
 msgid "Search Place Tags"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1282
+#: geodirectory-functions/taxonomy_functions.php:1278
 msgid "Popular Place Tags"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1283
+#: geodirectory-functions/taxonomy_functions.php:1279
 msgid "All Place Tags"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1284
+#: geodirectory-functions/taxonomy_functions.php:1280
 msgid "Edit Place Tag"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1285
+#: geodirectory-functions/taxonomy_functions.php:1281
 msgid "Update Place Tag"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1286
+#: geodirectory-functions/taxonomy_functions.php:1282
 msgid "Add New Place Tag"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1287
+#: geodirectory-functions/taxonomy_functions.php:1283
 msgid "New Place Tag Name"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1288
+#: geodirectory-functions/taxonomy_functions.php:1284
 msgid "Add or remove Place tags"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1289
+#: geodirectory-functions/taxonomy_functions.php:1285
 msgid "Choose from the most used Place tags"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1290
+#: geodirectory-functions/taxonomy_functions.php:1286
 msgid "Separate Place tags with commas"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1317
+#: geodirectory-functions/taxonomy_functions.php:1313
 msgid "Place Categories"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1318
+#: geodirectory-functions/taxonomy_functions.php:1314
 msgid "Place Category"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1319
+#: geodirectory-functions/taxonomy_functions.php:1315
 msgid "Search Place Categories"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1320
+#: geodirectory-functions/taxonomy_functions.php:1316
 msgid "Popular Place Categories"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1321
+#: geodirectory-functions/taxonomy_functions.php:1317
 msgid "All Place Categories"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1322
+#: geodirectory-functions/taxonomy_functions.php:1318
 msgid "Edit Place Category"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1323
+#: geodirectory-functions/taxonomy_functions.php:1319
 msgid "Update Place Category"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1324
+#: geodirectory-functions/taxonomy_functions.php:1320
 msgid "Add New Place Category"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1325
+#: geodirectory-functions/taxonomy_functions.php:1321
 msgid "New Place Category"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1326
+#: geodirectory-functions/taxonomy_functions.php:1322
 msgid "Add or remove Place categories"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1347
+#: geodirectory-functions/taxonomy_functions.php:1343
 msgid "Places"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1348
+#: geodirectory-functions/taxonomy_functions.php:1344
 msgid "Place"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1349
+#: geodirectory-functions/taxonomy_functions.php:1345
 msgid "Add New"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1350
+#: geodirectory-functions/taxonomy_functions.php:1346
 msgid "Add New Place"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1351
+#: geodirectory-functions/taxonomy_functions.php:1347
 msgid "Edit Place"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1352
+#: geodirectory-functions/taxonomy_functions.php:1348
 msgid "New Place"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1353
+#: geodirectory-functions/taxonomy_functions.php:1349
 msgid "View Place"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1354
+#: geodirectory-functions/taxonomy_functions.php:1350
 msgid "Search Places"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1355
+#: geodirectory-functions/taxonomy_functions.php:1351
 msgid "No Place Found"
 msgstr ""
 
-#: geodirectory-functions/taxonomy_functions.php:1356
+#: geodirectory-functions/taxonomy_functions.php:1352
 msgid "No Place Found In Trash"
 msgstr ""
 
@@ -6249,7 +6277,7 @@ msgid "No favorite listings found which match your selection."
 msgstr ""
 
 #: geodirectory-functions/template_functions.php:515
-#: geodirectory_hooks_actions.php:1576
+#: geodirectory_hooks_actions.php:1586
 msgid "No listings found which match your selection."
 msgstr ""
 
@@ -6347,7 +6375,7 @@ msgstr ""
 #: geodirectory-widgets/geodirectory_cpt_categories_widget.php:251
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:156
 #: geodirectory-widgets/geodirectory_popular_widget.php:95
-#: geodirectory-widgets/geodirectory_popular_widget.php:269
+#: geodirectory-widgets/geodirectory_popular_widget.php:271
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:172
 msgid "Title:"
 msgstr ""
@@ -6357,7 +6385,7 @@ msgid "Number of categories:"
 msgstr ""
 
 #: geodirectory-widgets/geodirectory_bestof_widget.php:471
-#: geodirectory-widgets/geodirectory_popular_widget.php:445
+#: geodirectory-widgets/geodirectory_popular_widget.php:446
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:272
 msgid "Post Content excerpt character count :"
 msgstr ""
@@ -6392,13 +6420,13 @@ msgstr ""
 
 #: geodirectory-widgets/geodirectory_bestof_widget.php:517
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:348
-#: geodirectory-widgets/geodirectory_popular_widget.php:454
+#: geodirectory-widgets/geodirectory_popular_widget.php:455
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:280
 msgid "Enable Location Filter:"
 msgstr ""
 
 #: geodirectory-widgets/geodirectory_bestof_widget.php:526
-#: geodirectory-widgets/geodirectory_popular_widget.php:494
+#: geodirectory-widgets/geodirectory_popular_widget.php:495
 msgid "Use current viewing post type:"
 msgstr ""
 
@@ -6436,13 +6464,13 @@ msgstr ""
 
 #: geodirectory-widgets/geodirectory_cpt_categories_widget.php:270
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:216
-#: geodirectory-widgets/geodirectory_popular_widget.php:360
+#: geodirectory-widgets/geodirectory_popular_widget.php:361
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:181
 msgid "Sort by:"
 msgstr ""
 
 #: geodirectory-widgets/geodirectory_cpt_categories_widget.php:272
-#: geodirectory-widgets/geodirectory_popular_widget.php:367
+#: geodirectory-widgets/geodirectory_popular_widget.php:365
 msgid "A-Z"
 msgstr ""
 
@@ -6505,7 +6533,7 @@ msgid "GD > Listing Slider"
 msgstr ""
 
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:190
-#: geodirectory-widgets/geodirectory_popular_widget.php:314
+#: geodirectory-widgets/geodirectory_popular_widget.php:316
 msgid "Post Category:"
 msgstr ""
 
@@ -6552,7 +6580,7 @@ msgid "Show Title:"
 msgstr ""
 
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:340
-#: geodirectory-widgets/geodirectory_popular_widget.php:462
+#: geodirectory-widgets/geodirectory_popular_widget.php:463
 msgid "Show only featured listings:"
 msgstr ""
 
@@ -6584,30 +6612,34 @@ msgstr ""
 msgid "GD > Popular Post View"
 msgstr ""
 
-#: geodirectory-widgets/geodirectory_popular_widget.php:271
+#: geodirectory-widgets/geodirectory_popular_widget.php:273
 msgid "can be used"
 msgstr ""
 
-#: geodirectory-widgets/geodirectory_popular_widget.php:406
+#: geodirectory-widgets/geodirectory_popular_widget.php:407
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:235
 msgid "Layout:"
 msgstr ""
 
-#: geodirectory-widgets/geodirectory_popular_widget.php:435
+#: geodirectory-widgets/geodirectory_popular_widget.php:436
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:263
 msgid "Listing width:"
 msgstr ""
 
-#: geodirectory-widgets/geodirectory_popular_widget.php:470
+#: geodirectory-widgets/geodirectory_popular_widget.php:471
 msgid "Show only listings with special offers:"
 msgstr ""
 
-#: geodirectory-widgets/geodirectory_popular_widget.php:478
+#: geodirectory-widgets/geodirectory_popular_widget.php:479
 msgid "Show only listings with pics:"
 msgstr ""
 
-#: geodirectory-widgets/geodirectory_popular_widget.php:486
+#: geodirectory-widgets/geodirectory_popular_widget.php:487
 msgid "Show only listings with videos:"
+msgstr ""
+
+#: geodirectory-widgets/geodirectory_popular_widget.php:503
+msgid "Hide if no posts:"
 msgstr ""
 
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:24
@@ -6644,22 +6676,22 @@ msgid ""
 msgstr ""
 
 #: geodirectory-widgets/home_map_widget.php:162
-#: geodirectory-widgets/listing_map_widget.php:299
+#: geodirectory-widgets/listing_map_widget.php:308
 msgid " Select Map View"
 msgstr ""
 
 #: geodirectory-widgets/home_map_widget.php:169
-#: geodirectory-widgets/listing_map_widget.php:306
+#: geodirectory-widgets/listing_map_widget.php:315
 msgid "Road Map"
 msgstr ""
 
 #: geodirectory-widgets/home_map_widget.php:188
-#: geodirectory-widgets/listing_map_widget.php:325
+#: geodirectory-widgets/listing_map_widget.php:334
 msgid "Map Zoom level"
 msgstr ""
 
 #: geodirectory-widgets/home_map_widget.php:209
-#: geodirectory-widgets/listing_map_widget.php:351
+#: geodirectory-widgets/listing_map_widget.php:360
 msgid "Map Auto Zoom ?"
 msgstr ""
 
@@ -6668,7 +6700,7 @@ msgid "Collapse child/sub categories ?"
 msgstr ""
 
 #: geodirectory-widgets/home_map_widget.php:229
-#: geodirectory-widgets/listing_map_widget.php:369
+#: geodirectory-widgets/listing_map_widget.php:378
 msgid "Enable mouse scroll zoom ?"
 msgstr ""
 
@@ -6681,317 +6713,321 @@ msgstr ""
 msgid "GD > GMap - Listing page"
 msgstr ""
 
-#: geodirectory-widgets/listing_map_widget.php:279
+#: geodirectory-widgets/listing_map_widget.php:288
 msgid "Map Width <small>(Default is : 294) you can use px or % here</small>"
 msgstr ""
 
-#: geodirectory-widgets/listing_map_widget.php:289
+#: geodirectory-widgets/listing_map_widget.php:298
 msgid "Map Height <small>(Default is : 370) you can use px or vh here</small>"
 msgstr ""
 
-#: geodirectory-widgets/listing_map_widget.php:360
+#: geodirectory-widgets/listing_map_widget.php:369
 msgid "Map Sticky(should stick to the right of screen) ?"
 msgstr ""
 
-#: geodirectory-widgets/listing_map_widget.php:374
+#: geodirectory-widgets/listing_map_widget.php:383
 msgid "Enable marker cluster?"
 msgstr ""
 
-#: geodirectory-widgets/listing_map_widget.php:380
+#: geodirectory-widgets/listing_map_widget.php:389
 msgid "Show all listings on map? (not just page list)"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:471
+#: geodirectory_hooks_actions.php:481
 msgid "Edit this Post"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:685
+#: geodirectory_hooks_actions.php:695
 msgid "No results available"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:741
+#: geodirectory_hooks_actions.php:751
 msgid "Last Year"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:747
+#: geodirectory_hooks_actions.php:757
 msgid "This Year"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:792
+#: geodirectory_hooks_actions.php:802
 msgid "Mon"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:793
+#: geodirectory_hooks_actions.php:803
 msgid "Tue"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:794
+#: geodirectory_hooks_actions.php:804
 msgid "Wed"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:795
+#: geodirectory_hooks_actions.php:805
 msgid "Thu"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:796
+#: geodirectory_hooks_actions.php:806
 msgid "Fri"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:797
+#: geodirectory_hooks_actions.php:807
 msgid "Sat"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:798
+#: geodirectory_hooks_actions.php:808
 msgid "Sun"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:815
+#: geodirectory_hooks_actions.php:825
 msgid "Last Week"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:823
+#: geodirectory_hooks_actions.php:833
 msgid "This Week"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1030
+#: geodirectory_hooks_actions.php:1040
 msgid "Show Google Analytics"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1032
+#: geodirectory_hooks_actions.php:1042
 msgid "Analytics"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1034
+#: geodirectory_hooks_actions.php:1044
 msgid "Refresh"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1034
+#: geodirectory_hooks_actions.php:1044
 msgid "Active Users:"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1039
+#: geodirectory_hooks_actions.php:1049
 msgid "Last Week vs This Week"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1040
+#: geodirectory_hooks_actions.php:1050
 msgid "This Year vs Last Year"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1041
+#: geodirectory_hooks_actions.php:1051
 msgid "Top Countries"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1117
+#: geodirectory_hooks_actions.php:1127
 msgid "reviews"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1117
+#: geodirectory_hooks_actions.php:1127
 msgid "review"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1119
+#: geodirectory_hooks_actions.php:1129
 msgid "based on"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1249
+#: geodirectory_hooks_actions.php:1259
 msgid "HTML Variable Name must not be blank"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1250
+#: geodirectory_hooks_actions.php:1260
 msgid "Please do not use special character and spaces in HTML Variable Name."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1251
+#: geodirectory_hooks_actions.php:1261
 msgid "HTML Variable Name should be a unique name."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1252
+#: geodirectory_hooks_actions.php:1262
 msgid "Are you wish to delete this field?"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1254
+#: geodirectory_hooks_actions.php:1264
 msgid "File has been successfully deleted."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1255
+#: geodirectory_hooks_actions.php:1265
 msgid "You do NOT have permission to delete this file."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1256
+#: geodirectory_hooks_actions.php:1266
 msgid "Order saved!"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1257
+#: geodirectory_hooks_actions.php:1267
 msgid "You do not have permission to reorder images."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1258
+#: geodirectory_hooks_actions.php:1268
 msgid "Address not found for:"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1260
+#: geodirectory_hooks_actions.php:1270
 msgid "Are you sure you wish to delete this listing?"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1261
+#: geodirectory_hooks_actions.php:1271
 msgid ""
 "Deleting the main listing of a franchise will turn all franchises in regular "
 "listings. Are you sure wish to delete this main listing?"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1263
+#: geodirectory_hooks_actions.php:1273
 msgid "Error : please retry"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1264
+#: geodirectory_hooks_actions.php:1274
 msgid "Please enter listing url prefix"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1265
+#: geodirectory_hooks_actions.php:1275
 msgid "Invalid character in listing url prefix"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1266
+#: geodirectory_hooks_actions.php:1276
 msgid "Please enter location url prefix"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1267
+#: geodirectory_hooks_actions.php:1277
 msgid "Invalid character in location url prefix"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1268
+#: geodirectory_hooks_actions.php:1278
 msgid "Please enter location and category url separator"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1269
+#: geodirectory_hooks_actions.php:1279
 msgid "Invalid character in location and category url separator"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1270
+#: geodirectory_hooks_actions.php:1280
 msgid "Please enter listing detail url separator"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1271
+#: geodirectory_hooks_actions.php:1281
 msgid "Invalid character in listing detail url separator"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1272
+#: geodirectory_hooks_actions.php:1282
 msgid "Error loading listing."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1274
+#: geodirectory_hooks_actions.php:1284
 msgid "Please enter valid email address."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1281
+#: geodirectory_hooks_actions.php:1291
 msgid "Post Reply"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1282
+#: geodirectory_hooks_actions.php:1292
 msgid "Reply text"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1285
+#: geodirectory_hooks_actions.php:1295
 msgid "Please select star rating, you can't leave a review without stars."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1289
+#: geodirectory_hooks_actions.php:1299
 msgid "Enable Dragging"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1290
+#: geodirectory_hooks_actions.php:1300
 msgid "Disable Dragging"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1291
+#: geodirectory_hooks_actions.php:1301
 #, php-format
 msgid "File size error : You tried to upload a file over %s"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1292
+#: geodirectory_hooks_actions.php:1302
 #, php-format
 msgid "You have reached your upload limit of %s files."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1293
+#: geodirectory_hooks_actions.php:1303
 #, php-format
 msgid "You may only upload %s files with this package, please try again."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1295
+#: geodirectory_hooks_actions.php:1305
 msgid "Allowed files"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1296
+#: geodirectory_hooks_actions.php:1306
 #, php-format
 msgid "File type error. Allowed file types: %s"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1298
+#: geodirectory_hooks_actions.php:1308
 msgid "Wait..."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1299
+#: geodirectory_hooks_actions.php:1309
 msgid "Searching..."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1304
+#: geodirectory_hooks_actions.php:1314
 msgid "Start"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1305
+#: geodirectory_hooks_actions.php:1315
 msgid "Via {viaNumber}"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1306 language.php:175
+#: geodirectory_hooks_actions.php:1316 language.php:175
 msgid "Enter Your Location"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1307
-msgid "Are you wish to Deauthorize and break Analytics?"
+#: geodirectory_hooks_actions.php:1317
+msgid "Do you wish to Deauthorize and break Analytics?"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1308
+#: geodirectory_hooks_actions.php:1318
 msgid "My Location"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1309 geodirectory_template_tags.php:722
+#: geodirectory_hooks_actions.php:1319 geodirectory_template_tags.php:723
 msgid "Unable to find your location"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1310 geodirectory_template_tags.php:725
+#: geodirectory_hooks_actions.php:1320 geodirectory_template_tags.php:726
 msgid "Permission denied in finding your location"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1311 geodirectory_template_tags.php:728
+#: geodirectory_hooks_actions.php:1321 geodirectory_template_tags.php:729
 msgid "Your location is currently unknown"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1312 geodirectory_template_tags.php:731
+#: geodirectory_hooks_actions.php:1322 geodirectory_template_tags.php:732
 msgid "Attempt to find location took too long"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1313 geodirectory_template_tags.php:734
+#: geodirectory_hooks_actions.php:1323 geodirectory_template_tags.php:735
 msgid "Location detection not supported in browser"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1353
+#: geodirectory_hooks_actions.php:1363
 msgid "GeoDirectory"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1515
+#: geodirectory_hooks_actions.php:1525
 msgid "Please accept our terms and conditions"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:2612
+#: geodirectory_hooks_actions.php:2620
 msgid "Published"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:2614
+#: geodirectory_hooks_actions.php:2622
+msgid "Awaiting Review"
+msgstr ""
+
+#: geodirectory_hooks_actions.php:2624
 msgid "Not published"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:2619
+#: geodirectory_hooks_actions.php:2629
 msgid "Status: "
 msgstr ""
 
@@ -6999,90 +7035,90 @@ msgstr ""
 msgid "You must login to post."
 msgstr ""
 
-#: geodirectory_template_actions.php:1195
+#: geodirectory_template_actions.php:1207
 msgid "%s Tags: %l"
 msgstr ""
 
-#: geodirectory_template_actions.php:1249
+#: geodirectory_template_actions.php:1261
 msgid "%s Category: %l"
 msgstr ""
 
-#: geodirectory_template_actions.php:1449
+#: geodirectory_template_actions.php:1465
 msgid "Previous"
 msgstr ""
 
-#: geodirectory_template_actions.php:1451
+#: geodirectory_template_actions.php:1467
 msgid "Next"
 msgstr ""
 
-#: geodirectory_template_actions.php:1522
-#: geodirectory_template_actions.php:2751
+#: geodirectory_template_actions.php:1538
+#: geodirectory_template_actions.php:2767
 msgid "My Favorite"
 msgstr ""
 
-#: geodirectory_template_actions.php:1555
-#: geodirectory_template_actions.php:1568
+#: geodirectory_template_actions.php:1571
+#: geodirectory_template_actions.php:1584
 msgid "'"
 msgstr ""
 
-#: geodirectory_template_actions.php:1555
-#: geodirectory_template_actions.php:1568
+#: geodirectory_template_actions.php:1571
+#: geodirectory_template_actions.php:1584
 msgid "'s"
 msgstr ""
 
-#: geodirectory_template_actions.php:1556
-#: geodirectory_template_actions.php:1558
-#: geodirectory_template_actions.php:1569
-#: geodirectory_template_actions.php:1571
-#: geodirectory_template_actions.php:1599
-#: geodirectory_template_actions.php:1609
-#: geodirectory_template_actions.php:1619
-#: geodirectory_template_actions.php:2762
+#: geodirectory_template_actions.php:1572
+#: geodirectory_template_actions.php:1574
+#: geodirectory_template_actions.php:1585
+#: geodirectory_template_actions.php:1587
+#: geodirectory_template_actions.php:1615
+#: geodirectory_template_actions.php:1625
+#: geodirectory_template_actions.php:1635
+#: geodirectory_template_actions.php:2778
 msgid " in"
 msgstr ""
 
-#: geodirectory_template_actions.php:1624
-#: geodirectory_template_actions.php:2767
-#: geodirectory_template_actions.php:3011
+#: geodirectory_template_actions.php:1640
+#: geodirectory_template_actions.php:2783
+#: geodirectory_template_actions.php:3027
 msgid " For :"
 msgstr ""
 
-#: geodirectory_template_actions.php:2235
+#: geodirectory_template_actions.php:2251
 #, php-format
 msgid "%s Title"
 msgstr ""
 
-#: geodirectory_template_actions.php:2307
+#: geodirectory_template_actions.php:2323
 #, php-format
 msgid "%s Description"
 msgstr ""
 
-#: geodirectory_template_actions.php:2519
+#: geodirectory_template_actions.php:2535
 msgid "Type 64 into this box"
 msgstr ""
 
-#: geodirectory_template_actions.php:2532
+#: geodirectory_template_actions.php:2548
 msgid "Note: You will be able to see a preview in the next page"
 msgstr ""
 
-#: geodirectory_template_actions.php:3424
+#: geodirectory_template_actions.php:3440
 msgid " :"
 msgstr ""
 
-#: geodirectory_template_tags.php:427
+#: geodirectory_template_tags.php:428
 #, php-format
 msgid "Showing %s %d-%d of %d"
 msgstr ""
 
-#: geodirectory_template_tags.php:641 geodirectory_template_tags.php:642
+#: geodirectory_template_tags.php:642 geodirectory_template_tags.php:643
 msgid "In:"
 msgstr ""
 
-#: geodirectory_template_tags.php:667
+#: geodirectory_template_tags.php:668
 msgid "Search was not successful for the following reason :"
 msgstr ""
 
-#: geodirectory_template_tags.php:676
+#: geodirectory_template_tags.php:677
 msgid "Search was not successful for the requested address."
 msgstr ""
 
@@ -7378,8 +7414,8 @@ msgstr ""
 
 #: language.php:72
 msgid ""
-"Add Images : <small>(You can upload more than one images to create image "
-"gallery on detail page)</small>"
+"Add Images : <small>(You can upload images to create image gallery on detail "
+"page)</small>"
 msgstr ""
 
 #: language.php:73
@@ -7431,26 +7467,26 @@ msgstr ""
 #: language.php:92
 #, php-format
 msgid ""
-"This is a preview of your listing and its not published yet. <br />If there "
-"is something wrong then \"Go back and edit\" or if you want to add listing "
-"then click on \"Publish\".<br> You are going to pay <b>%s</b> &  alive days "
-"are <b>%s</b> as %s listing"
+"This is a preview of your listing, it has not been published yet. <br />If "
+"there is something wrong then \"Go back and edit\" or if you want to add the "
+"listing then click on \"Publish\".<br> You are going to pay <b>%s</b> &  "
+"alive days are <b>%s</b> as %s listing"
 msgstr ""
 
 #: language.php:93
 msgid ""
-"This is a preview of your listing and its not updated yet. <br />If there is "
-"something wrong then \"Go back and edit\" or if you want to update listing "
-"then click on \"Update now\""
+"This is a preview of your listing, it has not been updated yet. <br />If "
+"there is something wrong then \"Go back and edit\" or if you want to update "
+"the listing then click on \"Update now\""
 msgstr ""
 
 #: language.php:94
 #, php-format
 msgid ""
-"This is a preview of your listing and its not published yet. <br />If there "
-"is something wrong then \"Go back and edit\" or if you want to add listing "
-"then click on \"Publish\".<br> Your %s listing will published for <b>%s</b> "
-"days"
+"This is a preview of your listing, it has not been published yet. <br />If "
+"there is something wrong then \"Go back and edit\" or if you want to add the "
+"listing then click on \"Publish\".<br> Your %s listing will published for <b>"
+"%s</b> days"
 msgstr ""
 
 #: language.php:95

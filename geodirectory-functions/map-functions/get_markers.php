@@ -5,7 +5,133 @@
  * @since 1.0.0
  * @package GeoDirectory
  */
- 
+
+// Enable map cache if set
+if(get_option('geodir_enable_map_cache')){
+    add_filter('geodir_get_markers_cache','geodir_get_map_cache');
+    add_filter('geodir_markers_json','geodir_save_map_cache',10);
+}
+
+
+
+/**
+ * Get the map cache if it exists.
+ *
+ * @param string $cache The JSON string cache if exists.
+ * @since 1.6.22
+ * @return string
+ */
+function geodir_get_map_cache($cache){
+
+    // if a search is going on then dont even try to check for cache.
+    if(isset($_REQUEST['search']) && !empty($_REQUEST['search'])){
+        return $cache;
+    }
+
+    $url_params = array();
+    $url_params[] = isset($_REQUEST['cat_id']) ? $_REQUEST['cat_id'] : '';
+    $url_params[] = isset($_REQUEST['zl']) ? $_REQUEST['zl'] : '';
+    $url_params[] = isset($_REQUEST['gd_map_h']) ? $_REQUEST['gd_map_h'] : '';
+    $url_params[] = isset($_REQUEST['gd_map_w']) ? $_REQUEST['gd_map_w'] : '';
+    $url_params[] = isset($_REQUEST['gd_posttype']) ? $_REQUEST['gd_posttype'] : '';
+    $url_params[] = isset($_REQUEST['lat_ne']) ? $_REQUEST['lat_ne'] : '';
+    $url_params[] = isset($_REQUEST['lon_ne']) ? $_REQUEST['lon_ne'] : '';
+    $url_params[] = isset($_REQUEST['lat_sw']) ? $_REQUEST['lat_sw'] : '';
+    $url_params[] = isset($_REQUEST['lon_sw']) ? $_REQUEST['lon_sw'] : '';
+    $url_params[] = isset($_REQUEST['gd_country']) ? $_REQUEST['gd_country'] : '';
+    $url_params[] = isset($_REQUEST['gd_region']) ? $_REQUEST['gd_region'] : '';
+    $url_params[] = isset($_REQUEST['gd_city']) ? $_REQUEST['gd_city'] : '';
+    $url_params[] = isset($_REQUEST['gd_neighbourhood']) ? $_REQUEST['gd_neighbourhood'] : '';
+
+    $file_name = sanitize_file_name( md5( implode("-",$url_params) )  );
+
+    $blog_id = get_current_blog_id();
+    if($blog_id>1){
+        $file_name = $blog_id."_".$file_name;
+    }
+
+    $file_path = realpath(dirname(__FILE__))."/map-cache/";
+
+
+    if(file_exists($file_path.$file_name.".json")){
+
+
+        // do the cache delete stuff
+        $cache_time = get_option('geodir_map_cache');
+        if(!$cache_time){
+            $cache_time = time();
+            update_option('geodir_map_cache', $cache_time);
+        }
+
+        if((time() - $cache_time) > 86400){ // delete the cache every 24 hours
+            geodir_delete_map_cache();
+        }
+
+        ob_start();
+        readfile($file_path.$file_name.".json"); // readfile is quicker then file get contents
+        return ob_get_clean();
+    }
+
+    return $cache;
+}
+
+
+/**
+ * Save the map cache to a json file.
+ *
+ * @param string $map_json The map marker json.
+ * @since 1.6.22
+ * @return mixed
+ */
+function geodir_save_map_cache($map_json){
+
+    // if a search is going on then dont even try to check for cache.
+    if(isset($_REQUEST['search']) && !empty($_REQUEST['search'])){
+        return $map_json;
+    }
+
+    $url_params = array();
+    $url_params[] = isset($_REQUEST['cat_id']) ? $_REQUEST['cat_id'] : '';
+    $url_params[] = isset($_REQUEST['zl']) ? $_REQUEST['zl'] : '';
+    $url_params[] = isset($_REQUEST['gd_map_h']) ? $_REQUEST['gd_map_h'] : '';
+    $url_params[] = isset($_REQUEST['gd_map_w']) ? $_REQUEST['gd_map_w'] : '';
+    $url_params[] = isset($_REQUEST['gd_posttype']) ? $_REQUEST['gd_posttype'] : '';
+    $url_params[] = isset($_REQUEST['lat_ne']) ? $_REQUEST['lat_ne'] : '';
+    $url_params[] = isset($_REQUEST['lon_ne']) ? $_REQUEST['lon_ne'] : '';
+    $url_params[] = isset($_REQUEST['lat_sw']) ? $_REQUEST['lat_sw'] : '';
+    $url_params[] = isset($_REQUEST['lon_sw']) ? $_REQUEST['lon_sw'] : '';
+    $url_params[] = isset($_REQUEST['gd_country']) ? $_REQUEST['gd_country'] : '';
+    $url_params[] = isset($_REQUEST['gd_region']) ? $_REQUEST['gd_region'] : '';
+    $url_params[] = isset($_REQUEST['gd_city']) ? $_REQUEST['gd_city'] : '';
+    $url_params[] = isset($_REQUEST['gd_neighbourhood']) ? $_REQUEST['gd_neighbourhood'] : '';
+
+    $file_name = sanitize_file_name( md5( implode("-",$url_params) )  );
+
+    $blog_id = get_current_blog_id();
+    if($blog_id>1){
+        $file_name = $blog_id."_".$file_name;
+    }
+
+    $file_path = realpath(dirname(__FILE__))."/map-cache/";
+
+
+    global $wp_filesystem;
+    if (empty($wp_filesystem)) {
+        require_once (ABSPATH . '/wp-admin/includes/file.php');
+        WP_Filesystem();
+    }
+    $wp_filesystem->put_contents(
+        $file_path.$file_name.".json",
+        $map_json,
+        FS_CHMOD_FILE // predefined mode settings for WP files
+    );
+
+
+    return $map_json;
+
+}
+
+
 if (isset($_REQUEST['ajax_action']) && $_REQUEST['ajax_action'] == 'homemap_catlist') {
     global $gd_session;
     $gd_post_type = sanitize_text_field($_REQUEST['post_type']);
@@ -82,8 +208,21 @@ function get_markers() {
     
     global $wpdb, $plugin_prefix, $geodir_cat_icons, $gd_marker_sizes,$gd_session;
 
+
+    /**
+     * Filter to allow for any map caching to be output before queries.
+     *
+     * @since 1.6.22
+     */
+    $map_cache = apply_filters('geodir_get_markers_cache','');
+    if($map_cache){
+        return $map_cache;
+        wp_die();
+    }
+
+
+
     $search = '';
-    $main_query_array;
 
     $srcharr = array("'", "/", "-", '"', '\\', '&#39;');
     $replarr = array("&prime;", "&frasl;", "&ndash;", "&ldquo;", '', "&prime;");
@@ -470,9 +609,20 @@ function get_markers() {
     $totalcount = count(array_unique($post_ids));
 
     if (!empty($cat_content_info)) {
-        return '[{"totalcount":"' . $totalcount . '",' . substr(implode(',', $cat_content_info), 1) . ']';
+        $map_json = '[{"totalcount":"' . $totalcount . '",' . substr(implode(',', $cat_content_info), 1) . ']';
     }
     else {
-        return '[{"totalcount":"0"}]';
+        $map_json =  '[{"totalcount":"0"}]';
     }
+
+
+    /**
+     * Filter the marker json return.
+     *
+     * @since 1.6.22
+     * @param string $map_json The JSON string of the map markers results.
+     */
+    return apply_filters('geodir_markers_json',$map_json);
 }
+
+

@@ -2459,7 +2459,7 @@ add_filter('geodir_general_settings', 'geodir_uninstall_settings', 100, 1);
  * @since 1.6.9
  */
 function geodir_uninstall_settings_desc() {
-    echo '<p class="gd-un-settings-desc">' . __('Select the plugins that you would like to completely remove all of its data when the plugin is deleted.', 'geodirectory') . '</p>';
+    echo '<p class="gd-un-settings-desc">' . __('Select the plugin(s) for which all data should be completely removed when the plugin is deleted.', 'geodirectory') . '</p>';
 }
 add_action('geodir_settings_uninstall_settings_main_start', 'geodir_uninstall_settings_desc');
 
@@ -2594,3 +2594,4 @@ function geodir_check_quick_edit() {
     }
 }
 add_action( 'admin_head', 'geodir_check_quick_edit', 10 );
+

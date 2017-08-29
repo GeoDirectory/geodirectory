@@ -1046,7 +1046,7 @@ if (!function_exists('geodir_custom_field_save')) {
 
                         $add_result = geodir_add_column_if_not_exist($detail_table, $htmlvar_name, $meta_field_add);
                         if ($add_result === false) {
-                            return __('Column creation failed, you may have too many columns or the default value must have in valid date format.', 'geodirectory');
+                            return __('Column creation failed, you may have too many columns or the default value might have a invalid date format.', 'geodirectory');
                         }
 
                         break;
@@ -1061,7 +1061,7 @@ if (!function_exists('geodir_custom_field_save')) {
 
                         $add_result = geodir_add_column_if_not_exist($detail_table, $htmlvar_name, $meta_field_add);
                         if ($add_result === false) {
-                            return __('Column creation failed, you may have too many columns or the default value must have in valid time format.', 'geodirectory');
+                            return __('Column creation failed, you may have too many columns or the default value might have a invalid time format.', 'geodirectory');
                         }
 
                         break;

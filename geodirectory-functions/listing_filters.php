@@ -801,13 +801,13 @@ function searching_filter_where($where) {
 
 
     // get term sql
-    $term_sql = "              SELECT $wpdb->term_taxonomy.term_id                     
-									FROM $wpdb->term_taxonomy,  $wpdb->terms, $wpdb->term_relationships
-                                    WHERE $wpdb->term_taxonomy.term_id =  $wpdb->terms.term_id
-                                    AND $wpdb->term_relationships.term_taxonomy_id =  $wpdb->term_taxonomy.term_taxonomy_id
-                                    AND $wpdb->term_taxonomy.taxonomy in ( {$taxonomies} )
-                                    $terms_where
-                                    GROUP BY $wpdb->term_taxonomy.term_id";
+    $term_sql = "SELECT $wpdb->term_taxonomy.term_id, $wpdb->terms.name, $wpdb->term_taxonomy.taxonomy
+                    FROM $wpdb->term_taxonomy,  $wpdb->terms, $wpdb->term_relationships
+                    WHERE $wpdb->term_taxonomy.term_id =  $wpdb->terms.term_id
+                    AND $wpdb->term_relationships.term_taxonomy_id =  $wpdb->term_taxonomy.term_taxonomy_id
+                    AND $wpdb->term_taxonomy.taxonomy in ( {$taxonomies} )
+                    $terms_where
+                    GROUP BY $wpdb->term_taxonomy.term_id";
 
     $term_results = $wpdb->get_results($term_sql);
     $term_ids = array();
@@ -817,10 +817,13 @@ function searching_filter_where($where) {
         foreach($term_results as $term_id){
             $term_ids[] = $term_id;
         }
-        if(!empty( $term_ids)){
-
+        if (!empty($term_ids)) {
             foreach($term_ids as $term){
-                $terms_sql .= " OR FIND_IN_SET($term->term_id , ".$table.".".$post_types."category) ";
+                if ($term->taxonomy == $post_types.'_tags') {
+                    $terms_sql .= $wpdb->prepare(" OR FIND_IN_SET(%s , " . $table . ".post_tags) ", $term->name);
+                } else {
+                    $terms_sql .= " OR FIND_IN_SET($term->term_id , " . $table . "." . $post_types . "category) ";
+                }
             }
         }
     }

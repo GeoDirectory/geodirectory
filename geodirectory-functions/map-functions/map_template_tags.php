@@ -452,7 +452,6 @@ function geodir_draw_map($map_args = array())
         <script type="text/javascript">
 
             jQuery(document).ready(function () {
-                //initMap('<?php echo $map_canvas_name;?>'); // depreciated, no need to load this twice
                 build_map_ajax_search_param('<?php echo $map_canvas_name;?>', false);
                 map_sticky('<?php echo $map_canvas_name;?>');
             });

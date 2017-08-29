@@ -2073,22 +2073,29 @@ if (!function_exists('geodir_get_infowindow_html')) {
 }
 
 
-if (!function_exists('geodir_new_post_default_status')) {
-    /**
-     * Default post status for new posts.
-     *
-     * @since 1.0.0
-     * @package GeoDirectory
-     * @return string Returns the default post status for new posts. Ex: draft, publish etc.
-     */
-    function geodir_new_post_default_status()
-    {
-        if (get_option('geodir_new_post_default_status'))
-            return get_option('geodir_new_post_default_status');
-        else
-            return 'publish';
+/**
+ * Default post status for new posts.
+ *
+ * @since 1.0.0
+ * @package GeoDirectory
+ * @return string Returns the default post status for new posts. Ex: draft, publish etc.
+ */
+function geodir_new_post_default_status()
+{
 
+    $status = get_option( 'geodir_new_post_default_status' );
+
+    if ( empty( $status ) ) {
+        $status = 'publish';
     }
+
+    /**
+     * Filter the new post status.
+     *
+     * @since 1.6.23
+     */
+    return apply_filters( 'geodir_new_post_default_status', $status );
+
 }
 
 if (!function_exists('geodir_change_post_status')) {
@@ -2664,7 +2671,15 @@ function geodir_excerpt_more($more)
     global $post;
     $all_postypes = geodir_get_posttypes();
     if (is_array($all_postypes) && in_array($post->post_type, $all_postypes)) {
-        return ' <a href="' . get_permalink($post->ID) . '">' . READ_MORE_TXT . '</a>';
+        $out = ' <a class="excerpt-read-more" href="' .  get_permalink($post->ID) . '" title="' . get_the_title($post->ID) . '">';
+        /**
+         * Filter excerpt read more text.
+         *
+         * @since 1.0.0
+         */
+        $out .= apply_filters( 'geodir_max_excerpt_end', __( 'Read more [...]', 'geodirectory' ) );
+        $out .= '</a>';
+        return $out;
     }
 
     return $more;
@@ -2806,7 +2821,19 @@ function geodir_listing_belong_to_current_user($listing_id = '', $exclude_admin 
         }
     }
 
-    return geodir_lisiting_belong_to_user($listing_id, $current_user->ID);
+    $result = geodir_lisiting_belong_to_user($listing_id, $current_user->ID);
+
+    /**
+     * Filter if the listing belongs to a user.
+     *
+     * @since 1.6.23
+     * @param bool $result The result, true:false
+     * @param int $listing_id The post ID.
+     * @param int $current_user->ID The current user ID.
+     * @param bool $exclude_admin Do you want to exclude admin from the check?. Default true.
+     * return bool
+     */
+    return apply_filters('geodir_listing_belong_to_current_user',$result,$listing_id,$current_user->ID,$exclude_admin);
 }
 
 
@@ -3067,7 +3094,7 @@ function geodir_function_post_updated($post_ID, $post_after, $post_before)
 
     if ($post_type != '' && in_array($post_type, geodir_get_posttypes())) {
         // send notification to client when post moves from draft to publish
-        if (!empty($post_after->post_status) && $post_after->post_status == 'publish' && !empty($post_before->post_status) && ($post_before->post_status == 'draft' || $post_before->post_status == 'auto-draft')) {
+        if (!empty($post_after->post_status) && $post_after->post_status == 'publish' && !empty($post_before->post_status) && ($post_before->post_status == 'draft' || $post_before->post_status == 'auto-draft' || $post_before->post_status == 'pending')) {
             $post_author_id = !empty($post_after->post_author) ? $post_after->post_author : NULL;
             $post_author_data = get_userdata($post_author_id);
 
@@ -3172,3 +3199,77 @@ function geodir_fb_like_thumbnail(){
 
 
 }
+
+add_action( 'save_post', 'geodir_clear_map_cache_on_save', 10,2 );
+
+
+/**
+ * Delete the map cache files.
+ *
+ * @since 1.6.22
+ */
+function geodir_delete_map_cache(){
+    $files = glob(realpath(dirname(__FILE__))."/map-functions/map-cache/*.json"); // get all file names
+    foreach($files as $file){ // iterate files
+        if(is_file($file))
+            unlink($file); // delete file
+    }
+}
+
+
+/**
+ * Clear the map cache on post save.
+ *
+ * @since 1.6.22
+ * @param object $post WordPress Post object.
+ * @param int $post_id The post ID.
+ */
+function geodir_clear_map_cache_on_save($post_id, $post) {
+
+    if(!get_option('geodir_enable_map_cache')){
+        return;
+    }
+
+    if ( isset( $post->post_type ) && ( $post->post_type == 'nav_menu_item' || $post->post_type == 'page' || $post->post_type == 'post' ) ) {
+        return;
+    }
+
+    $geodir_posttypes = geodir_get_posttypes();
+
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+
+    if ( ! wp_is_post_revision( $post_id ) && isset( $post->post_type ) && in_array( $post->post_type, $geodir_posttypes ) ) {
+        geodir_delete_map_cache();
+    }
+
+}
+
+/**
+ * Set the post name for the pending listing.
+ *
+ * @since 1.6.22
+ * @since 1.6.23 Fix post name for autosaved listing from backend.
+ *
+ * @param array $data    An array of slashed post data.
+ * @param array $postarr An array of sanitized, but otherwise unmodified post data.
+ * @return array Filtered post data.
+ */
+function geodir_fix_pending_listing_post_name( $data, $postarr ) {
+    // Dont' update post name for autosaves
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return $data;
+    }
+
+    if ( !empty( $data['post_name'] ) || empty( $data['post_status'] ) || empty( $data['post_type'] ) || empty( $data['post_title'] ) ) {
+        return $data;
+    }
+
+    if ( ( 'draft' == $data['post_status'] || 'pending' == $data['post_status'] ) && in_array( $data['post_type'], geodir_get_posttypes() ) ) {
+        $data['post_name'] = wp_unique_post_slug( sanitize_title( $data['post_title'] ), ( !empty( $postarr['ID'] ) ? $postarr['ID'] : 0 ), '', $data['post_type'], $data['post_parent'] );
+    }
+
+    return $data;
+}
+add_filter( 'wp_insert_post_data', 'geodir_fix_pending_listing_post_name', 10, 2 );

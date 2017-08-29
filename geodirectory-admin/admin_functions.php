@@ -111,7 +111,7 @@ if (!function_exists('geodir_admin_scripts')) {
             $map_key = "&key=" . geodir_get_map_api_key();
             /** This filter is documented in geodirectory_template_tags.php */
             $map_extra = apply_filters('geodir_googlemap_script_extra', '');
-            wp_enqueue_script('geodirectory-googlemap-script', 'https://maps.google.com/maps/api/js?' . $map_lang . $map_key . $map_extra, '', NULL);
+            wp_enqueue_script('google-maps-api', 'https://maps.google.com/maps/api/js?' . $map_lang . $map_key . $map_extra, '', NULL);
             
             // Overlapping Marker Spiderfier
             wp_register_script('geodirectory-g-overlappingmarker-script', geodir_plugin_url() . '/geodirectory-assets/jawj/oms.min.js', array(), GEODIRECTORY_VERSION);
@@ -4679,7 +4679,7 @@ function geodir_ajax_import_export() {
                     $columns = isset($file[0]) ? $file[0] : NULL;
                     
                     if (empty($columns) || (!empty($columns) && $columns[0] == '')) {
-                        $json['error'] = __('File you are uploading is not valid. Columns does not matching.', 'geodirectory');
+                        $json['error'] = __('The file you are uploading is not valid. There are problems with the file columns.', 'geodirectory');
                         wp_send_json( $json );
                     }
                     
@@ -4775,7 +4775,7 @@ function geodir_ajax_import_export() {
                     $columns = isset($file[0]) ? $file[0] : NULL;
                     
                     if (empty($columns) || (!empty($columns) && $columns[0] == '')) {
-                        $json['error'] = __('File you are uploading is not valid. Columns does not matching.', 'geodirectory');
+                        $json['error'] = __('The file you are uploading is not valid. There are problems with the file columns.', 'geodirectory');
                         wp_send_json( $json );
                     }
                     

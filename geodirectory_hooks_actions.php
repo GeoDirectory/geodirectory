@@ -1314,7 +1314,7 @@ function geodir_localize_all_js_msg()
         'osmStart' => __('Start', 'geodirectory'),
         'osmVia' => __('Via {viaNumber}', 'geodirectory'),
         'osmEnd' => __('Enter Your Location', 'geodirectory'),
-        'ga_delete_check' => __('Are you wish to Deauthorize and break Analytics?', 'geodirectory'),
+        'ga_delete_check' => __('Do you wish to Deauthorize and break Analytics?', 'geodirectory'),
         'geoMyLocation' => __('My Location', 'geodirectory'),
         'geoErrUNKNOWN_ERROR' => addslashes(__('Unable to find your location', 'geodirectory')),
         'geoErrPERMISSION_DENINED' => addslashes(__('Permission denied in finding your location', 'geodirectory')),
@@ -2370,7 +2370,7 @@ function geodir_user_post_listing_count($user_id = 0)
     $user_listing = array();
     if ($user_id && is_array($all_posts) && !empty($all_posts)) {
         foreach ($all_posts as $ptype) {
-            $total_posts = $wpdb->get_var("SELECT count( ID ) FROM " . $wpdb->prefix . "posts WHERE post_author=" . $user_id . " AND post_type='" . $ptype . "' AND ( post_status = 'publish' OR post_status = 'draft' OR post_status = 'private' )");
+            $total_posts = $wpdb->get_var("SELECT count( ID ) FROM " . $wpdb->prefix . "posts WHERE post_author=" . $user_id . " AND post_type='" . $ptype . "' AND ( post_status = 'publish' OR post_status = 'draft' OR post_status = 'private' OR post_status = 'pending' )");
 
             if ($total_posts > 0) {
                 $user_listing[$ptype] = $total_posts;
@@ -2618,6 +2618,8 @@ function geodir_add_post_status_author_page()
             $status_icon = '<i class="fa fa-play"></i>';
             if ($real_status == 'publish') {
                 $status .= __('Published', 'geodirectory');
+            }elseif ($real_status == 'pending') {
+                $status .= __('Awaiting Review', 'geodirectory');
             } else {
                 $status .= __('Not published', 'geodirectory');
                 $status_icon = '<i class="fa fa-pause"></i>';
