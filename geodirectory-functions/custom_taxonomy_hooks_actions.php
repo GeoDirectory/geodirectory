@@ -929,3 +929,32 @@ function geodir_wpseo_taxonomy_meta( $value, $option = '' ) {
     return $value;
 }
 add_filter( 'option_wpseo_taxonomy_meta', 'geodir_wpseo_taxonomy_meta', 10, 2 );
+
+/**
+ * Fix affiliate links for GeoDirectory CPTs listing pages.
+ *
+ * @since 1.6.24
+ *
+ */
+function geodir_affiliate_wp_rewrite_fix() {
+    if ( !class_exists( 'Affiliate_WP' ) ) {
+        return;
+    }
+
+    $gd_post_types = geodir_get_posttypes( 'array' );
+
+    if ( !empty( $gd_post_types ) ) {
+        $ref = affiliate_wp()->tracking->get_referral_var();
+        if ( empty( $ref ) ) {
+            return;
+        }
+
+        foreach ( $gd_post_types as $key => $post_type ) {
+            if ( !empty( $key ) && !empty( $post_type['rewrite']['slug'] ) ) {
+                add_rewrite_rule( $post_type['rewrite']['slug'] . '/' . $ref . '(/(.*))?/page/([0-9]{1,})/?$', 'index.php?post_type=' . $key . '&' . $ref . '=$matches[1]&paged=$matches[3]', 'top');
+                add_rewrite_rule( $post_type['rewrite']['slug'] . '/' . $ref . '(/(.*))?/?$', 'index.php?post_type=' . $key . '&' . $ref . '=$matches[1]', 'top');
+            }
+        }
+    }
+}
+add_action( 'init', 'geodir_affiliate_wp_rewrite_fix', 99999 );
