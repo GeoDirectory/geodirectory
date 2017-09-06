@@ -1740,20 +1740,38 @@ function geodir_term_link($termlink, $term, $taxonomy) {
 
         if ($include_location) {
             global $post;
+            $location_terms = array();
             
             $neighbourhood_active = $location_manager && get_option('location_neighbourhoods') ? true : false;
             
-            if (geodir_is_page('detail') && isset($post->country_slug)) {
-                $location_terms = array(
-                    'gd_country' => $post->country_slug,
-                    'gd_region' => $post->region_slug,
-                    'gd_city' => $post->city_slug
-                );
-                
-                if ($neighbourhood_active && !empty($location_terms['gd_city']) && $gd_ses_neighbourhood = $gd_session->get('gd_neighbourhood')) {
-                    $location_terms['gd_neighbourhood'] = $gd_ses_neighbourhood;
+            if (geodir_is_page('detail')) {
+                if (!isset($post->country_slug) && !empty($post->post_locations)) {
+                    $post_locations = explode(',', $post->post_locations);
+
+                    if (count($post_locations) == 3) {
+                        $post->city_slug = str_replace('[', '', $post_locations[0]);
+                        $post->city_slug = str_replace(']', '', $post->city_slug);
+                        $post->region_slug = str_replace('[', '', $post_locations[1]);
+                        $post->region_slug = str_replace(']', '', $post->region_slug);
+                        $post->country_slug = str_replace('[', '', $post_locations[2]);
+                        $post->country_slug = str_replace(']', '', $post->country_slug);
+                    }
                 }
-            } else {
+
+                if (isset($post->country_slug)) {
+                    $location_terms = array(
+                        'gd_country' => $post->country_slug,
+                        'gd_region' => $post->region_slug,
+                        'gd_city' => $post->city_slug
+                    );
+
+                    if ($neighbourhood_active && !empty($location_terms['gd_city']) && $gd_ses_neighbourhood = $gd_session->get('gd_neighbourhood')) {
+                        $location_terms['gd_neighbourhood'] = $gd_ses_neighbourhood;
+                    }
+                }
+            }
+            
+            if (empty($location_terms)) {
                 $location_terms = geodir_get_current_location_terms('query_vars');
             }
 
