@@ -99,7 +99,7 @@ if (post_password_required())
     $args = apply_filters('geodir_review_form_args', array(
         'title_reply' => __('Leave a Review', 'geodirectory'),
         'label_submit' => __('Post Review', 'geodirectory'),
-        'comment_field' => '<p class="comment-form-comment"><label for="comment">' . __('Review text', 'geodirectory') . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+        'comment_field' => '<p class="comment-form-comment"><label for="comment">' . __('Review text', 'geodirectory') . ' <span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" required></textarea></p>',
         'must_log_in' => '<p class="must-log-in">' . sprintf(__('You must be <a href="%s">logged in</a> to post a comment.', 'geodirectory'), geodir_login_url()) . '</p>'
     ));
     comment_form($args);
