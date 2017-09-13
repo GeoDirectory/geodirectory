@@ -3,6 +3,7 @@ Fix affiliate links for GeoDirectory CPTs listing pages - FIXED
 Broken term links on details page if region removed from details links - FIXED
 GD login link throwing to 404 page for already logged user - FIXED
 Show validation message for empty review/reply text - CHANGED
+Listing edited notification should be sent after listing data saved - CHANGED
 
 v1.6.23
 "All" string is not translated in popular post widget title - FIXED

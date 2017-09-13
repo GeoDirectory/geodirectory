@@ -5008,20 +5008,21 @@ function geodir_remove_location_terms( $location_terms = array() ) {
 }
 
 /**
- * Send notification when a listing has been edited by it's author.
+ * Cache the listings which are edited by it's author.
  *
  * @since   1.5.9
  * @since   1.6.18 Some times it sends email twice when listing edited - FIXED
+ * @since   1.6.24 See geodir_send_listing_edited_notification()
  * @package GeoDirectory
  *
- * @global array $gd_notified_edited  Array of post ID which has post edited notification set.
+ * @global array $gd_set_listing_edited  Array of post ID which needs to notify admin on post edited.
  *
  * @param int $post_ID  Post ID.
  * @param WP_Post $post Post object.
  * @param bool $update  Whether this is an existing listing being updated or not.
  */
 function geodir_on_wp_insert_post( $post_ID, $post, $update ) {
-	global $gd_notified_edited;
+	global $gd_set_listing_edited;
 	
 	if ( ! $update ) {
 		return;
@@ -5044,30 +5045,11 @@ function geodir_on_wp_insert_post( $post_ID, $post, $update ) {
 	if ( $user_id > 0 && get_option( 'geodir_notify_post_edited' ) && ! wp_is_post_revision( $post_ID ) && in_array( $post->post_type, geodir_get_posttypes() ) ) {
 		$author_id = ! empty( $post->post_author ) ? $post->post_author : 0;
 
-		if ( $user_id == $author_id && ! is_super_admin() && empty( $gd_notified_edited[$post_ID] ) ) {
-			if ( !empty( $gd_notified_edited ) ) {
-				$gd_notified_edited = array();
+		if ( $user_id == $author_id && ! is_super_admin() && empty( $gd_set_listing_edited[$post_ID] ) ) {
+			if ( !empty( $gd_set_listing_edited ) ) {
+				$gd_set_listing_edited = array();
 			}
-			$gd_notified_edited[$post_ID] = true;
-			
-			$from_email   = get_option( 'site_email' );
-			$from_name    = get_site_emailName();
-			$to_email     = get_option( 'admin_email' );
-			$to_name      = get_option( 'name' );
-			$message_type = 'listing_edited';
-
-			$notify_edited = true;
-			/**
-			 * Send notification when listing edited by author?
-			 *
-			 * @since 1.6.0
-			 *
-			 * @param bool $notify_edited Notify on listing edited by author?
-			 * @param object $post        The current post object.
-			 */
-			$notify_edited = apply_filters( 'geodir_notify_on_listing_edited', $notify_edited, $post );
-
-			geodir_sendEmail( $from_email, $from_name, $to_email, $to_name, '', '', '', $message_type, $post_ID );
+			$gd_set_listing_edited[$post_ID] = true;
 		}
 	}
 }
@@ -5270,3 +5252,48 @@ function geodir_wpml_register_string( $string, $domain = 'geodirectory', $name =
 function geodir_wpml_translate_string( $string, $domain = 'geodirectory', $name = '', $language_code = NULL ) {
     return apply_filters( 'wpml_translate_single_string', $string, $domain, $name, $language_code );
 }
+
+/**
+ * Send notification when a listing has been edited by it's author.
+ *
+ * @since   1.6.24
+ * @package GeoDirectory
+ *
+ * @global array $gd_notified_edited  Array of post ID which has post edited notification set.
+ * @global array $gd_set_listing_edited  Array of post ID which needs to notify admin on post edited.
+ *
+ * @param int $post_ID  Post ID.
+ * @param array $data Post data.
+ */
+function geodir_send_listing_edited_notification( $post_ID, $data ) {
+    global $gd_notified_edited, $gd_set_listing_edited;
+    
+    if ( !empty( $gd_set_listing_edited[ $post_ID ] ) && empty( $gd_notified_edited[ $post_ID ] ) ) {
+        if ( !empty( $gd_notified_edited ) ) {
+            $gd_notified_edited = array();
+        }
+        $gd_notified_edited[ $post_ID ] = true;
+        
+        $from_email   = get_option( 'site_email' );
+        $from_name    = get_site_emailName();
+        $to_email     = get_option( 'admin_email' );
+        $to_name      = get_option( 'name' );
+        $message_type = 'listing_edited';
+
+        $notify_edited = true;
+        /**
+         * Send notification when listing edited by author?
+         *
+         * @since 1.6.0
+         *
+         * @param bool $notify_edited Notify on listing edited by author?
+         * @param object $post        The current post object.
+         */
+        $notify_edited = apply_filters( 'geodir_notify_on_listing_edited', $notify_edited, $post_ID );
+
+        if ( $notify_edited ) {
+            geodir_sendEmail( $from_email, $from_name, $to_email, $to_name, '', '', '', $message_type, $post_ID );
+        }
+    }
+}
+add_action( 'geodir_after_save_listing', 'geodir_send_listing_edited_notification', 1000, 2 );
