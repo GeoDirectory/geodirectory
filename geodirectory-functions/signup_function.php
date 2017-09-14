@@ -637,9 +637,23 @@ function geodir_user_signup()
 
             if (!isset($_REQUEST['redirect_to']) || $_REQUEST['redirect_to'] == '') {
                 if (is_user_logged_in()) :
-                    $user_ID = isset($user->ID) ? $user->ID : '';
+                    $user_ID = !empty($user->ID) ? $user->ID : get_current_user_id();
+                    $post_types = geodir_get_posttypes();
+                    
+                    if ( !empty( $_REQUEST['stype'] ) ) {
+                        $dashboard_post_type = sanitize_text_field($_REQUEST['stype']);
+                    } else {
+                        $user_listings = geodir_user_post_listing_count( $user_ID );
+                        if ( !empty( $user_listings ) && $dashboard_post_types = array_keys( $user_listings ) ) {
+                            $dashboard_post_type = $dashboard_post_types[0];
+                        }
+                    }
+                    if ( !( !empty( $dashboard_post_type ) && in_array( $dashboard_post_type, $post_types ) ) ) {
+                        $dashboard_post_type = $post_types[0];
+                    }
+                    
                     $author_link = get_author_posts_url($user_ID);
-                    $default_author_link = geodir_getlink($author_link, array('geodir_dashbord' => 'true', 'stype' => 'gd_place'), false);
+                    $default_author_link = geodir_getlink($author_link, array('geodir_dashbord' => 'true', 'stype' => $dashboard_post_type), false);
 
                     /**
                      * Filter the author link.
