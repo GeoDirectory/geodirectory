@@ -4,6 +4,7 @@ Broken term links on details page if region removed from details links - FIXED
 GD login link throwing to 404 page for already logged user - FIXED
 Show validation message for empty review/reply text - CHANGED
 Listing edited notification should be sent after listing data saved - CHANGED
+After GT to GD migration comment content shows [img] tags - FIXED
 
 v1.6.23
 "All" string is not translated in popular post widget title - FIXED
