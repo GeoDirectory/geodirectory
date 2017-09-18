@@ -1086,3 +1086,22 @@ function geodir_check_reviews_open( $open, $post_id ) {
     return $open;
 }
 add_filter( 'comments_open', 'geodir_check_reviews_open', 10, 2 );
+
+/**
+ * Filter the [img] tags from comment.
+ *
+ * @since 1.6.24
+ *
+ * @param string          $comment_text Text of the current comment.
+ * @param WP_Comment|null $comment      The comment object.
+ * @param array           $args         An array of arguments.
+ * @return string Filtered comment content.
+ */
+function geodir_remove_img_tags_from_comment( $comment_text, $comment, $args ) {
+    if ( !empty( $comment_text )  && strpos( $comment_text, '[img' ) !== false && strpos( get_post_type( $comment->comment_post_ID ), 'gd_' ) === 0 ) {
+        $comment_text = preg_replace( '#(\\[img\\]).+(\\[\\/img\\])#', '', $comment_text );
+        $comment_text = trim( $comment_text );
+    }
+    return $comment_text;
+}
+add_filter( 'comment_text', 'geodir_remove_img_tags_from_comment', 10, 3 );
