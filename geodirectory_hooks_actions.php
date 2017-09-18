@@ -1293,6 +1293,8 @@ function geodir_localize_all_js_msg()
         'gd_cmt_btn_post_review' => __('Post Review', 'geodirectory'),
         'gd_cmt_btn_review_text' => __('Review text', 'geodirectory'),
         'gd_cmt_err_no_rating' => __("Please select star rating, you can't leave a review without stars.", 'geodirectory'),
+        'err_empty_review' => __('Please type a review.', 'geodirectory'),
+        'err_empty_reply' => __('Please type a reply.', 'geodirectory'),
         /* on/off dragging for phone devices */
         'geodir_onoff_dragging' => get_option('geodir_map_onoff_dragging') ? true : false,
         'geodir_is_mobile' => wp_is_mobile() ? true : false,

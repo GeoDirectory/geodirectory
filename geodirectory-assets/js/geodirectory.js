@@ -526,15 +526,25 @@ jQuery(document).ready(function() {
 
         if (!geodir_all_js_msg.multirating) {
             $frm_obj.find('input[name="submit"]').click(function(e) {
+                var $comment = jQuery('textarea[name="comment"]', $frm_obj);
+                jQuery('#err_no_comment', $frm_obj).remove();
                 $frm_obj.find('#err_no_rating').remove();
+                
+                var is_review = parseInt($frm_obj.find('#comment_parent').val());
+                is_review = is_review == 0 ? true : false;
+                
+                if (jQuery.trim($comment.val()) == '') {
+                    var $err = is_review ? geodir_all_js_msg.err_empty_review : geodir_all_js_msg.err_empty_review;
+                    $comment.before('<div id="err_no_comment" class="err-no-rating">' + $err + '</div>');
+                    $comment.focus();
+                    return false;
+                }
                 
                 // skip rating stars validation if rating stars disabled
                 if (typeof geodir_all_js_msg.gd_cmt_disable_rating != 'undefined' && geodir_all_js_msg.gd_cmt_disable_rating) {
                     return true;
                 }
                 //
-                var is_review = parseInt($frm_obj.find('#comment_parent').val());
-                is_review = is_review == 0 ? true : false;
                 
                 if (is_review) {
                     var btn_obj = this;
