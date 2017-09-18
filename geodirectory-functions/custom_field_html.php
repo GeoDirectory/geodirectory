@@ -81,6 +81,10 @@ if(isset($cf['name']) && $cf['name']){
     $field_type_name = $field_type;
 }
 
+if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
+    $field_info->data_type = 'XVARCHAR';
+}
+
 ?>
 <li class="text" id="licontainer_<?php echo $result_str; ?>">
     <div class="title title<?php echo $result_str; ?> gt-fieldset"
