@@ -18,7 +18,13 @@ function geodir_user_favourite_listing_count($user_id=false)
     if(!$user_id){$user_id = $current_user->ID;}
     if(!$user_id){return array();}
 
-    $user_favorites = get_user_meta($user_id, 'gd_user_favourite_post', true);
+    $site_id = '';
+    if ( is_multisite() ) {
+        $blog_id = get_current_blog_id();
+        if($blog_id && $blog_id!='1'){$site_id  = '_' . $blog_id ;}
+    }
+
+    $user_favorites = geodir_get_user_favourites($user_id);
     $all_posts = get_option('geodir_favorite_link_user_dashboard');
 
     $user_listing = array();
@@ -177,4 +183,16 @@ function geodir_user_show_listings($user_id='',$output_type='select'){
         }
     }
 
+}
+
+
+function geodir_get_user_favourites($user_id=''){
+    if(!$user_id){$user_id = get_current_user_id();}
+    $site_id = '';
+    if ( is_multisite() ) {
+        $blog_id = get_current_blog_id();
+        if($blog_id && $blog_id!='1'){$site_id  = '_' . $blog_id ;}
+    }
+
+    return get_user_meta($user_id, 'gd_user_favourite_post'.$site_id, true);
 }

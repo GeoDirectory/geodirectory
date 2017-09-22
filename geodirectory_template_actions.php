@@ -1072,9 +1072,9 @@ function geodir_action_details_slider()
                 } else {
                     $spacer_height = ((400 - $image->height) / 2);
                 }
+
                 $caption = '';//(!empty($image->caption)) ? '<p class="flex-caption">'.$image->caption.'</p>' : '';
-                $main_slides .= '<li><img src="' . geodir_plugin_url() . "/geodirectory-assets/images/spacer.gif" . '" alt="' . $image->title . '" title="' . $image->title . '" style="max-height:' . $spacer_height . 'px;margin:0 auto;" />';
-                $main_slides .= '<img src="' . $image->src . '" alt="' . $image->title . '" title="' . $image->title . '" style="max-height:400px;margin:0 auto;" />'.$caption.'</li>';
+                $main_slides .= '<li><img src="' . $image->src . '" alt="' . $image->title . '" title="' . $image->title . '" style="max-height:400px;margin:0 auto;" />'.$caption.'</li>';
                 $nav_slides .= '<li><img src="' . $image->src . '" alt="' . $image->title . '" title="' . $image->title . '" style="max-height:48px;margin:0 auto;" /></li>';
                 $slides++;
             }
