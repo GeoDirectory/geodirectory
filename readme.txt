@@ -150,9 +150,13 @@ GeoDirectory comes with some dummy data you can use to see how listings look. Yo
 
 == Changelog ==
 
+= 1.6.23 =
+
+[GeoDirectory changelog for version 1.6.23](http://wpgeodirectory.com/change-logs/#v1.6.23).
+
 = 1.6.22 =
 
-[GeoDirectory changelog for version 1.6.21](http://wpgeodirectory.com/change-logs/#v1.6.22).
+[GeoDirectory changelog for version 1.6.22](http://wpgeodirectory.com/change-logs/#v1.6.22).
 
 = 1.6.21 =
 

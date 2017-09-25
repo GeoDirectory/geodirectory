@@ -1123,7 +1123,7 @@ function geodir_add_meta_keywords() {
 	 * Filter the Everywhere text in location description.
 	 *
 	 * @since 1.6.22
-	 * 
+	 *
 	 * @param string $replace_location Everywhere text.
 	 */
 	$replace_location        = apply_filters( 'geodir_location_description_everywhere_text', __( 'Everywhere', 'geodirectory' ) );
@@ -1496,7 +1496,7 @@ function geodir_show_detail_page_tabs() {
 			$count = 1;
 			foreach ( $post_images as $image ) {
 				if ($image_limit !== '' && $count > $image_limit) {
-					 break;
+					break;
 				}
 				$caption = ( ! empty( $image->caption ) ) ? $image->caption : '';
 				$thumb_image .= '<a href="' . $image->src . '" title="' . $caption . '">';
@@ -1542,7 +1542,7 @@ function geodir_show_detail_page_tabs() {
 			foreach ( $post_images as $image ) {
 				if ( $image != '' ) {
 					if ($image_limit !== '' && $count > $image_limit) {
-						 break;
+						break;
 					}
 					$thumb_image .= '<a href="' . $image . '">';
 					$thumb_image .= geodir_show_image( array( 'src' => $image ), 'thumbnail', true, false );
@@ -2007,23 +2007,23 @@ function geodir_get_recent_reviews( $g_size = 60, $no_comments = 5, $comment_len
 			$city_filter = $wpdb->prepare( " AND r.post_city=%s ", str_replace( "-", " ", $gd_ses_city ) );
 		}
 	}
-	
+
 	$join = '';
 	$where = '';
-	
+
 	if (geodir_is_wpml()) {
 		$lang_code = ICL_LANGUAGE_CODE;
-		
+
 		if ($lang_code) {
 			$join .= " JOIN " . $table_prefix . "icl_translations AS icltr2 ON icltr2.element_id = c.comment_post_ID AND p.ID = icltr2.element_id AND CONCAT('post_', p.post_type) = icltr2.element_type LEFT JOIN " . $table_prefix . "icl_translations AS icltr_comment ON icltr_comment.element_id = c.comment_ID AND icltr_comment.element_type = 'comment'";
 			$where .= " AND icltr2.language_code = '" . $lang_code . "' AND (icltr_comment.language_code IS NULL OR icltr_comment.language_code = icltr2.language_code)";
 		}
 	}
-	
+
 	$request = "SELECT r.id AS ID, r.post_type, r.comment_id AS comment_ID, r.post_date AS comment_date, r.overall_rating, r.user_id, r.post_id FROM " . GEODIR_REVIEW_TABLE . " AS r JOIN " . $wpdb->comments . " AS c ON c.comment_ID = r.comment_id JOIN " . $wpdb->posts . " AS p ON p.ID = c.comment_post_ID " . $join . " WHERE c.comment_parent = 0 AND c.comment_approved = 1 AND r.status = 1 AND r.overall_rating >= 1 AND p.post_status = 'publish' " . $where . " ORDER BY r.post_date DESC, r.id DESC LIMIT ". $no_comments;
-	
+
 	$comments = $wpdb->get_results( $request );
-	
+
 	foreach ( $comments as $comment ) {
 		// Set the extra comment info needed.
 		$comment_extra = $wpdb->get_row( "SELECT * FROM $wpdb->comments WHERE comment_ID =$comment->comment_ID" );
@@ -2305,11 +2305,11 @@ function geodir_search_form_submit_button() {
 
 
 	if ( $new_style ) {
-	?>
+		?>
 		<button class="geodir_submit_search <?php echo $fa_class; ?>"><?php _e( $default_search_button_label ,'geodirectory'); ?></button>
-<?php }else{?>
+	<?php }else{?>
 		<input type="button" value="<?php esc_attr_e( $default_search_button_label ); ?>"
-	       class="geodir_submit_search <?php echo $fa_class; ?>"/>
+		       class="geodir_submit_search <?php echo $fa_class; ?>"/>
 	<?php }
 }
 
@@ -2411,7 +2411,7 @@ function geodir_search_form_near_input() {
 	} else {
 		$near = $default_near_text;
 	}
-	
+
 
 	global $geodir_search_post_type;
 	$curr_post_type = $geodir_search_post_type;
@@ -2458,7 +2458,7 @@ function geodir_search_form_near_input() {
 	$new_style = get_option('geodir_show_search_old_search_from') ? false : true;
 	if($new_style){
 		echo "<div class='gd-search-input-wrapper gd-search-field-near' $near_input_extra>";
-		
+
 		do_action('geodir_before_near_input');
 	}
 
@@ -2516,11 +2516,11 @@ add_action( 'wp_ajax_nopriv_geodir_search_form', 'geodir_search_form' );
  * @return True if WPML is active else False.
  */
 function geodir_is_wpml() {
-    if (class_exists('SitePress') && function_exists('icl_object_id')) {
-        return true;
-    }
+	if (class_exists('SitePress') && function_exists('icl_object_id')) {
+		return true;
+	}
 
-    return false;
+	return false;
 }
 
 /**
@@ -2535,9 +2535,9 @@ function geodir_is_wpml() {
  * @return Language code.
  */
 function geodir_get_language_for_element($element_id, $element_type) {
-    global $sitepress;
+	global $sitepress;
 
-    return $sitepress->get_language_for_element($element_id, $element_type);
+	return $sitepress->get_language_for_element($element_id, $element_type);
 }
 
 /**
@@ -2550,35 +2550,35 @@ function geodir_get_language_for_element($element_id, $element_type) {
  * @param string $lang Language code for translating post.
  * @param array $postarr Array of post data.
  * @param int $tr_post_id Translation Post ID.
- * @param bool $after_save If true it will force duplicate. 
+ * @param bool $after_save If true it will force duplicate.
  *                         Added to fix duplicate translation for front end.
  */
 function geodir_icl_make_duplicate($master_post_id, $lang, $postarr, $tr_post_id, $after_save = false) {
-    global $sitepress;
-    
-    $post_type = get_post_type($master_post_id);
-    $icl_ajx_action = !empty($_REQUEST['icl_ajx_action']) && $_REQUEST['icl_ajx_action'] == 'make_duplicates' ? true : false;
-    if (!empty($_REQUEST['action']) && $_REQUEST['action'] == 'wpml_duplicate_dashboard' && !empty($_REQUEST['duplicate_post_ids'])) {
-        $icl_ajx_action = true;
-    }
-    
-    if (in_array($post_type, geodir_get_posttypes())) {
-        if ($icl_ajx_action || $after_save) {
-            // Duplicate post details
-            geodir_icl_duplicate_post_details($master_post_id, $tr_post_id, $lang);
-            
-            // Duplicate taxonomies
-            geodir_icl_duplicate_taxonomies($master_post_id, $tr_post_id, $lang);
-            
-            // Duplicate post images
-            geodir_icl_duplicate_post_images($master_post_id, $tr_post_id, $lang);
-        }
-        
-        // Sync post reviews
-        if ($sitepress->get_setting('sync_comments_on_duplicates')) {
-            geodir_wpml_duplicate_post_reviews($master_post_id, $tr_post_id, $lang);
-        }
-    }
+	global $sitepress;
+
+	$post_type = get_post_type($master_post_id);
+	$icl_ajx_action = !empty($_REQUEST['icl_ajx_action']) && $_REQUEST['icl_ajx_action'] == 'make_duplicates' ? true : false;
+	if (!empty($_REQUEST['action']) && $_REQUEST['action'] == 'wpml_duplicate_dashboard' && !empty($_REQUEST['duplicate_post_ids'])) {
+		$icl_ajx_action = true;
+	}
+
+	if (in_array($post_type, geodir_get_posttypes())) {
+		if ($icl_ajx_action || $after_save) {
+			// Duplicate post details
+			geodir_icl_duplicate_post_details($master_post_id, $tr_post_id, $lang);
+
+			// Duplicate taxonomies
+			geodir_icl_duplicate_taxonomies($master_post_id, $tr_post_id, $lang);
+
+			// Duplicate post images
+			geodir_icl_duplicate_post_images($master_post_id, $tr_post_id, $lang);
+		}
+
+		// Sync post reviews
+		if ($sitepress->get_setting('sync_comments_on_duplicates')) {
+			geodir_wpml_duplicate_post_reviews($master_post_id, $tr_post_id, $lang);
+		}
+	}
 }
 add_filter( 'icl_make_duplicate', 'geodir_icl_make_duplicate', 11, 4 );
 
@@ -2592,18 +2592,18 @@ add_filter( 'icl_make_duplicate', 'geodir_icl_make_duplicate', 11, 4 );
  * @param array $request_info The post details in an array.
  */
 function geodir_wpml_duplicate_listing($post_id, $request_info) {
-    global $sitepress;
-    
-    $icl_ajx_action = !empty($_REQUEST['icl_ajx_action']) && $_REQUEST['icl_ajx_action'] == 'make_duplicates' ? true : false;
-    if (!empty($_REQUEST['action']) && $_REQUEST['action'] == 'wpml_duplicate_dashboard' && !empty($_REQUEST['duplicate_post_ids'])) {
-        $icl_ajx_action = true;
-    }
-    
-    if (!$icl_ajx_action && in_array(get_post_type($post_id), geodir_get_posttypes()) && $post_duplicates = $sitepress->get_duplicates($post_id)) {
-        foreach ($post_duplicates as $lang => $dup_post_id) {
-            geodir_icl_make_duplicate($post_id, $lang, $request_info, $dup_post_id, true);
-        }
-    }
+	global $sitepress;
+
+	$icl_ajx_action = !empty($_REQUEST['icl_ajx_action']) && $_REQUEST['icl_ajx_action'] == 'make_duplicates' ? true : false;
+	if (!empty($_REQUEST['action']) && $_REQUEST['action'] == 'wpml_duplicate_dashboard' && !empty($_REQUEST['duplicate_post_ids'])) {
+		$icl_ajx_action = true;
+	}
+
+	if (!$icl_ajx_action && in_array(get_post_type($post_id), geodir_get_posttypes()) && $post_duplicates = $sitepress->get_duplicates($post_id)) {
+		foreach ($post_duplicates as $lang => $dup_post_id) {
+			geodir_icl_make_duplicate($post_id, $lang, $request_info, $dup_post_id, true);
+		}
+	}
 }
 
 /**
@@ -2619,17 +2619,17 @@ function geodir_wpml_duplicate_listing($post_id, $request_info) {
  * @return bool True for success, False for fail.
  */
 function geodir_wpml_duplicate_post_reviews($master_post_id, $tr_post_id, $lang) {
-    global $wpdb;
+	global $wpdb;
 
-    $reviews = $wpdb->get_results($wpdb->prepare("SELECT comment_id FROM " . GEODIR_REVIEW_TABLE . " WHERE post_id=%d ORDER BY id ASC", $master_post_id), ARRAY_A);
+	$reviews = $wpdb->get_results($wpdb->prepare("SELECT comment_id FROM " . GEODIR_REVIEW_TABLE . " WHERE post_id=%d ORDER BY id ASC", $master_post_id), ARRAY_A);
 
-    if (!empty($reviews)) {
-        foreach ($reviews as $review) {
-            geodir_wpml_duplicate_post_review($review['comment_id'], $master_post_id, $tr_post_id, $lang);
-        }
-    }
+	if (!empty($reviews)) {
+		foreach ($reviews as $review) {
+			geodir_wpml_duplicate_post_review($review['comment_id'], $master_post_id, $tr_post_id, $lang);
+		}
+	}
 
-    return false;
+	return false;
 }
 
 /**
@@ -2646,22 +2646,22 @@ function geodir_wpml_duplicate_post_reviews($master_post_id, $tr_post_id, $lang)
  * @return bool True for success, False for fail.
  */
 function geodir_icl_duplicate_post_details($master_post_id, $tr_post_id, $lang) {
-    global $wpdb, $plugin_prefix;
+	global $wpdb, $plugin_prefix;
 
-    $post_type = get_post_type($master_post_id);
-    $post_table = $plugin_prefix . $post_type . '_detail';
+	$post_type = get_post_type($master_post_id);
+	$post_table = $plugin_prefix . $post_type . '_detail';
 
-    $query = $wpdb->prepare("SELECT * FROM " . $post_table . " WHERE post_id = %d", array($master_post_id));
-    $data = (array)$wpdb->get_row($query);
+	$query = $wpdb->prepare("SELECT * FROM " . $post_table . " WHERE post_id = %d", array($master_post_id));
+	$data = (array)$wpdb->get_row($query);
 
-    if ( !empty( $data ) ) {
-        $data['post_id'] = $tr_post_id;
-        unset($data['default_category'], $data['marker_json'], $data['featured_image'], $data[$post_type . 'category']);
-        $wpdb->update($post_table, $data, array('post_id' => $tr_post_id));
-        return true;
-    }
+	if ( !empty( $data ) ) {
+		$data['post_id'] = $tr_post_id;
+		unset($data['default_category'], $data['marker_json'], $data['featured_image'], $data[$post_type . 'category']);
+		$wpdb->update($post_table, $data, array('post_id' => $tr_post_id));
+		return true;
+	}
 
-    return false;
+	return false;
 }
 
 /**
@@ -2678,40 +2678,40 @@ function geodir_icl_duplicate_post_details($master_post_id, $tr_post_id, $lang) 
  * @return bool True for success, False for fail.
  */
 function geodir_icl_duplicate_taxonomies($master_post_id, $tr_post_id, $lang) {
-    global $sitepress, $wpdb;
-    $post_type = get_post_type($master_post_id);
+	global $sitepress, $wpdb;
+	$post_type = get_post_type($master_post_id);
 
-    remove_filter('get_term', array($sitepress,'get_term_adjust_id')); // AVOID filtering to current language
+	remove_filter('get_term', array($sitepress,'get_term_adjust_id')); // AVOID filtering to current language
 
-    $taxonomies = get_object_taxonomies($post_type);
-    foreach ($taxonomies as $taxonomy) {
-        $terms = get_the_terms($master_post_id, $taxonomy);
-        $terms_array = array();
-        
-        if ($terms) {
-            foreach ($terms as $term) {
-                $tr_id = apply_filters( 'translate_object_id',$term->term_id, $taxonomy, false, $lang);
-                
-                if (!is_null($tr_id)){
-                    // not using get_term - unfiltered get_term
-                    $translated_term = $wpdb->get_row($wpdb->prepare("
+	$taxonomies = get_object_taxonomies($post_type);
+	foreach ($taxonomies as $taxonomy) {
+		$terms = get_the_terms($master_post_id, $taxonomy);
+		$terms_array = array();
+
+		if ($terms) {
+			foreach ($terms as $term) {
+				$tr_id = apply_filters( 'translate_object_id',$term->term_id, $taxonomy, false, $lang);
+
+				if (!is_null($tr_id)){
+					// not using get_term - unfiltered get_term
+					$translated_term = $wpdb->get_row($wpdb->prepare("
                         SELECT * FROM {$wpdb->terms} t JOIN {$wpdb->term_taxonomy} x ON x.term_id = t.term_id WHERE t.term_id = %d AND x.taxonomy = %s", $tr_id, $taxonomy));
 
-                    $terms_array[] = $translated_term->term_id;
-                }
-            }
+					$terms_array[] = $translated_term->term_id;
+				}
+			}
 
-            if (!is_taxonomy_hierarchical($taxonomy)){
-                $terms_array = array_unique( array_map( 'intval', $terms_array ) );
-            }
+			if (!is_taxonomy_hierarchical($taxonomy)){
+				$terms_array = array_unique( array_map( 'intval', $terms_array ) );
+			}
 
-            wp_set_post_terms($tr_post_id, $terms_array, $taxonomy);
-            
-            if ($taxonomy == $post_type . 'category') {
-                geodir_set_postcat_structure($tr_post_id, $post_type . 'category');
-            }
-        }
-    }
+			wp_set_post_terms($tr_post_id, $terms_array, $taxonomy);
+
+			if ($taxonomy == $post_type . 'category') {
+				geodir_set_postcat_structure($tr_post_id, $post_type . 'category');
+			}
+		}
+	}
 }
 
 /**
@@ -2727,29 +2727,29 @@ function geodir_icl_duplicate_taxonomies($master_post_id, $tr_post_id, $lang) {
  * @return bool True for success, False for fail.
  */
 function geodir_icl_duplicate_post_images($master_post_id, $tr_post_id, $lang) {
-    global $wpdb;
+	global $wpdb;
 
-    $query = $wpdb->prepare("DELETE FROM " . GEODIR_ATTACHMENT_TABLE . " WHERE mime_type like %s AND post_id = %d", array('%image%', $tr_post_id));
-    $wpdb->query($query);
+	$query = $wpdb->prepare("DELETE FROM " . GEODIR_ATTACHMENT_TABLE . " WHERE mime_type like %s AND post_id = %d", array('%image%', $tr_post_id));
+	$wpdb->query($query);
 
-    $query = $wpdb->prepare("SELECT * FROM " . GEODIR_ATTACHMENT_TABLE . " WHERE mime_type like %s AND post_id = %d ORDER BY menu_order ASC", array('%image%', $master_post_id));
-    $post_images = $wpdb->get_results($query);
+	$query = $wpdb->prepare("SELECT * FROM " . GEODIR_ATTACHMENT_TABLE . " WHERE mime_type like %s AND post_id = %d ORDER BY menu_order ASC", array('%image%', $master_post_id));
+	$post_images = $wpdb->get_results($query);
 
-    if ( !empty( $post_images ) ) {
-        foreach ( $post_images as $post_image) {
-            $image_data = (array)$post_image;
-            unset($image_data['ID']);
-            $image_data['post_id'] = $tr_post_id;
-            
-            $wpdb->insert(GEODIR_ATTACHMENT_TABLE, $image_data);
-            
-            geodir_set_wp_featured_image($tr_post_id);
-        }
-        
-        return true;
-    }
+	if ( !empty( $post_images ) ) {
+		foreach ( $post_images as $post_image) {
+			$image_data = (array)$post_image;
+			unset($image_data['ID']);
+			$image_data['post_id'] = $tr_post_id;
 
-    return false;
+			$wpdb->insert(GEODIR_ATTACHMENT_TABLE, $image_data);
+
+			geodir_set_wp_featured_image($tr_post_id);
+		}
+
+		return true;
+	}
+
+	return false;
 }
 
 
@@ -2768,73 +2768,73 @@ function geodir_icl_duplicate_post_images($master_post_id, $tr_post_id, $lang) {
  * @return bool True for success, False for fail.
  */
 function geodir_wpml_duplicate_post_review($master_comment_id, $master_post_id, $tr_post_id, $lang) {
-    global $wpdb, $plugin_prefix, $sitepress;
+	global $wpdb, $plugin_prefix, $sitepress;
 
-    $review = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . GEODIR_REVIEW_TABLE . " WHERE comment_id=%d ORDER BY id ASC", $master_comment_id), ARRAY_A);
+	$review = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . GEODIR_REVIEW_TABLE . " WHERE comment_id=%d ORDER BY id ASC", $master_comment_id), ARRAY_A);
 
-    if (empty($review)) {
-        return false;
-    }
-    if ($review['post_id'] != $master_post_id) {
-        $wpdb->query($wpdb->prepare("UPDATE " . GEODIR_REVIEW_TABLE . " SET post_id=%d WHERE comment_id=%d", $master_post_id, $master_comment_id));
-        geodir_update_postrating($master_post_id, $post_type);
-    }
+	if (empty($review)) {
+		return false;
+	}
+	if ($review['post_id'] != $master_post_id) {
+		$wpdb->query($wpdb->prepare("UPDATE " . GEODIR_REVIEW_TABLE . " SET post_id=%d WHERE comment_id=%d", $master_post_id, $master_comment_id));
+		geodir_update_postrating($master_post_id, $post_type);
+	}
 
-    $tr_comment_id = geodir_wpml_duplicate_comment_exists($tr_post_id, $master_comment_id);
+	$tr_comment_id = geodir_wpml_duplicate_comment_exists($tr_post_id, $master_comment_id);
 
-    if (empty($tr_comment_id)) {
-        return false;
-    }
+	if (empty($tr_comment_id)) {
+		return false;
+	}
 
-    $post_type = get_post_type($master_post_id);
-    $post_table = $plugin_prefix . $post_type . '_detail';
+	$post_type = get_post_type($master_post_id);
+	$post_table = $plugin_prefix . $post_type . '_detail';
 
-    $translated_post = $wpdb->get_row($wpdb->prepare("SELECT post_title, post_latitude, post_longitude, post_city, post_region, post_country FROM " . $post_table . " WHERE post_id = %d", $tr_post_id), ARRAY_A);
-    if (empty($translated_post)) {
-        return false;
-    }
+	$translated_post = $wpdb->get_row($wpdb->prepare("SELECT post_title, post_latitude, post_longitude, post_city, post_region, post_country FROM " . $post_table . " WHERE post_id = %d", $tr_post_id), ARRAY_A);
+	if (empty($translated_post)) {
+		return false;
+	}
 
-    $review['comment_id'] = $tr_comment_id;
-    $review['post_id'] = $tr_post_id;
-    $review['post_title'] = $translated_post['post_title'];
-    $review['post_city'] = $translated_post['post_city'];
-    $review['post_region'] = $translated_post['post_region'];
-    $review['post_country'] = $translated_post['post_country'];
-    $review['post_latitude'] = $translated_post['post_latitude'];
-    $review['post_longitude'] = $translated_post['post_longitude'];
+	$review['comment_id'] = $tr_comment_id;
+	$review['post_id'] = $tr_post_id;
+	$review['post_title'] = $translated_post['post_title'];
+	$review['post_city'] = $translated_post['post_city'];
+	$review['post_region'] = $translated_post['post_region'];
+	$review['post_country'] = $translated_post['post_country'];
+	$review['post_latitude'] = $translated_post['post_latitude'];
+	$review['post_longitude'] = $translated_post['post_longitude'];
 
-    if (isset($review['id'])) {
-        unset($review['id']);
-    }
+	if (isset($review['id'])) {
+		unset($review['id']);
+	}
 
-    $tr_review_id = $wpdb->get_var($wpdb->prepare("SELECT id FROM " . GEODIR_REVIEW_TABLE . " WHERE comment_id=%d AND post_id=%d ORDER BY id ASC", $tr_comment_id, $tr_post_id));
+	$tr_review_id = $wpdb->get_var($wpdb->prepare("SELECT id FROM " . GEODIR_REVIEW_TABLE . " WHERE comment_id=%d AND post_id=%d ORDER BY id ASC", $tr_comment_id, $tr_post_id));
 
-    if ($tr_review_id) { // update review
-        $wpdb->update(GEODIR_REVIEW_TABLE, $review, array('id' => $tr_review_id));
-    } else { // insert review
-        $wpdb->insert(GEODIR_REVIEW_TABLE, $review);
-        $tr_review_id = $wpdb->insert_id;
-    }
+	if ($tr_review_id) { // update review
+		$wpdb->update(GEODIR_REVIEW_TABLE, $review, array('id' => $tr_review_id));
+	} else { // insert review
+		$wpdb->insert(GEODIR_REVIEW_TABLE, $review);
+		$tr_review_id = $wpdb->insert_id;
+	}
 
-    if ($tr_post_id) {
-        geodir_update_postrating($tr_post_id, $post_type);
-        
-        if (defined('GEODIRREVIEWRATING_VERSION') && get_option('geodir_reviewrating_enable_review') && $sitepress->get_setting('sync_comments_on_duplicates')) {
-            $wpdb->query($wpdb->prepare("DELETE FROM " . GEODIR_COMMENTS_REVIEWS_TABLE . " WHERE comment_id = %d", array($tr_comment_id)));
-            $likes = $wpdb->get_results($wpdb->prepare("SELECT * FROM " . GEODIR_COMMENTS_REVIEWS_TABLE . " WHERE comment_id=%d ORDER BY like_date ASC", $master_comment_id, $tr_post_id), ARRAY_A);
+	if ($tr_post_id) {
+		geodir_update_postrating($tr_post_id, $post_type);
 
-            if (!empty($likes)) {
-                foreach ($likes as $like) {
-                    unset($like['like_id']);
-                    $like['comment_id'] = $tr_comment_id;
-                    
-                    $wpdb->insert(GEODIR_COMMENTS_REVIEWS_TABLE, $like);
-                }
-            }
-        }
-    }
+		if (defined('GEODIRREVIEWRATING_VERSION') && get_option('geodir_reviewrating_enable_review') && $sitepress->get_setting('sync_comments_on_duplicates')) {
+			$wpdb->query($wpdb->prepare("DELETE FROM " . GEODIR_COMMENTS_REVIEWS_TABLE . " WHERE comment_id = %d", array($tr_comment_id)));
+			$likes = $wpdb->get_results($wpdb->prepare("SELECT * FROM " . GEODIR_COMMENTS_REVIEWS_TABLE . " WHERE comment_id=%d ORDER BY like_date ASC", $master_comment_id, $tr_post_id), ARRAY_A);
 
-    return $tr_review_id;
+			if (!empty($likes)) {
+				foreach ($likes as $like) {
+					unset($like['like_id']);
+					$like['comment_id'] = $tr_comment_id;
+
+					$wpdb->insert(GEODIR_COMMENTS_REVIEWS_TABLE, $like);
+				}
+			}
+		}
+	}
+
+	return $tr_review_id;
 }
 
 /**
@@ -2849,36 +2849,36 @@ function geodir_wpml_duplicate_post_review($master_comment_id, $master_post_id, 
  * @param int $comment_id The Comment ID.
  */
 function gepdir_wpml_sync_comment($comment_id) {
-    global $wpdb, $sitepress, $gd_wpml_posttypes;
+	global $wpdb, $sitepress, $gd_wpml_posttypes;
 
-    if (empty($gd_post_types)) {
-        $gd_wpml_posttypes = geodir_get_posttypes();
-    }
+	if (empty($gd_post_types)) {
+		$gd_wpml_posttypes = geodir_get_posttypes();
+	}
 
-    $comment = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->comments} WHERE comment_ID=%d", $comment_id), ARRAY_A);
-    if (empty($comment)) {
-        return;
-    }
+	$comment = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->comments} WHERE comment_ID=%d", $comment_id), ARRAY_A);
+	if (empty($comment)) {
+		return;
+	}
 
-    $post_id = $comment['comment_post_ID'];
-    $post_type = $post_id ? get_post_type($post_id) : NULL;
+	$post_id = $comment['comment_post_ID'];
+	$post_type = $post_id ? get_post_type($post_id) : NULL;
 
-    if (!($post_type && in_array($post_type, $gd_wpml_posttypes))) {
-        return;
-    }
+	if (!($post_type && in_array($post_type, $gd_wpml_posttypes))) {
+		return;
+	}
 
-    $post_duplicates = $sitepress->get_duplicates($post_id);
-    if (empty($post_duplicates)) {
-        return;
-    }
+	$post_duplicates = $sitepress->get_duplicates($post_id);
+	if (empty($post_duplicates)) {
+		return;
+	}
 
-    foreach ($post_duplicates as $lang => $dup_post_id) {
-        if (empty($comment['comment_parent'])) {
-            geodir_wpml_duplicate_post_review($comment_id, $post_id, $dup_post_id, $lang);
-        }
-    }
-    
-    return true;
+	foreach ($post_duplicates as $lang => $dup_post_id) {
+		if (empty($comment['comment_parent'])) {
+			geodir_wpml_duplicate_post_review($comment_id, $post_id, $dup_post_id, $lang);
+		}
+	}
+
+	return true;
 }
 
 /**
@@ -2893,11 +2893,11 @@ function gepdir_wpml_sync_comment($comment_id) {
  * @return int The duplicate comment ID.
  */
 function geodir_wpml_duplicate_comment_exists($dup_post_id, $original_cid) {
-    global $wpdb;
+	global $wpdb;
 
-    $duplicate = $wpdb->get_var(
-        $wpdb->prepare(
-            "   SELECT comm.comment_ID
+	$duplicate = $wpdb->get_var(
+		$wpdb->prepare(
+			"   SELECT comm.comment_ID
                 FROM {$wpdb->comments} comm
                 JOIN {$wpdb->commentmeta} cm
                     ON comm.comment_ID = cm.comment_id
@@ -2905,12 +2905,12 @@ function geodir_wpml_duplicate_comment_exists($dup_post_id, $original_cid) {
                     AND cm.meta_key = '_icl_duplicate_of'
                     AND cm.meta_value = %d
                 LIMIT 1",
-            $dup_post_id,
-            $original_cid
-        )
-    );
+			$dup_post_id,
+			$original_cid
+		)
+	);
 
-    return $duplicate;
+	return $duplicate;
 }
 
 /**
@@ -2921,10 +2921,10 @@ function geodir_wpml_duplicate_comment_exists($dup_post_id, $original_cid) {
  * @param string $post_type WP post type or WP texonomy. Ex: gd_place.
  * @param bool $taxonomy Whether $post_type is taxonomy or not.
  * @return bool True if review star disabled, otherwise false.
- */ 
+ */
 function geodir_rating_disabled_post_types() {
 	$post_types = get_option( 'geodir_disable_rating_cpt' );
-	
+
 	/**
 	 * Filter the post types array which have rating disabled.
 	 *
@@ -2943,26 +2943,26 @@ function geodir_rating_disabled_post_types() {
  * @param string|int $post_type WP post type or Post ID or WP texonomy. Ex: gd_place.
  * @param bool $taxonomy Whether $post_type is taxonomy or not.
  * @return bool True if review star disabled, otherwise false.
- */ 
+ */
 function geodir_cpt_has_rating_disabled( $post_type = '', $taxonomy = false ) {
 	$post_types = geodir_rating_disabled_post_types();
-	
+
 	if ( empty( $post_types ) ) {
 		return false;
 	}
-	
+
 	if ( is_int( $post_type ) ) {
 		$post_type = get_post_type( $post_type );
 	}
-	
+
 	if ( $taxonomy && !empty( $post_types ) ) {
 		$posttypes = array();
-		
+
 		foreach ( $post_types as $posttype ) {
 			$posttypes[] = $posttype . 'category';
 			$posttypes[] = $posttype . '_tags';
 		}
-		
+
 		$post_types = $posttypes;
 	}
 
@@ -2982,7 +2982,7 @@ function geodir_cpt_has_rating_disabled( $post_type = '', $taxonomy = false ) {
  * @return bool True if Yoast SEO disabled on GD pages.
  */
 function geodir_disable_yoast_seo_metas() {
-    return (bool)get_option( 'geodir_disable_yoast_meta' );
+	return (bool)get_option( 'geodir_disable_yoast_meta' );
 }
 
 /**
@@ -2994,39 +2994,39 @@ function geodir_disable_yoast_seo_metas() {
  * @return bool True if allowed.
  */
 function geodir_wpml_allowed_to_duplicate( $post_id ) {
-    $allowed = false;
-    
-    if ( !geodir_is_wpml() || empty( $post_id ) ) {
-        return $allowed;
-    }
-    
-    $user_id = (int)get_current_user_id();
-    
-    if ( empty( $user_id ) ) {
-        return $allowed;
-    }
-    
-    $post_type = get_post_type( $post_id );
-    if ( !geodir_wpml_is_post_type_translated( $post_type ) || get_post_meta( $post_id, '_icl_lang_duplicate_of', true ) ) {
-        return $allowed;
-    }
-    
-    if ( geodir_listing_belong_to_current_user( $post_id ) ) {
-        $allowed = true;
-    }
-    
-    $disable_cpts = get_option( 'geodir_wpml_disable_duplicate' );
-    if ( $allowed && !empty( $disable_cpts ) && in_array( $post_type, $disable_cpts ) ) {
-        $allowed = false;
-    }
-    
-    /**
-     * Filter the user allowed to duplicate listing or not for WPML.
-     *
-     * @param bool $allowed True if allowed.
-     * @param int $post_id The post ID.
-     */
-    return apply_filters( 'geodir_wpml_allowed_to_duplicate', $allowed, $post_id );
+	$allowed = false;
+
+	if ( !geodir_is_wpml() || empty( $post_id ) ) {
+		return $allowed;
+	}
+
+	$user_id = (int)get_current_user_id();
+
+	if ( empty( $user_id ) ) {
+		return $allowed;
+	}
+
+	$post_type = get_post_type( $post_id );
+	if ( !geodir_wpml_is_post_type_translated( $post_type ) || get_post_meta( $post_id, '_icl_lang_duplicate_of', true ) ) {
+		return $allowed;
+	}
+
+	if ( geodir_listing_belong_to_current_user( $post_id ) ) {
+		$allowed = true;
+	}
+
+	$disable_cpts = get_option( 'geodir_wpml_disable_duplicate' );
+	if ( $allowed && !empty( $disable_cpts ) && in_array( $post_type, $disable_cpts ) ) {
+		$allowed = false;
+	}
+
+	/**
+	 * Filter the user allowed to duplicate listing or not for WPML.
+	 *
+	 * @param bool $allowed True if allowed.
+	 * @param int $post_id The post ID.
+	 */
+	return apply_filters( 'geodir_wpml_allowed_to_duplicate', $allowed, $post_id );
 }
 
 /**
@@ -3042,71 +3042,71 @@ function geodir_wpml_allowed_to_duplicate( $post_id ) {
  * @return string Filtered html of the geodir_edit_post_link() function.
  */
 function geodir_wpml_frontend_duplicate_listing( $content_html ) {
-    global $post, $preview, $sitepress;
-    
-    if ( !empty( $post->ID ) && !$preview && geodir_is_page( 'detail' ) && geodir_wpml_allowed_to_duplicate( $post->ID ) ) {
-        $post_id = $post->ID;
-        $element_type = 'post_' . get_post_type( $post_id );
-        $original_post_id = $sitepress->get_original_element_id( $post_id, $element_type );
-        
-        if ( $original_post_id == $post_id ) {
-            $wpml_languages = $sitepress->get_active_languages();
-            $post_language = $sitepress->get_language_for_element( $post_id, $element_type );
-            
-            if ( !empty( $wpml_languages ) && isset( $wpml_languages[ $post_language ] ) ) {
-                unset( $wpml_languages[ $post_language ] );
-            }
-            
-            if ( !empty( $wpml_languages ) ) {
-                $trid  = $sitepress->get_element_trid( $post_id, $element_type );
-                $element_translations = $sitepress->get_element_translations( $trid, $element_type );
-                $duplicates = $sitepress->get_duplicates( $post_id );
-                
-                $wpml_content = '<div class="geodir-company_info gd-detail-duplicate"><h3 class="widget-title">' . __( 'Translate Listing', 'geodirectory' ) . '</h3>';
-                $wpml_content .= '<table class="gd-duplicate-table" style="width:100%;margin:0"><tbody>';
-                $wpml_content .= '<tr style="border-bottom:solid 1px #efefef"><th style="padding:0 2px 2px 2px">' . __( 'Language', 'geodirectory' ) . '</th><th style="width:25px;"></th><th style="width:5em;text-align:center">' . __( 'Translate', 'geodirectory' ) . '</th></tr>';
-                
-                $needs_translation = false;
-                
-                foreach ( $wpml_languages as $lang_code => $lang ) {
-                    $duplicates_text = '';
-                    $translated = false;
-                    
-                    if ( !empty( $element_translations ) && isset( $element_translations[$lang_code] ) ) {
-                        $translated = true;
-                        
-                        if ( !empty( $duplicates ) && isset( $duplicates[$lang_code] ) ) {
-                            $duplicates_text = ' ' . __( '(duplicate)', 'geodirectory' );
-                        }
-                    } else {
-                        $needs_translation = true;
-                    }
-                    
-                    $wpml_content .= '<tr><td style="padding:4px">' . $lang['english_name'] . $duplicates_text . '</td><td>&nbsp;</td><td style="text-align:center;">';
-                    
-                    if ( $translated ) {
-                        $wpml_content .= '<i class="fa fa-check" style="color:orange"></i>';
-                    } else {
-                        $wpml_content .= '<input name="gd_icl_dup[]" value="' . $lang_code . '" title="' . esc_attr__( 'Create duplicate', 'geodirectory' ) . '" type="checkbox">';
-                    }
-                    
-                    $wpml_content .= '</td></tr>';
-                }
-                
-                if ( $needs_translation ) {
-                    $nonce = wp_create_nonce( 'geodir_duplicate_nonce' );
-                    $wpml_content .= '<tr><td>&nbsp;</td><td style="vertical-align:middle;padding-top:13px"><i style="display:none" class="fa fa-spin fa-refresh"></i></td><td style="padding:15px 3px 3px 3px;text-align:right"><button data-nonce="' . esc_attr( $nonce ) . '" data-post-id="' . $post_id . '" id="gd_make_duplicates" class="button-secondary">' . __( 'Duplicate', 'geodirectory' ) . '</button></td></tr>';
-                }
-                
-                $wpml_content .= '</tbody></table>';
-                $wpml_content .= '</div>';
-                
-                $content_html .= $wpml_content;
-            }
-        }
-    }
-    
-    return $content_html;
+	global $post, $preview, $sitepress;
+
+	if ( !empty( $post->ID ) && !$preview && geodir_is_page( 'detail' ) && geodir_wpml_allowed_to_duplicate( $post->ID ) ) {
+		$post_id = $post->ID;
+		$element_type = 'post_' . get_post_type( $post_id );
+		$original_post_id = $sitepress->get_original_element_id( $post_id, $element_type );
+
+		if ( $original_post_id == $post_id ) {
+			$wpml_languages = $sitepress->get_active_languages();
+			$post_language = $sitepress->get_language_for_element( $post_id, $element_type );
+
+			if ( !empty( $wpml_languages ) && isset( $wpml_languages[ $post_language ] ) ) {
+				unset( $wpml_languages[ $post_language ] );
+			}
+
+			if ( !empty( $wpml_languages ) ) {
+				$trid  = $sitepress->get_element_trid( $post_id, $element_type );
+				$element_translations = $sitepress->get_element_translations( $trid, $element_type );
+				$duplicates = $sitepress->get_duplicates( $post_id );
+
+				$wpml_content = '<div class="geodir-company_info gd-detail-duplicate"><h3 class="widget-title">' . __( 'Translate Listing', 'geodirectory' ) . '</h3>';
+				$wpml_content .= '<table class="gd-duplicate-table" style="width:100%;margin:0"><tbody>';
+				$wpml_content .= '<tr style="border-bottom:solid 1px #efefef"><th style="padding:0 2px 2px 2px">' . __( 'Language', 'geodirectory' ) . '</th><th style="width:25px;"></th><th style="width:5em;text-align:center">' . __( 'Translate', 'geodirectory' ) . '</th></tr>';
+
+				$needs_translation = false;
+
+				foreach ( $wpml_languages as $lang_code => $lang ) {
+					$duplicates_text = '';
+					$translated = false;
+
+					if ( !empty( $element_translations ) && isset( $element_translations[$lang_code] ) ) {
+						$translated = true;
+
+						if ( !empty( $duplicates ) && isset( $duplicates[$lang_code] ) ) {
+							$duplicates_text = ' ' . __( '(duplicate)', 'geodirectory' );
+						}
+					} else {
+						$needs_translation = true;
+					}
+
+					$wpml_content .= '<tr><td style="padding:4px">' . $lang['english_name'] . $duplicates_text . '</td><td>&nbsp;</td><td style="text-align:center;">';
+
+					if ( $translated ) {
+						$wpml_content .= '<i class="fa fa-check" style="color:orange"></i>';
+					} else {
+						$wpml_content .= '<input name="gd_icl_dup[]" value="' . $lang_code . '" title="' . esc_attr__( 'Create duplicate', 'geodirectory' ) . '" type="checkbox">';
+					}
+
+					$wpml_content .= '</td></tr>';
+				}
+
+				if ( $needs_translation ) {
+					$nonce = wp_create_nonce( 'geodir_duplicate_nonce' );
+					$wpml_content .= '<tr><td>&nbsp;</td><td style="vertical-align:middle;padding-top:13px"><i style="display:none" class="fa fa-spin fa-refresh"></i></td><td style="padding:15px 3px 3px 3px;text-align:right"><button data-nonce="' . esc_attr( $nonce ) . '" data-post-id="' . $post_id . '" id="gd_make_duplicates" class="button-secondary">' . __( 'Duplicate', 'geodirectory' ) . '</button></td></tr>';
+				}
+
+				$wpml_content .= '</tbody></table>';
+				$wpml_content .= '</div>';
+
+				$content_html .= $wpml_content;
+			}
+		}
+	}
+
+	return $content_html;
 }
 
 /**
@@ -3118,28 +3118,28 @@ function geodir_wpml_frontend_duplicate_listing( $content_html ) {
  * @return array Filtered GD design settings array..
  */
 function geodir_wpml_duplicate_settings( $settings = array() ) {
-    $new_settings = array();
-    
-    foreach ( $settings as $key => $setting ) {
-        
-        if ( isset( $setting['type'] ) && $setting['type'] == 'sectionend' && $setting['id'] == 'detail_page_settings' ) {
-            $new_settings[] = array(
-                'name' => __('Disable WPML duplicate translation', 'geodirectory'),
-                'desc' => __('Select post types to disable front end WPML duplicate translation. For selected post types the WPML duplicate option will be disabled from listing detail page sidebar.', 'geodirectory'),
-                'tip' => '',
-                'id' => 'geodir_wpml_disable_duplicate',
-                'css' => 'min-width:300px;',
-                'std' => '',
-                'type' => 'multiselect',
-                'placeholder_text' => __('Select post types', 'geodirectory'),
-                'class' => 'chosen_select',
-                'options' => array_unique(geodir_post_type_setting_fun())
-            );
-        }
-        $new_settings[] = $setting;
-    }
-    
-    return $new_settings;
+	$new_settings = array();
+
+	foreach ( $settings as $key => $setting ) {
+
+		if ( isset( $setting['type'] ) && $setting['type'] == 'sectionend' && $setting['id'] == 'detail_page_settings' ) {
+			$new_settings[] = array(
+				'name' => __('Disable WPML duplicate translation', 'geodirectory'),
+				'desc' => __('Select post types to disable front end WPML duplicate translation. For selected post types the WPML duplicate option will be disabled from listing detail page sidebar.', 'geodirectory'),
+				'tip' => '',
+				'id' => 'geodir_wpml_disable_duplicate',
+				'css' => 'min-width:300px;',
+				'std' => '',
+				'type' => 'multiselect',
+				'placeholder_text' => __('Select post types', 'geodirectory'),
+				'class' => 'chosen_select',
+				'options' => array_unique(geodir_post_type_setting_fun())
+			);
+		}
+		$new_settings[] = $setting;
+	}
+
+	return $new_settings;
 }
 
 /**
@@ -3151,15 +3151,15 @@ function geodir_wpml_duplicate_settings( $settings = array() ) {
  * @return bool true if the taxonomy is currently set to being translatable in WPML.
  */
 function geodir_wpml_is_taxonomy_translated( $taxonomy ) {
-    if ( empty( $taxonomy ) || !geodir_is_wpml() || !function_exists( 'is_taxonomy_translated' ) ) {
-        return false;
-    }
-    
-    if ( is_taxonomy_translated( $taxonomy ) ) {
-        return true;
-    }
-    
-    return false;
+	if ( empty( $taxonomy ) || !geodir_is_wpml() || !function_exists( 'is_taxonomy_translated' ) ) {
+		return false;
+	}
+
+	if ( is_taxonomy_translated( $taxonomy ) ) {
+		return true;
+	}
+
+	return false;
 }
 
 /**
@@ -3171,15 +3171,15 @@ function geodir_wpml_is_taxonomy_translated( $taxonomy ) {
  * @return bool true if the post_type is currently set to being translatable in WPML.
  */
 function geodir_wpml_is_post_type_translated( $post_type ) {
-    if ( empty( $post_type ) || !geodir_is_wpml() || !function_exists( 'is_post_type_translated' ) ) {
-        return false;
-    }
-    
-    if ( is_post_type_translated( $post_type ) ) {
-        return true;
-    }
-    
-    return false;
+	if ( empty( $post_type ) || !geodir_is_wpml() || !function_exists( 'is_post_type_translated' ) ) {
+		return false;
+	}
+
+	if ( is_post_type_translated( $post_type ) ) {
+		return true;
+	}
+
+	return false;
 }
 
 /**
@@ -3198,13 +3198,13 @@ function geodir_wpml_is_post_type_translated( $post_type ) {
  * @return int|NULL
  */
 function geodir_wpml_object_id( $element_id, $element_type = 'post', $return_original_if_missing = false, $ulanguage_code = null ) {
-    if ( geodir_is_wpml() ) {
-        if ( function_exists( 'wpml_object_id_filter' ) ) {
-            return apply_filters( 'wpml_object_id', $element_id, $element_type, $return_original_if_missing, $ulanguage_code );
-        } else {
-            return icl_object_id( $element_id, $element_type, $return_original_if_missing, $ulanguage_code );
-        }
-    }
-    
-    return $element_id;
+	if ( geodir_is_wpml() ) {
+		if ( function_exists( 'wpml_object_id_filter' ) ) {
+			return apply_filters( 'wpml_object_id', $element_id, $element_type, $return_original_if_missing, $ulanguage_code );
+		} else {
+			return icl_object_id( $element_id, $element_type, $return_original_if_missing, $ulanguage_code );
+		}
+	}
+
+	return $element_id;
 }

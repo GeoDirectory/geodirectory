@@ -2556,7 +2556,14 @@ function geodir_function_widget_listings_where( $where ) {
 			$user_favorites = '-1';
 			
 			if ( !empty( $query_args['favorites_by_user'] ) ) {
-				$user_favorites = get_user_meta( (int)$query_args['favorites_by_user'], 'gd_user_favourite_post', true );
+
+				$site_id = '';
+				if ( is_multisite() ) {
+					$blog_id = get_current_blog_id();
+					if($blog_id && $blog_id!='1'){$site_id  = '_' . $blog_id ;}
+				}
+				
+				$user_favorites = geodir_get_user_favourites( (int)$query_args['favorites_by_user'] );
 				$user_favorites = !empty($user_favorites) && is_array($user_favorites) ? implode("','", $user_favorites) : '-1';
 			}
 			

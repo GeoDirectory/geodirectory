@@ -539,7 +539,32 @@ function geodir_posts_order_by_custom_sort($orderby, $sort_by, $table)
 
                 // sort by rating
                 case 'overall_rating':
-                    $orderby = " " . $table . "." . $sort_by . "  " . $order . ", " . $table . ".rating_count " . $order . ", ";
+
+                    $use_bayesian = apply_filters('gd_use_bayesian',true,$table);
+                    $avg_rating = 0;
+                    if($use_bayesian){
+                        $avg_num_votes = get_transient( 'gd_avg_num_votes_'.$table );
+                        if(!$avg_num_votes){
+                            $avg_num_votes = $wpdb->get_var("SELECT SUM(rating_count) FROM $table");
+                            if($avg_num_votes){
+
+                                $avg_rating = get_transient( 'gd_avg_rating_'.$table );
+                                if(!$avg_rating){
+                                    $avg_rating = $wpdb->get_var("SELECT SUM(overall_rating) FROM $table")/$avg_num_votes;
+                                }
+                                set_transient( 'gd_avg_num_votes_'.$table, $avg_num_votes, 12 * HOUR_IN_SECONDS );
+                                set_transient( 'gd_avg_rating_'.$table, $avg_rating , 12 * HOUR_IN_SECONDS );
+                            }
+                        }
+
+                        if(!$avg_num_votes){ $avg_num_votes = 0;}
+
+                        $orderby = " (( $avg_num_votes * $avg_rating ) + (" . $table . ".rating_count * " . $table . ".overall_rating ))  / ( $avg_num_votes + " . $table . ".rating_count )  $order , ";
+
+                        //$orderby = " ( " . $table . ".rating_count * " . $table . ".overall_rating ) + (" . $table . ".rating_count * " . $table . ".overall_rating )   / ( " . $table . ".rating_count + " . $table . ".rating_count )  $order , "; // seems to work mostly with no extra overheads
+                    }else{
+                        $orderby = " " . $table . "." . $sort_by . "  " . $order . ", " . $table . ".rating_count " . $order . ", ";
+                    }
 
                     break;
 
@@ -912,7 +937,7 @@ function author_filter_where($where) {
 
     if ($user_id > 0) {
         if (isset($_REQUEST['list']) && $_REQUEST['list'] == 'favourite') {
-            $user_fav_posts = get_user_meta($user_id, 'gd_user_favourite_post', true);
+            $user_fav_posts = geodir_get_user_favourites($user_id);
             $user_fav_posts = !empty($user_fav_posts) && is_array($user_fav_posts) ? implode("','", $user_fav_posts) : '-1';
             $where .= " AND $wpdb->posts.ID IN ('$user_fav_posts')";
         } else
