@@ -560,6 +560,7 @@ function gdsc_validate_list_filter_choice($filter_choice)
  * @since 1.4.2
  * @since 1.6.5 $tags parameter added.
  * @since 1.6.18 New attributes added in gd_listings shortcode to filter user favorite listings.
+ * @since 1.6.24 listing_width parameter does not working.
  *
  * @global string $gridview_columns_widget The girdview style of the listings for widget.
  * @global bool $geodir_is_widget_listing Is this a widget listing?. Default: false.
@@ -581,6 +582,7 @@ function geodir_sc_gd_listings_output($args = array()) {
 	$list_sort 			 = !empty($args['list_sort']) ? $args['list_sort'] : 'latest';
 	$character_count	 = isset($args['character_count']) ? $args['character_count'] : '';
 	$layout 			 = !empty($args['layout']) ? $args['layout'] : 'gridview_onehalf';
+	$listing_width 		 = !empty($args['listing_width']) ? $args['listing_width'] : '';
 	$with_pagination 	 = !empty($args['with_pagination']) ? true : false;
 	$event_type 	 	 = !empty($args['event_type']) ? $args['event_type'] : '';
     $shortcode_content   = !empty($args['shortcode_content']) ? trim($args['shortcode_content']) : '';
