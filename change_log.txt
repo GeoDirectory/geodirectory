@@ -6,6 +6,10 @@ Show validation message for empty review/reply text - CHANGED
 Listing edited notification should be sent after listing data saved - CHANGED
 After GT to GD migration comment content shows [img] tags - FIXED
 Multiselect ajax not working properly due to VARCHAR - FIXED
+Overall raiting now uses bayesian formula by default - CHANGED
+Add to fav for multisite using same option, now uses option for each site - CHANGED
+Bulk edit action breaks the listing status - FIXED
+listing_width parameter does not working in gd_listings shortcode FIXED
 
 v1.6.23
 "All" string is not translated in popular post widget title - FIXED

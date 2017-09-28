@@ -152,6 +152,7 @@ function create_default_admin_main_nav()
  * Adds custom columns on geodirectory post types.
  *
  * @since 1.0.0
+ * @since 1.6.24 Remove bulk edit action.
  * @package GeoDirectory
  */
 function geodir_admin_list_columns()
@@ -164,6 +165,9 @@ function geodir_admin_list_columns()
             add_action("manage_{$post_type}_posts_custom_column", 'geodir_manage_post_columns', 10, 2);
 
             add_filter("manage_edit-{$post_type}_sortable_columns", 'geodir_post_sortable_columns');
+            
+            // Filter bulk actions
+            add_filter("bulk_actions-edit-{$post_type}", 'geodir_filter_bulk_actions', 10, 1);
         endforeach;
     }
 }
@@ -2595,3 +2599,19 @@ function geodir_check_quick_edit() {
 }
 add_action( 'admin_head', 'geodir_check_quick_edit', 10 );
 
+/**
+ * Filter the bulk actions for GD CPT.
+ *
+ * @since 1.6.24
+ * @package GeoDirectory
+ *
+ * @param array $actions An array of the available bulk actions.
+ * @return array Filtered bulk actions.
+ */
+function geodir_filter_bulk_actions( $actions ) {
+    if ( isset( $actions['edit'] ) ) {
+        unset( $actions['edit'] );
+    }
+    
+    return $actions;
+}

@@ -2325,14 +2325,20 @@ if (!function_exists('geodir_add_to_favorite')) {
          */
         $favourite_icon = apply_filters('geodir_favourite_icon', 'fa fa-heart');
 
-        $user_meta_data = get_user_meta($current_user->data->ID, 'gd_user_favourite_post', true);
+        $site_id = '';
+        if ( is_multisite() ) {
+            $blog_id = get_current_blog_id();
+            if($blog_id && $blog_id!='1'){$site_id  = '_' . $blog_id ;}
+        }
+
+        $user_meta_data = geodir_get_user_favourites($current_user->data->ID);
         $user_meta_data = !empty($user_meta_data) && is_array($user_meta_data) ? $user_meta_data : array();
 
         if (empty($user_meta_data) || (!empty($user_meta_data) && !in_array($post_id, $user_meta_data))) {
             $user_meta_data[] = $post_id;
         }
 
-        update_user_meta($current_user->data->ID, 'gd_user_favourite_post', $user_meta_data);
+        update_user_meta($current_user->data->ID, 'gd_user_favourite_post'.$site_id, $user_meta_data);
 
         /**
          * Called before adding the post from favourites.
@@ -2400,8 +2406,14 @@ if (!function_exists('geodir_remove_from_favorite')) {
          */
         $favourite_icon = apply_filters('geodir_favourite_icon', 'fa fa-heart');
 
+        $site_id = '';
+        if ( is_multisite() ) {
+            $blog_id = get_current_blog_id();
+            if($blog_id && $blog_id!='1'){$site_id  = '_' . $blog_id ;}
+        }
+
         $user_meta_data = array();
-        $user_meta_data = get_user_meta($current_user->data->ID, 'gd_user_favourite_post', true);
+        $user_meta_data = geodir_get_user_favourites($current_user->data->ID);
 
         if (!empty($user_meta_data)) {
 
@@ -2411,7 +2423,7 @@ if (!function_exists('geodir_remove_from_favorite')) {
 
         }
 
-        update_user_meta($current_user->data->ID, 'gd_user_favourite_post', $user_meta_data);
+        update_user_meta($current_user->data->ID, 'gd_user_favourite_post'.$site_id, $user_meta_data);
 
         /**
          * Called before removing the post from favourites.
@@ -2512,9 +2524,16 @@ if (!function_exists('geodir_favourite_html')) {
          */
         $unfavourite_icon = apply_filters('geodir_unfavourite_icon', 'fa fa-heart');
 
+
+        $site_id = '';
+        if ( is_multisite() ) {
+            $blog_id = get_current_blog_id();
+            if($blog_id && $blog_id!='1'){$site_id  = '_' . $blog_id ;}
+        }
+
         $user_meta_data = '';
         if (isset($current_user->data->ID))
-            $user_meta_data = get_user_meta($current_user->data->ID, 'gd_user_favourite_post', true);
+            $user_meta_data = geodir_get_user_favourites($current_user->data->ID);
 
         if (!empty($user_meta_data) && in_array($post_id, $user_meta_data)) {
             ?><span class="geodir-addtofav favorite_property_<?php echo $post_id;?>"  ><a
