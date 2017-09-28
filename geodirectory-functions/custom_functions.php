@@ -2102,11 +2102,12 @@ function geodir_get_recent_reviews( $g_size = 60, $no_comments = 5, $comment_len
 			$comments_echo .= "</span>\n";
 
 			$comments_echo .= '<span class="geodir_reviewer_content">';
-			if ( $comment->user_id ) {
+			$author_link = apply_filters('geodir_reviewer_content_author_link', true);
+			if ( $comment->user_id && $author_link ) {
 				$comments_echo .= '<a href="' . get_author_posts_url( $comment->user_id ) . '">';
 			}
 			$comments_echo .= '<span class="geodir_reviewer_author">' . $comment->comment_author . '</span> ';
-			if ( $comment->user_id ) {
+			if ( $comment->user_id && $author_link ) {
 				$comments_echo .= '</a>';
 			}
 			$comments_echo .= '<span class="geodir_reviewer_reviewed">' . __( 'reviewed', 'geodirectory' ) . '</span> ';
