@@ -3609,6 +3609,7 @@ function geodir_loginwidget_output( $args = '', $instance = '' ) {
  *
  * @since   1.0.0
  * @since   1.5.1 View all link fixed for location filter disabled.
+ * @since   1.6.24 View all link should go to search page with near me selected.
  * @package GeoDirectory
  * @global object $post                    The current post object.
  * @global string $gridview_columns_widget The girdview style of the listings for widget.
@@ -3758,6 +3759,7 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 		$location_url[] = $city;
 	}
 
+	$location_allowed = function_exists( 'geodir_cpt_no_location' ) && geodir_cpt_no_location( $post_type ) ? false : true;
 	$location_url  = implode( '/', $location_url );
 	$skip_location = false;
 	if ( ! $add_location_filter && $gd_session->get( 'gd_multi_location' ) ) {
@@ -3765,25 +3767,41 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 		$gd_session->un_set( 'gd_multi_location' );
 	}
 
-	if ( get_option( 'permalink_structure' ) ) {
-		$viewall_url = get_post_type_archive_link( $post_type );
+	if ( $location_allowed && $add_location_filter && $gd_session->get( 'all_near_me' ) && geodir_is_page( 'location' ) ) {
+		$viewall_url = add_query_arg( array( 
+			'geodir_search' => 1, 
+			'stype' => $post_type,
+			's' => '',
+			'snear' => __( 'Near:', 'geodiradvancesearch' ) . ' ' . __( 'Me', 'geodiradvancesearch' ),
+			'sgeo_lat' => $gd_session->get( 'user_lat' ),
+			'sgeo_lon' => $gd_session->get( 'user_lon' )
+		), geodir_search_page_base_url() );
+
+		if ( ! empty( $category ) && !in_array( '0', $category ) ) {
+			$viewall_url = add_query_arg( array( 'sgd_placecategory' => $category ), $viewall_url );
+		}
 	} else {
-		$viewall_url = get_post_type_archive_link( $post_type );
-	}
-
-	if ( ! empty( $category ) && $category[0] != '0' ) {
-		global $geodir_add_location_url;
-
-		$geodir_add_location_url = '0';
-
-		if ( $add_location_filter != '0' ) {
-			$geodir_add_location_url = '1';
+		if ( get_option( 'permalink_structure' ) ) {
+			$viewall_url = get_post_type_archive_link( $post_type );
+		} else {
+			$viewall_url = get_post_type_archive_link( $post_type );
 		}
 
-		$viewall_url = get_term_link( (int) $category[0], $post_type . 'category' );
+		if ( ! empty( $category ) && $category[0] != '0' ) {
+			global $geodir_add_location_url;
 
-		$geodir_add_location_url = null;
+			$geodir_add_location_url = '0';
+
+			if ( $add_location_filter != '0' ) {
+				$geodir_add_location_url = '1';
+			}
+
+			$viewall_url = get_term_link( (int) $category[0], $post_type . 'category' );
+
+			$geodir_add_location_url = null;
+		}
 	}
+
 	if ( $skip_location ) {
 		$gd_session->set( 'gd_multi_location', 1 );
 	}
