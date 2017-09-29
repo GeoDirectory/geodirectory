@@ -3778,7 +3778,7 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 		), geodir_search_page_base_url() );
 
 		if ( ! empty( $category ) && !in_array( '0', $category ) ) {
-			$viewall_url = add_query_arg( array( 'sgd_placecategory' => $category ), $viewall_url );
+			$viewall_url = add_query_arg( array( 's' . $post_type . 'category' => $category ), $viewall_url );
 		}
 	} else {
 		if ( get_option( 'permalink_structure' ) ) {
