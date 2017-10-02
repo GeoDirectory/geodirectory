@@ -11,6 +11,7 @@ Add to fav for multisite using same option, now uses option for each site - CHAN
 Bulk edit action breaks the listing status - FIXED
 listing_width parameter does not working in gd_listings shortcode FIXED
 View all link should go to search page with near me selected - CHANGED
+geodir_reviewer_content_author_link filter added - ADDED
 
 v1.6.23
 "All" string is not translated in popular post widget title - FIXED
