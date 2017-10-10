@@ -2973,14 +2973,16 @@ function geodir_popular_post_category_output( $args = '', $instance = '' ) {
 					?>
 				</div>
 				<?php
-				$hide = '';
-				if ( $cat_count < $category_limit ) {
-					$hide = 'style="display:none;"';
+				if ( empty( $category_restrict ) ) { 
+					$hide = '';
+					if ( $cat_count < $category_limit ) {
+						$hide = 'style="display:none;"';
+					}
+					echo "<div class='geodir-cat-list-more' $hide >";
+					echo '<a href="javascript:void(0)" class="geodir-morecat geodir-showcat">' . __( 'More Categories', 'geodirectory' ) . '</a>';
+					echo '<a href="javascript:void(0)" class="geodir-morecat geodir-hidecat geodir-hide">' . __( 'Less Categories', 'geodirectory' ) . '</a>';
+					echo "</div>";
 				}
-				echo "<div class='geodir-cat-list-more' $hide >";
-				echo '<a href="javascript:void(0)" class="geodir-morecat geodir-showcat">' . __( 'More Categories', 'geodirectory' ) . '</a>';
-				echo '<a href="javascript:void(0)" class="geodir-morecat geodir-hidecat geodir-hide">' . __( 'Less Categories', 'geodirectory' ) . '</a>';
-				echo "</div>";
 				/* add scripts */
 				add_action( 'wp_footer', 'geodir_popular_category_add_scripts', 100 );
 				?>
