@@ -10,14 +10,14 @@
  * @wordpress-plugin
  * Plugin Name: GeoDirectory
  * Plugin URI: https://wpgeodirectory.com/
- * Description: GeoDirectory plugin for wordpress.
- * Version: 1.6.23
+ * Description: GeoDirectory plugin for WordPress.
+ * Version: 1.6.24
  * Author: GeoDirectory
  * Author URI: https://wpgeodirectory.com
  * Text Domain: geodirectory
  * Domain Path: /geodirectory-languages
  * Requires at least: 3.1
- * Tested up to: 4.8
+ * Tested up to: 4.9
  */
 
 /**
@@ -25,7 +25,7 @@
  *
  * @since 1.0.0
  */
-define("GEODIRECTORY_VERSION", "1.6.23");
+define("GEODIRECTORY_VERSION", "1.6.24");
 
 /*
  * CHECK FOR OLD COMPATIBILITY PACKS AND DISABLE IF THEY ARE ACTIVE

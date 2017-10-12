@@ -185,7 +185,13 @@ function geodir_user_show_listings($user_id='',$output_type='select'){
 
 }
 
-
+/**
+ * Get the array of user favourites.
+ *
+ * @param string $user_id
+ * @since 1.6.24
+ * @return mixed
+ */
 function geodir_get_user_favourites($user_id=''){
     if(!$user_id){$user_id = get_current_user_id();}
     $site_id = '';

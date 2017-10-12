@@ -1456,14 +1456,18 @@ function geodir_listing_permalink_structure($post_link, $post_obj, $leavename, $
 
     global $wpdb, $wp_query, $plugin_prefix, $post, $comment_post_cache, $gd_permalink_cache;
     if (isset($post_obj->ID) && isset($post->ID) && $post_obj->ID == $post->ID) {
-    } elseif (isset($post_obj->post_status) && $post_obj->post_status == 'auto-draft') {
+        if($post_obj->post_status == 'auto-draft' || $post_obj->post_status == 'draft' || $post_obj->post_status == 'pending'){return $post_link;}
+    } elseif (isset($post_obj->post_status) && ($post_obj->post_status == 'auto-draft' || $post_obj->post_status == 'draft' || $post_obj->post_status == 'pending')) {
         return $post_link;
     } else {
         $orig_post = $post;
         $post = $post_obj;
     }
 
-    if (in_array($post->post_type, geodir_get_posttypes())) {
+
+
+    if (in_array($post->post_type, geodir_get_posttypes())) {//print_r($post );exit;
+
 
         // if we dont have a GD post then try to grab it
         if(!isset($post->default_category)){

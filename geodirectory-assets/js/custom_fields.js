@@ -39,6 +39,7 @@ jQuery(document).ready(function () {
         cursor: 'move',
         placeholder: "ui-state-highlight",
         cancel: "input,label,select",
+        delay: 500,
         update: function () {
             var manage_field_type = jQuery(this).closest('#geodir-selected-fields').find(".manage_field_type").val();
             var order = jQuery(this).sortable("serialize") + '&update=update&manage_field_type=' + manage_field_type;
