@@ -244,7 +244,9 @@ function build_map_ajax_search_param(map_canvas_var, reload_cat_list, catObj, hi
 
     } else if (eval(map_canvas_var).enable_marker_cluster_server && !eval(map_canvas_var).autozoom) { // map not loaded and auto zoom not set
         gd_zl = eval(map_canvas_var).zoom;
-        map_info = "&zl=" + gd_zl;
+        gd_map_h = jQuery('#' + map_canvas_var).height();
+        gd_map_w = jQuery('#' + map_canvas_var).width();
+        map_info = "&zl=" + gd_zl + "&gd_map_h=" + gd_map_h + "&gd_map_w=" + gd_map_w;
     } else if (eval(map_canvas_var).enable_marker_cluster_server && eval(map_canvas_var).autozoom) { // map not loaded and auto zoom set
         gd_zl = eval(map_canvas_var).zoom;
         gd_map_h = jQuery('#' + map_canvas_var).height();

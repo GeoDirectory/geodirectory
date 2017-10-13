@@ -89,7 +89,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
 <li class="text" id="licontainer_<?php echo $result_str; ?>">
     <div class="title title<?php echo $result_str; ?> gt-fieldset"
          title="<?php _e('Double Click to toggle and drag-drop to sort', 'geodirectory'); ?>"
-         ondblclick="show_hide('field_frm<?php echo $result_str; ?>')">
+         ondblclick="show_hide('field_frm<?php echo $result_str; ?>')" >
         <?php
 
         $nonce = wp_create_nonce('custom_fields_' . $result_str);
