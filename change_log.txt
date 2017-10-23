@@ -1,3 +1,6 @@
+v1.6.25
+My Favorites text in breadcrumb not translatable - FIXED
+
 v1.6.24
 Fix affiliate links for GeoDirectory CPTs listing pages - FIXED
 Broken term links on details page if region removed from details links - FIXED
