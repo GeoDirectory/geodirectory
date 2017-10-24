@@ -1199,7 +1199,12 @@ function geodir_cf_email($html,$location,$cf,$p=''){
                      * @param array $cf Custom field variables array.
                      */
                     $email_name = apply_filters('geodir_email_field_name_output',$email,$cf);
-                    $html .=  "<script>document.write('<a href=\"mailto:'+'$e_split[0]' + '@' + '$e_split[1]'+'\">$email_name</a>')</script>";
+                    if($location=='mapbubble'){
+                        $html .=  "<a href=\"mailto:$email\">$email_name</a>";
+                    }else{
+                        $html .=  "<script>document.write('<a href=\"mailto:'+'$e_split[0]' + '@' + '$e_split[1]'+'\">$email_name</a>')</script>";
+                    }
+
                 }else{
                     $html .=  $email;
                 }
