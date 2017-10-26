@@ -2,6 +2,7 @@ v1.6.25
 My Favorites text in breadcrumb not translatable - FIXED
 Email custom field not shoWing on map bubble - FIXED
 Related listings widget does not have option to sort nearest listings - FIXED
+Address field does not hides validation message if address set from map dragend - FIXED
 
 v1.6.24
 Fix affiliate links for GeoDirectory CPTs listing pages - FIXED
