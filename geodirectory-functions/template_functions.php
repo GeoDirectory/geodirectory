@@ -34,15 +34,10 @@ function geodir_locate_template($template = '')
             }
             
             $sc_post_type = '';
-            if (is_page() && isset($post->post_content) && has_shortcode($post->post_content, 'gd_add_listing')) {
+            if (is_page() && !empty($post->post_content) && ($shortcode = geodir_parse_shortcodes($post->post_content, 'gd_add_listing'))) {
                 $listing_page_id = $post->ID;
-                
-                $regex_pattern = get_shortcode_regex();
-                preg_match('/'.$regex_pattern.'/s', $post->post_content, $regex_matches);
-                
-                if (!empty($regex_matches) && isset($regex_matches[2]) == 'gd_add_listing' && isset($regex_matches[3])) {
-                    $shortcode_atts = shortcode_parse_atts($regex_matches[3]);
-                    $sc_post_type = !empty($shortcode_atts) && isset($shortcode_atts['listing_type']) && !empty($shortcode_atts['listing_type']) ? $shortcode_atts['listing_type'] : '';
+                if (!empty($shortcode['listing_type'])) {
+                    $sc_post_type = $shortcode['listing_type'];
                 }
             } else {
                 $listing_page_id = geodir_add_listing_page_id();
@@ -676,4 +671,43 @@ function geodir_font_awesome_rating_css() {
 			.gd-star-rating i.fa {color:' . stripslashes($full_color) . '!important;}</style>';
 		}
 	}
+}
+
+function geodir_parse_shortcodes( $content, $shortcode, $first = true ) {
+    if ( empty( $content ) || empty( $shortcode ) ) {
+        return array();
+    }
+    
+    if ( false === strpos( $content, '[' ) ) {
+        return array();
+    }
+
+    if ( ! has_shortcode( $content, $shortcode ) ) {
+        return array();
+    }
+
+    $shortcodes = array();
+    if ( preg_match_all( '/' . get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER ) ) {
+        foreach ( $matches as $match ) {
+            if ( $shortcode === $match[2] ) {
+                $shortcode_attrs = shortcode_parse_atts( $match[3] );
+                if ( ! is_array( $shortcode_attrs ) ) {
+                    $shortcode_attrs = array();
+                }
+                $shortcode_attrs['shortcode_tag'] = $shortcode;
+                if ( !empty( $match[5] ) ) {
+                    $shortcode_attrs['shortcode_content'] = $match[5];
+                }
+                $shortcodes[] = $shortcode_attrs;
+                if ( $first === true ) {
+                    break;
+                }
+            }
+        }
+        if ( $first === true && !empty( $shortcodes ) ) {
+            $shortcodes = $shortcodes[0];
+        }
+    }
+
+    return apply_filters( 'geodir_parse_shortcodes', $shortcodes, $content, $shortcode, $first );
 }
