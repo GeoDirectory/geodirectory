@@ -177,32 +177,14 @@ class geodir_related_listing_postview extends WP_Widget
             </label>
         </p>
         <p>
-            <label
-                for="<?php echo $this->get_field_id('list_sort'); ?>"><?php _e('Sort by:', 'geodirectory');?>
-
-                <select class="widefat" id="<?php echo $this->get_field_id('list_sort'); ?>"
-                        name="<?php echo $this->get_field_name('list_sort'); ?>">
-
-                    <option <?php if ($list_sort == 'latest') {
-                        echo 'selected="selected"';
-                    } ?> value="latest"><?php _e('Latest', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'featured') {
-                        echo 'selected="selected"';
-                    } ?> value="featured"><?php _e('Featured', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'high_review') {
-                        echo 'selected="selected"';
-                    } ?> value="high_review"><?php _e('Review', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'high_rating') {
-                        echo 'selected="selected"';
-                    } ?> value="high_rating"><?php _e('Rating', 'geodirectory'); ?></option>
-
-                    <option <?php if ($list_sort == 'random') {
-                        echo 'selected="selected"';
-                    } ?> value="random"><?php _e('Random', 'geodirectory'); ?></option>
-
+            <label for="<?php echo $this->get_field_id('list_sort'); ?>"><?php _e('Sort by:', 'geodirectory');?>
+                <select class="widefat" id="<?php echo $this->get_field_id('list_sort'); ?>" name="<?php echo $this->get_field_name('list_sort'); ?>">
+                    <option value="latest"<?php selected( $list_sort, 'latest' ); ?>><?php _e('Latest', 'geodirectory'); ?></option>
+                    <option value="featured"<?php selected( $list_sort, 'featured' ); ?>><?php _e('Featured', 'geodirectory'); ?></option>
+                    <option value="high_review"<?php selected( $list_sort, 'high_review' ); ?>><?php _e('Review', 'geodirectory'); ?></option>
+                    <option value="high_rating"<?php selected( $list_sort, 'high_rating' ); ?>><?php _e('Rating', 'geodirectory'); ?></option>
+                    <option value="random"<?php selected( $list_sort, 'random' ); ?>><?php _e('Random', 'geodirectory'); ?></option>
+                    <option value="nearest"<?php selected( $list_sort, 'nearest' ); ?>><?php _e('Nearest', 'geodirectory'); ?></option>
                 </select>
             </label>
         </p>

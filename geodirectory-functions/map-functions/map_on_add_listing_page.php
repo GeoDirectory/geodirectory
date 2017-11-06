@@ -455,7 +455,7 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
         var old_region = jQuery("#<?php echo $prefix.'region';?>").val();
         
         if (user_address == false || jQuery('#<?php echo $prefix.'address';?>').val() == '') {
-            jQuery("#<?php echo $prefix.'address';?>").val(getAddress);
+            jQuery("#<?php echo $prefix.'address';?>").val(getAddress).trigger("blur");
         }
         if (getAddress) {
             oldstr_address = getAddress;

@@ -1097,8 +1097,8 @@ add_filter( 'comments_open', 'geodir_check_reviews_open', 10, 2 );
  * @param array           $args         An array of arguments.
  * @return string Filtered comment content.
  */
-function geodir_remove_img_tags_from_comment( $comment_text, $comment, $args ) {
-    if ( !empty( $comment_text )  && strpos( $comment_text, '[img' ) !== false && strpos( get_post_type( $comment->comment_post_ID ), 'gd_' ) === 0 ) {
+function geodir_remove_img_tags_from_comment( $comment_text, $comment = array(), $args = array() ) {
+    if ( !empty( $comment_text ) && !empty( $comment ) && strpos( $comment_text, '[img' ) !== false && strpos( get_post_type( $comment->comment_post_ID ), 'gd_' ) === 0 ) {
         $comment_text = preg_replace( '#(\\[img\\]).+(\\[\\/img\\])#', '', $comment_text );
         $comment_text = trim( $comment_text );
     }
