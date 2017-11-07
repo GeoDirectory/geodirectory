@@ -25,6 +25,11 @@ if ($_REQUEST['popuptype'] == 'b_sendtofriend') { ?>
 
     <div id="basic-modal-content" class="clearfix">
         <form name="send_to_frnd" id="send_to_frnd" action="<?php echo get_permalink($post_info->ID); ?>" method="post">
+
+            <?php
+            wp_nonce_field( 'send_to_frnd_'.$post_info->ID );
+            ?>
+
             <input type="hidden" name="sendact" value="email_frnd"/>
             <input type="hidden" id="send_to_Frnd_pid" name="pid" value="<?php echo $post_info->ID;?>"/>
 
@@ -117,6 +122,10 @@ if ($_REQUEST['popuptype'] == 'b_sendtofriend') { ?>
     <div id="basic-modal-content2" class="clearfix">
         <form method="post" name="agt_mail_agent" id="agt_mail_agent"
               action="<?php echo get_permalink($post_info->ID); ?>">
+
+            <?php
+            wp_nonce_field( 'send_inquiry_'.$post_info->ID );
+            ?>
             <input type="hidden" name="sendact" value="send_inqury"/>
             <input type="hidden" name="pid" value="<?php echo $post_info->ID;?>"/>
 
