@@ -2580,6 +2580,7 @@ add_filter( 'icl_make_duplicate', 'geodir_icl_make_duplicate', 11, 4 );
  * Duplicate post listing manually after listing saved.
  *
  * @since 1.6.16 Sync reviews if sync comments allowed.
+ * @since 1.6.25 "geodir_wpml_listing_duplicated" action added.
  *
  * @param int $post_id The Post ID.
  * @param string $lang Language code for translating post.
@@ -2597,6 +2598,7 @@ function geodir_wpml_duplicate_listing($post_id, $request_info) {
 		foreach ($post_duplicates as $lang => $dup_post_id) {
 			geodir_icl_make_duplicate($post_id, $lang, $request_info, $dup_post_id, true);
 		}
+		do_action( 'geodir_wpml_listing_duplicated', $post_id, $request_info );
 	}
 }
 
@@ -2630,6 +2632,7 @@ function geodir_wpml_duplicate_post_reviews($master_post_id, $tr_post_id, $lang)
  * Duplicate post general details for WPML translation post.
  *
  * @since 1.5.0
+ * @since 1.6.25 "geodir_icl_duplicate_post_data" filter added.
  *
  * @global object $wpdb WordPress Database object.
  * @global string $plugin_prefix Geodirectory plugin table prefix.
@@ -2649,6 +2652,7 @@ function geodir_icl_duplicate_post_details($master_post_id, $tr_post_id, $lang) 
 	$data = (array)$wpdb->get_row($query);
 
 	if ( !empty( $data ) ) {
+		$data = apply_filters( 'geodir_icl_duplicate_post_data', $data, $master_post_id, $tr_post_id, $lang );
 		$data['post_id'] = $tr_post_id;
 		unset($data['default_category'], $data['marker_json'], $data['featured_image'], $data[$post_type . 'category']);
 		$wpdb->update($post_table, $data, array('post_id' => $tr_post_id));
