@@ -226,30 +226,26 @@ function geodir_send_inquiry( $request ) {
 	// strip slashes from text
 	$request = ! empty( $request ) ? stripslashes_deep( $request ) : $request;
 
-	$yourname      = $request['inq_name'];
-	$youremail     = $request['inq_email'];
-	$inq_phone     = $request['inq_phone'];
-	$frnd_comments = $request['inq_msg'];
-	$pid           = $request['pid'];
+	$yourname      = sanitize_text_field($request['inq_name']);
+	$youremail     = sanitize_email($request['inq_email']);
+	$inq_phone     = sanitize_text_field($request['inq_phone']);
+	$frnd_comments = sanitize_text_field($request['inq_msg']);
+	$pid           = absint($request['pid']);
 
 	$author_id  = '';
-	$post_title = '';
 
-	if ( $request['pid'] ) {
+	if ( $pid && 'publish' == get_post_status ( $pid  ) ) {
 
-		$productinfosql = $wpdb->prepare(
-			"select ID,post_author,post_title from $wpdb->posts where ID =%d",
-			array( $request['pid'] )
-		);
-		$productinfo    = $wpdb->get_row( $productinfosql );
+		check_ajax_referer( 'send_inquiry_'.$pid );
 
-		$author_id  = $productinfo->post_author;
-		$post_title = $productinfo->post_title;
+		$p_post = get_post($pid);
+
+		$author_id  = $p_post->post_author;
+
+	}else{
+		gd_die();
 	}
 
-	$post_title = '<a href="' . get_permalink( $pid ) . '">' . $post_title . '</a>';
-
-	$user_info = get_userdata( $author_id );
 	$to_email  = geodir_get_post_meta( $pid, 'geodir_email', true );
 	$to_name   = geodir_get_client_name( $author_id );
 
@@ -380,22 +376,19 @@ function geodir_send_friend( $request ) {
 	// strip slashes from text
 	$request = ! empty( $request ) ? stripslashes_deep( $request ) : $request;
 
-	$yourname      = $request['yourname'];
-	$youremail     = $request['youremail'];
-	$frnd_subject  = $request['frnd_subject'];
-	$frnd_comments = $request['frnd_comments'];
-	$pid           = $request['pid'];
-	$to_email      = $request['to_email'];
-	$to_name       = $request['to_name'];
-	if ( $request['pid'] ) {
-		$productinfosql = $wpdb->prepare(
-			"select ID,post_title from $wpdb->posts where ID =%d",
-			array( $request['pid'] )
-		);
-		$productinfo    = $wpdb->get_results( $productinfosql );
-		foreach ( $productinfo as $productinfoObj ) {
-			$post_title = $productinfoObj->post_title;
-		}
+	$yourname      = sanitize_text_field($request['yourname']);
+	$youremail     = sanitize_email($request['youremail']);
+	$frnd_subject  = sanitize_text_field($request['frnd_subject']);
+	$frnd_comments = sanitize_text_field($request['frnd_comments']);
+	$pid           = absint($request['pid']);
+	$to_email      = sanitize_email($request['to_email']);
+	$to_name       = sanitize_text_field($request['to_name']);
+	if ( $pid && 'publish' == get_post_status ( $pid  ) ) {
+
+		check_ajax_referer( 'send_to_frnd_'.$pid );
+
+	}else{
+		gd_die();
 	}
 
 	/**
