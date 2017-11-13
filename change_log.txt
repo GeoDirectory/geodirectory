@@ -6,6 +6,7 @@ Address field does not hide validation message if address set from map dragend -
 Add listing shortcode not working if page have other shortcodes - FIXED
 Details page send enquiry/friend forms don't validate if listing is published - FIXED
 New hooks added for WPML duplicate translation - CHANGED
+Review form rendered with rich editor does not validate the field correctly - FIXED 
 
 v1.6.24
 Fix affiliate links for GeoDirectory CPTs listing pages - FIXED

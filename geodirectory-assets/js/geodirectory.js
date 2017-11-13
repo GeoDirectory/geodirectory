@@ -532,8 +532,12 @@ jQuery(document).ready(function() {
                 
                 var is_review = parseInt($frm_obj.find('#comment_parent').val());
                 is_review = is_review == 0 ? true : false;
-                
-                if (jQuery.trim($comment.val()) == '') {
+                var commentField = typeof tinyMCE != 'undefined' && typeof tinyMCE.editors != 'undefined' && typeof tinyMCE.editors['comment'] == 'object' ? tinyMCE.editors['comment'] : null;
+                if (commentField) {
+                    commentField.editorManager.triggerSave();
+                }
+                var commentTxt = jQuery.trim($comment.val());
+                if (!commentTxt) {
                     var $err = is_review ? geodir_all_js_msg.err_empty_review : geodir_all_js_msg.err_empty_review;
                     $comment.before('<div id="err_no_comment" class="err-no-rating">' + $err + '</div>');
                     $comment.focus();
