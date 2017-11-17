@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: GeoDirectory 1.6.24\n"
+"Project-Id-Version: GeoDirectory 1.6.25\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 15:21+0100\n"
-"PO-Revision-Date: 2017-10-12 15:21+0100\n"
+"POT-Creation-Date: 2017-11-17 19:00+0000\n"
+"PO-Revision-Date: 2017-11-17 19:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: GeoDirectory <info@wpgeodirectory.com>\n"
 "Language: en_US\n"
@@ -82,8 +82,8 @@ msgstr ""
 
 #: geodirectory-admin/admin_dummy_data_functions.php:454
 #: geodirectory-admin/admin_dummy_data_functions.php:525
-#: geodirectory-admin/admin_functions.php:3133
-#: geodirectory-admin/admin_functions.php:3190
+#: geodirectory-admin/admin_functions.php:3132
+#: geodirectory-admin/admin_functions.php:3189
 msgid "Complete!"
 msgstr ""
 
@@ -95,456 +95,456 @@ msgstr ""
 msgid "Inserting data..."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:179
+#: geodirectory-admin/admin_functions.php:178
 #: geodirectory_template_tags.php:181
 msgid "Allowed Files"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:226
+#: geodirectory-admin/admin_functions.php:225
 msgid "?geodir_ajax=true"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:249
+#: geodirectory-admin/admin_functions.php:248
 msgid "Geodirectory"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:326
+#: geodirectory-admin/admin_functions.php:325
 msgid "Like Geodirectory?"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:326
+#: geodirectory-admin/admin_functions.php:325
 msgid "Support us by leaving a rating!"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:327
+#: geodirectory-admin/admin_functions.php:326
 msgid "Geodirectory has been installed and setup. Enjoy :)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:335
+#: geodirectory-admin/admin_functions.php:334
 msgid "Your settings have been saved."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:343
+#: geodirectory-admin/admin_functions.php:342
 msgid ""
 "Error: You can not add same permalinks for both Listing and Location, please "
 "try again."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:345
+#: geodirectory-admin/admin_functions.php:344
 msgid "Error: Your settings have not been saved, please try again."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:357
+#: geodirectory-admin/admin_functions.php:356
 #, php-format
 msgid ""
 "Google Maps API KEY not set, %sclick here%s to set one OR use Open Street "
 "Maps instead."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:361
-#: geodirectory-functions/template_functions.php:213
+#: geodirectory-admin/admin_functions.php:360
+#: geodirectory-functions/template_functions.php:208
 #, php-format
 msgid ""
 "Please %sclick here%s to set a default location, this will make the plugin "
 "work properly."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:366
+#: geodirectory-admin/admin_functions.php:365
 msgid ""
 "CURL is not installed on this server, this can cause problems, please ask "
 "your server admin to install it."
 msgstr ""
 
+#: geodirectory-admin/admin_functions.php:395
 #: geodirectory-admin/admin_functions.php:396
-#: geodirectory-admin/admin_functions.php:397
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:653
+#: geodirectory-admin/admin_functions.php:652
 #, php-format
 msgid "%s Settings"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:656
+#: geodirectory-admin/admin_functions.php:655
 #: geodirectory-admin/admin_template_tags.php:1535
 msgid "Custom Fields"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:659
+#: geodirectory-admin/admin_functions.php:658
 msgid "Sorting Options"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:687
+#: geodirectory-admin/admin_functions.php:686
 msgid "GD Tools"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:703
+#: geodirectory-admin/admin_functions.php:702
 msgid "Theme Compatibility"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:720
+#: geodirectory-admin/admin_functions.php:719
 msgid "Extend Geodirectory"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:737
+#: geodirectory-admin/admin_functions.php:736
 msgid "Location (ID)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:738
+#: geodirectory-admin/admin_functions.php:737
 #: geodirectory-admin/option-pages/design_settings_array.php:628
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:225
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:207
 msgid "Categories"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:748
+#: geodirectory-admin/admin_functions.php:747
 msgid "Expires"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:777
-#: geodirectory-admin/admin_functions.php:803
+#: geodirectory-admin/admin_functions.php:776
+#: geodirectory-admin/admin_functions.php:802
 msgid "Unknown"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:790
+#: geodirectory-admin/admin_functions.php:789
 msgid "days left"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:795
+#: geodirectory-admin/admin_functions.php:794
 msgid "days overdue"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:833
+#: geodirectory-admin/admin_functions.php:832
 msgid "No Categories"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1037
+#: geodirectory-admin/admin_functions.php:1036
 msgid "Generate API Key - ( MUST be logged in to your Google account )"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1037
+#: geodirectory-admin/admin_functions.php:1036
 msgid "Generate API Key"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1092
+#: geodirectory-admin/admin_functions.php:1091
 msgid "Width"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1097
+#: geodirectory-admin/admin_functions.php:1096
 msgid "Height"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1102
+#: geodirectory-admin/admin_functions.php:1101
 msgid "Hard Crop"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1190
+#: geodirectory-admin/admin_functions.php:1189
 msgid "remove file (set to empty)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1191
+#: geodirectory-admin/admin_functions.php:1190
 msgid "save to remove file"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1202
+#: geodirectory-admin/admin_functions.php:1201
 msgid "Default map language"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1207
+#: geodirectory-admin/admin_functions.php:1206
 msgid "ARABIC"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1208
-#: geodirectory-admin/admin_functions.php:1220
+#: geodirectory-admin/admin_functions.php:1207
+#: geodirectory-admin/admin_functions.php:1219
 msgid "BASQUE"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1209
+#: geodirectory-admin/admin_functions.php:1208
 msgid "BULGARIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1210
+#: geodirectory-admin/admin_functions.php:1209
 msgid "BENGALI"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1211
+#: geodirectory-admin/admin_functions.php:1210
 msgid "CATALAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1212
+#: geodirectory-admin/admin_functions.php:1211
 msgid "CZECH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1213
+#: geodirectory-admin/admin_functions.php:1212
 msgid "DANISH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1214
+#: geodirectory-admin/admin_functions.php:1213
 msgid "GERMAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1215
+#: geodirectory-admin/admin_functions.php:1214
 msgid "GREEK"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1216
+#: geodirectory-admin/admin_functions.php:1215
 msgid "ENGLISH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1217
+#: geodirectory-admin/admin_functions.php:1216
 msgid "ENGLISH (AUSTRALIAN)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1218
+#: geodirectory-admin/admin_functions.php:1217
 msgid "ENGLISH (GREAT BRITAIN)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1219
+#: geodirectory-admin/admin_functions.php:1218
 msgid "SPANISH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1221
+#: geodirectory-admin/admin_functions.php:1220
 msgid "FARSI"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1222
+#: geodirectory-admin/admin_functions.php:1221
 msgid "FINNISH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1223
+#: geodirectory-admin/admin_functions.php:1222
 msgid "FILIPINO"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1224
+#: geodirectory-admin/admin_functions.php:1223
 msgid "FRENCH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1225
+#: geodirectory-admin/admin_functions.php:1224
 msgid "GALICIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1226
+#: geodirectory-admin/admin_functions.php:1225
 msgid "GUJARATI"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1227
+#: geodirectory-admin/admin_functions.php:1226
 msgid "HINDI"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1228
+#: geodirectory-admin/admin_functions.php:1227
 msgid "CROATIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1229
+#: geodirectory-admin/admin_functions.php:1228
 msgid "HUNGARIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1230
+#: geodirectory-admin/admin_functions.php:1229
 msgid "INDONESIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1231
+#: geodirectory-admin/admin_functions.php:1230
 msgid "ITALIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1232
+#: geodirectory-admin/admin_functions.php:1231
 msgid "HEBREW"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1233
+#: geodirectory-admin/admin_functions.php:1232
 msgid "JAPANESE"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1234
+#: geodirectory-admin/admin_functions.php:1233
 msgid "KANNADA"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1235
+#: geodirectory-admin/admin_functions.php:1234
 msgid "KOREAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1236
+#: geodirectory-admin/admin_functions.php:1235
 msgid "LITHUANIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1237
+#: geodirectory-admin/admin_functions.php:1236
 msgid "LATVIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1238
+#: geodirectory-admin/admin_functions.php:1237
 msgid "MALAYALAM"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1239
+#: geodirectory-admin/admin_functions.php:1238
 msgid "MARATHI"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1240
+#: geodirectory-admin/admin_functions.php:1239
 msgid "DUTCH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1241
+#: geodirectory-admin/admin_functions.php:1240
 msgid "NORWEGIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1242
+#: geodirectory-admin/admin_functions.php:1241
 msgid "POLISH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1243
+#: geodirectory-admin/admin_functions.php:1242
 msgid "PORTUGUESE"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1244
+#: geodirectory-admin/admin_functions.php:1243
 msgid "PORTUGUESE (BRAZIL)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1245
+#: geodirectory-admin/admin_functions.php:1244
 msgid "PORTUGUESE (PORTUGAL)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1246
+#: geodirectory-admin/admin_functions.php:1245
 msgid "ROMANIAN"
 msgstr ""
 
+#: geodirectory-admin/admin_functions.php:1246
 #: geodirectory-admin/admin_functions.php:1247
-#: geodirectory-admin/admin_functions.php:1248
 msgid "RUSSIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1249
+#: geodirectory-admin/admin_functions.php:1248
 msgid "SLOVAK"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1250
+#: geodirectory-admin/admin_functions.php:1249
 msgid "SLOVENIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1251
+#: geodirectory-admin/admin_functions.php:1250
 msgid "SERBIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1252
+#: geodirectory-admin/admin_functions.php:1251
 msgid "\tSWEDISH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1253
+#: geodirectory-admin/admin_functions.php:1252
 msgid "TAGALOG"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1254
+#: geodirectory-admin/admin_functions.php:1253
 msgid "TAMIL"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1255
+#: geodirectory-admin/admin_functions.php:1254
 msgid "TELUGU"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1256
+#: geodirectory-admin/admin_functions.php:1255
 msgid "THAI"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1257
+#: geodirectory-admin/admin_functions.php:1256
 msgid "TURKISH"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1258
+#: geodirectory-admin/admin_functions.php:1257
 msgid "UKRAINIAN"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1259
+#: geodirectory-admin/admin_functions.php:1258
 msgid "VIETNAMESE"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1260
+#: geodirectory-admin/admin_functions.php:1259
 msgid "CHINESE (SIMPLIFIED)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1261
+#: geodirectory-admin/admin_functions.php:1260
 msgid "CHINESE (TRADITIONAL)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1284
+#: geodirectory-admin/admin_functions.php:1283
 msgid "Default post type search on map"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1364
+#: geodirectory-admin/admin_functions.php:1363
 msgid ""
 "Note: Tick respective post type or categories which you want to hide from "
 "home page map widget."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1501
+#: geodirectory-admin/admin_functions.php:1500
 msgid "Select a page..."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1523
+#: geodirectory-admin/admin_functions.php:1522
 msgid "Choose a country&hellip;"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1539
+#: geodirectory-admin/admin_functions.php:1538
 msgid "Choose countries&hellip;"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1579
+#: geodirectory-admin/admin_functions.php:1578
 msgid "Deauthorize"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1580
+#: geodirectory-admin/admin_functions.php:1579
 msgid "Authorized"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1589
+#: geodirectory-admin/admin_functions.php:1588
 msgid "Authorize"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1748
+#: geodirectory-admin/admin_functions.php:1747
 msgid "Featured Image"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1759
-#: geodirectory-admin/admin_functions.php:1762
+#: geodirectory-admin/admin_functions.php:1758
+#: geodirectory-admin/admin_functions.php:1761
 #: geodirectory_template_actions.php:2474
 #: geodirectory_template_actions.php:2477
 msgid "You can upload"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1759
+#: geodirectory-admin/admin_functions.php:1758
 #: geodirectory_template_actions.php:2474
 msgid "image with this package"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1762
+#: geodirectory-admin/admin_functions.php:1761
 #: geodirectory_template_actions.php:2477
 msgid "images with this package"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1765
+#: geodirectory-admin/admin_functions.php:1764
 #: geodirectory_template_actions.php:2480
 msgid "You can upload unlimited images with this package"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1804
+#: geodirectory-admin/admin_functions.php:1803
 #: geodirectory_template_actions.php:2495
 msgid "Drop files to upload"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1806
+#: geodirectory-admin/admin_functions.php:1805
 #: geodirectory-functions/custom_fields_input_functions.php:1482
 #: geodirectory_template_actions.php:2497
 msgid "Select Files"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1819
+#: geodirectory-admin/admin_functions.php:1818
 #: geodirectory_template_actions.php:2512
 msgid "Please drag &amp; drop the images to rearrange the order"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1864
-#: geodirectory-admin/admin_functions.php:1874
+#: geodirectory-admin/admin_functions.php:1863
+#: geodirectory-admin/admin_functions.php:1873
 msgid "Listing published"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1865
+#: geodirectory-admin/admin_functions.php:1864
 #: geodirectory-admin/option-pages/general_settings_array.php:42
 #: geodirectory-admin/option-pages/general_settings_array.php:61
 #: geodirectory-admin/option-pages/general_settings_array.php:124
@@ -571,7 +571,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:1875
+#: geodirectory-admin/admin_functions.php:1874
 #: geodirectory-admin/option-pages/general_settings_array.php:51
 #: geodirectory-admin/option-pages/general_settings_array.php:70
 #: geodirectory-admin/option-pages/general_settings_array.php:133
@@ -598,202 +598,202 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2028
+#: geodirectory-admin/admin_functions.php:2027
 msgid ""
 "Welcome to GeoDirectory, please have a look <a href=\"https://docs."
 "wpgeodirectory.com/category/getting-started/\" target=\"_blank\">here</a> to "
 "get started. :)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2213
+#: geodirectory-admin/admin_functions.php:2212
 msgid "Import & Export"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2290
+#: geodirectory-admin/admin_functions.php:2289
 msgid "GD Import & Export CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2291
+#: geodirectory-admin/admin_functions.php:2290
 msgid "Import & export csv for GD listings & categories."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2304
+#: geodirectory-admin/admin_functions.php:2303
 msgid "PHP Requirements for GD Import & Export CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2306
+#: geodirectory-admin/admin_functions.php:2305
 msgid ""
 "Note: In case GD import & export csv not working for larger data then please "
 "check and configure following php settings."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2310
+#: geodirectory-admin/admin_functions.php:2309
 msgid "PHP Settings"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2310
+#: geodirectory-admin/admin_functions.php:2309
 msgid "Current Value"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2310
+#: geodirectory-admin/admin_functions.php:2309
 msgid "Recommended Value"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2333
+#: geodirectory-admin/admin_functions.php:2332
 msgid "Toggle panel - GD Listings: Import CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2334
+#: geodirectory-admin/admin_functions.php:2333
 msgid "GD Listings: Import CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2341
+#: geodirectory-admin/admin_functions.php:2340
 msgid "Update listing if post with post_id already exists."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2342
+#: geodirectory-admin/admin_functions.php:2341
 msgid "Ignore listing if post with post_id already exists."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2346
-#: geodirectory-admin/admin_functions.php:2467
+#: geodirectory-admin/admin_functions.php:2345
+#: geodirectory-admin/admin_functions.php:2466
 msgid "Download Sample CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2375
-#: geodirectory-admin/admin_functions.php:2496
+#: geodirectory-admin/admin_functions.php:2374
+#: geodirectory-admin/admin_functions.php:2495
 msgid "Import Data Status :"
+msgstr ""
+
+#: geodirectory-admin/admin_functions.php:2386
+#: geodirectory-admin/admin_functions.php:2507
+msgid "Continue Import Data"
 msgstr ""
 
 #: geodirectory-admin/admin_functions.php:2387
 #: geodirectory-admin/admin_functions.php:2508
-msgid "Continue Import Data"
-msgstr ""
-
-#: geodirectory-admin/admin_functions.php:2388
-#: geodirectory-admin/admin_functions.php:2509
 msgid "Terminate Import Data"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2390
-#: geodirectory-admin/admin_functions.php:2511
+#: geodirectory-admin/admin_functions.php:2389
+#: geodirectory-admin/admin_functions.php:2510
 msgid "Wait, processing import data..."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2404
+#: geodirectory-admin/admin_functions.php:2403
 msgid "Toggle panel - Listings: Export CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2405
+#: geodirectory-admin/admin_functions.php:2404
 msgid "GD Listings: Export CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2411
-#: geodirectory-admin/admin_functions.php:2531
+#: geodirectory-admin/admin_functions.php:2410
+#: geodirectory-admin/admin_functions.php:2530
 #: geodirectory-widgets/geodirectory_bestof_widget.php:418
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:166
 #: geodirectory-widgets/geodirectory_popular_widget.php:284
 msgid "Post Type:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2418
-#: geodirectory-admin/admin_functions.php:2535
+#: geodirectory-admin/admin_functions.php:2417
+#: geodirectory-admin/admin_functions.php:2534
 msgid "Max entries per csv file:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2419
-#: geodirectory-admin/admin_functions.php:2536
+#: geodirectory-admin/admin_functions.php:2418
+#: geodirectory-admin/admin_functions.php:2535
 msgid ""
 "Please select the maximum number of entries per csv file (defaults to 5000, "
 "you might want to lower this to prevent memory issues on some installs)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2422
+#: geodirectory-admin/admin_functions.php:2421
 msgid "Published Date:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2423
+#: geodirectory-admin/admin_functions.php:2422
 msgid "Start date:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2423
+#: geodirectory-admin/admin_functions.php:2422
 msgid "End date:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2427
-#: geodirectory-admin/admin_functions.php:2539
+#: geodirectory-admin/admin_functions.php:2426
+#: geodirectory-admin/admin_functions.php:2538
 msgid "Progress:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2435
-#: geodirectory-admin/admin_functions.php:2540
+#: geodirectory-admin/admin_functions.php:2434
+#: geodirectory-admin/admin_functions.php:2539
 msgid "Elapsed Time:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2441
-#: geodirectory-admin/admin_functions.php:2544
+#: geodirectory-admin/admin_functions.php:2440
+#: geodirectory-admin/admin_functions.php:2543
 msgid "Export CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2454
+#: geodirectory-admin/admin_functions.php:2453
 msgid "Toggle panel - GD Categories: Import CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2455
+#: geodirectory-admin/admin_functions.php:2454
 msgid "GD Categories: Import CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2462
+#: geodirectory-admin/admin_functions.php:2461
 msgid "Update item if item with cat_id/cat_slug already exists."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2463
+#: geodirectory-admin/admin_functions.php:2462
 msgid "Ignore item if item with cat_id/cat_slug already exists."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2525
+#: geodirectory-admin/admin_functions.php:2524
 msgid "Toggle panel - GD Categories: Export CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2526
+#: geodirectory-admin/admin_functions.php:2525
 msgid "GD Categories: Export CSV"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2885
+#: geodirectory-admin/admin_functions.php:2884
 #, php-format
 msgid "Total %s item(s) found."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2891
+#: geodirectory-admin/admin_functions.php:2890
 #, php-format
 msgid "%s / %s item(s) updated."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2898
+#: geodirectory-admin/admin_functions.php:2897
 #, php-format
 msgid "%s / %s item(s) added."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2905
+#: geodirectory-admin/admin_functions.php:2904
 #, php-format
 msgid "%s / %s item(s) ignored due to already exists."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2915
+#: geodirectory-admin/admin_functions.php:2914
 #, php-format
 msgid ""
 "%s / %s item(s) could not be added due to blank/invalid address(city, "
 "region, country, latitude, longitude)."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2922
+#: geodirectory-admin/admin_functions.php:2921
 #, php-format
 msgid ""
 "%s / %s item(s) could not be added due to blank title/invalid post type/"
 "invalid characters used in data."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:2925
+#: geodirectory-admin/admin_functions.php:2924
 #, php-format
 msgid ""
 "%s / %s item(s) could not be added due to invalid neighbourhood data(name, "
@@ -801,168 +801,168 @@ msgid ""
 "region/country is empty)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3097
+#: geodirectory-admin/admin_functions.php:3096
 msgid "Preparing..."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3099
-#: geodirectory-admin/admin_functions.php:3137
-#: geodirectory-admin/admin_functions.php:3168
-#: geodirectory-admin/admin_functions.php:3194
+#: geodirectory-admin/admin_functions.php:3098
+#: geodirectory-admin/admin_functions.php:3136
+#: geodirectory-admin/admin_functions.php:3167
+#: geodirectory-admin/admin_functions.php:3193
 msgid "Exporting..."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3311
+#: geodirectory-admin/admin_functions.php:3310
 msgid ""
 "GeoDirectory does not have access to your filesystem, thing like import/"
 "export will not work. Please define your details in wp-config.php as "
 "explained here"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3383
+#: geodirectory-admin/admin_functions.php:3382
 msgid "Filesystem ERROR: Could not access filesystem."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3388
+#: geodirectory-admin/admin_functions.php:3387
 msgid "Filesystem ERROR: "
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3395
+#: geodirectory-admin/admin_functions.php:3394
 msgid ""
 "ERROR: Could not create cache directory. This is usually due to inconsistent "
 "file permissions."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3455
-#: geodirectory-admin/admin_functions.php:3544
-#: geodirectory-admin/admin_functions.php:3614
-#: geodirectory-admin/admin_functions.php:3674
+#: geodirectory-admin/admin_functions.php:3454
+#: geodirectory-admin/admin_functions.php:3543
+#: geodirectory-admin/admin_functions.php:3613
+#: geodirectory-admin/admin_functions.php:3673
 msgid "No records to export."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3497
-#: geodirectory-admin/admin_functions.php:3582
+#: geodirectory-admin/admin_functions.php:3496
+#: geodirectory-admin/admin_functions.php:3581
 msgid ""
 "ERROR: Could not create csv file. This is usually due to inconsistent file "
 "permissions."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3647
-#: geodirectory-admin/admin_functions.php:3707
+#: geodirectory-admin/admin_functions.php:3646
+#: geodirectory-admin/admin_functions.php:3706
 msgid "Fail, something wrong to create csv file."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3741
+#: geodirectory-admin/admin_functions.php:3740
 #: geodirectory-admin/admin_hooks_actions.php:1977
 msgid "The uploaded file is not a valid csv file. Please try again."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3765
+#: geodirectory-admin/admin_functions.php:3764
 #: geodirectory-admin/admin_hooks_actions.php:2005
 msgid "No data found in csv file."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3815
+#: geodirectory-admin/admin_functions.php:3814
 #, php-format
 msgid "GD IMPORT CATEGORIES [ROW %d]:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3874
-#: geodirectory-admin/admin_functions.php:4217
+#: geodirectory-admin/admin_functions.php:3873
+#: geodirectory-admin/admin_functions.php:4216
 msgid "Could not be added due to blank title/invalid post type"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3935
-#: geodirectory-admin/admin_functions.php:3944
-#: geodirectory-admin/admin_functions.php:3964
+#: geodirectory-admin/admin_functions.php:3934
+#: geodirectory-admin/admin_functions.php:3943
+#: geodirectory-admin/admin_functions.php:3963
 msgid ""
 "Could not be updated due to invalid data (check & remove if any invalid "
 "characters used in data)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:3951
-#: geodirectory-admin/admin_functions.php:3969
+#: geodirectory-admin/admin_functions.php:3950
+#: geodirectory-admin/admin_functions.php:3968
 msgid ""
 "Could not be added due to invalid data (check & remove if any invalid "
 "characters used in data)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4063
+#: geodirectory-admin/admin_functions.php:4062
 #, php-format
 msgid "GD IMPORT LISTINGS [ROW %d]:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4064
+#: geodirectory-admin/admin_functions.php:4063
 msgid "(check & remove if any invalid characters used in data)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4226
-#: geodirectory-admin/admin_functions.php:4231
+#: geodirectory-admin/admin_functions.php:4225
+#: geodirectory-admin/admin_functions.php:4230
 msgid ""
 "Could not be added due to blank/invalid address(city, region, country, "
 "latitude, longitude)."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4303
+#: geodirectory-admin/admin_functions.php:4302
 msgid "Unable to add listing, please check the listing data."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4682
-#: geodirectory-admin/admin_functions.php:4778
+#: geodirectory-admin/admin_functions.php:4681
+#: geodirectory-admin/admin_functions.php:4777
 msgid ""
 "The file you are uploading is not valid. There are problems with the file "
 "columns."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4686
+#: geodirectory-admin/admin_functions.php:4685
 #, php-format
 msgid "GD IMPORT LOCATIONS [ROW %d]:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4687
+#: geodirectory-admin/admin_functions.php:4686
 msgid ""
 "Could not be saved due to blank/invalid address(city, region, country, "
 "latitude, longitude)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4782
+#: geodirectory-admin/admin_functions.php:4781
 #, php-format
 msgid "GD IMPORT NEIGHBOURHOODS [ROW %d]:"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:4783
+#: geodirectory-admin/admin_functions.php:4782
 msgid ""
 "Could not be saved due to invalid neighbourhood data(name, latitude, "
 "longitude) or invalid location data(either location_id or city/region/"
 "country is empty)"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:6162
+#: geodirectory-admin/admin_functions.php:6161
 msgid ""
 "Please update core GeoDirectory or some addons may not function correctly."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:6234
+#: geodirectory-admin/admin_functions.php:6233
 msgid ""
 "Saving GeoDirectory pages settings on a different language breaks pages "
 "settings. Try to save after switching to default language."
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:6520
+#: geodirectory-admin/admin_functions.php:6519
 #: geodirectory-functions/ajax_handler_functions.php:428
 #, php-format
 msgid "GD Google Analytics API Error(%s) : %s"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:6524
+#: geodirectory-admin/admin_functions.php:6523
 msgid "Select Account"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:6527
+#: geodirectory-admin/admin_functions.php:6526
 msgid "Account re-authorization may be required"
 msgstr ""
 
-#: geodirectory-admin/admin_functions.php:6642
+#: geodirectory-admin/admin_functions.php:6641
 msgid "GD Default"
 msgstr ""
 
@@ -1071,8 +1071,8 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:3502
 #: geodirectory-functions/custom_fields_functions.php:3504
 #: geodirectory-functions/custom_fields_functions.php:3512
-#: geodirectory-functions/general_functions.php:3555
-#: geodirectory-templates/popup-forms.php:156 language.php:39 language.php:64
+#: geodirectory-functions/general_functions.php:3558
+#: geodirectory-templates/popup-forms.php:165 language.php:39 language.php:64
 #: language.php:167 language.php:188
 msgid "Email"
 msgstr ""
@@ -1370,7 +1370,7 @@ msgid "Post icon"
 msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:1507
-#: geodirectory-functions/custom_functions.php:1382 language.php:153
+#: geodirectory-functions/custom_functions.php:1375 language.php:153
 msgid "Reviews"
 msgstr ""
 
@@ -1415,8 +1415,8 @@ msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:1649
 #: geodirectory-admin/admin_install.php:109
-#: geodirectory-functions/general_functions.php:3416
-#: geodirectory-functions/general_functions.php:3418
+#: geodirectory-functions/general_functions.php:3419
+#: geodirectory-functions/general_functions.php:3421
 #: geodirectory-functions/taxonomy_functions.php:248
 msgid "Add Listing"
 msgstr ""
@@ -1523,7 +1523,7 @@ msgstr ""
 
 #: geodirectory-admin/admin_hooks_actions.php:1775
 #: geodirectory-admin/admin_install.php:112
-#: geodirectory-functions/general_functions.php:1572
+#: geodirectory-functions/general_functions.php:1575
 msgid "Location"
 msgstr ""
 
@@ -1607,7 +1607,7 @@ msgstr ""
 #: geodirectory-admin/admin_install.php:212
 #: geodirectory-admin/admin_install.php:228
 #: geodirectory-admin/admin_install.php:242
-#: geodirectory-functions/general_functions.php:2880
+#: geodirectory-functions/general_functions.php:2883
 msgid "Popular Categories"
 msgstr ""
 
@@ -1621,7 +1621,7 @@ msgstr ""
 #: geodirectory-admin/admin_install.php:255
 #: geodirectory-admin/admin_install.php:266
 #: geodirectory-functions/general_functions.php:1528
-#: geodirectory-functions/general_functions.php:3353
+#: geodirectory-functions/general_functions.php:3356
 msgid "My Dashboard"
 msgstr ""
 
@@ -2356,7 +2356,7 @@ msgstr ""
 #: geodirectory-admin/option-pages/design_settings_array.php:642
 #: geodirectory-admin/option-pages/design_settings_array.php:734
 #: geodirectory-widgets/geodirectory_popular_widget.php:413
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:241
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:223
 msgid "Grid View (Two Columns)"
 msgstr ""
 
@@ -2365,7 +2365,7 @@ msgstr ""
 #: geodirectory-admin/option-pages/design_settings_array.php:643
 #: geodirectory-admin/option-pages/design_settings_array.php:735
 #: geodirectory-widgets/geodirectory_popular_widget.php:417
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:245
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:227
 msgid "Grid View (Three Columns)"
 msgstr ""
 
@@ -2374,7 +2374,7 @@ msgstr ""
 #: geodirectory-admin/option-pages/design_settings_array.php:644
 #: geodirectory-admin/option-pages/design_settings_array.php:736
 #: geodirectory-widgets/geodirectory_popular_widget.php:421
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:249
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:231
 msgid "Grid View (Four Columns)"
 msgstr ""
 
@@ -2383,7 +2383,7 @@ msgstr ""
 #: geodirectory-admin/option-pages/design_settings_array.php:645
 #: geodirectory-admin/option-pages/design_settings_array.php:737
 #: geodirectory-widgets/geodirectory_popular_widget.php:425
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:253
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:235
 msgid "Grid View (Five Columns)"
 msgstr ""
 
@@ -2392,7 +2392,7 @@ msgstr ""
 #: geodirectory-admin/option-pages/design_settings_array.php:646
 #: geodirectory-admin/option-pages/design_settings_array.php:738
 #: geodirectory-widgets/geodirectory_popular_widget.php:428
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:256
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:238
 msgid "List view"
 msgstr ""
 
@@ -2517,7 +2517,7 @@ msgstr ""
 #: geodirectory-admin/option-pages/design_settings_array.php:936
 #: geodirectory-admin/option-pages/design_settings_array.php:949
 #: geodirectory-admin/option-pages/general_settings_array.php:85
-#: geodirectory-functions/custom_functions.php:3135
+#: geodirectory-functions/custom_functions.php:3132
 msgid "Select post types"
 msgstr ""
 
@@ -2807,7 +2807,7 @@ msgid "Set the relation between current post to related posts."
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:629
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:228
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:210
 msgid "Tags"
 msgstr ""
 
@@ -2830,14 +2830,14 @@ msgstr ""
 #: geodirectory-admin/option-pages/design_settings_array.php:659
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:148
 #: geodirectory-widgets/geodirectory_popular_widget.php:366
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:188
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:182
 msgid "Latest"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:660
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:149
 #: geodirectory-widgets/geodirectory_popular_widget.php:367
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:192
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:183
 msgid "Featured"
 msgstr ""
 
@@ -2845,7 +2845,7 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:1918
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:150
 #: geodirectory-widgets/geodirectory_popular_widget.php:368
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:196
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:184
 #: language.php:151
 msgid "Review"
 msgstr ""
@@ -2854,25 +2854,26 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:1927
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:151
 #: geodirectory-widgets/geodirectory_popular_widget.php:369
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:200
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:185
 msgid "Rating"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:663
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:152
 #: geodirectory-widgets/geodirectory_popular_widget.php:370
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:204
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:186
 msgid "Random"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:664
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:187
 msgid "Nearest"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:669
 #: geodirectory-widgets/geodirectory_bestof_widget.php:450
 #: geodirectory-widgets/geodirectory_popular_widget.php:397
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:211
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:193
 msgid "Number of posts:"
 msgstr ""
 
@@ -3080,7 +3081,7 @@ msgid "Footer script code"
 msgstr ""
 
 #: geodirectory-admin/option-pages/design_settings_array.php:1037
-#: geodirectory-functions/custom_functions.php:1375
+#: geodirectory-functions/custom_functions.php:1368
 msgid "Map"
 msgstr ""
 
@@ -3579,12 +3580,12 @@ msgid "Listing published email"
 msgstr ""
 
 #: geodirectory-admin/option-pages/notifications_settings_array.php:260
-#: geodirectory-functions/post_functions.php:3133
+#: geodirectory-functions/post_functions.php:3141
 msgid "Listing Published Successfully"
 msgstr ""
 
 #: geodirectory-admin/option-pages/notifications_settings_array.php:268
-#: geodirectory-functions/post_functions.php:3137
+#: geodirectory-functions/post_functions.php:3145
 msgid ""
 "<p>Dear [#client_name#],</p><p>Your listing [#listing_link#] has been "
 "published. This email is just for your information.</p><p>[#listing_link#]</"
@@ -5181,7 +5182,7 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:3562
 #: geodirectory-functions/custom_fields_functions.php:3564
 #: geodirectory-functions/custom_fields_functions.php:3572
-#: geodirectory-functions/custom_functions.php:1361
+#: geodirectory-functions/custom_functions.php:1354
 msgid "Video"
 msgstr ""
 
@@ -5192,7 +5193,7 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:3577
 #: geodirectory-functions/custom_fields_functions.php:3579
 #: geodirectory-functions/custom_fields_functions.php:3587
-#: geodirectory-functions/custom_functions.php:1368 language.php:61
+#: geodirectory-functions/custom_functions.php:1361 language.php:61
 msgid "Special Offers"
 msgstr ""
 
@@ -5372,121 +5373,121 @@ msgstr ""
 
 #: geodirectory-functions/custom_functions.php:130
 #: geodirectory-functions/custom_functions.php:143
-#: geodirectory-functions/post_functions.php:2699
+#: geodirectory-functions/post_functions.php:2707
 msgid "Read more [...]"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:281
+#: geodirectory-functions/custom_functions.php:277
 msgid "From :"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:281
+#: geodirectory-functions/custom_functions.php:277
 msgid "Phone :"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:281
+#: geodirectory-functions/custom_functions.php:277
 msgid "Email :"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:281
+#: geodirectory-functions/custom_functions.php:277
 msgid "Sent from"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:688
+#: geodirectory-functions/custom_functions.php:681
 msgid "Sort By"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:745
+#: geodirectory-functions/custom_functions.php:738
 msgid "Related Listings"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1096
-#: geodirectory-functions/custom_functions.php:1184
+#: geodirectory-functions/custom_functions.php:1089
+#: geodirectory-functions/custom_functions.php:1177
 msgid "Posts related to Category:"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1098
-#: geodirectory-functions/custom_functions.php:1187
+#: geodirectory-functions/custom_functions.php:1091
+#: geodirectory-functions/custom_functions.php:1180
 msgid "Posts related to Tag:"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1129
+#: geodirectory-functions/custom_functions.php:1122
 msgid "Everywhere"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1341
+#: geodirectory-functions/custom_functions.php:1334
 msgid "Profile"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1347
+#: geodirectory-functions/custom_functions.php:1340
 msgid "More Info"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1354
+#: geodirectory-functions/custom_functions.php:1347
 msgid "Photos"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1389
+#: geodirectory-functions/custom_functions.php:1382
 #: geodirectory-widgets/geodirectory_related_listing_widget.php:48
 msgid "Related Listing"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:1719
+#: geodirectory-functions/custom_functions.php:1712
 msgid "Video Preview Placeholder"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2047
+#: geodirectory-functions/custom_functions.php:2040
 msgid "Read more"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2113
+#: geodirectory-functions/custom_functions.php:2106
 msgid "reviewed"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2142
-#: geodirectory-functions/general_functions.php:2951
+#: geodirectory-functions/custom_functions.php:2135
+#: geodirectory-functions/general_functions.php:2954
 #, php-format
 msgid "%s Categories"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2177
+#: geodirectory-functions/custom_functions.php:2170
 #: geodirectory_widgets.php:376
 msgid "Tweet"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:2273
+#: geodirectory-functions/custom_functions.php:2266
 msgid "Pinpoint"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3066
+#: geodirectory-functions/custom_functions.php:3063
 msgid "Translate Listing"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3068
+#: geodirectory-functions/custom_functions.php:3065
 msgid "Language"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3068
+#: geodirectory-functions/custom_functions.php:3065
 msgid "Translate"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3080
+#: geodirectory-functions/custom_functions.php:3077
 msgid "(duplicate)"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3091
+#: geodirectory-functions/custom_functions.php:3088
 msgid "Create duplicate"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3099
+#: geodirectory-functions/custom_functions.php:3096
 msgid "Duplicate"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3128
+#: geodirectory-functions/custom_functions.php:3125
 msgid "Disable WPML duplicate translation"
 msgstr ""
 
-#: geodirectory-functions/custom_functions.php:3129
+#: geodirectory-functions/custom_functions.php:3126
 msgid ""
 "Select post types to disable front end WPML duplicate translation. For "
 "selected post types the WPML duplicate option will be disabled from listing "
@@ -5567,7 +5568,7 @@ msgstr ""
 
 #: geodirectory-functions/general_functions.php:1009
 #: geodirectory-functions/general_functions.php:1168
-#: geodirectory-functions/general_functions.php:1984
+#: geodirectory-functions/general_functions.php:1987
 #, php-format
 msgid ""
 "Email from GeoDirectory failed to send.\n"
@@ -5584,124 +5585,120 @@ msgstr ""
 msgid "Password:"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1548
-msgid "My"
-msgstr ""
-
-#: geodirectory-functions/general_functions.php:1581
-#: geodirectory-functions/general_functions.php:1585
-#: geodirectory-functions/general_functions.php:1589
+#: geodirectory-functions/general_functions.php:1584
+#: geodirectory-functions/general_functions.php:1588
+#: geodirectory-functions/general_functions.php:1592
 msgid " Archive for"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1593
+#: geodirectory-functions/general_functions.php:1596
 msgid " Author Archive"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1596
+#: geodirectory-functions/general_functions.php:1599
 msgid "Blog Archives"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1599
+#: geodirectory-functions/general_functions.php:1602
 msgid " Search Results"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1708
+#: geodirectory-functions/general_functions.php:1711
 msgid "Remote server did not respond"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1711
+#: geodirectory-functions/general_functions.php:1714
 #, php-format
 msgid "Remote server returned error response %1$d %2$s"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1713
+#: geodirectory-functions/general_functions.php:1716
 msgid "Remote file is incorrect size"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1715
+#: geodirectory-functions/general_functions.php:1718
 msgid "Zero size file downloaded"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:1721
+#: geodirectory-functions/general_functions.php:1724
 msgid "GeoDirectory: fetch_remote_file() failed to delete temp file."
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2756
+#: geodirectory-functions/general_functions.php:2759
 msgid "% Comments"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2758
+#: geodirectory-functions/general_functions.php:2761
 msgid "No Comments"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2760
+#: geodirectory-functions/general_functions.php:2763
 msgid "1 Comment"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2764
+#: geodirectory-functions/general_functions.php:2767
 msgid "% Reviews"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2766
+#: geodirectory-functions/general_functions.php:2769
 #: geodirectory-widgets/geodirectory_bestof_widget.php:251
 msgid "No Reviews"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2768
+#: geodirectory-functions/general_functions.php:2771
 #: geodirectory-widgets/geodirectory_bestof_widget.php:255
 msgid "1 Review"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2982
+#: geodirectory-functions/general_functions.php:2985
 msgid "More Categories"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:2983
+#: geodirectory-functions/general_functions.php:2986
 msgid "Less Categories"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3372 language.php:165
+#: geodirectory-functions/general_functions.php:3375 language.php:165
 #: language.php:181
 msgid "Logout"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3466
-#: geodirectory-functions/general_functions.php:3468
+#: geodirectory-functions/general_functions.php:3469
+#: geodirectory-functions/general_functions.php:3471
 #: geodirectory-functions/user_functions.php:104 language.php:110
 msgid "My Favorites"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3514
-#: geodirectory-functions/general_functions.php:3516
+#: geodirectory-functions/general_functions.php:3517
+#: geodirectory-functions/general_functions.php:3519
 #: geodirectory-functions/user_functions.php:170
 msgid "My Listings"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3558 language.php:189
+#: geodirectory-functions/general_functions.php:3561 language.php:189
 msgid "Password"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3732
+#: geodirectory-functions/general_functions.php:3735
 #, php-format
 msgid "All %s"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3777
+#: geodirectory-functions/general_functions.php:3780
 msgid "Near:"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3777
+#: geodirectory-functions/general_functions.php:3780
 msgid "Me"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:3878
+#: geodirectory-functions/general_functions.php:3881
 #: geodirectory-widgets/geodirectory_bestof_widget.php:326
 #: geodirectory-widgets/geodirectory_bestof_widget.php:667
 msgid "View all"
 msgstr ""
 
-#: geodirectory-functions/general_functions.php:5101
+#: geodirectory-functions/general_functions.php:5104
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr ""
@@ -6274,17 +6271,17 @@ msgstr ""
 msgid "No Place Found In Trash"
 msgstr ""
 
-#: geodirectory-functions/template_functions.php:246
+#: geodirectory-functions/template_functions.php:241
 msgid ""
 "This listing does not belong to your account, please check the listing id "
 "carefully."
 msgstr ""
 
-#: geodirectory-functions/template_functions.php:513
+#: geodirectory-functions/template_functions.php:508
 msgid "No favorite listings found which match your selection."
 msgstr ""
 
-#: geodirectory-functions/template_functions.php:515
+#: geodirectory-functions/template_functions.php:510
 #: geodirectory_hooks_actions.php:1588
 msgid "No listings found which match your selection."
 msgstr ""
@@ -6329,37 +6326,37 @@ msgstr ""
 msgid "Delete Listing"
 msgstr ""
 
-#: geodirectory-templates/popup-forms.php:50
+#: geodirectory-templates/popup-forms.php:55
 msgid "Friend Name"
 msgstr ""
 
-#: geodirectory-templates/popup-forms.php:64
+#: geodirectory-templates/popup-forms.php:69
 msgid "Friend Email"
 msgstr ""
 
-#: geodirectory-templates/popup-forms.php:73
-#: geodirectory-templates/popup-forms.php:142
+#: geodirectory-templates/popup-forms.php:78
+#: geodirectory-templates/popup-forms.php:151
 msgid "Your Name"
 msgstr ""
 
-#: geodirectory-templates/popup-forms.php:82
+#: geodirectory-templates/popup-forms.php:87
 msgid "Your Email"
 msgstr ""
 
-#: geodirectory-templates/popup-forms.php:92
+#: geodirectory-templates/popup-forms.php:97
 msgid "About"
 msgstr ""
 
-#: geodirectory-templates/popup-forms.php:93
+#: geodirectory-templates/popup-forms.php:98
 msgid "Subject"
 msgstr ""
 
-#: geodirectory-templates/popup-forms.php:111
-#: geodirectory-templates/popup-forms.php:180
+#: geodirectory-templates/popup-forms.php:116
+#: geodirectory-templates/popup-forms.php:189
 msgid "Send"
 msgstr ""
 
-#: geodirectory-templates/popup-forms.php:165
+#: geodirectory-templates/popup-forms.php:174
 msgid "Phone number"
 msgstr ""
 
@@ -6394,7 +6391,7 @@ msgstr ""
 
 #: geodirectory-widgets/geodirectory_bestof_widget.php:471
 #: geodirectory-widgets/geodirectory_popular_widget.php:446
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:272
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:254
 msgid "Post Content excerpt character count :"
 msgstr ""
 
@@ -6429,7 +6426,7 @@ msgstr ""
 #: geodirectory-widgets/geodirectory_bestof_widget.php:517
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:348
 #: geodirectory-widgets/geodirectory_popular_widget.php:455
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:280
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:262
 msgid "Enable Location Filter:"
 msgstr ""
 
@@ -6473,7 +6470,7 @@ msgstr ""
 #: geodirectory-widgets/geodirectory_cpt_categories_widget.php:270
 #: geodirectory-widgets/geodirectory_listing_slider_widget.php:216
 #: geodirectory-widgets/geodirectory_popular_widget.php:361
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:181
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:180
 msgid "Sort by:"
 msgstr ""
 
@@ -6625,12 +6622,12 @@ msgid "can be used"
 msgstr ""
 
 #: geodirectory-widgets/geodirectory_popular_widget.php:407
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:235
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:217
 msgid "Layout:"
 msgstr ""
 
 #: geodirectory-widgets/geodirectory_popular_widget.php:436
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:263
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:245
 msgid "Listing width:"
 msgstr ""
 
@@ -6655,7 +6652,7 @@ msgstr ""
 msgid "GD > Related Listing"
 msgstr ""
 
-#: geodirectory-widgets/geodirectory_related_listing_widget.php:220
+#: geodirectory-widgets/geodirectory_related_listing_widget.php:202
 msgid "Relate to:"
 msgstr ""
 
