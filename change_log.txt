@@ -5,6 +5,9 @@ Related listings widget does not have option to sort nearest listings - FIXED
 Address field does not hide validation message if address set from map dragend - FIXED
 Add listing shortcode not working if page have other shortcodes - FIXED
 Details page send enquiry/friend forms don't validate if listing is published - FIXED
+New hooks added for WPML duplicate translation - CHANGED
+Review form rendered with rich editor does not validate the field correctly - FIXED
+Detail page sidebar gets wrapped to bottom of page for Divi v3.0.87 - FIXED
 
 v1.6.24
 Fix affiliate links for GeoDirectory CPTs listing pages - FIXED
@@ -14,7 +17,7 @@ Show validation message for empty review/reply text - CHANGED
 Listing edited notification should be sent after listing data saved - CHANGED
 After GT to GD migration comment content shows [img] tags - FIXED
 Multiselect ajax not working properly due to VARCHAR - FIXED
-Overall raiting sort now uses bayesian formula by default - CHANGED
+Overall rating sort now uses bayesian formula by default - CHANGED
 Add to fav for multisite using same option, now uses option for each site - CHANGED
 Bulk edit action breaks the listing status - FIXED
 listing_width parameter does not working in gd_listings shortcode FIXED
