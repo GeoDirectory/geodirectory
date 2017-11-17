@@ -1344,6 +1344,14 @@ if (!function_exists('geodir_get_featured_image')) {
             $file_name = $file_info['basename'];
 
             $uploads_url = $uploads_baseurl . $sub_dir;
+
+            $img_src = $uploads_url . '/' . $file_name;
+
+            // jetpack CDN check
+            if (strpos($file, '.wp.com/') !== false) {
+                $img_src = $file;
+            }
+
             /*
              * Allows the filter of image src for such things as CDN change.
              *
@@ -1353,7 +1361,7 @@ if (!function_exists('geodir_get_featured_image')) {
              * @param string $uploads_url The server upload directory url.
              * @param string $uploads_baseurl The uploads dir base url.
              */
-            $img_arr['src'] = apply_filters('geodir_get_featured_image_src',$uploads_url . '/' . $file_name,$file_name,$uploads_url,$uploads_baseurl);
+            $img_arr['src'] = apply_filters('geodir_get_featured_image_src',$img_src,$file_name,$uploads_url,$uploads_baseurl);
             $img_arr['path'] = $uploads_path . '/' . $file_name;
             $width = 0;
             $height = 0;

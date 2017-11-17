@@ -8,6 +8,8 @@ Details page send enquiry/friend forms don't validate if listing is published - 
 New hooks added for WPML duplicate translation - CHANGED
 Review form rendered with rich editor does not validate the field correctly - FIXED
 Detail page sidebar gets wrapped to bottom of page for Divi v3.0.87 - FIXED
+JetPack CDN breaks listing images - FIXED
+New core WP plupload JS breaks our CSV upload for import - FIXED
 
 v1.6.24
 Fix affiliate links for GeoDirectory CPTs listing pages - FIXED
