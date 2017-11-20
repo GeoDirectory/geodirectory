@@ -1,3 +1,6 @@
+v1.6.26
+New core WP 4.9 plupload JS breaks drop and upload listing images - FIXED
+
 v1.6.25
 My Favorites text in breadcrumb not translatable - FIXED
 Email custom field not showing on map bubble - FIXED
@@ -268,10 +271,10 @@ Mouse scroll zoom control setting not working for OpenStreetMap - FIXED
 Popular post view widget -> "Post Type:" setting not working on CPT pages - FIXED
 Responsive video shortcode - ADDED
 Claim listing error message incorrect class - FIXED
-Address field not showing the same on prview page - FIXED
+Address field not showing the same on preview page - FIXED
 Options added in CPT categories widget to disable viewing post type & category filters - ADDED
 Server side marker clustering not working with OpenStreetMap - FIXED
-BuddyPress admin bar not availble for non admin users - FIXED
+BuddyPress admin bar not available for non admin users - FIXED
 Fixed map marker title special characters encoding - FIXED
 Let popup forms template override from theme - FIXED
 Added a filter to modify My Dashboard widget title - ADDED
