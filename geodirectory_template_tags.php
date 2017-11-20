@@ -168,7 +168,7 @@ function geodir_templates_scripts()
 
         // place js config array for plupload
         $plupload_init = array(
-            'runtimes' => 'html5,silverlight,flash,browserplus,gears,html4',
+            'runtimes' => 'html5,silverlight,browserplus,gears,html4',
             'browse_button' => 'plupload-browse-button', // will be adjusted per uploader
             'container' => 'plupload-upload-ui', // will be adjusted per uploader
             'drop_element' => 'dropbox', // will be adjusted per uploader

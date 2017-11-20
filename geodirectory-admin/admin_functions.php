@@ -166,10 +166,9 @@ if (!function_exists('geodir_admin_scripts')) {
 
         // place js config array for plupload
         $plupload_init = array(
-            'runtimes' => 'html5,silverlight,flash,html4',
+            'runtimes' => 'html5,silverlight,html4',
             'browse_button' => 'plupload-browse-button', // will be adjusted per uploader
             'container' => 'plupload-upload-ui', // will be adjusted per uploader
-            'drop_element' => 'dropbox', // will be adjusted per uploader
             'file_data_name' => 'async-upload', // will be adjusted per uploader
             'multiple_queues' => true,
             'max_file_size' => geodir_max_upload_size(),

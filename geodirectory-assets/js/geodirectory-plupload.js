@@ -17,7 +17,7 @@ jQuery(document).ready(function ($) {
             pconfig = JSON.parse(gd_plupload.base_plupload_config);
             pconfig["browse_button"] = imgId + pconfig["browse_button"];
             pconfig["container"] = imgId + pconfig["container"];
-            pconfig["drop_element"] = imgId + pconfig["drop_element"];
+            if(pconfig["drop_element"]){ pconfig["drop_element"] = imgId + pconfig["drop_element"];} // only add drop area if there is one
             pconfig["file_data_name"] = imgId + pconfig["file_data_name"];
             pconfig["multipart_params"]["imgid"] = imgId;
             pconfig["multipart_params"]["_ajax_nonce"] = $this.find(".ajaxnonceplu").attr("id").replace("ajaxnonceplu", "");
@@ -42,10 +42,10 @@ jQuery(document).ready(function ($) {
 			}
 
 			if (allowed_exts && allowed_exts != '') {
-				var txt_all_files = (typeof geodir_all_js_msg.geodir_txt_all_files != 'undefined' && geodir_all_js_msg.geodir_txt_all_files != '') ? geodir_all_js_msg.geodir_txt_all_files : 'Allowed files'; 
+				var txt_all_files = (typeof geodir_all_js_msg.geodir_txt_all_files != 'undefined' && geodir_all_js_msg.geodir_txt_all_files != '') ? geodir_all_js_msg.geodir_txt_all_files : 'Allowed files';
 				pconfig['filters'] = [{'title':txt_all_files, 'extensions':allowed_exts}];
 			}
-			
+
             var uploader = new plupload.Uploader(pconfig);
             uploader.bind('Init', function (up) {
                 //alert(1);
