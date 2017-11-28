@@ -1,5 +1,6 @@
 v1.6.26
 New core WP 4.9 plupload JS breaks drop and upload listing images - FIXED
+Shows PHP Warning when map cache file does not exists - FIXED
 
 v1.6.25
 My Favorites text in breadcrumb not translatable - FIXED
