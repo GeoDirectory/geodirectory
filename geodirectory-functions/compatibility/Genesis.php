@@ -90,7 +90,7 @@ function geodir_set_body_scs($classes)
 {
     $remove_class = false;
     $new_class = '';
-    if (is_page_geodir_home() || geodir_is_page('location')) {
+    if (is_page_geodir_home() || geodir_is_page('location') || geodir_is_page('home')) {
         $remove_class = true;
         if (get_option('geodir_show_home_left_section')) {
             $new_class .= 'sidebar-';
@@ -142,12 +142,14 @@ function geodir_set_body_scs($classes)
 
     if ($remove_class) {
         $classes = array_diff($classes, array('content-sidebar', 'sidebar-content', 'content-sidebar-sidebar', 'sidebar-sidebar-content', 'sidebar-content-sidebar', 'full-width-content'));
-        //str_replace(array('content-sidebar','sidebar-content','content-sidebar-sidebar','sidebar-sidebar-content','sidebar-content-sidebar','full-width-content'),array('','','','','',''),$classes);
+        if ( $new_class == 'content' ) {
+            $new_class = 'content-no-sidebar';
+            $classes[] = 'full-width-content';
+        }
         $classes[] = $new_class;
     }
 
     return $classes;
-
 }
 
 add_action('genesis_after_header', 'gd_genesis_compat_add_top_section_back', 11);
