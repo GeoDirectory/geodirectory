@@ -572,6 +572,7 @@ function geodir_date_format_php_to_jqueryui( $php_format ) {
  * @return string The untranslated date string.
  * @since 1.6.5
  * @since 1.6.22 Genitive month added.
+ * @since 1.6.26 Date translation issue in German language - FIXED.
  */
 function geodir_maybe_untranslate_date($date) {
 	global $wp_locale;
@@ -605,9 +606,9 @@ function geodir_maybe_untranslate_date($date) {
 		__('November'),
 		__('December'),
 	);
-	$date = str_replace($non_english_long_months,$english_long_months,$date);
+	$date = str_replace($non_english_long_months,$english_long_months,$date,$count);
     
-	if ( !empty( $wp_locale ) ) {
+	if ( !empty( $wp_locale ) && empty($count) ) {
 		$date = str_replace( array_values( $wp_locale->month_genitive ), $english_long_months, $date );
 	}
 
