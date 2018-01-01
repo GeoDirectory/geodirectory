@@ -3,6 +3,7 @@ New core WP 4.9 plupload JS breaks drop and upload listing images - FIXED
 Shows PHP Warning when map cache file does not exists - FIXED
 Author page is broken due to JS error - FIXED
 Date translation issue in German language - FIXED
+Listing description limit affects page description on add listing page - FIXED
 
 v1.6.25
 My Favorites text in breadcrumb not translatable - FIXED

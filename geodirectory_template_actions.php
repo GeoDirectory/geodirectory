@@ -3449,6 +3449,7 @@ add_filter('geodir_breadcrumb', 'geodir_strip_breadcrumb_li_wrappers', 999, 2);
  * Adds page content to the page.
  *
  * @since 1.6.3
+ * @since 1.6.26 Listing description limit affects page description on add listing page - FIXED
  *
  * @param string $position Position to add the post content. 'before' or 'after'. Default 'before'.
  * @param string $gd_page The geodirectory page type. Default null.
@@ -3497,8 +3498,9 @@ function geodir_add_page_content( $position = 'before', $gd_page = '' ) {
     }
 
     $gd_post = $post;
-    
-    setup_postdata(get_post($gd_page_id));
+    $post = get_post($gd_page_id);
+
+    setup_postdata($post);
 
     if (get_the_content()) {
         ?>
