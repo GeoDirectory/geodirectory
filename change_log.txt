@@ -4,6 +4,7 @@ Shows PHP Warning when map cache file does not exists - FIXED
 Author page is broken due to JS error - FIXED
 Date translation issue in German language - FIXED
 Listing description limit affects page description on add listing page - FIXED
+Fix checkbox custom field data type in DB table - FIXED
 
 v1.6.25
 My Favorites text in breadcrumb not translatable - FIXED

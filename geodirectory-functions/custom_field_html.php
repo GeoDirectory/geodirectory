@@ -70,7 +70,7 @@ $radio_id = (isset($field_info->htmlvar_name) && $field_info->htmlvar_name) ? $f
 if (isset($cf['icon']) && strpos($cf['icon'], 'fa fa-') !== false) {
     $field_icon = '<i class="'.$cf['icon'].'" aria-hidden="true"></i>';
 }elseif(isset($cf['icon']) && $cf['icon']){
-    $field_icon = '<b style="background-image: url("'.$cf['icon'].'")"></b>';
+    $field_icon = '<b class="gd-cf-icon" style="background-image: url(\''.$cf['icon'].'\')"></b>';
 }else{
     $field_icon = '<i class="fa fa-cog" aria-hidden="true"></i>';
 }

@@ -606,6 +606,14 @@ div.update-nag{width: 95%;}
 .gd-locate-me .gd-locate-me-btn .fa {
     font-size: 150%!important;
 }
+#gt-form-builder-tab .gd-cf-icon {
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
 /***********************---------------MEDIA CSS-------------*****************************/
 
 @media screen and (min-width: 860px) and (max-width: 960px) {
