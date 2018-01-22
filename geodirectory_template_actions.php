@@ -755,6 +755,17 @@ function geodir_action_geodir_set_preview_post()
         $post->default_category = '';
         $post->post_type = '';
     }
+	if (empty($post->default_category) && ! empty($post->post_default_category)) {
+		$post->default_category = $post->post_default_category;
+	}
+	if (empty($post->post_type) && !empty($post->listing_type)) {
+		$post->post_type = $post->listing_type;
+	}
+	$post_type = $post->post_type;
+	$cat_taxonomy = $post_type . "category";
+	if (!empty($post_type) && empty($post->{$cat_taxonomy}) && !empty($post->post_category) && !empty($post->post_category[$cat_taxonomy])) {
+		$post->{$cat_taxonomy} = $post->post_category[$cat_taxonomy];
+	}
     setup_postdata($post);
 }
 
