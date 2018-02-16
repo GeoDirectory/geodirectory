@@ -675,6 +675,16 @@ if (!function_exists('geodir_custom_field_save')) {
                         break;
 
                     case 'checkbox':
+                        $default_value_add = "ALTER TABLE " . $detail_table . " CHANGE `" . $old_html_variable . "` `" . $htmlvar_name . "` TINYINT(1) NOT NULL";
+						if ($default_value != '') {
+							$default_value_add .= " DEFAULT '" . $default_value . "'";
+						}
+
+                        $alter_result = $wpdb->query($default_value_add);
+                        if ( $alter_result === false) {
+                            return __('Column change failed, you may have too many columns.', 'geodirectory');
+                        }
+                        break;
                     case 'multiselect':
                     case 'select':
                     case 'taxonomy':
@@ -1849,7 +1859,7 @@ function geodir_add_custom_sort_options($fields, $post_type)
 
             $custom_fields = $wpdb->get_results(
                 $wpdb->prepare(
-                    "select post_type,data_type,field_type,site_title,htmlvar_name,field_icon from " . GEODIR_CUSTOM_FIELDS_TABLE . " where post_type = %s and is_active='1' and cat_sort='1' AND field_type != 'address' order by sort_order asc",
+                    "select post_type,data_type,field_type,site_title,admin_title,htmlvar_name,field_icon from " . GEODIR_CUSTOM_FIELDS_TABLE . " where post_type = %s and is_active='1' and cat_sort='1' AND field_type != 'address' order by sort_order asc",
                     array($post_type)
                 ), 'ARRAY_A'
             );
@@ -2232,7 +2242,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                 if (isset($cso['field_icon']) && strpos($cso['field_icon'], 'fa fa-') !== false) {
                     $field_icon = '<i class="'.$cso['field_icon'].'" aria-hidden="true"></i>';
                 }elseif(isset($cso['field_icon']) && $cso['field_icon']){
-                    $field_icon = '<b style="background-image: url("'.$cso['field_icon'].'")"></b>';
+                    $field_icon = '<b class="gd-cf-icon" style="background-image: url(\''.$cso['field_icon'].'\')"></b>';
                 }
 
             }

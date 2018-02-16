@@ -168,6 +168,7 @@
                 zoomControl: true,
                 doubleClickZoom: opts.disableDoubleClickZoom === "0" || !opts.disableDoubleClickZoom ? true : false,
                 dragging: true,
+				worldCopyJump: true,
                 scrollWheelZoom: opts.scrollwheel === "0" || !opts.scrollwheel ? false : opts.scrollwheel,
                 attributionControl: typeof opts.attributionControl !== 'undefined' ? opts.attributionControl : true,
                 defaultBaseLayer: typeof opts.osmBaseLayer !== 'undefined' && opts.osmBaseLayer ? opts.osmBaseLayer : null,

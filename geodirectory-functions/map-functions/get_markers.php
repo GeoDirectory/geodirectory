@@ -51,11 +51,9 @@ function geodir_get_map_cache($cache){
     }
 
     $file_path = realpath(dirname(__FILE__))."/map-cache/";
+    $file = $file_path . $file_name . ".json";
 
-
-    if(file_exists($file_path.$file_name.".json")){
-
-
+    if(file_exists($file)){
         // do the cache delete stuff
         $cache_time = get_option('geodir_map_cache');
         if(!$cache_time){
@@ -67,9 +65,11 @@ function geodir_get_map_cache($cache){
             geodir_delete_map_cache();
         }
 
-        ob_start();
-        readfile($file_path.$file_name.".json"); // readfile is quicker then file get contents
-        return ob_get_clean();
+        if(file_exists($file) && is_readable($file)){
+            ob_start();
+            readfile($file); // readfile is quicker then file get contents
+            return ob_get_clean();
+        }
     }
 
     return $cache;

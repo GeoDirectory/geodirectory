@@ -17,7 +17,14 @@ jQuery(document).ready(function ($) {
             pconfig = JSON.parse(gd_plupload.base_plupload_config);
             pconfig["browse_button"] = imgId + pconfig["browse_button"];
             pconfig["container"] = imgId + pconfig["container"];
-            if(pconfig["drop_element"]){ pconfig["drop_element"] = imgId + pconfig["drop_element"];} // only add drop area if there is one
+            // only add drop area if there is one
+            if (typeof pconfig["drop_element"] !== 'undefined') {
+                if (pconfig["drop_element"] && $("#" + imgId + pconfig["drop_element"]).length) {
+                    pconfig["drop_element"] = imgId + pconfig["drop_element"];
+                } else {
+                    delete pconfig["drop_element"];
+                }
+            }
             pconfig["file_data_name"] = imgId + pconfig["file_data_name"];
             pconfig["multipart_params"]["imgid"] = imgId;
             pconfig["multipart_params"]["_ajax_nonce"] = $this.find(".ajaxnonceplu").attr("id").replace("ajaxnonceplu", "");

@@ -475,11 +475,11 @@ function geodir_sorting_options_available_fields()
                     <?php if (isset($val['field_icon']) && strpos($val['field_icon'], 'fa fa-') !== false) {
                         echo '<i class="'.$val['field_icon'].'" aria-hidden="true"></i>';
                     }elseif(isset($val['field_icon']) && $val['field_icon'] ){
-                        echo '<b style="background-image: url("'.$val['field_icon'].'")"></b>';
+                        echo '<b class="gd-cf-icon" style="background-image: url(\''.$val['field_icon'].'\')"></b>';
                     }else{
                         echo '<i class="fa fa-cog" aria-hidden="true"></i>';
                     }?>
-                    <?php echo $val['site_title'];?>
+                    <?php echo (! empty( $val['admin_title'] ) ? $val['admin_title'] : $val['site_title'] );?>
                 </a>
             </li>
 
@@ -754,7 +754,7 @@ function geodir_custom_available_fields($type='')
                     <?php if ( isset( $cf['icon'] ) && strpos( $cf['icon'], 'fa fa-' ) !== false ) {
                         echo '<i class="' . $cf['icon'] . '" aria-hidden="true"></i>';
                     } elseif ( isset( $cf['icon'] ) && $cf['icon'] ) {
-                        echo '<b style="background-image: url("' . $cf['icon'] . '")"></b>';
+                        echo '<b class="gd-cf-icon" style="background-image: url(\'' . $cf['icon'] . '\')"></b>';
                     } else {
                         echo '<i class="fa fa-cog" aria-hidden="true"></i>';
                     } ?>

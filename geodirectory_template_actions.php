@@ -755,6 +755,17 @@ function geodir_action_geodir_set_preview_post()
         $post->default_category = '';
         $post->post_type = '';
     }
+	if (empty($post->default_category) && ! empty($post->post_default_category)) {
+		$post->default_category = $post->post_default_category;
+	}
+	if (empty($post->post_type) && !empty($post->listing_type)) {
+		$post->post_type = $post->listing_type;
+	}
+	$post_type = $post->post_type;
+	$cat_taxonomy = $post_type . "category";
+	if (!empty($post_type) && empty($post->{$cat_taxonomy}) && !empty($post->post_category) && !empty($post->post_category[$cat_taxonomy])) {
+		$post->{$cat_taxonomy} = $post->post_category[$cat_taxonomy];
+	}
     setup_postdata($post);
 }
 
@@ -3449,6 +3460,7 @@ add_filter('geodir_breadcrumb', 'geodir_strip_breadcrumb_li_wrappers', 999, 2);
  * Adds page content to the page.
  *
  * @since 1.6.3
+ * @since 1.6.26 Listing description limit affects page description on add listing page - FIXED
  *
  * @param string $position Position to add the post content. 'before' or 'after'. Default 'before'.
  * @param string $gd_page The geodirectory page type. Default null.
@@ -3497,8 +3509,9 @@ function geodir_add_page_content( $position = 'before', $gd_page = '' ) {
     }
 
     $gd_post = $post;
-    
-    setup_postdata(get_post($gd_page_id));
+    $post = get_post($gd_page_id);
+
+    setup_postdata($post);
 
     if (get_the_content()) {
         ?>
