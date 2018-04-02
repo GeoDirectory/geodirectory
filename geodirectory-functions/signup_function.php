@@ -337,6 +337,9 @@ function geodir_register_new_user($user_login, $user_email)
     $user_twitter = $_POST['user_twitter'];	*/
     $user_fname = sanitize_user($_POST['user_fname']);
     $user_fname = str_replace(",", "", $user_fname);
+	if ( empty( $user_fname ) ) {
+		$user_fname = strstr( $user_login, '@', true );
+	}
 
     /**
      * Filter the submitted user meta.
@@ -365,8 +368,7 @@ function geodir_register_new_user($user_login, $user_email)
     update_user_meta($user_id, 'first_name', $userName); // User Address Information Here
     //update_user_meta($user_id, 'last_name', $_POST['user_lname']); // User Address Information Here
 
-    // Changed by vikas sharma to enable all type of characters in author permalink...
-    $user_nicename = sanitize_title($userName);
+    $user_nicename = geodir_generate_user_nicename( $userName, $user_login );
 
     $updateUsersql = $wpdb->prepare("update $wpdb->users set user_url=%s, user_nicename=%s, display_name=%s  where ID=%d", array($user_web, $user_nicename, $userName, $user_id));
 
@@ -379,7 +381,7 @@ function geodir_register_new_user($user_login, $user_email)
     global $upload_folder_path;
 
     if ($user_id) {
-
+		clean_user_cache($user_id);
         /**
          * Called after registering a user and before the registration email is sent.
          *
@@ -745,4 +747,33 @@ function geodir_user_signup()
             }
             break;
     endswitch; // end action switch
+}
+
+function geodir_generate_user_nicename( $display_name, $user_login ) {
+	global $wpdb;
+	$user_nicename = '';
+	if ( ! empty( $display_name ) ) {
+		$user_nicename = sanitize_user( $display_name, true );
+	}
+	if ( empty( $user_nicename ) ) {
+		$user_nicename = $user_login;
+	}
+	$user_nicename = mb_substr( $user_nicename, 0, 50 );
+	$user_nicename = sanitize_title( $user_nicename );
+	$user_nicename = apply_filters( 'pre_user_nicename', $user_nicename );
+				
+	$user_nicename_check = $wpdb->get_var( $wpdb->prepare("SELECT ID FROM $wpdb->users WHERE user_nicename = %s AND user_login != %s LIMIT 1" , $user_nicename, $user_login));
+		
+	if ( $user_nicename_check ) {
+		$suffix = 2;
+		while ($user_nicename_check) {
+			// user_nicename allows 50 chars. Subtract one for a hyphen, plus the length of the suffix.
+			$base_length = 49 - mb_strlen( $suffix );
+			$alt_user_nicename = mb_substr( $user_nicename, 0, $base_length ) . "-$suffix";
+			$user_nicename_check = $wpdb->get_var( $wpdb->prepare("SELECT ID FROM $wpdb->users WHERE user_nicename = %s AND user_login != %s LIMIT 1" , $alt_user_nicename, $user_login));
+			$suffix++;
+		}
+		$user_nicename = $alt_user_nicename;
+	}
+	return $user_nicename;
 }
