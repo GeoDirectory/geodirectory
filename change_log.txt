@@ -8,6 +8,7 @@ Fix checkbox custom field data type in DB table - FIXED
 Categories missing from listing detail preview page sidebar - FIXED
 Markers are not visible when scrolled left/right on OpenStreetMap - FIXED
 Optional user name causes issue in generating author page url - FIXED
+Search looses the WPML language when url format set with "lang" parameter - FIXED
 
 v1.6.25
 My Favorites text in breadcrumb not translatable - FIXED
