@@ -574,76 +574,79 @@ function geodir_date_format_php_to_jqueryui( $php_format ) {
  * @since 1.6.22 Genitive month added.
  * @since 1.6.26 Date translation issue in German language - FIXED.
  */
-function geodir_maybe_untranslate_date($date) {
-	global $wp_locale;
-    
-	$english_long_months = array(
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
+function geodir_maybe_untranslate_date( $date ) {
+	$date_formated = ' '. $date;
+
+	$names = array(
+		// The Weekdays
+		'Sunday' => __( 'Sunday' ),
+		'Monday' => __( 'Monday' ),
+		'Tuesday' => __( 'Tuesday' ),
+		'Wednesday' => __( 'Wednesday' ),
+		'Thursday' => __( 'Thursday' ),
+		'Friday' => __( 'Friday' ),
+		'Saturday' => __( 'Saturday' ),
+
+		// The Months
+		'January' => __( 'January' ),
+		'February' => __( 'February' ),
+		'March' => __( 'March' ),
+		'April' => __( 'April' ),
+		'May' => __( 'May' ),
+		'June' => __( 'June' ),
+		'July' => __( 'July' ),
+		'August' => __( 'August' ),
+		'September' => __( 'September' ),
+		'October' => __( 'October' ),
+		'November' => __( 'November' ),
+		'December' => __( 'December' ),
+
+		// Abbreviations for each month.
+		'Jan' => _x( 'Jan', 'January abbreviation' ),
+		'Feb' => _x( 'Feb', 'February abbreviation' ),
+		'Mar' => _x( 'Mar', 'March abbreviation' ),
+		'Apr' => _x( 'Apr', 'April abbreviation' ),
+		'May' => _x( 'May', 'May abbreviation' ),
+		'Jun' => _x( 'Jun', 'June abbreviation' ),
+		'Jul' => _x( 'Jul', 'July abbreviation' ),
+		'Aug' => _x( 'Aug', 'August abbreviation' ),
+		'Sep' => _x( 'Sep', 'September abbreviation' ),
+		'Oct' => _x( 'Oct', 'October abbreviation' ),
+		'Nov' => _x( 'Nov', 'November abbreviation' ),
+		'Dec' => _x( 'Dec', 'December abbreviation' ),
+
+		// Abbreviations for each day.
+		'Sun' => __( 'Sun' ),
+		'Mon' => __( 'Mon' ),
+		'Tue' => __( 'Tue' ),
+		'Wed' => __( 'Wed' ),
+		'Thu' => __( 'Thu' ),
+		'Fri' => __( 'Fri' ),
+		'Sat' => __( 'Sat' ),
+
+		// The first letter of each day.
+		'S' => _x( 'S', 'Sunday initial' ),
+		'M' => _x( 'M', 'Monday initial' ),
+		'T' => _x( 'T', 'Tuesday initial' ),
+		'W' => _x( 'W', 'Wednesday initial' ),
+		'T' => _x( 'T', 'Thursday initial' ),
+		'F' => _x( 'F', 'Friday initial' ),
+		'S' => _x( 'S', 'Saturday initial' ),
+
+		// The Meridiems
+		'am' => __( 'am' ),
+		'pm' => __( 'pm' ),
+		'AM' => __( 'AM' ),
+		'PM' => __( 'PM' )
 	);
 
-	$non_english_long_months  = array(
-		__('January'),
-		__('February'),
-		__('March'),
-		__('April'),
-		__('May'),
-		__('June'),
-		__('July'),
-		__('August'),
-		__('September'),
-		__('October'),
-		__('November'),
-		__('December'),
-	);
-	$date = str_replace($non_english_long_months,$english_long_months,$date,$count);
-    
-	if ( !empty( $wp_locale ) && empty($count) ) {
-		$date = str_replace( array_values( $wp_locale->month_genitive ), $english_long_months, $date );
+	foreach ( $names as $name => $translation ) {
+		$date_formated = preg_replace( "/([^\\\])" . $name . "/", "\\1" . backslashit( $name ), $date_formated );
+		$date_formated = preg_replace( "/([^\\\])" . $translation . "/", "\\1" . backslashit( $name ), $date_formated );
 	}
 
-	$english_short_months = array(
-		' Jan ',
-		' Feb ',
-		' Mar ',
-		' Apr ',
-		' May ',
-		' Jun ',
-		' Jul ',
-		' Aug ',
-		' Sep ',
-		' Oct ',
-		' Nov ',
-		' Dec ',
-	);
-
-	$non_english_short_months = array(
-		' '._x( 'Jan', 'January abbreviation' ).' ',
-		' '._x( 'Feb', 'February abbreviation' ).' ',
-		' '._x( 'Mar', 'March abbreviation' ).' ',
-		' '._x( 'Apr', 'April abbreviation' ).' ',
-		' '._x( 'May', 'May abbreviation' ).' ',
-		' '._x( 'Jun', 'June abbreviation' ).' ',
-		' '._x( 'Jul', 'July abbreviation' ).' ',
-		' '._x( 'Aug', 'August abbreviation' ).' ',
-		' '._x( 'Sep', 'September abbreviation' ).' ',
-		' '._x( 'Oct', 'October abbreviation' ).' ',
-		' '._x( 'Nov', 'November abbreviation' ).' ',
-		' '._x( 'Dec', 'December abbreviation' ).' ',
-	);
-
-	$date = str_replace($non_english_short_months,$english_short_months,$date);
-
+	$date_formated = substr( $date_formated, 1, strlen( $date_formated ) -1 );
+	$date = stripslashes( $date_formated );
 
 	return $date;
 }
