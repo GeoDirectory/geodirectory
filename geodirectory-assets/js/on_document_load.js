@@ -246,7 +246,8 @@ jQuery(function($) {
                         q: request.term,
                         format: 'json',
                         addressdetails: 1,
-                        limit: 5
+                        limit: 5,
+						'accept-language': geodir_all_js_msg.mapLanguage
                     },
                     success: function(data, textStatus, jqXHR) {
                         jQuery('input[name="post_address"]').removeClass('ui-autocomplete-loading');

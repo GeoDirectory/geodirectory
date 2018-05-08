@@ -1323,6 +1323,7 @@ function geodir_localize_all_js_msg()
         'geoErrPOSITION_UNAVAILABLE' => addslashes(__('Your location is currently unknown', 'geodirectory')),
         'geoErrBREAK' => addslashes(__('Attempt to find location took too long', 'geodirectory')),
         'geoErrDEFAULT' => addslashes(__('Location detection not supported in browser', 'geodirectory')),
+		'mapLanguage' => geodir_get_map_default_language()
     );
 
     /**
