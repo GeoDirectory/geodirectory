@@ -476,6 +476,21 @@ function geodir_sc_listing_map($atts) {
             $map_default_lat = isset($default_location->city_latitude) ? $default_location->city_latitude : '';
             $map_default_lng = isset($default_location->city_longitude) ? $default_location->city_longitude : '';
             $map_args['map_class_name'] = 'geodir-map-listing-page';
+			if ( geodir_is_page( 'search' ) ) {
+				$map_default_lat = '';
+				$map_default_lng = '';
+				if ( isset( $_REQUEST['sgeo_lat'] ) && isset( $_REQUEST['sgeo_lon'] ) ) {
+					$map_default_lat = (float)sanitize_text_field( $_REQUEST['sgeo_lat'] );
+					$map_default_lng = (float)sanitize_text_field( $_REQUEST['sgeo_lon'] );
+				}
+				if ( empty( $map_default_lat ) && empty( $map_default_lng ) && ! empty( $_REQUEST['set_location_type'] ) && ! empty( $_REQUEST['set_location_val'] ) && function_exists( 'geodir_get_location_by_id' ) ) {
+					$location = geodir_get_location_by_id( '', (int)$_REQUEST['set_location_val'] );
+					if ( ! empty( $location ) ) {
+						$map_default_lat = $location->city_latitude;
+						$map_default_lng = $location->city_longitude;
+					}
+				}
+			}
         }
         if (empty($mapview)) {
             $mapview = 'ROADMAP';
