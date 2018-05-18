@@ -133,3 +133,11 @@ include_once('geodirectory-functions/google_analytics.php');
  * @since 1.3.7
  */
 include_once('geodirectory_shortcodes.php');
+
+global $wp_version;
+// If curent WP Version >= 4.9.6.
+if ( version_compare( $wp_version, '4.9.6', '>=' ) ) {
+	include_once( 'geodirectory-functions/privacy/abstract-geodir-privacy.php' );
+	include_once( 'geodirectory-functions/privacy/class-geodir-privacy-background-process.php' );
+	include_once( 'geodirectory-functions/privacy/class-geodir-privacy.php' );
+}
