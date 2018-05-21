@@ -1323,6 +1323,7 @@ function geodir_localize_all_js_msg()
         'geoErrPOSITION_UNAVAILABLE' => addslashes(__('Your location is currently unknown', 'geodirectory')),
         'geoErrBREAK' => addslashes(__('Attempt to find location took too long', 'geodirectory')),
         'geoErrDEFAULT' => addslashes(__('Location detection not supported in browser', 'geodirectory')),
+		'mapLanguage' => geodir_get_map_default_language()
     );
 
     /**
@@ -2849,6 +2850,7 @@ function geodir_wpml_set_filter() {
         
         add_action('geodir_after_save_listing', 'geodir_wpml_duplicate_listing', 100, 2);
         add_action( 'geodir_edit_post_link_html', 'geodir_wpml_frontend_duplicate_listing', 0, 1 );
+		add_action( 'geodir_after_search_form', 'geodir_wpml_add_language_input_field' );
         if (is_admin()) {
             add_filter( 'geodir_design_settings', 'geodir_wpml_duplicate_settings', 10, 1 );
         }
@@ -3113,3 +3115,20 @@ function geodir_check_term_to_post_slug( $slug_exists, $slug, $term_id ) {
     return $slug_exists;
 }
 add_filter( 'geodir_term_slug_is_exists', 'geodir_check_term_to_post_slug', 10, 3 );
+
+/**
+ * Add hidden WPML language input field.
+ *
+ * @since 2.0.0
+ * @package GeoDirectory
+ *
+ *
+ * @global SitePress $sitepress
+ */
+function geodir_wpml_add_language_input_field() {
+	global $sitepress;
+
+	if ( function_exists( 'wpml_add_language_form_field_action' ) && WPML_LANGUAGE_NEGOTIATION_TYPE_PARAMETER === (int) $sitepress->get_setting( 'language_negotiation_type' ) ) {
+		wpml_add_language_form_field_action();
+	}
+}

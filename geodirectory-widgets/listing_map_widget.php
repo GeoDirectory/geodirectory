@@ -197,6 +197,22 @@ class geodir_map_listingpage extends WP_Widget
                 $map_default_lng = isset($default_location->city_longitude) ? $default_location->city_longitude : '';
                 $map_args['map_class_name'] = 'geodir-map-listing-page';
                 $mapview = $maptype;
+
+				if ( geodir_is_page( 'search' ) ) {
+					$map_default_lat = '';
+					$map_default_lng = '';
+					if ( isset( $_REQUEST['sgeo_lat'] ) && isset( $_REQUEST['sgeo_lon'] ) ) {
+						$map_default_lat = (float)sanitize_text_field( $_REQUEST['sgeo_lat'] );
+						$map_default_lng = (float)sanitize_text_field( $_REQUEST['sgeo_lon'] );
+					}
+					if ( empty( $map_default_lat ) && empty( $map_default_lng ) && ! empty( $_REQUEST['set_location_type'] ) && ! empty( $_REQUEST['set_location_val'] ) && function_exists( 'geodir_get_location_by_id' ) ) {
+						$location = geodir_get_location_by_id( '', (int)$_REQUEST['set_location_val'] );
+						if ( ! empty( $location ) ) {
+							$map_default_lat = $location->city_latitude;
+							$map_default_lng = $location->city_longitude;
+						}
+					}
+				}
             }
 
             if (empty($mapzoom)) $mapzoom = $zoom;
@@ -217,15 +233,6 @@ class geodir_map_listingpage extends WP_Widget
             $map_args['bubble_size'] = 'small';
             
             $map_args['enable_marker_cluster'] = defined('GDCLUSTER_VERSION') && !empty($instance['marker_cluster']) ? true : false;
-
-            // on near search change default location to searched place
-            if(isset($_REQUEST['geodir_search']) && $_REQUEST['geodir_search']=='1'){
-                if(isset($_REQUEST['sgeo_lat']) && isset($_REQUEST['sgeo_lon']) && is_float(floatval($_REQUEST['sgeo_lat'])) && is_float(floatval($_REQUEST['sgeo_lon'])) ){
-                    $map_args['latitude'] = sanitize_text_field(floatval($_REQUEST['sgeo_lat']));
-                    $map_args['longitude'] = sanitize_text_field(floatval($_REQUEST['sgeo_lon']));
-                }
-            }
-
 
             echo $before_widget;
             geodir_draw_map($map_args);
