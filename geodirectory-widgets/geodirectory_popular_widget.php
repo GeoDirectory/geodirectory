@@ -189,6 +189,7 @@ class geodir_popular_postview extends WP_Widget
         $instance['layout'] = strip_tags($new_instance['layout']);
         $instance['listing_width'] = strip_tags($new_instance['listing_width']);
         $instance['list_sort'] = strip_tags($new_instance['list_sort']);
+        $instance['title_tag'] = strip_tags($new_instance['title_tag']);
         $instance['character_count'] = $new_instance['character_count'];
         if (isset($new_instance['add_location_filter']) && $new_instance['add_location_filter'] != '')
             $instance['add_location_filter'] = strip_tags($new_instance['add_location_filter']);
@@ -222,6 +223,7 @@ class geodir_popular_postview extends WP_Widget
                 'category' => array(),
                 'category_title' => '',
                 'list_sort' => '',
+                'title_tag' => 'h3',
                 'list_order' => '',
                 'post_number' => '5',
                 'layout' => 'gridview_onehalf',
@@ -248,6 +250,8 @@ class geodir_popular_postview extends WP_Widget
         $list_sort = strip_tags($instance['list_sort']);
 
         $list_order = strip_tags($instance['list_order']);
+
+        $title_tag = strip_tags($instance['title_tag']);
 
         $post_number = strip_tags($instance['post_number']);
 
@@ -385,6 +389,36 @@ class geodir_popular_postview extends WP_Widget
                     <?php
                     foreach($list_sort_arr as $sort_val => $sort_title){
                         echo "<option value='$sort_val' ".selected($list_sort,$sort_val)." >$sort_title</option>";
+                    }
+                    ?>
+                </select>
+            </label>
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('title_tag'); ?>"><?php _e('Title tag:', 'geodirectory');?>
+
+                <?php
+                $title_tag_arr = array(
+                    "h3"        =>  __('h3 (default)', 'geodirectory'),
+                    "h2"        =>  __('h2 (if main content of page)', 'geodirectory'),
+                );
+
+                /**
+                 * Filter the Popular post view widget title tag.
+                 *
+                 * @since 1.6.26
+                 * @param array $title_tag_arr The array of key value pairs of settings.
+                 * @param array $instance The array of widget settings.
+                 */
+                $title_tag_arr = apply_filters('geodir_popular_post_view_title_tag',$title_tag_arr,$instance);
+                ?>
+
+                <select class="widefat" id="<?php echo $this->get_field_id('title_tag'); ?>"
+                        name="<?php echo $this->get_field_name('title_tag'); ?>">
+                    <?php
+                    foreach($title_tag_arr as $title_val => $title_title){
+                        echo "<option value='$title_val' ".selected($title_tag,$title_val)." >$title_title</option>";
                     }
                     ?>
                 </select>

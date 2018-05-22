@@ -558,9 +558,17 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
                }?>
 
             if (ISO2 == 'GB') {
-                address = address + ',' + city + ',' + country; // UK is funny with regions
+                if(ISO2){
+                    address = address + ',' + city + ',' + ISO2; // UK is funny with regions
+                }else{
+                    address = address + ',' + city + ',' + country; // UK is funny with regions
+                }
             } else {
-                address = address + ',' + city + ',' + region + ',' + country;
+                if(ISO2){
+                    address = address + ',' + city + ',' + region + ',' + ISO2;
+                }else{
+                    address = address + ',' + city + ',' + region + ',' + country;
+                }
             }
 
             if(zip!=''){
@@ -594,6 +602,8 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
                 geocodePositionOSM('', address, ISO2, true);
             }
         } else {
+            //console.log(address);
+            //console.log(ISO2);
             geocoder.geocode({'address': address, 'country': ISO2},
                 function (results, status) {
                     console.log(status);

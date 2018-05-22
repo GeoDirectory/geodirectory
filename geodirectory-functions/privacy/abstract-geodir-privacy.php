@@ -65,7 +65,7 @@ abstract class GeoDir_Abstract_Privacy {
 	public function add_privacy_message() {
 		$content = $this->get_privacy_message();
 
-		if ( $content ) {
+		if ( function_exists( 'wp_add_privacy_policy_content' ) && $content ) {
 			wp_add_privacy_policy_content( $this->name, $this->get_privacy_message() );
 		}
 	}

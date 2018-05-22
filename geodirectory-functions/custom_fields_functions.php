@@ -1355,7 +1355,7 @@ if (!function_exists('geodir_get_field_infoby')) {
             $wpdb->prepare(
                 "SELECT * FROM " . GEODIR_CUSTOM_FIELDS_TABLE . " WHERE post_type=%s AND " . $key . "='" . $value . "'",
                 array($geodir_post_type)
-            )
+            ),ARRAY_A
         );
 
         if ($filter) {
