@@ -12,131 +12,119 @@ defined( 'ABSPATH' ) || exit;
  * GeoDir_Privacy_Erasers Class.
  */
 class GeoDir_Privacy_Erasers {
+
 	/**
-	 * Finds and erases data which could be used to identify a person from GeoDirectory data assocated with an email address.
-	 *
-	 * Posts are erased in blocks of 10 to avoid timeouts.
+	 * Erases personal data associated with an email address from the reviews table.
 	 *
 	 * @since 1.6.26
-	 * @param string $email_address The user email address.
-	 * @param int    $page  Page.
-	 * @return array An array of personal data in name value pairs
+	 *
+	 * @param  string $email_address The review author email address.
+	 * @param  int    $page          Review page.
+	 * @return array
 	 */
-	public static function post_data_eraser( $email_address, $page ) {
-		$page            = (int) $page;
-		$user            = get_user_by( 'email', $email_address ); // Check if user has an ID in the DB to load stored personal data.
+	public static function review_data_eraser( $email_address, $page ) {
+		global $wpdb;
 
-		$erasure_enabled = get_option( 'geodir_erasure_request_removes_post_data', false );
-
-		$response        = array(
+		$response = array(
 			'items_removed'  => false,
 			'items_retained' => false,
 			'messages'       => array(),
 			'done'           => true,
 		);
 
-		$post_query = array(
-			'limit'    => 10,
-			'page'     => $page,
-			'user'     => array( $email_address ),
-		);
-
-		if ( $user instanceof WP_User ) {
-			$post_query['user'][] = (int) $user->ID;
+		if ( empty( $email_address ) ) {
+			return $response;
 		}
 
-		$posts = array();
+		$page           = (int) $page;
+		$items_removed  = false;
+		$items_retained = false;
 
-		if ( 0 < count( $posts ) ) {
-			foreach ( $posts as $post ) {
-				if ( apply_filters( 'geodir_privacy_erase_post_personal_data', $erasure_enabled, $post ) ) {
-					self::remove_post_personal_data( $post );
+		$reviews = self::reviews_by_author( $email_address, $page );
 
-					/* Translators: %s Post number. */
-					$response['messages'][]    = sprintf( __( 'Removed personal data from post %s.', 'geodirectory' ), $post->ID );
-					$response['items_removed'] = true;
+		if ( empty( $reviews ) ) {
+			return $response;
+		}
+
+		$messages    = array();
+
+		foreach ( $reviews as $review ) {
+			$anonymized_review                         		= array();
+			$anonymized_review['user_id']               	= 0;
+			$anonymized_review['rating_ip']    				= wp_privacy_anonymize_data( 'ip', $review->rating_ip );
+
+			$review_id = (int) $review->id;
+
+			/**
+			 * Filters whether to anonymize the review.
+			 *
+			 * @since 1.6.26
+			 *
+			 * @param bool|string                    Whether to apply the review anonymization (bool).
+			 *                                       Custom prevention message (string). Default true.
+			 * @param object 	 $review             Review object.
+			 * @param array      $anonymized_review  Anonymized review data.
+			 */
+			$anon_message = apply_filters( 'geodir_anonymize_post_review', true, $review, $anonymized_review );
+
+			if ( true !== $anon_message ) {
+				if ( $anon_message && is_string( $anon_message ) ) {
+					$messages[] = esc_html( $anon_message );
 				} else {
-					/* Translators: %s Post number. */
-					$response['messages'][]     = sprintf( __( 'Personal data within post %s has been retained.', 'geodirectory' ), $post->ID );
-					$response['items_retained'] = true;
+					/* translators: %d: Review ID */
+					$messages[] = sprintf( __( 'Review %d contains personal data but could not be anonymized.', 'geodirectory' ), $review_id );
 				}
+
+				$items_retained = true;
+
+				continue;
 			}
-			$response['done'] = 10 > count( $posts );
-		} else {
-			$response['done'] = true;
+
+			$args = array(
+				'id' => $review_id,
+			);
+
+			$updated = $wpdb->update( GEODIR_REVIEW_TABLE, $anonymized_review, $args );
+
+			if ( $updated ) {
+				$items_removed = true;
+			} else {
+				$items_retained = true;
+			}
 		}
 
-		return $response;
+		$done = count( $reviews ) < $number;
+
+		return array(
+			'items_removed'  => $items_removed,
+			'items_retained' => $items_retained,
+			'messages'       => $messages,
+			'done'           => $done,
+		);
 	}
 
-	/**
-	 * Remove personal data specific to GeoDirectory from an post object.
-	 *
-	 * Note; this will hinder post processing for obvious reasons!
-	 *
-	 * @param WP_Post $post Post object.
-	 */
-	public static function remove_post_personal_data( $post ) {
-		$anonymized_data = array();
+	public static function reviews_by_author( $email_address, $page, $posts_per_page = 10 ) {
+		global $wpdb;
 
-		/**
-		 * Allow extensions to remove their own personal data for this post first, so post data is still available.
-		 *
-		 * @since 1.6.26
-		 * @param WP_Post $post A post object.
-		 */
-		do_action( 'geodir_privacy_before_remove_post_personal_data', $post );
-
-		/**
-		 * Expose props and data types we'll be anonymizing.
-		 *
-		 * @since 1.6.26
-		 * @param array    $props Keys are the prop names, values are the data type we'll be passing to wp_privacy_anonymize_data().
-		 * @param WP_Post $post A post object.
-		 */
-		$props_to_remove = apply_filters( 'geodir_privacy_remove_post_personal_data_props', array(
-			'phone'       => 'phone',
-			'email'       => 'email'
-			// TODO more fields
-		), $post );
-
-		if ( ! empty( $props_to_remove ) && is_array( $props_to_remove ) ) {
-			foreach ( $props_to_remove as $prop => $data_type ) {
-				// Get the current value in edit context.
-				$value = isset( $post->{$prop} ) ? $post->{$prop} : '';
-
-				// If the value is empty, it does not need to be anonymized.
-				if ( empty( $value ) || empty( $data_type ) ) {
-					continue;
-				}
-
-				$anon_value = wp_privacy_anonymize_data( $data_type, $value );
-
-				/**
-				 * Expose a way to control the anonymized value of a prop via 3rd party code.
-				 *
-				 * @since 1.6.26
-				 * @param bool     $anonymized_data Value of this prop after anonymization.
-				 * @param string   $prop Name of the prop being removed.
-				 * @param string   $value Current value of the data.
-				 * @param string   $data_type Type of data.
-				 * @param WP_Post $post The post object.
-				 */
-				$anonymized_data[ $prop ] = apply_filters( 'geodir_privacy_remove_post_personal_data_prop_value', $anon_value, $prop, $value, $data_type, $post );
-			}
+		if ( empty( $email_address ) || empty( $page ) ) {
+			return array();
 		}
 
-		// Set all new props and persist the new data to the database.
-		//$post->set_props( $anonymized_data );	// TODO
-		//$post->update_meta_data( '_anonymized', 'yes' );	// TODO
-		//$post->save();	// TODO
+		$user = get_user_by( 'email', $email_address );
+		if ( empty( $user ) ) {
+			return array();
+		}
 
-		/**
-		 * Allow extensions to remove their own personal data for this post.
-		 *
-		 * @since 1.6.26
-		 * @param WP_Post $post The post object.
-		 */
-		do_action( 'geodir_privacy_remove_post_personal_data', $post );
+		if ( absint( $page ) < 1 ) {
+			$page = 1;
+		}
+
+		$limit = absint( ( $page - 1 ) * $posts_per_page ) . ", " . $posts_per_page;
+			
+		$query = $wpdb->prepare( "SELECT * FROM " . GEODIR_REVIEW_TABLE . " WHERE user_id = %d ORDER BY comment_id ASC LIMIT " . $limit, array( $user->ID ) );
+
+		$reviews = $wpdb->get_results( $query );
+
+		return apply_filters( 'geodir_privacy_review_data_eraser_reviews', $reviews, $email_address, $user, $page );
 	}
 }

@@ -12,12 +12,13 @@ defined( 'ABSPATH' ) || exit;
  * GeoDir_Privacy_Exporters Class.
  */
 class GeoDir_Privacy_Exporters {
+
 	/**
 	 * Finds and exports data which could be used to identify a person from GeoDirectory data associated with an email address.
 	 *
 	 * Posts are exported in blocks of 10 to avoid timeouts.
 	 *
-	 * @since 1.2.26
+	 * @since 1.6.26
 	 * @param string $email_address The user email address.
 	 * @param int    $page  Page.
 	 * @return array An array of personal data in name value pairs
@@ -125,6 +126,50 @@ class GeoDir_Privacy_Exporters {
 			'name'  => __( 'Post URL', 'geodirectory' ),
 			'value' => get_permalink( $gd_post->ID ),
 		);
+
+		// Post Images
+		$post_images = geodir_get_images( $gd_post->ID );
+		if ( ! empty( $post_images ) ) {
+			$images = array();
+			foreach ( $post_images as $key => $post_image ) {
+				if ( ! empty( $post_image->src ) ) {
+					$images[] = $post_image->src;
+				}
+			}
+
+			if ( ! empty( $images ) ) {
+				$personal_data[] = array(
+					'name'  => __( 'Post Images', 'geodirectory' ),
+					'value' => self::parse_files_value( $images ),
+				);
+			}
+		}
+
+		// Post Rating
+		$post_rating = geodir_get_post_rating( $gd_post->ID );
+		if ( $post_rating > 0 ) {
+			$post_rating = ( is_float( $post_rating) || ( strpos( $post_rating, ".", 1 ) == 1 && strlen( $post_rating ) > 3 ) ) ? number_format( $post_rating, 1, '.', '' ) : $post_rating;
+			$personal_data[] = array(
+				'name'  => __( 'Post Rating', 'geodirectory' ),
+				'value' => $post_rating . ' / 5',
+			);
+		}
+
+		// Post Reviews
+		$post_reviews = geodir_get_review_count_total( $gd_post->ID );
+		if ( $post_reviews > 0 ) {
+			$personal_data[] = array(
+				'name'  => __( 'Post Reviews', 'geodirectory' ),
+				'value' => $post_reviews,
+			);
+		}
+
+		if ( ! empty( $gd_post->is_featured ) ) {
+			$personal_data[] = array(
+				'name'  => __( 'Post Featured', 'geodirectory' ),
+				'value' => __( 'Yes', 'geodirectory' ),
+			);
+		}
 
 		$custom_fields 	= geodir_post_custom_fields( $gd_post->package_id, 'all', $gd_post->post_type );
 		$post_fields 	= array_keys( (array) $gd_post );
@@ -256,7 +301,7 @@ class GeoDir_Privacy_Exporters {
 				case 'url':
 				case 'html':
 				case 'textarea':
-					$value = $gd_post->{$field_name} ? strip_tags( $gd_post->{$field_name} ) : '';
+					$value = $gd_post->{$field_name} ? $gd_post->{$field_name} : '';
 					break;
 				case 'file':
 					$files = explode( ",", $gd_post->{$field_name} );
@@ -291,7 +336,7 @@ class GeoDir_Privacy_Exporters {
 								}
 							}
 						}
-						$value = ! empty( $file_urls ) ? implode( ', ', $file_urls ) : '';
+						$value = ! empty( $file_urls ) ? self::parse_files_value( $file_urls ) : '';
 					}
 					break;
 			}
@@ -351,6 +396,8 @@ class GeoDir_Privacy_Exporters {
 	}
 
 	public static function review_data_exporter( $response, $exporter_index, $email_address, $page, $request_id, $send_as_email, $exporter_key ) {
+		global $wpdb;
+
 		$exporter_key = GeoDir_Privacy::personal_data_exporter_key();
 
 		if ( $exporter_key == 'wordpress-comments' && ! empty( $response['data'] ) ) {
@@ -361,9 +408,37 @@ class GeoDir_Privacy_Exporters {
 				if ( ! empty( $review ) ) {
 					if ( ! empty( $review->overall_rating ) ) {
 						$response['data'][ $key ]['data'][] = array(
-							'name'  => __( 'Review Rating', 'geodirectory' ),
-							'value' => (float)$review->overall_rating,
+							'name'  => __( 'Rating (Overall)', 'geodirectory' ),
+							'value' => (float)$review->overall_rating . ' / 5',
 						);
+					}
+					if ( defined( 'GEODIRREVIEWRATING_VERSION' ) ) {
+						if ( get_option( 'geodir_reviewrating_enable_rating' ) ) {
+							$ratings = maybe_unserialize( $review->ratings );
+
+							if ( ! empty( $ratings ) && $rating_ids = array_keys( $ratings ) ) {
+								$styles = $wpdb->get_results( "SELECT rc.id, rc.title, rs.star_number AS total FROM `" . GEODIR_REVIEWRATING_CATEGORY_TABLE . "` AS rc LEFT JOIN `" . GEODIR_REVIEWRATING_STYLE_TABLE . "` AS rs ON rs.id = rc.category_id WHERE rc.id IN(" . implode( ',', $rating_ids ) . ") AND rs.id IS NOT NULL" );
+
+								foreach ( $styles as $style ) {
+									if ( ! empty( $ratings[ $style->id ] ) ) {
+										$response['data'][ $key ]['data'][] = array(
+											'name'  => wp_sprintf( __( 'Rating (%s)', 'geodirectory' ), __( $style->title, 'geodirectory' ) ),
+											'value' => $ratings[ $style->id ] . ' / ' . $style->total,
+										);
+									}
+								}
+							}
+						}
+
+						if ( get_option( 'geodir_reviewrating_enable_images' ) ) {
+							if ( ! empty( $review->comment_images ) ) {
+								$comment_images = explode( ',', $review->comment_images );
+								$response['data'][ $key ]['data'][] = array(
+									'name'  => __( 'Review Images', 'geodirectory' ),
+									'value' => self::parse_files_value( $comment_images ),
+								);
+							}
+						}
 					}
 					if ( ! empty( $review->post_city ) ) {
 						$response['data'][ $key ]['data'][] = array(
@@ -399,5 +474,30 @@ class GeoDir_Privacy_Exporters {
 			}
 		}
 		return $response;
+	}
+
+	public static function parse_files_value( $files ) {
+		if ( empty( $files ) ) {
+			return '';
+		}
+
+		if ( ! is_array( $files ) ) {
+			return $files;
+		}
+
+		if ( count( $files ) == 1 ) {
+			return $files[0];
+		}
+
+		$links = array();
+		foreach ( $files as $file ) {
+			if ( false === strpos( $file, ' ' ) && ( 0 === strpos( $file, 'http://' ) || 0 === strpos( $file, 'https://' ) ) ) {
+				$file = '<a href="' . esc_url( $file ) . '">' . esc_html( $file ) . '</a>';
+			}
+			$links[] = $file;
+		}
+		$links = ! empty( $links ) ? implode( ' <br> ', $links ) : '';
+
+		return $links;
 	}
 }

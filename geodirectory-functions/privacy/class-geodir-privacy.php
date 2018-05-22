@@ -40,25 +40,25 @@ class GeoDir_Privacy extends GeoDir_Abstract_Privacy {
 			foreach ( $gd_post_types as $post_type => $info ) {
 				$name = $info->labels->name;
 
-				// This hook registers GeoDirectory data exporters.
-				$this->add_exporter( 'geodirectory-post-' . $post_type, wp_sprintf( __( 'User %s', 'geodirectory' ), $name ), array( 'GeoDir_Privacy_Exporters', 'post_data_exporter' ) );
-
-				// This hook registers GeoDirectory data erasers.
-				$this->add_eraser( 'geodirectory-post-' . $post_type, wp_sprintf( __( 'User %s', 'geodirectory' ), $name ), array( 'GeoDir_Privacy_Erasers', 'post_data_eraser' ) );
+				if ( self::allow_export_post_type_data( $post_type ) ) {
+					// This hook registers GeoDirectory data exporters.
+					$this->add_exporter( 'geodirectory-post-' . $post_type, wp_sprintf( __( 'User %s', 'geodirectory' ), $name ), array( 'GeoDir_Privacy_Exporters', 'post_data_exporter' ) );
+				}
 			}
 		}
-
-		// Cleanup orders daily - this is a callback on a daily cron event.
-		add_action( 'geodir_cleanup_personal_data', array( $this, 'queue_cleanup_personal_data' ) );
 
 		// Handles custom anonomization types not included in core.
 		add_filter( 'wp_privacy_anonymize_data', array( $this, 'anonymize_custom_data_types' ), 10, 3 );
 
-		// When this is fired, data is removed in a given order. Called from bulk actions.
-		add_action( 'geodir_remove_post_personal_data', array( 'GeoDir_Privacy_Erasers', 'remove_post_personal_data' ) );
+		if ( self::allow_export_reviews_data() ) {
+			// Review data export
+			add_filter( 'wp_privacy_personal_data_export_page', array( 'GeoDir_Privacy_Exporters', 'review_data_exporter' ), 10, 7 );
+		}
 
-		// Review data
-		add_filter( 'wp_privacy_personal_data_export_page', array( 'GeoDir_Privacy_Exporters', 'review_data_exporter' ), 10, 7 );
+		if ( self::allow_erase_reviews_data() ) {
+			// Review data erase
+			$this->add_eraser( 'geodirectory-post-reviews', __( 'User Listing Reviews', 'geodirectory' ), array( 'GeoDir_Privacy_Erasers', 'review_data_eraser' ) );
+		}
 	}
 
 	/**
@@ -161,15 +161,6 @@ class GeoDir_Privacy extends GeoDir_Abstract_Privacy {
 	}
 
 	/**
-	 * Spawn events for order cleanup.
-	 */
-	public function queue_cleanup_personal_data() {
-		self::$background_process->push_to_queue( array( 'task' => 'trash_pending_posts' ) );
-		self::$background_process->push_to_queue( array( 'task' => 'anonymize_published_posts' ) );
-		self::$background_process->save()->dispatch();
-	}
-
-	/**
 	 * Handle some custom types of data and anonymize them.
 	 *
 	 * @param string $anonymous Anonymized string.
@@ -179,216 +170,17 @@ class GeoDir_Privacy extends GeoDir_Abstract_Privacy {
 	 */
 	public function anonymize_custom_data_types( $anonymous, $type, $data ) {
 		switch ( $type ) {
-			case 'city':
-			case 'region':
-			case 'country':
-				$anonymous = '';
-				break;
 			case 'phone':
 				$anonymous = preg_replace( '/\d/u', '0', $data );
 				break;
 			case 'numeric_id':
 				$anonymous = 0;
 				break;
+			case 'gps':
+				$anonymous = '0';
+				break;
 		}
 		return $anonymous;
-	}
-
-	/**
-	 * Find and trash old posts.
-	 *
-	 * @since 1.6.26
-	 * @param  int $limit Limit posts to process per batch.
-	 * @return int Number of posts processed.
-	 */
-	public static function trash_pending_posts( $limit = 20 ) {
-		return 0;
-	}
-
-	/**
-	 * Anonymize old published posts.
-	 *
-	 * @since 1.6.26
-	 * @param  int $limit Limit posts to process per batch.
-	 * @return int Number of posts processed.
-	 */
-	public static function anonymize_published_posts( $limit = 20 ) {
-		return 0;
-	}
-
-	/**
-	 * For a given query trash all matches.
-	 *
-	 * @since 3.4.0
-	 * @param array $query Query array to pass to wc_get_orders().
-	 * @return int Count of orders that were trashed.
-	 */
-	protected static function trash_posts_query( $query ) {
-		$posts = array();
-		$count  = 0;
-
-		if ( $posts ) {
-			foreach ( $posts as $post ) {
-				$count ++;
-			}
-		}
-
-		return $count;
-	}
-
-	/**
-	 * For a given query, anonymize all matches.
-	 *
-	 * @since 1.6.26
-	 * @param array $query Query array.
-	 * @return int Count of orders that were anonymized.
-	 */
-	protected static function anonymize_posts_query( $query ) {
-		$posts = array();
-		$count  = 0;
-
-		if ( $posts ) {
-			foreach ( $posts as $post ) {
-				GeoDir_Privacy_Erasers::remove_post_personal_data( $post );
-				$count ++;
-			}
-		}
-
-		return $count;
-	}
-
-	public static function get_personal_data_exporters() {
-		/**
-		 * Filters the array of exporter callbacks.
-		 *
-		 *
-		 * @param array $args {
-		 *     An array of callable exporters of personal data. Default empty array.
-		 *
-		 *     @type array {
-		 *         Array of personal data exporters.
-		 *
-		 *         @type string $callback               Callable exporter function that accepts an
-		 *                                              email address and a page and returns an array
-		 *                                              of name => value pairs of personal data.
-		 *         @type string $exporter_friendly_name Translated user facing friendly name for the
-		 *                                              exporter.
-		 *     }
-		 * }
-		 */
-		$exporters = apply_filters( 'wp_privacy_personal_data_exporters', array() );
-
-		return $exporters;
-	}
-
-	public static function get_personal_data_exporter_key() {
-		if ( empty( $_POST['id'] ) ) {
-			return false;
-		}
-		$request_id = (int) $_POST['id'];
-
-		if ( $request_id < 1 ) {
-			return false;
-		}
-
-		if ( ! current_user_can( 'export_others_personal_data' ) ) {
-			return false;
-		}
-
-		// Get the request data.
-		$request = wp_get_user_request_data( $request_id );
-
-		if ( ! $request || 'export_personal_data' !== $request->action_name ) {
-			return false;
-		}
-
-		$email_address = $request->email;
-		if ( ! is_email( $email_address ) ) {
-			return false;
-		}
-
-		if ( ! isset( $_POST['exporter'] ) ) {
-			return false;
-		}
-		$exporter_index = (int) $_POST['exporter'];
-
-		if ( ! isset( $_POST['page'] ) ) {
-			return false;
-		}
-		$page = (int) $_POST['page'];
-
-		$send_as_email = isset( $_POST['sendAsEmail'] ) ? ( 'true' === $_POST['sendAsEmail'] ) : false;
-
-		/**
-		 * Filters the array of exporter callbacks.
-		 *
-		 * @since 1.6.26
-		 *
-		 * @param array $args {
-		 *     An array of callable exporters of personal data. Default empty array.
-		 *
-		 *     @type array {
-		 *         Array of personal data exporters.
-		 *
-		 *         @type string $callback               Callable exporter function that accepts an
-		 *                                              email address and a page and returns an array
-		 *                                              of name => value pairs of personal data.
-		 *         @type string $exporter_friendly_name Translated user facing friendly name for the
-		 *                                              exporter.
-		 *     }
-		 * }
-		 */
-		$exporters = apply_filters( 'wp_privacy_personal_data_exporters', array() );
-
-		if ( ! is_array( $exporters ) ) {
-			return false;
-		}
-
-		// Do we have any registered exporters?
-		if ( 0 < count( $exporters ) ) {
-			if ( $exporter_index < 1 ) {
-				return false;
-			}
-
-			if ( $exporter_index > count( $exporters ) ) {
-				return false;
-			}
-
-			if ( $page < 1 ) {
-				return false;
-			}
-
-			$exporter_keys = array_keys( $exporters );
-			$exporter_key  = $exporter_keys[ $exporter_index - 1 ];
-			$exporter      = $exporters[ $exporter_key ];
-			
-			if ( ! is_array( $exporter ) || empty( $exporter_key ) ) {
-				return false;
-			}
-			if ( ! array_key_exists( 'exporter_friendly_name', $exporter ) ) {
-				return false;
-			}
-			if ( ! array_key_exists( 'callback', $exporter ) ) {
-				return false;
-			}
-		}
-
-		/**
-		 * Filters a page of personal data exporter.
-		 *
-		 * @since 1.6.26
-		 *
-		 * @param array  $exporter_key    The key (slug) of the exporter that provided this data.
-		 * @param array  $exporter        The personal data for the given exporter.
-		 * @param int    $exporter_index  The index of the exporter that provided this data.
-		 * @param string $email_address   The email address associated with this personal data.
-		 * @param int    $page            The page for this response.
-		 * @param int    $request_id      The privacy request post ID associated with this request.
-		 * @param bool   $send_as_email   Whether the final results of the export should be emailed to the user.
-		 */
-		$exporter_key = apply_filters( 'geodir_privacy_personal_data_exporter', $exporter_key, $exporter, $exporter_index, $email_address, $page, $request_id, $send_as_email );
-
-		return $exporter_key;
 	}
 
 	public static function personal_data_exporter_key() {
@@ -523,6 +315,24 @@ class GeoDir_Privacy extends GeoDir_Abstract_Privacy {
 		}
 
 		return false;
+	}
+
+	public static function allow_export_post_type_data( $post_type ) {
+		$allow = true;
+
+		return apply_filters( 'geodir_privacy_allow_export_post_type_data', $allow, $post_type );
+	}
+
+	public static function allow_export_reviews_data() {
+		$allow = true;
+
+		return apply_filters( 'geodir_privacy_allow_export_reviews_data', $allow );
+	}
+
+	public static function allow_erase_reviews_data() {
+		$allow = true;
+
+		return apply_filters( 'geodir_privacy_allow_erase_reviews_data', $allow );
 	}
 }
 
