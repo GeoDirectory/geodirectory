@@ -38,22 +38,6 @@ class GeoDir_Privacy_Background_Process extends GeoDir_Background_Process {
 			return false;
 		}
 
-		$process_count = 0;
-		$process_limit = 20;
-
-		switch ( $item['task'] ) {
-			case 'trash_pending_posts':
-				$process_count = GeoDir_Privacy::trash_pending_posts( $process_limit );
-				break;
-			case 'anonymize_published_posts':
-				$process_count = GeoDir_Privacy::anonymize_published_posts( $process_limit );
-				break;
-		}
-
-		if ( $process_limit === $process_count ) {
-			return $item;
-		}
-
 		return false;
 	}
 }
