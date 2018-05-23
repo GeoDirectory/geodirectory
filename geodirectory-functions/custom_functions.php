@@ -170,7 +170,7 @@ function geodir_post_package_info( $package_info, $post = '', $post_type = '' ) 
 	$package_info['is_featured']      = 0;
 	$package_info['image_limit']      = '';
 	$package_info['google_analytics'] = 1;
-	$package_info['sendtofriend']     = 1;
+	$package_info['sendtofriend']     = 0; // @depreciated since 1.6.26
 
 	/**
 	 * Filter listing package info.
@@ -186,7 +186,7 @@ function geodir_post_package_info( $package_info, $post = '', $post_type = '' ) 
 	 * @type int $is_featured      Is this featured package? Default 0.
 	 * @type string $image_limit   Image limit for this package. Default "".
 	 * @type int $google_analytics Add analytics to this package. Default 1.
-	 * @type int $sendtofriend     Send to friend. Default 1.
+	 * @type int $sendtofriend     Send to friend. Default 0.
 	 *
 	 * }
 	 * @param object|string $post  The post object.
@@ -369,6 +369,8 @@ function geodir_send_inquiry( $request ) {
  *
  * }
  * @global object $wpdb        WordPress Database object.
+ *
+ * @deprecated 1.6.26
  */
 function geodir_send_friend( $request ) {
 	global $wpdb;

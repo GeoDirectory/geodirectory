@@ -741,7 +741,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 	 * @param string $to_subject    Email subject.
 	 * @param string $to_message    Email content.
 	 * @param string $extra         Not being used.
-	 * @param string $message_type  The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+	 * @param string $message_type  The message type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
 	 * @param string $post_id       The post ID.
 	 * @param string $user_id       The user ID.
 	 */
@@ -752,10 +752,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 		$to_subject = stripslashes_deep( $to_subject );
 		$to_message = stripslashes_deep( $to_message );
 
-		if ( $message_type == 'send_friend' ) {
-			$subject = get_option( 'geodir_email_friend_subject' );
-			$message = get_option( 'geodir_email_friend_content' );
-		} elseif ( $message_type == 'send_enquiry' ) {
+		if ( $message_type == 'send_enquiry' ) {
 			$subject = get_option( 'geodir_email_enquiry_subject' );
 			$message = get_option( 'geodir_email_enquiry_content' );
 
@@ -936,7 +933,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 		 * @param string $to_subject    Email subject.
 		 * @param string $to_message    Email content.
 		 * @param string $extra         Not being used.
-		 * @param string $message_type  The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+		 * @param string $message_type  The message type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
 		 * @param string $post_id       The post ID.
 		 * @param string $user_id       The user ID.
 		 */
@@ -955,7 +952,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 		 * @param string $to_subject    Email subject.
 		 * @param string $to_message    Email content.
 		 * @param string $extra         Not being used.
-		 * @param string $message_type  The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+		 * @param string $message_type  The message type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
 		 * @param string $post_id       The post ID.
 		 * @param string $user_id       The user ID.
 		 */
@@ -974,7 +971,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 		 * @param string $to_subject    Email subject.
 		 * @param string $to_message    Email content.
 		 * @param string $extra         Not being used.
-		 * @param string $message_type  The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+		 * @param string $message_type  The message type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
 		 * @param string $post_id       The post ID.
 		 * @param string $user_id       The user ID.
 		 */
@@ -993,7 +990,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 		 * @param string $to_subject    Email subject.
 		 * @param string $to_message    Email content.
 		 * @param string $extra         Not being used.
-		 * @param string $message_type  The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+		 * @param string $message_type  The message type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
 		 * @param string $post_id       The post ID.
 		 * @param string $user_id       The user ID.
 		 */
@@ -1105,9 +1102,6 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 		} elseif ( $message_type == 'registration' && get_option( 'geodir_bcc_new_user' ) ) {
 			$subject .= ' - ADMIN BCC COPY';
 			$admin_bcc = true;
-		} elseif ( $message_type == 'send_friend' && get_option( 'geodir_bcc_friend' ) ) {
-			$subject .= ' - ADMIN BCC COPY';
-			$admin_bcc = true;
 		} elseif ( $message_type == 'send_enquiry' && get_option( 'geodir_bcc_enquiry' ) ) {
 			$subject .= ' - ADMIN BCC COPY';
 			$admin_bcc = true;
@@ -1132,7 +1126,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 			 * @param string $to_subject    Email subject.
 			 * @param string $to_message    Email content.
 			 * @param string $extra         Not being used.
-			 * @param string $message_type  The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+			 * @param string $message_type  The message type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
 			 * @param string $post_id       The post ID.
 			 * @param string $user_id       The user ID.
 			 */
@@ -1151,7 +1145,7 @@ if ( ! function_exists( 'geodir_sendEmail' ) ) {
 			 * @param string $to_subject    Email subject.
 			 * @param string $to_message    Email content.
 			 * @param string $extra         Not being used.
-			 * @param string $message_type  The message type. Can be send_friend, send_enquiry, forgot_password, registration, post_submit, listing_published.
+			 * @param string $message_type  The message type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
 			 * @param string $post_id       The post ID.
 			 * @param string $user_id       The user ID.
 			 */

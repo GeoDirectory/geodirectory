@@ -13,11 +13,10 @@ Date un-translation not working properly - FIXED
 Map default language setting is not working for OpenStreetMap - FIXED
 Empty search results should not show default location on map - FIXED
 GDPR Compliance updates - ADDED
-
-v1.6.26
 GD sessions class can cause WP file editor to fail with new WP file editor changed - FIXED
 Map cache can fail to get file once every 24hours when clearing old cache - FIXED
 Some themes reset the $post value which can casue the details page map to show no results - FIXED
+Remove send to friend functionality as it against the GDPR policy - CHANGED
 
 v1.6.25
 My Favorites text in breadcrumb not translatable - FIXED

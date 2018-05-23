@@ -53,7 +53,7 @@ if (isset($field_info->admin_title))
 $default = isset($field_info->is_admin) ? $field_info->is_admin : '';
 
 $display_on_listing = true;
-// Remove Send Enquiry | Send To Friend from listings page
+// Remove Send Enquiry from listings page
 $htmlvar_name = isset($field_info->htmlvar_name) && $field_info->htmlvar_name != '' ? $field_info->htmlvar_name : '';
 if ($htmlvar_name == 'geodir_email') {
 	$field_info->show_on_listing = 0;

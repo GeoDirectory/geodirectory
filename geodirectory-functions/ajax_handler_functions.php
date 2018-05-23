@@ -17,7 +17,7 @@
 function geodir_on_wp_loaded()
 {
     /**
-     * Called on the wp_loaded WP hook and used to send the send inquiry and send to friend forms.
+     * Called on the wp_loaded WP hook and used to send the send inquiry forms.
      *
      * @since 1.0.0
      */
@@ -27,9 +27,6 @@ function geodir_on_wp_loaded()
 
     if (isset($_POST['sendact']) && $_POST['sendact'] == 'send_inqury') {
         geodir_send_inquiry($_REQUEST); // function in custom_functions.php
-
-    } elseif (isset($_POST['sendact']) && $_POST['sendact'] == 'email_frnd') {
-        geodir_send_friend($_REQUEST); // function in custom_functions.php
 
     }
 
@@ -190,7 +187,7 @@ function geodir_ajax_handler() {
 
     if (isset($_REQUEST['popuptype']) && $_REQUEST['popuptype'] != '' && isset($_REQUEST['post_id']) && $_REQUEST['post_id'] != '') {
 
-        if ($_REQUEST['popuptype'] == 'b_send_inquiry' || $_REQUEST['popuptype'] == 'b_sendtofriend') {
+        if ($_REQUEST['popuptype'] == 'b_send_inquiry') {
             $template = locate_template(array("geodirectory/popup-forms.php"));
             if (!$template) {
                 $template = geodir_plugin_path() . '/geodirectory-templates/popup-forms.php';

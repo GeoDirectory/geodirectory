@@ -137,6 +137,13 @@ function geodir_locate_template($template = '')
             }
             return $template;
             break;
+		case 'email-message':
+            $template = locate_template(array("geodirectory/email-message.php"));
+            if (!$template) {
+                $template = geodir_plugin_path() . '/geodirectory-templates/email-message.php';
+            }
+            return $template;
+            break;
     endswitch;
 
     return false;
@@ -711,3 +718,94 @@ function geodir_parse_shortcodes( $content, $shortcode, $first = true ) {
 
     return apply_filters( 'geodir_parse_shortcodes', $shortcodes, $content, $shortcode, $first );
 }
+
+/**
+ * Filter the email message.
+ *
+ * @since   1.6.26
+ * @package GeoDirectory
+ *
+ * @param string $message       The email message text.
+ * @param string $email_type    The email type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
+ * @param array $email_vars     The email parameters.
+ * @return string Filtered email message.
+ */
+function geodir_email_wrap_message( $message, $email_type = '', $email_vars = array() ) {
+	global $geodir_email_content, $geodir_email_type, $geodir_email_vars;
+
+	$geodir_email_content = $message;
+	$geodir_email_type = $email_type;
+	$geodir_email_vars = $email_vars;
+
+	$template = apply_filters( "geodir_template_part-email-content", geodir_locate_template( 'email-message' ) );
+
+	ob_start();
+	/**
+	 * Includes email conetnt listview template.
+	 *
+	 * @since 1.6.26
+	 */
+	include( $template );
+
+	$content = ob_get_clean();
+
+	return $content;
+}
+
+/**
+ * Filter the client email message.
+ *
+ * @since   1.6.26
+ * @package GeoDirectory
+ *
+ * @param string $message       The email message text.
+ * @param string $fromEmail     Sender email address.
+ * @param string $fromEmailName Sender name.
+ * @param string $toEmail       Receiver email address.
+ * @param string $toEmailName   Receiver name.
+ * @param string $to_subject    Email subject.
+ * @param string $to_message    Email content.
+ * @param string $extra         Not being used.
+ * @param string $message_type  The message type. Can be send_enquiry, forgot_password, registration, post_submit, listing_published.
+ * @param string $post_id       The post ID.
+ * @param string $user_id       The user ID.
+ */
+function geodir_email_wrap_user_message( $message, $fromEmail, $fromEmailName, $toEmail, $toEmailName, $to_subject, $to_message, $extra, $message_type, $post_id, $user_id ) {
+	$email_vars = array();
+	$email_vars['message_type'] = $message_type;
+	$email_vars['fromEmail'] = $fromEmail;
+	$email_vars['fromEmailName'] = $fromEmailName;
+	$email_vars['toEmail'] = $toEmail;
+	$email_vars['toEmailName'] = $toEmailName;
+	$email_vars['to_subject'] = $to_subject;
+	$email_vars['to_message'] = $to_message;
+	$email_vars['extra'] = $extra;
+	$email_vars['post_id'] = $post_id;
+	$email_vars['user_id'] = $user_id;
+
+	return geodir_email_wrap_message( $message, $message_type, $email_vars );
+}
+add_filter( 'geodir_sendEmail_message', 'geodir_email_wrap_user_message', 10, 11 );
+
+/**
+ * Filter the admin email message.
+ *
+ * @since   1.6.26
+ * @package GeoDirectory
+ *
+ * @param string $message      The email message text.
+ * @param int|string $page_id  Page ID.
+ * @param int|string $user_id  User ID.
+ * @param string $message_type Can be 'expiration','post_submited','renew','upgrade','claim_approved','claim_rejected','claim_requested','auto_claim','payment_success','payment_fail'.
+ * @param string $custom_1     Custom data to be sent.
+ */
+function geodir_email_wrap_admin_message( $message, $page_id, $user_id, $message_type, $custom_1 ) {
+	$email_vars = array();
+	$email_vars['message_type'] = $message_type;
+	$email_vars['page_id'] = $page_id;
+	$email_vars['user_id'] = $user_id;
+	$email_vars['custom_1'] = $custom_1;
+
+	return geodir_email_wrap_message( $message, $message_type, $email_vars );
+}
+add_filter( 'geodir_adminEmail_message', 'geodir_email_wrap_admin_message', 10, 5 );

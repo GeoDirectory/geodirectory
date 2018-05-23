@@ -102,8 +102,6 @@ jQuery(document).ready(function() {
 
         },
         rtl: 1 == parseInt(geodir_var.is_rtl) ? !0 : !1
-    }), jQuery("a.b_sendtofriend").click(function(e) {
-        geodir_get_popup_forms(e, jQuery(this), "b_sendtofriend", "basic-modal-content")
     }), jQuery("a.b_send_inquiry").click(function(e) {
         geodir_get_popup_forms(e, jQuery(this), "b_send_inquiry", "basic-modal-content2")
     }), jQuery(document).delegate("#agt_mail_agent .is_required:visible,#send_to_frnd .is_required:visible", "blur", function() {
@@ -116,9 +114,7 @@ jQuery(document).ready(function() {
     });
 
     // let the popups open via url param
-    if(gdUrlParam('gd_popup')=='send_friend' && jQuery('a.b_sendtofriend').length){
-        jQuery('.b_sendtofriend').trigger("click");
-    }else if(gdUrlParam('gd_popup')=='send_enquiry' && jQuery('a.b_send_inquiry').length){
+    if(gdUrlParam('gd_popup')=='send_enquiry' && jQuery('a.b_send_inquiry').length){
         jQuery('.b_send_inquiry').trigger("click");
     }
 

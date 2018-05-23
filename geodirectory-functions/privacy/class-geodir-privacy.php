@@ -14,21 +14,10 @@ defined( 'ABSPATH' ) || exit;
 class GeoDir_Privacy extends GeoDir_Abstract_Privacy {
 
 	/**
-	 * Background process to clean up orders.
-	 *
-	 * @var GeoDir_Privacy_Background_Process
-	 */
-	protected static $background_process;
-
-	/**
 	 * Init - hook into events.
 	 */
 	public function __construct() {
 		parent::__construct( __( 'GeoDirectory', 'geodirectory' ) );
-
-		if ( ! self::$background_process ) {
-			self::$background_process = new GeoDir_Privacy_Background_Process();
-		}
 
 		// Include supporting classes.
 		include_once( 'class-geodir-privacy-erasers.php' );
