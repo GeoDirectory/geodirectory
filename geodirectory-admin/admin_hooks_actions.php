@@ -1959,7 +1959,7 @@ function geodir_ajax_import_csv()
 
     global $wpdb, $plugin_prefix, $current_user;
     $uploads = wp_upload_dir();
-    ini_set('auto_detect_line_endings', true);
+    @ini_set('auto_detect_line_endings', true);
 	
 	$wp_post_statuses = get_post_statuses(); // All of the WordPress supported post statuses.
 

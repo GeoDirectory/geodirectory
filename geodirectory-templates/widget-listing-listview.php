@@ -87,10 +87,11 @@ if ($gd_session->get('gd_listing_view') && !isset($before_widget)) {
                             /** This action is documented in geodirectory-templates/listing-listview.php */
                             do_action('geodir_before_listing_post_title', 'listview', $post); ?>
                             <header class="geodir-entry-header">
-                                <h3 class="geodir-entry-title">
+                                <?php  $title_tag = !empty($title_tag) ? $title_tag : 'h3'; ?>
+                                <<?php echo esc_attr($title_tag); ?> class="geodir-entry-title">
                                     <a href="<?php the_permalink(); ?>"
                                        title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-                                </h3>
+                                </<?php echo esc_attr($title_tag); ?>>
                             </header>
                             <!-- .entry-header -->
                             <?php

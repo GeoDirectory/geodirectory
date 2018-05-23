@@ -3630,7 +3630,6 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 
 	// prints the widget
 	extract( $args, EXTR_SKIP );
-
 	/** This filter is documented in geodirectory_widgets.php */
 	$title = empty( $instance['title'] ) ? geodir_ucwords( $instance['category_title'] ) : apply_filters( 'widget_title', __( $instance['title'], 'geodirectory' ) );
 	/**
@@ -3689,6 +3688,14 @@ function geodir_popular_postview_output( $args = '', $instance = '' ) {
 	 * @param string $instance ['list_sort'] Listing sort by type.
 	 */
 	$list_sort             = empty( $instance['list_sort'] ) ? 'latest' : apply_filters( 'widget_list_sort', $instance['list_sort'] );
+	/**
+	 * Filter widget's "title_tag" type.
+	 *
+	 * @since 1.6.26
+	 *
+	 * @param string $instance ['title_tag'] Listing title tag.
+	 */
+	$title_tag            = empty( $instance['title_tag'] ) ? 'h3' : apply_filters( 'widget_title_tag', $instance['title_tag'] );
 	$use_viewing_post_type = ! empty( $instance['use_viewing_post_type'] ) ? true : false;
 
 	// set post type to current viewing post type

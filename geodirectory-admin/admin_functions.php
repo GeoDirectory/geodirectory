@@ -2292,9 +2292,9 @@ function geodir_import_export_page() {
   <div class="gd-content-heading">
 
   <?php
-    ini_set('max_execution_time', 999999);
+    @ini_set('max_execution_time', 999999);
     $ini_max_execution_time_check = @ini_get( 'max_execution_time' );
-    ini_restore('max_execution_time');
+    @ini_restore('max_execution_time');
 
     if($ini_max_execution_time_check != 999999){ // only show these setting to the user if we can't change the ini setting
         ?>
@@ -3346,16 +3346,16 @@ function geodir_ajax_import_export() {
     $memory_limit= ini_get('memory_limit');
 
     if(!$max_input_time || $max_input_time<3000){
-        ini_set('max_input_time', 3000);
+        @ini_set('max_input_time', 3000);
     }
 
     if(!$max_execution_time || $max_execution_time<3000){
-        ini_set('max_execution_time', 3000);
+        @ini_set('max_execution_time', 3000);
     }
 
     if($memory_limit && str_replace('M','',$memory_limit)){
         if(str_replace('M','',$memory_limit)<256){
-            ini_set('memory_limit', '256M');
+            @ini_set('memory_limit', '256M');
         }
     }
 
@@ -3724,7 +3724,7 @@ function geodir_ajax_import_export() {
             }
             // WPML
             
-            ini_set( 'auto_detect_line_endings', true );
+            @ini_set( 'auto_detect_line_endings', true );
             
             $uploads = wp_upload_dir();
             $uploads_dir = $uploads['path'];
@@ -3743,7 +3743,7 @@ function geodir_ajax_import_export() {
 
             if ( $csv_file && $wp_filesystem->is_file( $target_path ) && $wp_filesystem->exists( $target_path ) ) {
                 $wp_filetype = wp_check_filetype_and_ext( $target_path, $csv_filename );
-                
+
                 if (!empty($wp_filetype) && isset($wp_filetype['ext']) && geodir_strtolower($wp_filetype['ext']) == 'csv') {
                     $json['error'] = NULL;
 

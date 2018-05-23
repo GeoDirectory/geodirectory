@@ -152,13 +152,13 @@ if ($gd_session->get('gd_listing_view') && !isset($before_widget) && !isset($rel
                              */
                             do_action('geodir_before_listing_post_title', 'listview', $post); ?>
 
-                            <header class="geodir-entry-header"><h3 class="geodir-entry-title">
+                            <header class="geodir-entry-header"><h2 class="geodir-entry-title">
                                     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 
                                         <?php the_title(); ?>
 
                                     </a>
-                                </h3></header>
+                                </h2></header>
                             <!-- .entry-header -->
 
                             <?php

@@ -294,7 +294,7 @@ function geodir_random_float($min = 0, $max = 1)
  */
 function geodir_get_address_by_lat_lan($lat, $lng)
 {
-    $url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' . trim($lat) . ',' . trim($lng) . "&key=" . geodir_get_map_api_key();
+    $url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' . trim($lat) . ',' . trim($lng);// . "&key=" . geodir_get_map_api_key(); // if we add a key here it will not work if limited to a domain as this is done via curl.
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);

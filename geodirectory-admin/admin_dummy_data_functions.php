@@ -203,7 +203,7 @@ function geodir_delete_dummy_posts($post_type,$data_type)
 function geodir_insert_dummy_posts($post_type,$data_type,$item_index)
 {
 
-    ini_set('max_execution_time', 999999); //300 seconds = 5 minutes
+    @ini_set('max_execution_time', 999999); //300 seconds = 5 minutes
     $data_types = geodir_dummy_data_types();
 
     $total_count = 0;

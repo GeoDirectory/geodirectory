@@ -52,16 +52,17 @@ function create_marker_jason_of_posts($post)
 {
     global $wpdb, $map_jason, $add_post_in_marker_array, $geodir_cat_icons, $gd_marker_sizes;
 
-    if (!empty($post) && isset($post->ID) && $post->ID > 0 && (is_main_query() || $add_post_in_marker_array) && $post->marker_json != '') {
+    if (!empty($post) && isset($post->ID) && $post->ID > 0 && (is_main_query() || $add_post_in_marker_array)) {
 
         if(isset($map_jason[$post->ID])){return null;}
 
         $srcharr = array("'", "/", "-", '"', '\\');
         $replarr = array("&prime;", "&frasl;", "&ndash;", "&ldquo;", '');
 
+        $default_category = isset($post->default_category) ? $post->default_category : geodir_get_post_meta($post->ID,'default_category');
 
         $geodir_cat_icons = geodir_get_term_icon();
-        $icon = !empty($geodir_cat_icons) && isset($geodir_cat_icons[$post->default_category]) ? $geodir_cat_icons[$post->default_category] : '';
+        $icon = !empty($geodir_cat_icons) && isset($geodir_cat_icons[$default_category]) ? $geodir_cat_icons[$default_category] : '';
 
         $post_title = $post->post_title;
         $title = str_replace($srcharr, $replarr, $post_title);
@@ -83,11 +84,15 @@ function create_marker_jason_of_posts($post)
             $icon_size = array('w' => 36, 'h' => 45);
         }
 
+        $post_latitude = isset($post->post_latitude) ? $post->post_latitude : geodir_get_post_meta($post->ID,'post_latitude');
+        $post_longitude = isset($post->post_longitude) ? $post->post_longitude : geodir_get_post_meta($post->ID,'post_longitude');
+
+
         $post_json = '{"id":"' . $post->ID
                      . '","t": "' . $title
-                     . '","lt": "' . $post->post_latitude
-                     . '","ln": "' . $post->post_longitude
-                     . '","mk_id":"' . $post->ID . '_' . $post->default_category
+                     . '","lt": "' . $post_latitude
+                     . '","ln": "' . $post_longitude
+                     . '","mk_id":"' . $post->ID . '_' . $default_category
                      . '","i":"' . $icon
                      . '","w":"' . $icon_size['w']
                      . '","h":"' . $icon_size['h'] . '"}';

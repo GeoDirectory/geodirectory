@@ -69,95 +69,36 @@ class GeoDir_Privacy extends GeoDir_Abstract_Privacy {
 	 * @return string The default policy content.
 	 */
 	public function get_privacy_message() {
-		$content = '';
 
-		// Start of the suggested privacy policy text.
-		$content .=
-			'<div class="geodir-privacy-text">';
-		$content .=
-			'<h2>' . __( 'Who we are' ) . '</h2>';
-		$content .=
-			'<p>' . __( 'GeoDirectory is the only WordPress directory plugin on the market that can scale to millions of listings and withstand the battering of traffic that comes along with that.' ) . '</p>';
+		$content = '<h2>' . __( 'Listings', 'geodirectory' ) . '</h2>' .
+		           '<p>' . __( 'We collect information about you during the add listing process on our site. This information may include, but is not limited to, your name, email address, phone number, address, locations details including GPS co-ordinates and any other details that might be requested from you for the purpose of adding your business/personal listings.', 'geodirectory' ) . '</p>' .
+		           '<p>' . __( 'Handling this data also allows us to:', 'geodirectory' ) . '</p>' .
+		           '<ul>' .
+		           '<li>' . __( '- Display this information in a public facing manner (such as a web page or API request) and allow website users to search and view submitted listing information.', 'geodirectory' ) . '</li>' .
+		           '<li>' . __( '- Send you important account/order/service information.', 'geodirectory' ) . '</li>' .
+		           '<li>' . __( '- Provide a way for users to contact your listing via the provided contact information.', 'geodirectory' ) . '</li>' .
+		           '<li>' . __( '- Notify you of user interactions such as but not limited to review and contact notifications.', 'geodirectory' ) . '</li>' .
+		           '<li>' . __( '- Respond to your queries or complaints.', 'geodirectory' ) . '</li>' .
+		           '<li>' . __( '- Set up and administer your account, provide technical and/or customer support, and to verify your identity. We do this on the basis of our legitimate business interests.', 'geodirectory' ) . '</li>' .
+		           '</ul>' .
+		           '<h2>' . __( 'Reviews', 'geodirectory' ) . '</h2>' .
+		           '<p>' . __( 'We collect information about you during the leave a review process on our site. This information may include, but is not limited to, your name, email address, IP address, website url, image(s), review ratings and review texts.', 'geodirectory' ) . '</p>' .
+		           '<p>' . __( 'Handling this data also allows us to:', 'geodirectory' ) . '</p>' .
+		           '<ul>' .
+		           '<li>' . __( '- Display this information in a public facing manner (such as a web page or API request).', 'geodirectory' ) . '</li>' .
+		           '<li>' . __( '- Notify you of interactions such as approval or rejection of your review.', 'geodirectory' ) . '</li>' .
+		           '<li>' . __( '- Notify you of user interactions such as reply notifications.', 'geodirectory' ) . '</li>' .
+		           '</ul>' .
+		           '<h2>' . __( 'Listing contact forms', 'geodirectory' ) . '</h2>' .
+		           '<p>' . __( 'We may collect information about you when you submit a contact form to a listing. This information may include, but is not limited to, your name, email address, IP address and contact texts.', 'geodirectory' ) . '</p>' .
+		           '<p>' . __( 'Handling this data also allows us to:', 'geodirectory' ) . '</p>' .
+		           '<ul>' .
+		           '<li>' . __( '- Send your contact message and details to the listings contact email.', 'geodirectory' ) . '</li>' .
+		           '<li>' . __( '- Monitor the contact system for spam and abuse.', 'geodirectory' ) . '</li>' .
+		           '</ul>';
 
-			'<h2>' . __( 'What personal data we collect and why we collect it' ) . '</h2>';
-		$content .=
-			'<p>' . __( 'In this section you should note what personal data you collect from users and site visitors. This may include personal data, such as name, email address, personal account preferences; transactional data, such as purchase information; and technical data, such as information about cookies.' ) . '</p>' .
-			'<p>' . __( 'You should also note any collection and retention of sensitive personal data, such as data concerning health.' ) . '</p>' .
-			'<p>' . __( 'In addition to listing what personal data you collect, you need to note why you collect it. These explanations must note either the legal basis for your data collection and retention or the active consent the user has given.' ) . '</p>' .
-			'<p>' . __( 'Personal data is not just created by a user&#8217;s interactions with your site. Personal data is also generated from technical processes such as contact forms, comments, cookies, analytics, and third party embeds.' ) . '</p>' .
-			'<p>' . __( 'By default WordPress does not collect any personal data about visitors, and only collects the data shown on the User Profile screen from registered users. However some of your plugins may collect personal data. You should add the relevant information below.' ) . '</p>';
 
-		$content .=
-			'<h3>' . __( 'Posts' ) . '</h3>';
-		$content .=
-			'<p>' . __( 'In this subsection you should note what information is captured through posts. We have noted the data which WordPress collects by default.' ) . '</p>' . 
-			'<p>' . __( 'When users add posts on the site we collect the data shown in the posts form, and also the visitor&#8217;s IP address and browser user agent string to help spam detection.' ) . '</p>' .
-			'<p>' . __( 'An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available here: https://automattic.com/privacy/. After approval of your post, your profile picture is visible to the public in the context of your post.' ) . '</p>';
-
-		$content .=
-			'<h3>' . __( 'Reviews' ) . '</h3>';
-		$content .=
-			'<p>' . __( 'In this subsection you should note what information is captured through reviews. We have noted the data which WordPress collects by default.' ) . '</p>' . 
-			'<p>' . __( 'When visitors leave reviews on the site we collect the data shown in the reviews form, and also the visitor&#8217;s IP address and browser user agent string to help spam detection.' ) . '</p>' .
-			'<p>' . __( 'An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available here: https://automattic.com/privacy/. After approval of your review, your profile picture is visible to the public in the context of your review.' ) . '</p>';
-
-		$content .=
-			'<h3>' . __( 'Media' ) . '</h3>';
-		$content .=
-			'<p>' . __( 'In this subsection you should note what information may be disclosed by users who can upload media files. All uploaded files are usually publicly accessible.' ) . '</p>' . 
-			'<p>' . __( 'If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.' ) . '</p>';
-
-		$content .=
-			'<h2>' . __( 'How long we retain your data' ) . '</h2>';
-		$content .=
-			'<p>' . __( 'In this section you should explain how long you retain personal data collected or processed by the web site. While it is your responsibility to come up with the schedule of how long you keep each dataset for and why you keep it, that information does need to be listed here. For example, you may want to say that you keep contact form entries for six months, analytics records for a year, and customer purchase records for ten years.' ) . '</p>' . 
-			'<p>' . __( 'If you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognize and approve any follow-up comments automatically instead of holding them in a moderation queue.' ) . '</p>' .
-			'<p>' . __( 'For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.' ) . '</p>' .
-
-			'<h2>' . __( 'What rights you have over your data' ) . '</h2>';
-		$content .=
-			'<p>' . __( 'In this section you should explain what rights your users have over their data and how they can invoke those rights.' ) . '</p>' . 
-			'<p>' . __( 'If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.' ) . '</p>';
-
-		$content .=
-			'<h2>' . __( 'Where we send your data' ) . '</h2>';
-		$content .=
-			'<p>' . __( 'In this section you should list all transfers of your site data outside the European Union and describe the means by which that data is safeguarded to European data protection standards. This could include your web hosting, cloud storage, or other third party services.' ) . '</p>' .
-			'<p>' . __( 'European data protection law requires data about European residents which is transferred outside the European Union to be safeguarded to the same standards as if the data was in Europe. So in addition to listing where data goes, you should describe how you ensure that these standards are met either by yourself or by your third party providers, whether that is through an agreement such as Privacy Shield, model clauses in your contracts, or binding corporate rules.' ) . '</p>' . 
-			'<p>' . __( 'Visitor comments may be checked through an automated spam detection service.' ) . '</p>';
-
-		$content .=
-			'<h2>' . __( 'Additional information' ) . '</h2>';
-		$content .=
-			'<p>' . __( 'If you use your site for commercial purposes and you engage in more complex collection or processing of personal data, you should note the following information in your privacy policy in addition to the information we have already discussed.' ) . '</p>';
-
-		$content .=
-			'<h3>' . __( 'How we protect your data' ) . '</h3>';
-		$content .=
-			'<p>' . __( 'In this section you should explain what measures you have taken to protect your users&#8217; data. This could include technical measures such as encryption; security measures such as two factor authentication; and measures such as staff training in data protection. If you have carried out a Privacy Impact Assessment, you can mention it here too.' ) . '</p>';
-
-		$content .=
-			'<h3>' . __( 'What data breach procedures we have in place' ) . '</h3>';
-		$content .=
-			'<p>' . __( 'In this section you should explain what procedures you have in place to deal with data breaches, either potential or real, such as internal reporting systems, contact mechanisms, or bug bounties.' ) . '</p>';
-
-		$content .=
-			'<h3>' . __( 'What third parties we receive data from' ) . '</h3>';
-		$content .=
-			'<p>' . __( 'If your web site receives data about users from third parties, including advertisers, this information must be included within the section of your privacy policy dealing with third party data.' ) . '</p>';
-
-		$content .=
-			'<h3>' . __( 'What automated decision making and/or profiling we do with user data' ) . '</h3>';
-		$content .=
-			'<p>' . __( 'If your web site provides a service which includes automated decision making - for example, allowing customers to apply for credit, or aggregating their data into an advertising profile - you must note that this is taking place, and include information about how that information is used, what decisions are made with that aggregated data, and what rights users have over decisions made without human intervention.' ) . '</p>';
-
-		$content .=
-			'<h3>' . __( 'Industry regulatory disclosure requirements' ) . '</h3>';
-		$content .=
-			'<p>' . __( 'If you are a member of a regulated industry, or if you are subject to additional privacy laws, you may be required to disclose that information here.' ) . '</p>' .
-			'</div>';
-
-		return apply_filters( 'geodir_privacy_policy_content', $content );
+		return apply_filters( 'geodir_privacy_policy_content', $content) ;
 	}
 
 	/**

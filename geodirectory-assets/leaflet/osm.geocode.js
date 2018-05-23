@@ -381,6 +381,9 @@ function gd_osm_parse_item(item) {
         } else if (address.town) {
             item.city = address.town;
             formated = gd_osm_parse_name(formated, address.town);
+        } else if (address.village) {
+            item.city = address.village;
+            formated = gd_osm_parse_name(formated, address.village);
         }
         
         if (address.country_code) {

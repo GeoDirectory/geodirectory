@@ -726,7 +726,7 @@ function geodir_advance_customfields_heading( $title, $field_type ) {
  *
  * @global object $wpdb             WordPress Database object.
  * @global object $post             The current post object.
- * @global string $gridview_columns The girdview style of the listings.
+ * @global string $gridview_columns_widget The girdview style of the listings.
  * @global object $gd_session       GeoDirectory Session object.
  * @return string Returns related posts html.
  */
@@ -888,7 +888,7 @@ function geodir_related_posts_display( $request ) {
 
 			$query_args['tax_query'] = array( $tax_query );
 
-			global $gridview_columns, $post;
+			global $gridview_columns_widget, $post;
 
 			/**
 			 * Filters related listing query args.
@@ -904,10 +904,10 @@ function geodir_related_posts_display( $request ) {
 
 			if ( strstr( $layout, 'gridview' ) ) {
 				$listing_view_exp = explode( '_', $layout );
-				$gridview_columns = $layout;
+				$gridview_columns_widget = $layout;
 				$layout           = $listing_view_exp[0];
 			} else if ( $layout == 'list' ) {
-				$gridview_columns = '';
+				$gridview_columns_widget = '';
 			}
 			$related_posts = true;
 
@@ -917,12 +917,19 @@ function geodir_related_posts_display( $request ) {
 			}
 
 
+			$widget_listings = array();
+
+			while (have_posts()) : the_post();
+				global $post, $wpdb, $preview;
+				$widget_listings[] = $post;
+			endwhile;
+
 			/**
 			 * Filters related listing listview template.
 			 *
 			 * @since 1.0.0
 			 */
-			$template = apply_filters( "geodir_template_part-related-listing-listview", geodir_locate_template( 'listing-listview' ) );
+			$template = apply_filters( "geodir_template_part-related-listing-listview", geodir_locate_template( 'widget-listing-listview' ) );
 
 			/**
 			 * Includes related listing listview template.
@@ -1254,16 +1261,16 @@ function geodir_add_meta_keywords() {
 				$meta_key .= $tag->name . ' ';
 			}
 		} else {
-			$tags = get_tags( array( 'orderby' => 'count', 'order' => 'DESC' ) );
-			$xt   = 1;
-
-			foreach ( $tags as $tag ) {
-				if ( $xt <= 20 ) {
-					$meta_key .= $tag->name . ", ";
-				}
-
-				$xt ++;
-			}
+//			$tags = get_tags( array( 'orderby' => 'count', 'order' => 'DESC' ) );
+//			$xt   = 1;
+//
+//			foreach ( $tags as $tag ) {
+//				if ( $xt <= 20 ) {
+//					$meta_key .= $tag->name . ", ";
+//				}
+//
+//				$xt ++;
+//			}
 		}
 	}
 
