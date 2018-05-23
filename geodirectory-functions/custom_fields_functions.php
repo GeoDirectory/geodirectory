@@ -1392,20 +1392,18 @@ if (!function_exists('geodir_show_listing_info')) {
      * @package GeoDirectory
      * @global object $wpdb WordPress Database object.
      * @global object $post The current post object.
-     * @global bool $send_to_friend True if send to friend link already rendered. Otherwise false.
      *
      * @param string $fields_location In which page you are going to place this custom fields?. Ex: listing, detail etc.
      * @return string Returns listing info html.
      */
     function geodir_show_listing_info($fields_location = '') {
-        global $post, $preview, $wpdb, $send_to_friend;
+        global $post, $preview, $wpdb;
 
         $package_info = array();
 
         $package_info = geodir_post_package_info($package_info, $post);
         $post_package_id = !empty($package_info->pid) ? $package_info->pid : '';
         $p_type = !empty($post->post_type) ? $post->post_type : geodir_get_current_posttype();
-        $send_to_friend = false;
 
         ob_start();
         $fields_info = geodir_post_custom_fields($post_package_id, 'all', $p_type, $fields_location);

@@ -349,6 +349,29 @@ class GeoDir_Privacy_Exporters {
 			}
 		}
 
+		if ( ! empty( $gd_post->geodir_link_business ) && ( $post_type = get_post_type( (int)$gd_post->geodir_link_business ) ) ) {
+			$personal_data[] = array(
+				'name'  => __( 'Link Business Title', 'geodirectory' ),
+				'value' => get_the_title( (int)$gd_post->geodir_link_business ),
+			);
+			$personal_data[] = array(
+				'name'  => __( 'Link Business URL', 'geodirectory' ),
+				'value' => get_permalink( (int)$gd_post->geodir_link_business ),
+			);
+		}
+		if ( defined( 'GEODIR_FRANCHISE_VERSION' ) ) {
+			if ( ! empty( $gd_post->franchise ) && ( $post_type = get_post_type( (int)$gd_post->franchise ) ) ) {
+				$personal_data[] = array(
+					'name'  => __( 'Main Listing Title', 'geodirectory' ),
+					'value' => get_the_title( (int)$gd_post->franchise ),
+				);
+				$personal_data[] = array(
+					'name'  => __( 'Main Listing URL', 'geodirectory' ),
+					'value' => get_permalink( (int)$gd_post->franchise ),
+				);
+			}
+		}
+
 		/**
 		 * Allow extensions to register their own personal data for this post for the export.
 		 *

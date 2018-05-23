@@ -78,25 +78,6 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
     ),
 
     array(
-        'name' => __('Send to friend', 'geodirectory'),
-        'desc' => __('Yes', 'geodirectory'),
-        'id' => 'geodir_bcc_friend',
-        'std' => 'yes',
-        'type' => 'radio',
-        'value' => '1',
-        'radiogroup' => 'start'
-    ),
-    array(
-        'name' => __('Send to friend', 'geodirectory'),
-        'desc' => __('No', 'geodirectory'),
-        'id' => 'geodir_bcc_friend',
-        'std' => 'yes',
-        'type' => 'radio',
-        'value' => '0',
-        'radiogroup' => 'end'
-    ),
-
-    array(
         'name' => __('Send enquiry', 'geodirectory'),
         'desc' => __('Yes', 'geodirectory'),
         'id' => 'geodir_bcc_enquiry',
@@ -273,23 +254,6 @@ $geodir_settings['notifications_settings'] = apply_filters('geodir_notifications
     array('name' => __('Other Emails', 'geodirectory'), 'type' => 'title', 'desc' => '', 'id' => 'other_emails'),
 
     array('name' => __('Other Emails', 'geodirectory'), 'type' => 'sectionstart', 'id' => 'other_emails'),
-
-    array(
-        'name' => __('Send to friend', 'geodirectory'),
-        'desc' => '',
-        'id' => 'geodir_email_friend_subject',
-        'type' => 'text',
-        'css' => 'min-width:300px;',
-        'std' => __('[#from_name#] thought you might be interested in..', 'geodirectory')
-    ),
-    array(
-        'name' => '',
-        'desc' => '',
-        'id' => 'geodir_email_friend_content',
-        'css' => 'width:500px; height: 150px;',
-        'type' => 'textarea',
-        'std' => __("<p>Dear [#to_name#],<p><p>Your friend has sent you a message from <b>[#site_name#]</b> </p><p>===============================</p><p><b>Subject : [#subject#]</b></p><p>[#comments#] [#listing_link#]</p><p>===============================</p><p>Thank you,<br /><br />[#site_name#].</p>",'geodirectory')
-    ),
 
     array(
         'name' => __('Email enquiry', 'geodirectory'),

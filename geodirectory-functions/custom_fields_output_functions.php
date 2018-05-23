@@ -1116,21 +1116,17 @@ function geodir_cf_email($html,$location,$cf,$p=''){
 
         global $preview;
         if ($cf['htmlvar_name'] == 'geodir_email' && !(geodir_is_page('detail') || geodir_is_page('preview'))) {
-            return ''; // Remove Send Enquiry | Send To Friend from listings page
+            return ''; // Remove Send Enquiry from listings page
         }
 
         $package_info = (array)geodir_post_package_info(array(), $post, $post->post_type);
 
-        if ($cf['htmlvar_name'] == 'geodir_email' && ((isset($package_info['sendtofriend']) && $package_info['sendtofriend']) || $post->{$cf['htmlvar_name']})) {
-            global $send_to_friend;
-            $send_to_friend = true;
+        if ($cf['htmlvar_name'] == 'geodir_email' && $post->{$cf['htmlvar_name']}) {
             $b_send_inquiry = '';
-            $b_sendtofriend = '';
 
             $html = '';
             if (!$preview) {
                 $b_send_inquiry = 'b_send_inquiry';
-                $b_sendtofriend = 'b_sendtofriend';
                 $html = '<input type="hidden" name="geodir_popup_post_id" value="' . $post->ID . '" /><div class="geodir_display_popup_forms"></div>';
             }
 
@@ -1149,12 +1145,6 @@ function geodir_cf_email($html,$location,$cf,$p=''){
             if ($post->{$cf['htmlvar_name']}) {
                 $b_send_inquiry_url = apply_filters('b_send_inquiry_url', 'javascript:void(0);');
                 $html .= '<a href="'.$b_send_inquiry_url.'" class="' . $b_send_inquiry . '" >' . SEND_INQUIRY . '</a>';
-                $seperator = ' | ';
-            }
-
-            if (isset($package_info['sendtofriend']) && $package_info['sendtofriend']) {
-                $b_sendtofriend_url = apply_filters('b_sendtofriend_url', 'javascript:void(0);');
-                $html .= $seperator . '<a href="'.$b_sendtofriend_url.'" class="' . $b_sendtofriend . '">' . SEND_TO_FRIEND . '</a>';
             }
 
             $html .= '</span></div>';
@@ -1162,8 +1152,6 @@ function geodir_cf_email($html,$location,$cf,$p=''){
 
             if (isset($_REQUEST['send_inquiry']) && $_REQUEST['send_inquiry'] == 'success') {
                 $html .= '<p class="sucess_msg">' . SEND_INQUIRY_SUCCESS . '</p>';
-            } elseif (isset($_REQUEST['sendtofrnd']) && $_REQUEST['sendtofrnd'] == 'success') {
-                $html .= '<p class="sucess_msg">' . SEND_FRIEND_SUCCESS . '</p>';
             } elseif (isset($_REQUEST['emsg']) && $_REQUEST['emsg'] == 'captch') {
                 $html .= '<p class="error_msg_fix">' . WRONG_CAPTCH_MSG . '</p>';
             }

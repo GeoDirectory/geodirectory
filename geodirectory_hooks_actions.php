@@ -2735,7 +2735,7 @@ add_filter('geodir_load_db_language', 'geodir_load_cpt_text_translation');
 function geodir_load_gd_options_text_translation($translation_texts = array()) {
     $translation_texts = !empty( $translation_texts ) && is_array( $translation_texts ) ? $translation_texts : array();
 
-    $gd_options = array('geodir_post_submited_success_email_subject_admin', 'geodir_post_submited_success_email_content_admin', 'geodir_post_submited_success_email_subject', 'geodir_post_submited_success_email_content', 'geodir_forgot_password_subject', 'geodir_forgot_password_content', 'geodir_registration_success_email_subject', 'geodir_registration_success_email_content', 'geodir_post_published_email_subject', 'geodir_post_published_email_content', 'geodir_email_friend_subject', 'geodir_email_friend_content', 'geodir_email_enquiry_subject', 'geodir_email_enquiry_content', 'geodir_post_added_success_msg_content', 'geodir_post_edited_email_subject_admin', 'geodir_post_edited_email_content_admin');
+    $gd_options = array('geodir_post_submited_success_email_subject_admin', 'geodir_post_submited_success_email_content_admin', 'geodir_post_submited_success_email_subject', 'geodir_post_submited_success_email_content', 'geodir_forgot_password_subject', 'geodir_forgot_password_content', 'geodir_registration_success_email_subject', 'geodir_registration_success_email_content', 'geodir_post_published_email_subject', 'geodir_post_published_email_content', 'geodir_email_enquiry_subject', 'geodir_email_enquiry_content', 'geodir_post_added_success_msg_content', 'geodir_post_edited_email_subject_admin', 'geodir_post_edited_email_content_admin');
 
     /**
      * Filters the geodirectory option names that requires to add for translation.

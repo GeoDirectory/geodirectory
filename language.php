@@ -134,14 +134,16 @@ define('IMAGE_SAVE_ORDERING_MSG', __('Note : You can sort images once the post i
 
 
 /* ---- Place Detail ---- */
-define('SEND_TO_FRIEND', __('Send To Friend', 'geodirectory'));
 define('VERIFY_PAGE_TITLE', __('Verify Listing', 'geodirectory'));
-define('SEND_TO_FRIEND_SAMPLE_CONTENT', __('Hi there, check out this site, I think you might be interested in..', 'geodirectory'));
 define('SEND_INQUIRY', __('Send Enquiry', 'geodirectory'));
 define('SEND_INQUIRY_SAMPLE_CONTENT', __('Hi there, I would like to enquire about this place. I would like to ask more info about...', 'geodirectory'));
 define('SEND_INQUIRY_SUCCESS', __('Enquiry sent successfully', 'geodirectory'));
-define('SEND_FRIEND_SUCCESS', __('Email to Friend sent successfully', 'geodirectory'));
 define('WRONG_CAPTCH_MSG', __('Enter correct verification code.', 'geodirectory'));
+
+// @deprecated 1.6.26
+define('SEND_TO_FRIEND', __('Send To Friend', 'geodirectory'));
+define('SEND_TO_FRIEND_SAMPLE_CONTENT', __('Hi there, check out this site, I think you might be interested in..', 'geodirectory'));
+define('SEND_FRIEND_SUCCESS', __('Email to Friend sent successfully', 'geodirectory'));
 
 //comments.php
 define('COMMENTS_TITLE_PLACE', __('Place Your Review', 'geodirectory'));
