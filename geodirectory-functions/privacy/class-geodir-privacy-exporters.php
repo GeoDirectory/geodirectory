@@ -99,6 +99,10 @@ class GeoDir_Privacy_Exporters {
 			'value' => $gd_post->post_title,
 		);
 		$personal_data[] = array(
+			'name'  => __( 'Post Description', 'geodirectory' ),
+			'value' => $gd_post->post_content,
+		);
+		$personal_data[] = array(
 			'name'  => __( 'Post Date', 'geodirectory' ),
 			'value' => $gd_post->post_date,
 		);
@@ -228,6 +232,12 @@ class GeoDir_Privacy_Exporters {
 							'name'  => __( 'Post Longitude', 'geodirectory' ),
 							'value' => $gd_post->post_longitude,
 						);
+						if ( ! empty( $gd_post->post_neighbourhood ) ) {
+							$personal_data[] = array(
+								'name'  => __( 'Post Neighbourhood', 'geodirectory' ),
+								'value' => $gd_post->post_neighbourhood,
+							);
+						}
 					}
 				break;
 				case 'checkbox':
@@ -424,79 +434,108 @@ class GeoDir_Privacy_Exporters {
 		$exporter_key = GeoDir_Privacy::personal_data_exporter_key();
 
 		if ( $exporter_key == 'wordpress-comments' && ! empty( $response['data'] ) ) {
-			foreach ( $response['data'] as $key => $data ) {
-				$comment_id = str_replace( 'comment-', '', $data['item_id'] );
+			foreach ( $response['data'] as $key => $item ) {
+				$comment_id = str_replace( 'comment-', '', $item['item_id'] );
+				$data = $item['data'];
 
 				$review = geodir_get_review( $comment_id );
 				if ( ! empty( $review ) ) {
 					if ( ! empty( $review->overall_rating ) ) {
-						$response['data'][ $key ]['data'][] = array(
+						$data[] = array(
 							'name'  => __( 'Rating (Overall)', 'geodirectory' ),
 							'value' => (float)$review->overall_rating . ' / 5',
 						);
 					}
-					if ( defined( 'GEODIRREVIEWRATING_VERSION' ) ) {
-						if ( get_option( 'geodir_reviewrating_enable_rating' ) ) {
-							$ratings = maybe_unserialize( $review->ratings );
-
-							if ( ! empty( $ratings ) && $rating_ids = array_keys( $ratings ) ) {
-								$styles = $wpdb->get_results( "SELECT rc.id, rc.title, rs.star_number AS total FROM `" . GEODIR_REVIEWRATING_CATEGORY_TABLE . "` AS rc LEFT JOIN `" . GEODIR_REVIEWRATING_STYLE_TABLE . "` AS rs ON rs.id = rc.category_id WHERE rc.id IN(" . implode( ',', $rating_ids ) . ") AND rs.id IS NOT NULL" );
-
-								foreach ( $styles as $style ) {
-									if ( ! empty( $ratings[ $style->id ] ) ) {
-										$response['data'][ $key ]['data'][] = array(
-											'name'  => wp_sprintf( __( 'Rating (%s)', 'geodirectory' ), __( $style->title, 'geodirectory' ) ),
-											'value' => $ratings[ $style->id ] . ' / ' . $style->total,
-										);
-									}
-								}
-							}
-						}
-
-						if ( get_option( 'geodir_reviewrating_enable_images' ) ) {
-							if ( ! empty( $review->comment_images ) ) {
-								$comment_images = explode( ',', $review->comment_images );
-								$response['data'][ $key ]['data'][] = array(
-									'name'  => __( 'Review Images', 'geodirectory' ),
-									'value' => self::parse_files_value( $comment_images ),
-								);
-							}
-						}
-					}
 					if ( ! empty( $review->post_city ) ) {
-						$response['data'][ $key ]['data'][] = array(
+						$data[] = array(
 							'name'  => __( 'Review City', 'geodirectory' ),
 							'value' => $review->post_city,
 						);
 					}
 					if ( ! empty( $review->post_region ) ) {
-						$response['data'][ $key ]['data'][] = array(
+						$data[] = array(
 							'name'  => __( 'Review Region', 'geodirectory' ),
 							'value' => $review->post_region,
 						);
 					}
 					if ( ! empty( $review->post_country ) ) {
-						$response['data'][ $key ]['data'][] = array(
+						$data[] = array(
 							'name'  => __( 'Review Country', 'geodirectory' ),
 							'value' => $review->post_country,
 						);
 					}
 					if ( ! empty( $review->post_latitude ) ) {
-						$response['data'][ $key ]['data'][] = array(
+						$data[] = array(
 							'name'  => __( 'Review Latitude', 'geodirectory' ),
 							'value' => $review->post_latitude,
 						);
 					}
 					if ( ! empty( $review->post_longitude ) ) {
-						$response['data'][ $key ]['data'][] = array(
+						$data[] = array(
 							'name'  => __( 'Review Longitude', 'geodirectory' ),
 							'value' => $review->post_longitude,
 						);
+					}
+
+					$data = apply_filters( 'geodir_privacy_export_review_data', $data, $review, $email_address );
+
+					if ( ! empty( $data ) ) {
+						$response['data'][ $key ]['data'] = $data;
 					}
 				}
 			}
 		}
 		return $response;
+	}
+
+	/**
+	 * Finds and exports data which could be used to identify a person from GeoDirectory data associated with an email address.
+	 *
+	 * @since 1.6.26
+	 * @param string $email_address The user email address.
+	 * @param int    $page  Page.
+	 * @return array An array of personal data in name value pairs
+	 */
+	public static function favorites_data_exporter( $email_address, $page ) {
+		$done           = true;
+		$page           = (int) $page;
+		$data_to_export = array();
+
+		$items 			= GeoDir_Privacy::favorites_by_user( $email_address, $page );
+
+		if ( 0 < count( $items ) ) {
+			foreach ( $items as $item ) {
+				$gd_post = geodir_get_post_info( $item );
+				if ( empty( $gd_post ) ) {
+					continue;
+				}
+
+				$data_to_export[] = array(
+					'group_id'    => 'geodirectory-post-favorites',
+					'group_label' => __( 'GeoDirectory Favorite Listings', 'geodirectory' ),
+					'item_id'     => 'gd-favorite-' . $gd_post->ID,
+					'data'        => array(
+						array(
+							'name'  => __( 'Post ID', 'geodirectory' ),
+							'value' => $gd_post->ID,
+						),
+						array(
+							'name'  => __( 'Post Title', 'geodirectory' ),
+							'value' => $gd_post->post_title,
+						),
+						array(
+							'name'  => __( 'Post URL', 'geodirectory' ),
+							'value' => get_permalink( $gd_post->ID ),
+						)
+					),
+				);
+			}
+		}
+
+		return array(
+			'data' => $data_to_export,
+			'done' => $done,
+		);
 	}
 
 	public static function parse_files_value( $files ) {
