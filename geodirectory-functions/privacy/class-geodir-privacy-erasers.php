@@ -127,4 +127,57 @@ class GeoDir_Privacy_Erasers {
 
 		return apply_filters( 'geodir_privacy_review_data_eraser_reviews', $reviews, $email_address, $user, $page );
 	}
+
+	/**
+	 * Erases personal data associated with an email address from favorites data.
+	 *
+	 * @since 1.6.26
+	 *
+	 * @param  string $email_address The author email address.
+	 * @param  int    $page          Page number.
+	 * @return array
+	 */
+	public static function favorites_data_eraser( $email_address, $page ) {
+		$response = array(
+			'items_removed'  => false,
+			'items_retained' => false,
+			'messages'       => array(),
+			'done'           => true,
+		);
+
+		if ( empty( $email_address ) ) {
+			return $response;
+		}
+
+		$user = get_user_by( 'email', $email_address );
+		if ( empty( $user ) ) {
+			return $response;
+		}
+
+		$items_removed  = false;
+		$items_retained = false;
+		$messages       = array();
+
+		$site_id = '';
+        if ( is_multisite() ) {
+            $blog_id = get_current_blog_id();
+            if ( $blog_id && $blog_id != '1' ) {
+				$site_id  = '_' . $blog_id;
+			}
+        }
+
+		if ( delete_user_meta( $user->ID, 'gd_user_favourite_post' . $site_id ) ) {
+			$messages[]    = __( 'Removed "Favorite Listings" data from user.', 'geodirectory' );
+			$items_removed = true;
+		}
+
+		$done = true;
+
+		return array(
+			'items_removed'  => $items_removed,
+			'items_retained' => $items_retained,
+			'messages'       => $messages,
+			'done'           => $done,
+		);
+	}
 }

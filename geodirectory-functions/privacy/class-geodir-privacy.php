@@ -48,6 +48,14 @@ class GeoDir_Privacy extends GeoDir_Abstract_Privacy {
 			// Review data erase
 			$this->add_eraser( 'geodirectory-post-reviews', __( 'User Listing Reviews', 'geodirectory' ), array( 'GeoDir_Privacy_Erasers', 'review_data_eraser' ) );
 		}
+
+		// Post favorites
+		if ( self::allow_export_favorites_data() ) {
+			$this->add_exporter( 'geodirectory-post-favorites', __( 'GeoDirectory Favorite Listings', 'geodirectory' ), array( 'GeoDir_Privacy_Exporters', 'favorites_data_exporter' ) );
+		}
+		if ( self::allow_erase_favorites_data() ) {
+			$this->add_eraser( 'geodirectory-post-favorites', __( 'GeoDirectory Favorite Listings', 'geodirectory' ), array( 'GeoDir_Privacy_Erasers', 'favorites_data_eraser' ) );
+		}
 	}
 
 	/**
@@ -263,6 +271,33 @@ class GeoDir_Privacy extends GeoDir_Abstract_Privacy {
 		$allow = true;
 
 		return apply_filters( 'geodir_privacy_allow_erase_reviews_data', $allow );
+	}
+
+	public static function allow_export_favorites_data() {
+		$allow = true;
+
+		return apply_filters( 'geodir_privacy_allow_export_favorites_data', $allow );
+	}
+
+	public static function allow_erase_favorites_data() {
+		$allow = true;
+
+		return apply_filters( 'geodir_privacy_allow_erase_favorites_data', $allow );
+	}
+
+	public static function favorites_by_user( $email_address, $page ) {
+		if ( empty( $email_address ) ) {
+			return array();
+		}
+
+		$user = get_user_by( 'email', $email_address );
+		if ( empty( $user ) ) {
+			return array();
+		}
+
+		$favourites = geodir_get_user_favourites( $user->ID );
+
+		return ( ! empty( $favourites ) && is_array( $favourites ) ? $favourites : array() );
 	}
 }
 
