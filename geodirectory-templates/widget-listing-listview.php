@@ -15,7 +15,7 @@
 /** This action is documented in geodirectory-templates/listing-listview.php */
 do_action('geodir_before_listing_listview');
 
-global $gridview_columns_widget, $gd_session;
+global $gridview_columns_widget, $gd_session, $related_nearest, $related_parent_lat, $related_parent_lon;
 
 /** This action is documented in geodirectory-templates/listing-listview.php */
 $grid_view_class = apply_filters('geodir_grid_view_widget_columns', $gridview_columns_widget);
@@ -98,8 +98,12 @@ if ($gd_session->get('gd_listing_view') && !isset($before_widget)) {
                             /** This action is documented in geodirectory-templates/listing-listview.php */
                             do_action('geodir_after_listing_post_title', 'listview', $post); ?>
                             <?php /// Print Distance
-                            if (isset($_REQUEST['sgeo_lat']) && $_REQUEST['sgeo_lat'] != '') {
-                                $startPoint = array('latitude' => $_REQUEST['sgeo_lat'], 'longitude' => $_REQUEST['sgeo_lon']);
+                            if ( ( isset( $_REQUEST['sgeo_lat'] ) && $_REQUEST['sgeo_lat'] != '' ) || ( $related_nearest && $related_parent_lat ) ) {
+                                if ( $related_nearest && $related_parent_lat ) {
+                                    $startPoint = array('latitude' => $related_parent_lat, 'longitude' => $related_parent_lon);
+                                } else {
+                                    $startPoint = array('latitude' => $_REQUEST['sgeo_lat'], 'longitude' => $_REQUEST['sgeo_lon']);
+                                }
 
                                 $endLat = $post->post_latitude;
                                 $endLon = $post->post_longitude;

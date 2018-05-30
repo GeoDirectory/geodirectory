@@ -1,3 +1,6 @@
+v1.6.27
+Distance on related listings not showing anymore - FIXED
+
 v1.6.26
 New core WP 4.9 plupload JS breaks drop and upload listing images - FIXED
 Shows PHP Warning when map cache file does not exists - FIXED

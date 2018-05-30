@@ -747,8 +747,8 @@ function geodir_related_posts_display( $request ) {
 		$character_count     = ( isset( $request['character_count'] ) && ! empty( $request['character_count'] ) ) ? $request['character_count'] : '';
 
 		global $wpdb, $post, $gd_session, $related_nearest, $related_parent_lat, $related_parent_lon;
-		$related_parent_lat   = !empty($post->post_latitude) ? $post->post_latitude : '';
-		$related_parent_lon   = !empty($post->post_longitude) ? $post->post_longitude : '';
+		$related_parent_lat   = !empty($post->post_latitude) && geodir_is_page( 'detail' ) ? $post->post_latitude : '';
+		$related_parent_lon   = !empty($post->post_longitude) && geodir_is_page( 'detail' ) ? $post->post_longitude : '';
 		$arr_detail_page_tabs = geodir_detail_page_tabs_list();
 
 		$related_listing_array = array();
