@@ -806,7 +806,7 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
 
             <?php if ($is_map_restrict) { ?>
             var CITY_ADDRESS = '<?php echo addslashes_gpc($city).', '.addslashes_gpc($region).', '.addslashes_gpc($country);?>';
-            geocodePositionOSM('', CITY_ADDRESS);
+            //geocodePositionOSM('', CITY_ADDRESS);
             <?php } ?>
             // Limit the zoom level
             $.goMap.map.on('zoom', function(e) {

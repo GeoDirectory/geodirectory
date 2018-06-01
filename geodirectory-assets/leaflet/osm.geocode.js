@@ -291,7 +291,7 @@ L.gdGeoCode.Provider.OpenStreetMap = L.Class.extend({
             format: 'json'
         }, this.options);
 
-        return (location.protocol === 'https:' ? 'https:' : 'http:') + '//nominatim.openstreetmap.org/search' + L.Util.getParamString(parameters);
+        return 'https://nominatim.openstreetmap.org/search' + L.Util.getParamString(parameters);
     },
 
     ParseJSON: function (data) {
@@ -442,7 +442,7 @@ function geocodePositionOSM(latLon, address, countrycodes, updateMap, callback) 
     }
     
     jQuery.ajax({
-        url: (location.protocol === 'https:' ? 'https:' : 'http:') + '//nominatim.openstreetmap.org/' + type,
+        url: 'https://nominatim.openstreetmap.org/' + type,
         dataType: "json",
         data: data,
         success: function(data, textStatus, jqXHR) {

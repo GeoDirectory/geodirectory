@@ -240,7 +240,7 @@ jQuery(function($) {
         $('input[name="post_address"]').autocomplete({
             source: function(request, response) {
                 $.ajax({
-                    url: (location.protocol === 'https:' ? 'https:' : 'http:') + '//nominatim.openstreetmap.org/search',
+                    url: 'https://nominatim.openstreetmap.org/search',
                     dataType: "json",
                     data: {
                         q: request.term,
