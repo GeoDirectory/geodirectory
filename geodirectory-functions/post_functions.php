@@ -2266,7 +2266,6 @@ if (!function_exists('geodir_delete_listing_info')) {
         );
 
         /* Delete post map icons*/
-
         $wpdb->query(
             $wpdb->prepare(
                 "DELETE FROM " . GEODIR_ICON_TABLE . " WHERE `post_id` = %d",
@@ -2275,6 +2274,11 @@ if (!function_exists('geodir_delete_listing_info')) {
         );
 
         /* Delete Attachments*/
+        $feat_id = get_post_thumbnail_id( $deleted_postid );// make sure to remove the smaller images
+        if($feat_id){
+            wp_delete_attachment( $feat_id, true);
+        }
+
         $postcurr_images = geodir_get_images($deleted_postid);
 
         $wpdb->query(
