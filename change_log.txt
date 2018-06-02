@@ -1,26 +1,10 @@
 v1.6.27
 Distance on related listings not showing anymore - FIXED
 Shows incorrect address in edit listing - FIXED
+Deleting listing sometimes fails to delete featured image smaller image sets - FIXED
 
 v1.6.26
-New core WP 4.9 plupload JS breaks drop and upload listing images - FIXED
-Shows PHP Warning when map cache file does not exists - FIXED
-Author page is broken due to JS error - FIXED
-Date translation issue in German language - FIXED
-Listing description limit affects page description on add listing page - FIXED
-Fix checkbox custom field data type in DB table - FIXED
-Categories missing from listing detail preview page sidebar - FIXED
-Markers are not visible when scrolled left/right on OpenStreetMap - FIXED
-Optional user name causes issue in generating author page url - FIXED
-Search looses the WPML language when url format set with "lang" parameter - FIXED
-Date un-translation not working properly - FIXED
-Map default language setting is not working for OpenStreetMap - FIXED
-Empty search results should not show default location on map - FIXED
-GDPR Compliance updates - ADDED
-GD sessions class can cause WP file editor to fail with new WP file editor changed - FIXED
-Map cache can fail to get file once every 24hours when clearing old cache - FIXED
-Some themes reset the $post value which can casue the details page map to show no results - FIXED
-Remove send to friend functionality as it against the GDPR policy - CHANGED
+OSM address encoder fails if site is non SSL - FIXED
 
 v1.6.25
 My Favorites text in breadcrumb not translatable - FIXED
