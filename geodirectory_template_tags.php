@@ -260,7 +260,7 @@ function geodir_google_analytics_tracking_code()
         </script>
 
         <?php
-    }elseif(get_option('geodir_ga_tracking_code') && !get_option('geodir_ga_account_id')){
+    }elseif( get_option('geodir_ga_add_tracking_code') && get_option('geodir_ga_tracking_code') && !get_option('geodir_ga_account_id')){
         echo stripslashes(get_option('geodir_ga_tracking_code'));
     }
 }

@@ -106,10 +106,22 @@ class GeoDir_Privacy_Exporters {
 			'name'  => __( 'Post Date', 'geodirectory' ),
 			'value' => $gd_post->post_date,
 		);
+		if ( ! empty( $gd_post->post_modified ) && $gd_post->post_modified != '0000-00-00 00:00:00' ) {
+		$personal_data[] = array(
+			'name'  => __( 'Post Modified Date', 'geodirectory' ),
+			'value' => $gd_post->post_modified,
+		);
+		}
 		$personal_data[] = array(
 			'name'  => __( 'Post Status', 'geodirectory' ),
 			'value' => $gd_post->post_status,
 		);
+		if ( ! empty( $gd_post->submit_ip ) ) {
+			$personal_data[] = array(
+				'name'  => __( 'Submit IP', 'geodirectory' ),
+				'value' => $gd_post->submit_ip,
+			);
+		}
 		$personal_data[] = array(
 			'name'  => __( 'Post Categories', 'geodirectory' ),
 			'value' => ( ! empty( $post_categories ) ? implode( ', ', $post_categories ) : '' ),
