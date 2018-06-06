@@ -3,6 +3,7 @@ Distance on related listings not showing anymore - FIXED
 Shows incorrect address in edit listing - FIXED
 Deleting listing sometimes fails to delete featured image smaller image sets - FIXED
 Add submit ip in export listings data - CHANGED
+Google analytics code should not be added if disabled - FIXED
 
 v1.6.26
 OSM address encoder fails if site is non SSL - FIXED

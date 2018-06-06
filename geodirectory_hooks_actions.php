@@ -511,7 +511,10 @@ function geodir_edit_post_link()
  */
 function geodir_detail_page_google_analytics()
 {
-    global $post,$preview;
+    if ( ! get_option( 'geodir_ga_stats' ) ) {
+		return;
+	}
+	global $post,$preview;
     if($preview){return '';}
     $package_info = array();
     $package_info = geodir_post_package_info($package_info, $post);
@@ -544,7 +547,7 @@ function geodir_detail_page_google_analytics()
     $hide_refresh = get_option('geodir_ga_auto_refresh');
     
     $auto_refresh = $hide_refresh && $refresh_time && $refresh_time > 0 ? 1 : 0;
-    if (get_option('geodir_ga_stats') && is_user_logged_in() &&  (isset($package_info->google_analytics) && $package_info->google_analytics == '1') && (get_current_user_id()==$post->post_author || current_user_can( 'manage_options' )) ) {
+    if (is_user_logged_in() &&  (isset($package_info->google_analytics) && $package_info->google_analytics == '1') && (get_current_user_id()==$post->post_author || current_user_can( 'manage_options' )) ) {
         $page_url = urlencode($_SERVER['REQUEST_URI']);
         ?>
         <script type="text/javascript">
