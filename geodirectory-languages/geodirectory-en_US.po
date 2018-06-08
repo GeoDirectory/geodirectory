@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: GeoDirectory 1.6.26\n"
+"Project-Id-Version: GeoDirectory 1.6.27\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-24 16:49+0100\n"
-"PO-Revision-Date: 2018-05-24 16:49+0100\n"
+"POT-Creation-Date: 2018-06-07 13:01+0100\n"
+"PO-Revision-Date: 2018-06-07 13:01+0100\n"
 "Last-Translator: \n"
 "Language-Team: GeoDirectory <info@wpgeodirectory.com>\n"
 "Language: en_US\n"
@@ -567,9 +567,9 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:3297
 #: geodirectory-functions/custom_fields_output_functions.php:79
 #: geodirectory-functions/custom_fields_output_functions.php:785
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:174
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:245
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:258
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:186
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:257
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:270
 msgid "Yes"
 msgstr ""
 
@@ -596,8 +596,8 @@ msgstr ""
 #: geodirectory-functions/custom_fields_functions.php:3303
 #: geodirectory-functions/custom_fields_output_functions.php:81
 #: geodirectory-functions/custom_fields_output_functions.php:783
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:247
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:256
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:259
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:268
 msgid "No"
 msgstr ""
 
@@ -1664,7 +1664,7 @@ msgstr ""
 #: geodirectory-admin/admin_template_tags.php:462
 #: geodirectory-admin/admin_template_tags.php:494
 #: geodirectory-admin/admin_template_tags.php:511
-#: geodirectory_hooks_actions.php:1283
+#: geodirectory_hooks_actions.php:1286
 msgid "This field is required."
 msgstr ""
 
@@ -3579,12 +3579,12 @@ msgid "Listing published email"
 msgstr ""
 
 #: geodirectory-admin/option-pages/notifications_settings_array.php:241
-#: geodirectory-functions/post_functions.php:3141
+#: geodirectory-functions/post_functions.php:3145
 msgid "Listing Published Successfully"
 msgstr ""
 
 #: geodirectory-admin/option-pages/notifications_settings_array.php:249
-#: geodirectory-functions/post_functions.php:3145
+#: geodirectory-functions/post_functions.php:3149
 msgid ""
 "<p>Dear [#client_name#],</p><p>Your listing [#listing_link#] has been "
 "published. This email is just for your information.</p><p>[#listing_link#]</"
@@ -4184,7 +4184,7 @@ msgstr ""
 #: geodirectory-functions/cat-meta-functions/Tax-meta-class.php:592
 #: geodirectory-functions/cat-meta-functions/Tax-meta-class.php:635
 #: geodirectory-functions/cat-meta-functions/Tax-meta-class.php:904
-#: geodirectory_hooks_actions.php:1306
+#: geodirectory_hooks_actions.php:1309
 msgid "Remove"
 msgstr ""
 
@@ -4386,8 +4386,8 @@ msgid "Your comment is awaiting moderation."
 msgstr ""
 
 #: geodirectory-functions/comments_functions.php:864
-#: geodirectory-templates/listing-listview.php:365
-#: geodirectory-templates/widget-listing-listview.php:236 language.php:173
+#: geodirectory-templates/listing-listview.php:364
+#: geodirectory-templates/widget-listing-listview.php:240 language.php:173
 msgid "Edit"
 msgstr ""
 
@@ -4672,8 +4672,8 @@ msgstr ""
 
 #: geodirectory-functions/custom_field_html.php:805
 #: geodirectory-functions/custom_fields_functions.php:2513
-#: geodirectory-templates/listing-listview.php:373
-#: geodirectory-templates/widget-listing-listview.php:244 language.php:174
+#: geodirectory-templates/listing-listview.php:372
+#: geodirectory-templates/widget-listing-listview.php:248 language.php:174
 msgid "Delete"
 msgstr ""
 
@@ -5360,7 +5360,7 @@ msgstr ""
 
 #: geodirectory-functions/custom_functions.php:130
 #: geodirectory-functions/custom_functions.php:143
-#: geodirectory-functions/post_functions.php:2707
+#: geodirectory-functions/post_functions.php:2711
 msgid "Read more [...]"
 msgstr ""
 
@@ -5729,7 +5729,7 @@ msgstr ""
 
 #: geodirectory-functions/helper_functions.php:595
 #: geodirectory-functions/helper_functions.php:609
-#: geodirectory_hooks_actions.php:731
+#: geodirectory_hooks_actions.php:734
 msgid "May"
 msgstr ""
 
@@ -5762,92 +5762,92 @@ msgid "December"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:605
-#: geodirectory_hooks_actions.php:727
+#: geodirectory_hooks_actions.php:730
 msgid "Jan"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:606
-#: geodirectory_hooks_actions.php:728
+#: geodirectory_hooks_actions.php:731
 msgid "Feb"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:607
-#: geodirectory_hooks_actions.php:729
+#: geodirectory_hooks_actions.php:732
 msgid "Mar"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:608
-#: geodirectory_hooks_actions.php:730
+#: geodirectory_hooks_actions.php:733
 msgid "Apr"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:610
-#: geodirectory_hooks_actions.php:732
+#: geodirectory_hooks_actions.php:735
 msgid "Jun"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:611
-#: geodirectory_hooks_actions.php:733
+#: geodirectory_hooks_actions.php:736
 msgid "Jul"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:612
-#: geodirectory_hooks_actions.php:734
+#: geodirectory_hooks_actions.php:737
 msgid "Aug"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:613
-#: geodirectory_hooks_actions.php:735
+#: geodirectory_hooks_actions.php:738
 msgid "Sep"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:614
-#: geodirectory_hooks_actions.php:736
+#: geodirectory_hooks_actions.php:739
 msgid "Oct"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:615
-#: geodirectory_hooks_actions.php:737
+#: geodirectory_hooks_actions.php:740
 msgid "Nov"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:616
-#: geodirectory_hooks_actions.php:738
+#: geodirectory_hooks_actions.php:741
 msgid "Dec"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:619
-#: geodirectory_hooks_actions.php:808
+#: geodirectory_hooks_actions.php:811
 msgid "Sun"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:620
-#: geodirectory_hooks_actions.php:802
+#: geodirectory_hooks_actions.php:805
 msgid "Mon"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:621
-#: geodirectory_hooks_actions.php:803
+#: geodirectory_hooks_actions.php:806
 msgid "Tue"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:622
-#: geodirectory_hooks_actions.php:804
+#: geodirectory_hooks_actions.php:807
 msgid "Wed"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:623
-#: geodirectory_hooks_actions.php:805
+#: geodirectory_hooks_actions.php:808
 msgid "Thu"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:624
-#: geodirectory_hooks_actions.php:806
+#: geodirectory_hooks_actions.php:809
 msgid "Fri"
 msgstr ""
 
 #: geodirectory-functions/helper_functions.php:625
-#: geodirectory_hooks_actions.php:807
+#: geodirectory_hooks_actions.php:810
 msgid "Sat"
 msgstr ""
 
@@ -5893,9 +5893,9 @@ msgstr ""
 msgid "Select Country"
 msgstr ""
 
-#: geodirectory-functions/location_functions.php:716
-#: geodirectory-functions/location_functions.php:718
-#: geodirectory-functions/location_functions.php:724
+#: geodirectory-functions/location_functions.php:715
+#: geodirectory-functions/location_functions.php:717
+#: geodirectory-functions/location_functions.php:723
 #, php-format
 msgid "in %s"
 msgstr ""
@@ -5962,12 +5962,12 @@ msgid "Removed \"Favorite Listings\" data from user."
 msgstr ""
 
 #: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:94
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:519
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:531
 msgid "Post ID"
 msgstr ""
 
 #: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:98
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:523
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:535
 msgid "Post Title"
 msgstr ""
 
@@ -5979,123 +5979,131 @@ msgstr ""
 msgid "Post Date"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:110
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:111
+msgid "Post Modified Date"
+msgstr ""
+
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:116
 msgid "Post Status"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:114
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:121
+msgid "Submit IP"
+msgstr ""
+
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:126
 msgid "Post Categories"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:119
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:131
 msgid "Default Category"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:125
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:137
 msgid "Post Tags"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:130
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:527
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:142
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:539
 msgid "Post URL"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:146
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:158
 msgid "Post Images"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:157
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:169
 msgid "Post Rating"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:166
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:178
 msgid "Post Reviews"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:173
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:185
 msgid "Post Featured"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:208
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:220
 msgid "Post Address"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:212
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:224
 msgid "Post City"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:216
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:228
 msgid "Post Region"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:220
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:232
 msgid "Post Country"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:224
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:236
 msgid "Post Zip"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:228
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:240
 msgid "Post Latitude"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:232
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:244
 msgid "Post Longitude"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:237
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:249
 msgid "Post Neighbourhood"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:364
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:376
 msgid "Link Business Title"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:368
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:380
 msgid "Link Business URL"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:375
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:387
 msgid "Main Listing Title"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:379
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:391
 msgid "Main Listing URL"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:445
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:457
 msgid "Rating (Overall)"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:451
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:463
 msgid "Review City"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:457
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:469
 msgid "Review Region"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:463
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:475
 msgid "Review Country"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:469
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:481
 msgid "Review Latitude"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:475
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:487
 msgid "Review Longitude"
 msgstr ""
 
-#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:515
+#: geodirectory-functions/privacy/class-geodir-privacy-exporters.php:527
 #: geodirectory-functions/privacy/class-geodir-privacy.php:54
 #: geodirectory-functions/privacy/class-geodir-privacy.php:57
 msgid "GeoDirectory Favorite Listings"
 msgstr ""
 
 #: geodirectory-functions/privacy/class-geodir-privacy.php:20
-#: geodirectory_hooks_actions.php:1366
+#: geodirectory_hooks_actions.php:1369
 msgid "GeoDirectory"
 msgstr ""
 
@@ -6229,11 +6237,11 @@ msgstr ""
 msgid "Leave a Review"
 msgstr ""
 
-#: geodirectory-functions/reviews.php:101 geodirectory_hooks_actions.php:1293
+#: geodirectory-functions/reviews.php:101 geodirectory_hooks_actions.php:1296
 msgid "Post Review"
 msgstr ""
 
-#: geodirectory-functions/reviews.php:102 geodirectory_hooks_actions.php:1294
+#: geodirectory-functions/reviews.php:102 geodirectory_hooks_actions.php:1297
 msgid "Review text"
 msgstr ""
 
@@ -6595,7 +6603,7 @@ msgid "No favorite listings found which match your selection."
 msgstr ""
 
 #: geodirectory-functions/template_functions.php:517
-#: geodirectory_hooks_actions.php:1589
+#: geodirectory_hooks_actions.php:1592
 msgid "No listings found which match your selection."
 msgstr ""
 
@@ -6609,33 +6617,33 @@ msgstr ""
 msgid "%s's Listings"
 msgstr ""
 
-#: geodirectory-templates/listing-listview.php:197
-#: geodirectory-templates/widget-listing-listview.php:116
+#: geodirectory-templates/listing-listview.php:196
+#: geodirectory-templates/widget-listing-listview.php:120
 msgid "feet"
 msgstr ""
 
-#: geodirectory-templates/listing-listview.php:199
-#: geodirectory-templates/widget-listing-listview.php:118
+#: geodirectory-templates/listing-listview.php:198
+#: geodirectory-templates/widget-listing-listview.php:122
 msgid "meters"
 msgstr ""
 
-#: geodirectory-templates/listing-listview.php:204
-#: geodirectory-templates/widget-listing-listview.php:125
+#: geodirectory-templates/listing-listview.php:203
+#: geodirectory-templates/widget-listing-listview.php:129
 msgid "miles"
 msgstr ""
 
-#: geodirectory-templates/listing-listview.php:206
-#: geodirectory-templates/widget-listing-listview.php:127
+#: geodirectory-templates/listing-listview.php:205
+#: geodirectory-templates/widget-listing-listview.php:131
 msgid "km"
 msgstr ""
 
-#: geodirectory-templates/listing-listview.php:360
-#: geodirectory-templates/widget-listing-listview.php:231
+#: geodirectory-templates/listing-listview.php:359
+#: geodirectory-templates/widget-listing-listview.php:235
 msgid "Edit Listing"
 msgstr ""
 
-#: geodirectory-templates/listing-listview.php:368
-#: geodirectory-templates/widget-listing-listview.php:239
+#: geodirectory-templates/listing-listview.php:367
+#: geodirectory-templates/widget-listing-listview.php:243
 msgid "Delete Listing"
 msgstr ""
 
@@ -7045,273 +7053,273 @@ msgstr ""
 msgid "Edit this Post"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:695
+#: geodirectory_hooks_actions.php:698
 msgid "No results available"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:751
+#: geodirectory_hooks_actions.php:754
 msgid "Last Year"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:757
+#: geodirectory_hooks_actions.php:760
 msgid "This Year"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:825
+#: geodirectory_hooks_actions.php:828
 msgid "Last Week"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:833
+#: geodirectory_hooks_actions.php:836
 msgid "This Week"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1040
+#: geodirectory_hooks_actions.php:1043
 msgid "Show Google Analytics"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1042
+#: geodirectory_hooks_actions.php:1045
 msgid "Analytics"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1044
+#: geodirectory_hooks_actions.php:1047
 msgid "Refresh"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1044
+#: geodirectory_hooks_actions.php:1047
 msgid "Active Users:"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1049
+#: geodirectory_hooks_actions.php:1052
 msgid "Last Week vs This Week"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1050
+#: geodirectory_hooks_actions.php:1053
 msgid "This Year vs Last Year"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1051
+#: geodirectory_hooks_actions.php:1054
 msgid "Top Countries"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1127
+#: geodirectory_hooks_actions.php:1130
 msgid "reviews"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1127
+#: geodirectory_hooks_actions.php:1130
 msgid "review"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1129
+#: geodirectory_hooks_actions.php:1132
 msgid "based on"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1259
+#: geodirectory_hooks_actions.php:1262
 msgid "HTML Variable Name must not be blank"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1260
+#: geodirectory_hooks_actions.php:1263
 msgid "Please do not use special character and spaces in HTML Variable Name."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1261
+#: geodirectory_hooks_actions.php:1264
 msgid "HTML Variable Name should be a unique name."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1262
+#: geodirectory_hooks_actions.php:1265
 msgid "Are you wish to delete this field?"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1264
+#: geodirectory_hooks_actions.php:1267
 msgid "File has been successfully deleted."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1265
+#: geodirectory_hooks_actions.php:1268
 msgid "You do NOT have permission to delete this file."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1266
+#: geodirectory_hooks_actions.php:1269
 msgid "Order saved!"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1267
+#: geodirectory_hooks_actions.php:1270
 msgid "You do not have permission to reorder images."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1268
+#: geodirectory_hooks_actions.php:1271
 msgid "Address not found for:"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1270
+#: geodirectory_hooks_actions.php:1273
 msgid "Are you sure you wish to delete this listing?"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1271
+#: geodirectory_hooks_actions.php:1274
 msgid ""
 "Deleting the main listing of a franchise will turn all franchises in regular "
 "listings. Are you sure wish to delete this main listing?"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1273
+#: geodirectory_hooks_actions.php:1276
 msgid "Error : please retry"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1274
+#: geodirectory_hooks_actions.php:1277
 msgid "Please enter listing url prefix"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1275
+#: geodirectory_hooks_actions.php:1278
 msgid "Invalid character in listing url prefix"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1276
+#: geodirectory_hooks_actions.php:1279
 msgid "Please enter location url prefix"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1277
+#: geodirectory_hooks_actions.php:1280
 msgid "Invalid character in location url prefix"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1278
+#: geodirectory_hooks_actions.php:1281
 msgid "Please enter location and category url separator"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1279
+#: geodirectory_hooks_actions.php:1282
 msgid "Invalid character in location and category url separator"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1280
+#: geodirectory_hooks_actions.php:1283
 msgid "Please enter listing detail url separator"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1281
+#: geodirectory_hooks_actions.php:1284
 msgid "Invalid character in listing detail url separator"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1282
+#: geodirectory_hooks_actions.php:1285
 msgid "Error loading listing."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1284
+#: geodirectory_hooks_actions.php:1287
 msgid "Please enter valid email address."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1291
+#: geodirectory_hooks_actions.php:1294
 msgid "Post Reply"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1292
+#: geodirectory_hooks_actions.php:1295
 msgid "Reply text"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1295
+#: geodirectory_hooks_actions.php:1298
 msgid "Please select star rating, you can't leave a review without stars."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1296
+#: geodirectory_hooks_actions.php:1299
 msgid "Please type a review."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1297
+#: geodirectory_hooks_actions.php:1300
 msgid "Please type a reply."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1301
+#: geodirectory_hooks_actions.php:1304
 msgid "Enable Dragging"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1302
+#: geodirectory_hooks_actions.php:1305
 msgid "Disable Dragging"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1303
+#: geodirectory_hooks_actions.php:1306
 #, php-format
 msgid "File size error : You tried to upload a file over %s"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1304
+#: geodirectory_hooks_actions.php:1307
 #, php-format
 msgid "You have reached your upload limit of %s files."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1305
+#: geodirectory_hooks_actions.php:1308
 #, php-format
 msgid "You may only upload %s files with this package, please try again."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1307
+#: geodirectory_hooks_actions.php:1310
 msgid "Allowed files"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1308
+#: geodirectory_hooks_actions.php:1311
 #, php-format
 msgid "File type error. Allowed file types: %s"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1310
+#: geodirectory_hooks_actions.php:1313
 msgid "Wait..."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1311
+#: geodirectory_hooks_actions.php:1314
 msgid "Searching..."
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1316
+#: geodirectory_hooks_actions.php:1319
 msgid "Start"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1317
+#: geodirectory_hooks_actions.php:1320
 msgid "Via {viaNumber}"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1318 language.php:177
+#: geodirectory_hooks_actions.php:1321 language.php:177
 msgid "Enter Your Location"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1319
+#: geodirectory_hooks_actions.php:1322
 msgid "Do you wish to Deauthorize and break Analytics?"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1320
+#: geodirectory_hooks_actions.php:1323
 msgid "My Location"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1321 geodirectory_template_tags.php:723
+#: geodirectory_hooks_actions.php:1324 geodirectory_template_tags.php:723
 msgid "Unable to find your location"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1322 geodirectory_template_tags.php:726
+#: geodirectory_hooks_actions.php:1325 geodirectory_template_tags.php:726
 msgid "Permission denied in finding your location"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1323 geodirectory_template_tags.php:729
+#: geodirectory_hooks_actions.php:1326 geodirectory_template_tags.php:729
 msgid "Your location is currently unknown"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1324 geodirectory_template_tags.php:732
+#: geodirectory_hooks_actions.php:1327 geodirectory_template_tags.php:732
 msgid "Attempt to find location took too long"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1325 geodirectory_template_tags.php:735
+#: geodirectory_hooks_actions.php:1328 geodirectory_template_tags.php:735
 msgid "Location detection not supported in browser"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:1528
+#: geodirectory_hooks_actions.php:1531
 msgid "Please accept our terms and conditions"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:2623
+#: geodirectory_hooks_actions.php:2626
 msgid "Published"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:2625
+#: geodirectory_hooks_actions.php:2628
 msgid "Awaiting Review"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:2627
+#: geodirectory_hooks_actions.php:2630
 msgid "Not published"
 msgstr ""
 
-#: geodirectory_hooks_actions.php:2632
+#: geodirectory_hooks_actions.php:2635
 msgid "Status: "
 msgstr ""
 
