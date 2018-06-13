@@ -1,3 +1,6 @@
+v1.6.28
+OpenStreetMap populates wrong region for UK - FIXED
+
 v1.6.27
 Distance on related listings not showing anymore - FIXED
 Shows incorrect address in edit listing - FIXED
