@@ -1401,6 +1401,10 @@ if (!function_exists('geodir_show_listing_info')) {
 
         $package_info = array();
 
+        if(!isset($post->post_id)){
+            $post = geodir_get_post_info($post->ID);
+        }
+
         $package_info = geodir_post_package_info($package_info, $post);
         $post_package_id = !empty($package_info->pid) ? $package_info->pid : '';
         $p_type = !empty($post->post_type) ? $post->post_type : geodir_get_current_posttype();
