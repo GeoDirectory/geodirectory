@@ -1,6 +1,7 @@
 v1.6.28
 OpenStreetMap populates wrong region for UK - FIXED
 Check added if post info missing on details page - FIXED
+If doing first ever upgrade of GD the "set in what locations" can be unset - FIXED
 
 v1.6.27
 Distance on related listings not showing anymore - FIXED
