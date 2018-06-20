@@ -1401,7 +1401,7 @@ if (!function_exists('geodir_show_listing_info')) {
 
         $package_info = array();
 
-        if(!isset($post->post_id)){
+        if(!$preview && !isset($post->post_id)){
             $post = geodir_get_post_info($post->ID);
         }
 

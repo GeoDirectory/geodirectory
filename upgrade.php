@@ -72,7 +72,6 @@ function geodirectory_upgrade_all()
     geodir_create_tables();
     geodir_update_review_db();
     gd_install_theme_compat();
-    gd_convert_custom_field_display();
 }
 
 /**
@@ -326,7 +325,9 @@ function gd_convert_custom_field_display(){
                 $show_in_arr = '';
             }
 
-            $wpdb->query("UPDATE ".GEODIR_CUSTOM_FIELDS_TABLE." SET show_in='$show_in_arr' WHERE id=$id");
+            if($show_in_arr){
+                $wpdb->query("UPDATE ".GEODIR_CUSTOM_FIELDS_TABLE." SET show_in='$show_in_arr' WHERE id=$id");
+            }
 
         }
 
