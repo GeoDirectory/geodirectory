@@ -116,6 +116,7 @@ function set_listing_request($query )
 
         if (isset($_REQUEST['s'])) {
             $s = trim(esc_attr(wp_strip_all_tags($_REQUEST['s'])));
+            $s = str_replace(array("%E2%80%99","’"),array("%27","'"),$s);
         }
 
         if ($snear == 'NEAR ME') {
