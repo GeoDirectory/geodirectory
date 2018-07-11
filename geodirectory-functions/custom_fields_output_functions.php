@@ -168,7 +168,7 @@ function geodir_cf_fieldset($html,$location,$cf,$p=''){
     if(empty($html)){
 
         global $field_set_start;
-        $fieldset_class = 'fieldset-'.sanitize_title_with_dashes($cf['site_title']);
+        $fieldset_class = 'fieldset-'.sanitize_html_class(sanitize_title_with_dashes($cf['site_title']));
 
         if ($field_set_start == 1) {
             $html = '';

@@ -1,3 +1,6 @@
+v1.6.29
+Fieldset title with special characters outputs incorrect css class - FIXED
+
 v1.6.28
 OpenStreetMap populates wrong region for UK - FIXED
 Check added if post info missing on details page - FIXED
