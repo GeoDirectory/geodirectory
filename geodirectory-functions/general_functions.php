@@ -4843,6 +4843,7 @@ function geodir_filter_title_variables( $title, $gd_page, $sep = '' ) {
 		$search_term = '';
 		if ( isset( $_REQUEST['s'] ) ) {
 			$search_term = esc_attr( $_REQUEST['s'] );
+			$search_term = str_replace(array("%E2%80%99","’"),array("%27","'"),$search_term);
 		}
 		$title = str_replace( "%%search_term%%", $search_term, $title );
 	}
