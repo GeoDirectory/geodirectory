@@ -1454,7 +1454,7 @@ function geodir_listing_permalink_structure($post_link, $post_obj, $leavename, $
     //echo $post_link."<br />".$sample ;
 
 
-    global $wpdb, $wp_query, $plugin_prefix, $post, $comment_post_cache, $gd_permalink_cache;
+    global $wpdb, $wp_query, $plugin_prefix, $post, $comment_post_cache, $gd_permalink_cache, $gd_cache_post;
     if (isset($post_obj->ID) && isset($post->ID) && $post_obj->ID == $post->ID) {
         if($post_obj->post_status == 'auto-draft' || $post_obj->post_status == 'draft' || $post_obj->post_status == 'pending'){return $post_link;}
     } elseif (isset($post_obj->post_status) && ($post_obj->post_status == 'auto-draft' || $post_obj->post_status == 'draft' || $post_obj->post_status == 'pending')) {
@@ -1704,6 +1704,7 @@ function geodir_listing_permalink_structure($post_link, $post_obj, $leavename, $
     if (isset($orig_post)) {
         $post = $orig_post;
     }
+	$gd_cache_post = $post;
 
     return $post_link;
 }

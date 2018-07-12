@@ -1286,7 +1286,10 @@ function geodir_breadcrumb() {
 		$location_link = $post_type_for_location_link;
 
 		if ( geodir_is_page( 'detail' ) || geodir_is_page( 'listing' ) ) {
-			global $post;
+			global $post, $gd_cache_post;
+			if ( ! empty( $post ) && ! empty( $gd_cache_post ) && geodir_is_page( 'detail' ) && $post->ID == $gd_cache_post->ID && ! isset( $post->country_slug ) && isset( $gd_cache_post->country_slug ) && geodir_disable_yoast_seo_metas() ) {
+				$post = $gd_cache_post;
+			}
 			$location_manager     = defined( 'POST_LOCATION_TABLE' ) ? true : false;
 			$neighbourhood_active = $location_manager && get_option( 'location_neighbourhoods' ) ? true : false;
 
