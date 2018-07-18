@@ -158,7 +158,7 @@ if (isset($_REQUEST['ajax_action']) && $_REQUEST['ajax_action'] == 'cat') { // R
      * @global string $plugin_prefix Geodirectory plugin table prefix.
      * @global object $gd_session GeoDirectory Session object.
      */
-    global $wpdb, $plugin_prefix, $gd_session;
+    global $wpdb, $plugin_prefix, $gd_session, $sitepress;
 
     if ($_REQUEST['m_id'] != '') {
         $pid = (int)$_REQUEST['m_id'];
@@ -182,12 +182,26 @@ if (isset($_REQUEST['ajax_action']) && $_REQUEST['ajax_action'] == 'cat') { // R
         $data_arr = array();
 
         if ($postinfo) {
-            $srcharr = array("'", "/", "-", '"', '\\');
+            $switch_lang = false;
+			if ( geodir_is_wpml() && is_post_type_translated( $geodir_post_type ) ) {
+				$post_lang = $sitepress->get_language_for_element( $pid, 'post_' . $geodir_post_type );
+				$current_lang = $sitepress->get_current_language();
+				if ( $post_lang !== $current_lang ) {
+					$sitepress->switch_lang( $post_lang, true );
+					$switch_lang = $current_lang;
+				}
+			}
+
+			$srcharr = array("'", "/", "-", '"', '\\');
             $replarr = array("&prime;", "&frasl;", "&ndash;", "&ldquo;", '');
 
             foreach ($postinfo as $postinfo_obj) {
                 echo geodir_get_infowindow_html($postinfo_obj);
             }
+
+			if ( $switch_lang !== false ) {
+				$sitepress->switch_lang( $switch_lang, true );
+			}
         }
     }
     exit;

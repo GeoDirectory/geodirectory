@@ -641,8 +641,10 @@ function geodir_maybe_untranslate_date( $date ) {
 	);
 
 	foreach ( $names as $name => $translation ) {
-		$date_formated = preg_replace( "/([^\\\])" . $name . "/", "\\1" . backslashit( $name ), $date_formated );
-		$date_formated = preg_replace( "/([^\\\])" . $translation . "/", "\\1" . backslashit( $name ), $date_formated );
+		if ( $translation && trim( $translation ) != '' ) {
+			$date_formated = preg_replace( "/([^\\\])" . $name . "/", "\\1" . backslashit( $name ), $date_formated );
+			$date_formated = preg_replace( "/([^\\\])" . $translation . "/", "\\1" . backslashit( $name ), $date_formated );
+		}
 	}
 
 	$date_formated = substr( $date_formated, 1, strlen( $date_formated ) -1 );
