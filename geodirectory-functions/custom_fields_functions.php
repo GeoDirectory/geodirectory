@@ -3330,6 +3330,7 @@ function geodir_cfa_extra_fields_text($output,$result_str,$cf,$field_info){
                     <option value="slash" <?php selected(true, $value == "slash");?>><?php _e('\ (slash)', 'geodirectory'); ?></option>
                     <option value="period" <?php selected(true, $value == 'period');?>><?php _e('. (period)', 'geodirectory'); ?></option>
                     <option value="space" <?php selected(true, $value == 'space');?>><?php _e(' (space)', 'geodirectory'); ?></option>
+                    <option value="apostrophe" <?php selected(true, $value == 'apostrophe');?>><?php _e('\' (apostrophe)', 'geodirectory'); ?></option>
                     <option value="none" <?php selected(true, $value == 'none');?>><?php _e('(none)', 'geodirectory'); ?></option>
                 </select>
         </div>
