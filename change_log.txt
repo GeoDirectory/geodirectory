@@ -1,6 +1,9 @@
 v1.6.29
 iframe api generation broken (by Google iframe restrictions) changed to new window popup - FIXED
 Apple devices use different kind of apostrophe which does not work for search - FIXED
+Fieldset title with special characters outputs incorrect css class - FIXED
+Issue with detail page permalink when Yoast SEO is active - FIXED
+Map popup shows incorrect listing links - FIXED
 
 v1.6.28
 OpenStreetMap populates wrong region for UK - FIXED
