@@ -3630,6 +3630,7 @@ function geodir_currency_format_number($number='',$cf=''){
         if($cs['thousand_separator']=='slash'){$separator = '\\';}
         if($cs['thousand_separator']=='period'){$separator = '.';}
         if($cs['thousand_separator']=='space'){$separator = ' ';}
+        if($cs['thousand_separator']=='apostrophe'){$separator = '\'';}
         if($cs['thousand_separator']=='none'){$separator = '';}
     }
 
