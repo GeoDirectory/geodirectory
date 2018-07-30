@@ -106,6 +106,11 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
             };
         }
 
+        console.log('zzz');
+        console.log(doGeoCode);
+        console.log('zzz');
+
+
         geocoder.geocode(doGeoCode, function (responses) {
             geocodeResponse(responses)
         });
@@ -145,6 +150,8 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
                         var addr = response.address_components[i];
                         if (addr.types[0] == 'administrative_area_level_1') {
                             administrative_area_level_1 = addr;
+                            console.log('regionx:'+addr);
+                            console.log(addr);
                         }
                         if (addr.types[0] == 'administrative_area_level_2') {
                             administrative_area_level_2 = addr;
@@ -180,6 +187,7 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
                 }
                 if (administrative_area_level_1 == '' && addr.types[0] == 'administrative_area_level_1') {
                     administrative_area_level_1 = addr;
+                    console.log('regionx2:'+addr);
                 }
                 if (administrative_area_level_2 == '' && addr.types[0] == 'administrative_area_level_2') {
                     administrative_area_level_2 = addr;
@@ -284,7 +292,7 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
             if (country.short_name) {
                 rr = country.short_name;
             }
-
+            console.log('region:'+getState);
 
             //$country_arr = ["US", "CA", "IN","DE","NL"];
             // fix for regions in GB
@@ -311,6 +319,8 @@ $icon_size = geodir_get_marker_size($marker_icon, array('w' => 20, 'h' => 34));
                     getState = administrative_area_level_2.long_name;
                 }
             }
+
+            console.log('region2:'+getState);
 
             // fix some countries without regions, Isle of Man, Singapore
             if(getCountryISO=='IM'){
