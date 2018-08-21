@@ -1,3 +1,6 @@
+v1.6.31
+Fix GD search conflict with Jetpack by WordPress.com ElasticSearch - FIXED
+
 v1.6.30
 Yoast v8.x shows error on backend edit listing page - FIXED
 
