@@ -116,7 +116,6 @@ function set_listing_request($query )
 
         if (isset($_REQUEST['s'])) {
             $s = trim(esc_attr(wp_strip_all_tags($_REQUEST['s'])));
-            $s = str_replace(array("%E2%80%99","’"),array("%27","'"),$s);
         }
 
         if ($snear == 'NEAR ME') {
@@ -1163,3 +1162,15 @@ function geodir_search_page_base_url() {
 
     return apply_filters( 'geodir_search_page_base_url', $url );
 }
+
+/**
+ * Disable JetPack Elasticsearch within all post types on GD search.
+ *
+ * @since 1.6.31
+ */
+function geodir_jetpack_fix_post_types_search(){
+	if ( defined( 'JETPACK__VERSION' ) && ! empty( $_REQUEST['geodir_search'] ) ) {
+		add_filter( 'jetpack_search_should_handle_query', '__return_false', 999, 1 );
+    }
+}
+add_action( 'plugins_loaded','geodir_jetpack_fix_post_types_search', 10 );

@@ -2390,7 +2390,6 @@ function geodir_search_form_search_input() {
 	<input class="search_text" name="s"
 	       value="<?php if ( isset( $_REQUEST['s'] ) && trim( $_REQUEST['s'] ) != '' ) {
 		       $search_term = esc_attr( stripslashes_deep( $_REQUEST['s'] ) );
-		       $search_term = str_replace(array("%E2%80%99","’"),array("%27","'"),$search_term);
 		       echo $search_term;
 	       } else {
 		       echo $default_search_for_text;
