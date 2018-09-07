@@ -805,28 +805,30 @@ function searching_filter_where($where) {
     }else{$taxonomies='';}
 
     $content_where = $terms_where = '';
+    $terms_sql    = '';
 	if ($s != '') {
         /**
          * Filter the search query content where values.
          *
          * @since 1.5.0
          * @package GeoDirectory
+         *
          * @param string $content_where The query values, default: `" OR ($wpdb->posts.post_content LIKE \"$s\" OR $wpdb->posts.post_content LIKE \"$s%\" OR $wpdb->posts.post_content LIKE \"% $s%\" OR $wpdb->posts.post_content LIKE \"%>$s%\" OR $wpdb->posts.post_content LIKE \"%\n$s%\") ") "`.
          */
-		$content_where = apply_filters("geodir_search_content_where"," OR ($wpdb->posts.post_content LIKE \"$s\" OR $wpdb->posts.post_content LIKE \"$s%\" OR $wpdb->posts.post_content LIKE \"% $s%\" OR $wpdb->posts.post_content LIKE \"%>$s%\" OR $wpdb->posts.post_content LIKE \"%\n$s%\") ");
+        $content_where = apply_filters( "geodir_search_content_where", " OR ($wpdb->posts.post_content LIKE \"$s\" OR $wpdb->posts.post_content LIKE \"$s%\" OR $wpdb->posts.post_content LIKE \"% $s%\" OR $wpdb->posts.post_content LIKE \"%>$s%\" OR $wpdb->posts.post_content LIKE \"%\n$s%\") " );
         /**
          * Filter the search query term values.
          *
          * @since 1.5.0
          * @package GeoDirectory
+         *
          * @param string $terms_where The separator, default: `" AND ($wpdb->terms.name LIKE \"$s\" OR $wpdb->terms.name LIKE \"$s%\" OR $wpdb->terms.name LIKE \"% $s%\" OR $wpdb->terms.name IN ($s_A)) "`.
          */
-        $terms_where = apply_filters("geodir_search_terms_where"," AND ($wpdb->terms.name LIKE \"$s\" OR $wpdb->terms.name LIKE \"$s%\" OR $wpdb->terms.name LIKE \"% $s%\" OR $wpdb->terms.name IN ($s_A)) ");
-	}
+        $terms_where = apply_filters( "geodir_search_terms_where", " AND ($wpdb->terms.name LIKE \"$s\" OR $wpdb->terms.name LIKE \"$s%\" OR $wpdb->terms.name LIKE \"% $s%\" OR $wpdb->terms.name IN ($s_A)) " );
 
 
-    // get term sql
-    $term_sql = "SELECT $wpdb->term_taxonomy.term_id, $wpdb->terms.name, $wpdb->term_taxonomy.taxonomy
+        // get term sql
+        $term_sql = "SELECT $wpdb->term_taxonomy.term_id, $wpdb->terms.name, $wpdb->term_taxonomy.taxonomy
                     FROM $wpdb->term_taxonomy,  $wpdb->terms, $wpdb->term_relationships
                     WHERE $wpdb->term_taxonomy.term_id =  $wpdb->terms.term_id
                     AND $wpdb->term_relationships.term_taxonomy_id =  $wpdb->term_taxonomy.term_taxonomy_id
@@ -834,25 +836,26 @@ function searching_filter_where($where) {
                     $terms_where
                     GROUP BY $wpdb->term_taxonomy.term_id";
 
-    $term_results = $wpdb->get_results($term_sql);
-    $term_ids = array();
-    $terms_sql = '';
+        $term_results = $wpdb->get_results( $term_sql );
+        $term_ids     = array();
+        $terms_sql    = '';
 
-    if(!empty($term_results)){
-        foreach($term_results as $term_id){
-            $term_ids[] = $term_id;
-        }
-        if (!empty($term_ids)) {
-            foreach($term_ids as $term){
-                if ($term->taxonomy == $post_types.'_tags') {
-                    $terms_sql .= $wpdb->prepare(" OR FIND_IN_SET(%s , " . $table . ".post_tags) ", $term->name);
-                } else {
-                    $terms_sql .= " OR FIND_IN_SET($term->term_id , " . $table . "." . $post_types . "category) ";
+        if ( ! empty( $term_results ) ) {
+            foreach ( $term_results as $term_id ) {
+                $term_ids[] = $term_id;
+            }
+            if ( ! empty( $term_ids ) ) {
+                foreach ( $term_ids as $term ) {
+                    if ( $term->taxonomy == $post_types . '_tags' ) {
+                        $terms_sql .= $wpdb->prepare( " OR FIND_IN_SET(%s , " . $table . ".post_tags) ", $term->name );
+                    } else {
+                        $terms_sql .= " OR FIND_IN_SET($term->term_id , " . $table . "." . $post_types . "category) ";
+                    }
                 }
             }
         }
-    }
 
+    }
 
     if ($snear != '') {
 
@@ -889,8 +892,8 @@ function searching_filter_where($where) {
     } else {
 
 
-
-        $where .= " AND (	( $wpdb->posts.post_title LIKE \"$s\" $better_search_terms)
+        $post_title_where = $s != "" ? "{$wpdb->posts}.post_title LIKE \"$s\"" : "1=1";
+        $where .= " AND (	( $post_title_where $better_search_terms)
                             $content_where  
 							$terms_sql 
 					    ) 

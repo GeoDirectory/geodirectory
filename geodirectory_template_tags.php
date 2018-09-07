@@ -603,7 +603,18 @@ function geodir_add_sharelocation_scripts() {
 				}
 				
 				if (dist > 0 || (jQuery('select[name="sort_by"]').val() == 'nearest' || jQuery('select[name="sort_by"]', $form).val() == 'farthest') || (jQuery(".snear", $form).val() != '' && jQuery(".snear", $form).val() != '<?php echo $default_near_text;?>')) {
-					geodir_setsearch($form);
+
+                    // OSM can't handel post code with no space so we test for it and add one if needed
+                    if(window.gdMaps === 'osm'){
+                        var $near_val = jQuery(".snear", $form).val();
+                        var $is_post_code = $near_val.match("^([A-Za-z][A-Ha-hJ-Yj-y]?[0-9][A-Za-z0-9]??[0-9][A-Za-z]{2}|[Gg][Ii][Rr] ?0[Aa]{2})$");
+                        if($is_post_code){
+                            $near_val = $near_val.replace(/.{3}$/,' $&');
+                            jQuery(".snear", $form).val($near_val);
+                        }
+                    }
+
+                    geodir_setsearch($form);
 				} else {
 					jQuery(".snear", $form).val('');
 					jQuery($form).submit();
