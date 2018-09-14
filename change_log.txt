@@ -5,6 +5,7 @@ Special apostrophe character not supported with search listing - FIXED
 OSM cant handel geocode search of UK post codes missing the space - FIXED
 Search adds all terms to query if search field is blank - FIXED
 Deleted tag still displayed on the listing detail page - FIXED 
+Use of getenv('REMOTE_ADDR') with PHP v7.2.1 results in internal server error - FIXED
 
 v1.6.30
 Yoast v8.x shows error on backend edit listing page - FIXED
