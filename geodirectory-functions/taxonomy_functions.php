@@ -1726,7 +1726,8 @@ function geodir_term_link($termlink, $term, $taxonomy) {
 
     if (isset($taxonomy) && !empty($geodir_taxonomies) && in_array($taxonomy, $geodir_taxonomies)) {
         global $geodir_add_location_url, $gd_session;
-        $include_location = false;
+        $orig_termlink = $termlink;
+		$include_location = false;
         $request_term = array();
         $add_location_url = get_option('geodir_add_location_url');
         $location_manager = defined('POST_LOCATION_TABLE') ? true : false;
@@ -1787,11 +1788,42 @@ function geodir_term_link($termlink, $term, $taxonomy) {
                 $url_separator = '';
 
                 if (get_option('permalink_structure') != '') {
-                    $old_listing_slug = '/' . $listing_slug . '/';
-                    $request_term = implode("/", $location_terms);
-                    $new_listing_slug = '/' . $listing_slug . '/' . $request_term . '/';
+                    $found = false;
+					$request_term = implode("/", $location_terms);
+					if (geodir_is_wpml()) {
+						$post_types = get_option('geodir_post_types');
+						$post_type = str_replace("category","",$taxonomy);
+						$post_type = str_replace("_tags","",$post_type);
+						$org_slug = $post_types[$post_type]['rewrite']['slug'];
+						if (geodir_wpml_is_post_type_translated($post_type) && gd_wpml_slug_translation_turned_on($post_type)) {
+							global $sitepress;
+							$default_lang = $sitepress->get_default_language();
+							$language_code = gd_wpml_get_lang_from_url($orig_termlink);
+							if (!$language_code ) {
+								$language_code  = $default_lang;
+							}
 
-                    $termlink = substr_replace($termlink, $new_listing_slug, strpos($termlink, $old_listing_slug), strlen($old_listing_slug));
+							$slug = apply_filters('wpml_translate_single_string', $org_slug, 'WordPress', 'URL slug: ' . $org_slug, $language_code);
+
+							if ($slug && $slug != $org_slug && $slug != $listing_slug) {
+								$old_listing_slug = '/' . $slug . '/';
+								$new_listing_slug = '/' . $slug . '/' . $request_term . '/';
+
+								if ( strpos( $termlink, $old_listing_slug ) !== false ) {
+									$found = true;
+									$termlink = preg_replace( "/" . preg_quote( $old_listing_slug, "/" ) . "/", $new_listing_slug, $termlink, 1 );
+								}
+							}
+						}
+					}
+
+					if (!$found) {
+						$old_listing_slug = '/' . $listing_slug . '/';
+						$request_term = implode("/", $location_terms);
+						$new_listing_slug = '/' . $listing_slug . '/' . $request_term . '/';
+
+						$termlink = substr_replace($termlink, $new_listing_slug, strpos($termlink, $old_listing_slug), strlen($old_listing_slug));
+					}
                 } else {
                     $termlink = geodir_getlink($termlink, $request_term);
                 }
@@ -1815,7 +1847,7 @@ function geodir_term_link($termlink, $term, $taxonomy) {
             if (geodir_wpml_is_post_type_translated($post_type) && gd_wpml_slug_translation_turned_on($post_type)) {
                 global $sitepress;
                 $default_lang = $sitepress->get_default_language();
-                $language_code = gd_wpml_get_lang_from_url($termlink);
+                $language_code = gd_wpml_get_lang_from_url($orig_termlink);
                 if (!$language_code ) {
                     $language_code  = $default_lang;
                 }
