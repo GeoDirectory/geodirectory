@@ -9,6 +9,7 @@ Use of getenv('REMOTE_ADDR') with PHP v7.2.1 results in internal server error - 
 Issue with listing slug WPML translation - FIXED
 Listing shortcode shows posts from all categories if category has no post - FIXED
 Location me page shows wrong results on map when map cache enabled - FIXED
+CPT archive pages not showing any results - FIXED
 
 v1.6.30
 Yoast v8.x shows error on backend edit listing page - FIXED

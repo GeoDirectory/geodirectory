@@ -405,6 +405,9 @@ function geodir_get_current_posttype() {
     global $wp_query, $post, $geodir_post_type;
 
     $geodir_post_type = get_query_var('post_type');
+	if (is_array($geodir_post_type) && ! empty($geodir_post_type[0])) {
+		$geodir_post_type = $geodir_post_type[0];
+	}
 
     if (geodir_is_page('add-listing') || geodir_is_page('preview')) {
         if (isset($_REQUEST['pid']) && $_REQUEST['pid'] != '')
