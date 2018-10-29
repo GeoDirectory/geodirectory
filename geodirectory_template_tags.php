@@ -54,7 +54,9 @@ function geodir_templates_scripts()
         'geodir_lazy_load' => get_option('geodir_lazy_load',1),
         'geodir_ajax_url' => geodir_get_ajax_url(),
         'geodir_gd_modal' => (int)get_option('geodir_disable_gb_modal'),
-        'is_rtl' => is_rtl() ? 1 : 0 // fix rtl issue
+        'is_rtl' => is_rtl() ? 1 : 0, // fix rtl issue
+		'lightBox_txtImage' => addslashes(__('Image', 'geodirectory')),
+		'lightBox_txtOf' => addslashes(__('of', 'geodirectory')),
     );
 
     /**
