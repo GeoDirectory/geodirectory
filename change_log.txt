@@ -11,6 +11,7 @@ Listing shortcode shows posts from all categories if category has no post - FIXE
 Location me page shows wrong results on map when map cache enabled - FIXED
 CPT archive pages not showing any results - FIXED
 Unable to translate text on detail page photos popup - FIXED
+Search radius settings not filtering the results - FIXED
 
 v1.6.30
 Yoast v8.x shows error on backend edit listing page - FIXED
