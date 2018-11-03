@@ -4,6 +4,14 @@ Change CPT settings sorting options description - CHANGED
 Special apostrophe character not supported with search listing - FIXED
 OSM cant handel geocode search of UK post codes missing the space - FIXED
 Search adds all terms to query if search field is blank - FIXED
+Deleted tag still displayed on the listing detail page - FIXED 
+Use of getenv('REMOTE_ADDR') with PHP v7.2.1 results in internal server error - FIXED
+Issue with listing slug WPML translation - FIXED
+Listing shortcode shows posts from all categories if category has no post - FIXED
+Location me page shows wrong results on map when map cache enabled - FIXED
+CPT archive pages not showing any results - FIXED
+Unable to translate text on detail page photos popup - FIXED
+Search radius settings not filtering the results - FIXED
 
 v1.6.30
 Yoast v8.x shows error on backend edit listing page - FIXED

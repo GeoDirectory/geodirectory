@@ -1326,7 +1326,9 @@ function geodir_localize_all_js_msg()
         'geoErrPOSITION_UNAVAILABLE' => addslashes(__('Your location is currently unknown', 'geodirectory')),
         'geoErrBREAK' => addslashes(__('Attempt to find location took too long', 'geodirectory')),
         'geoErrDEFAULT' => addslashes(__('Location detection not supported in browser', 'geodirectory')),
-		'mapLanguage' => geodir_get_map_default_language()
+		'mapLanguage' => geodir_get_map_default_language(),
+		'lightBox_txtImage' => addslashes(__('Image', 'geodirectory')),
+		'lightBox_txtOf' => addslashes(__('of', 'geodirectory')),
     );
 
     /**
@@ -1718,7 +1720,7 @@ function geodir_location_slug_check($slug)
 
 add_action('edited_term', 'geodir_update_term_slug', '1', 3);
 add_action('create_term', 'geodir_update_term_slug', '1', 3);
-
+add_action( 'delete_term', 'geodir_on_delete_term', 1, 5 );
 
 /**
  * Update term slug.
@@ -3133,5 +3135,40 @@ function geodir_wpml_add_language_input_field() {
 
 	if ( function_exists( 'wpml_add_language_form_field_action' ) && WPML_LANGUAGE_NEGOTIATION_TYPE_PARAMETER === (int) $sitepress->get_setting( 'language_negotiation_type' ) ) {
 		wpml_add_language_form_field_action();
+	}
+}
+
+/**
+ * Delete listing tag on term delete.
+ *
+ * @since 1.6.31
+ *
+ * @global object $wpdb WordPress Database object.
+ * @global string $plugin_prefix Geodirectory plugin table prefix.
+ *
+ * @param int     $term         Term ID.
+ * @param int     $tt_id        Term taxonomy ID.
+ * @param string  $taxonomy     Taxonomy slug.
+ * @param mixed   $deleted_term Copy of the already-deleted term, in the form specified
+ *                              by the parent function. WP_Error otherwise.
+ * @param array   $object_ids   List of term object IDs.
+ */
+function geodir_on_delete_term( $term, $tt_id, $taxonomy = '', $deleted_term = array(), $object_ids = array() ) {
+	global $wpdb, $plugin_prefix;
+
+	if ( ! empty( $object_ids ) && strpos( $taxonomy, 'gd_' ) === 0 && substr( $taxonomy , -5 ) == '_tags' && ( $taxonomy_obj = get_taxonomy( $taxonomy ) ) ) {
+		$post_type = !empty( $taxonomy_obj ) ? $taxonomy_obj->object_type[0] : '';
+
+		if ( $post_type ) {
+			$table = $plugin_prefix . $post_type . '_detail';
+		
+			foreach ( $object_ids as $post_id ) {
+				$post_tags = wp_get_object_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
+				$post_tags = ! empty( $post_tags ) && ! is_wp_error( $post_tags ) ? array_map( 'trim', $post_tags ) : '';
+				$post_tags = ! empty( $post_tags ) ? implode( ',', array_filter( array_unique( $post_tags ) ) ) : '';
+
+				$wpdb->query( $wpdb->prepare( "UPDATE {$table} SET post_tags = %s WHERE post_id = %d", array( $post_tags, $post_id ) ) );
+			}
+		}
 	}
 }

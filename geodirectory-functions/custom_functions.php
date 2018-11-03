@@ -759,7 +759,7 @@ function geodir_related_posts_display( $request ) {
 			$arr_detail_page_tabs['related_listing']['is_display'] = true;
 		}
 
-		$is_display        = $arr_detail_page_tabs['related_listing']['is_display'];
+		$is_display        = ! empty( $arr_detail_page_tabs['related_listing'] ) && isset( $arr_detail_page_tabs['related_listing']['is_display'] ) ? $arr_detail_page_tabs['related_listing']['is_display'] : false;
 		$origi_post        = $post;
 		$post_type         = '';
 		$post_id           = '';

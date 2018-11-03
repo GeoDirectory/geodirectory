@@ -611,6 +611,7 @@ function geodir_post_where()
                 add_filter('posts_where', 'searching_filter_where', 1);
 
             add_filter('posts_orderby', 'geodir_posts_orderby', 1);
+			add_filter( 'posts_where', 'geodir_posts_having', 10000, 2 ); // make sure its the last WHERE param
 
         } elseif (geodir_is_page('author')) {
 
@@ -874,8 +875,8 @@ function searching_filter_where($where) {
         $rlat2 = is_numeric(max($lat1, $lat2)) ? max($lat1, $lat2) : '';
 
 
-
-	    $where .= " AND ( ( $wpdb->posts.post_title LIKE \"$s\" $better_search_terms)
+		$post_title_where = $s != "" ? "{$wpdb->posts}.post_title LIKE \"$s\"" : "1=1";
+	    $where .= " AND ( ( $post_title_where $better_search_terms)
 			                    $content_where 
 								$terms_sql 
 							)
@@ -1177,3 +1178,39 @@ function geodir_jetpack_fix_post_types_search(){
     }
 }
 add_action( 'plugins_loaded','geodir_jetpack_fix_post_types_search', 10 );
+
+function geodir_posts_having( $where, $query = array() ) {
+	global $wpdb, $gd_session, $geodir_post_type, $dist, $mylat, $mylon, $snear;
+
+	if ( geodir_is_gd_main_query( $query ) ) {
+		$support_location = $geodir_post_type && function_exists( 'geodir_cpt_no_location' ) && ! geodir_cpt_no_location( $geodir_post_type );
+
+		if ( $support_location && $dist && ( $snear != '' || $gd_session->get( 'all_near_me' ) ) ) {
+			if ( $gd_session->get( 'near_me_range' ) && ! isset( $_REQUEST['sdist'] ) ) {
+				$dist = $gd_session->get( 'near_me_range' );
+
+				if ( get_option( 'geodir_search_dist_1' ) == 'km' ) {
+					$dist = $dist * 1.6093440001;
+				}
+			}
+
+			if ( strpos( $where, ' HAVING ') === false ) {
+				$where .= $wpdb->prepare( " HAVING distance <= %f ", $dist ); 
+			}
+		}
+	}
+
+	return $where;
+}
+
+function geodir_is_gd_main_query( $query ){
+	$is_main_query = false;
+
+	if(isset($query->query->gd_is_geodir_page) && $query->query->gd_is_geodir_page) {
+		$is_main_query = true;
+	}elseif(isset($query->query['gd_is_geodir_page']) && $query->query['gd_is_geodir_page']) {
+		$is_main_query = true;
+	}
+
+	return $is_main_query;
+}

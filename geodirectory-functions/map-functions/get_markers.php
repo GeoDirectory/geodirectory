@@ -42,6 +42,8 @@ function geodir_get_map_cache($cache){
     $url_params[] = isset($_REQUEST['gd_region']) ? $_REQUEST['gd_region'] : '';
     $url_params[] = isset($_REQUEST['gd_city']) ? $_REQUEST['gd_city'] : '';
     $url_params[] = isset($_REQUEST['gd_neighbourhood']) ? $_REQUEST['gd_neighbourhood'] : '';
+	$url_params[] = isset($_REQUEST['my_lat']) ? $_REQUEST['my_lat'] : '';
+	$url_params[] = isset($_REQUEST['my_lon']) ? $_REQUEST['my_lon'] : '';
 
     $file_name = sanitize_file_name( md5( implode("-",$url_params) )  );
 
@@ -107,6 +109,8 @@ function geodir_save_map_cache($map_json){
     $url_params[] = isset($_REQUEST['gd_region']) ? $_REQUEST['gd_region'] : '';
     $url_params[] = isset($_REQUEST['gd_city']) ? $_REQUEST['gd_city'] : '';
     $url_params[] = isset($_REQUEST['gd_neighbourhood']) ? $_REQUEST['gd_neighbourhood'] : '';
+	$url_params[] = isset($_REQUEST['my_lat']) ? $_REQUEST['my_lat'] : '';
+	$url_params[] = isset($_REQUEST['my_lon']) ? $_REQUEST['my_lon'] : '';
 
     $file_name = sanitize_file_name( md5( implode("-",$url_params) )  );
 

@@ -183,7 +183,7 @@ function geodir_save_rating($comment = 0)
 
     $post_id = $comment_info->comment_post_ID;
     $status = $comment_info->comment_approved;
-    $rating_ip = getenv("REMOTE_ADDR");
+    $rating_ip = geodir_get_ip();
 	
     $post = geodir_get_post_info($post_id);
     if (empty($post)) {

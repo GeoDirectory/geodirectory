@@ -255,7 +255,7 @@ function gdsc_manage_category_choice($post_type, $category)
 
     $taxonomies = geodir_get_taxonomies($post_type);
 
-    $categories = get_terms(array('taxonomy' => $taxonomies[0]));
+    $categories = get_terms(array('taxonomy' => $taxonomies[0],'hide_empty' => false));
 
     $cat_id = 0;
 
