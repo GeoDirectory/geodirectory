@@ -67,12 +67,12 @@ $radio_id = (isset($field_info->htmlvar_name) && $field_info->htmlvar_name) ? $f
 
 //print_r($field_info);
 
-if (isset($cf['icon']) && strpos($cf['icon'], 'fa fa-') !== false) {
+if (isset($cf['icon']) && strpos($cf['icon'], ' fa-') !== false) {
     $field_icon = '<i class="'.$cf['icon'].'" aria-hidden="true"></i>';
 }elseif(isset($cf['icon']) && $cf['icon']){
     $field_icon = '<b class="gd-cf-icon" style="background-image: url(\''.$cf['icon'].'\')"></b>';
 }else{
-    $field_icon = '<i class="fa fa-cog" aria-hidden="true"></i>';
+    $field_icon = '<i class="fas fa-cog" aria-hidden="true"></i>';
 }
 
 if(isset($cf['name']) && $cf['name']){
@@ -98,12 +98,12 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
         <?php if (!$default): ?>
             <div title="<?php _e('Click to remove field', 'geodirectory'); ?>"
                  onclick="delete_field('<?php echo $result_str; ?>', '<?php echo $nonce; ?>')"
-                 class="handlediv close"><i class="fa fa-times" aria-hidden="true"></i></div>
+                 class="handlediv close"><i class="fas fa-times" aria-hidden="true"></i></div>
         <?php endif;
         if ($field_type == 'fieldset') {
             ?>
-            <i class="fa fa-long-arrow-left " aria-hidden="true"></i>
-            <i class="fa fa-long-arrow-right " aria-hidden="true"></i>
+            <i class="fas fa-long-arrow-alt-left " aria-hidden="true"></i>
+            <i class="fas fa-long-arrow-alt-right " aria-hidden="true"></i>
             <b style="cursor:pointer;"
                onclick="show_hide('field_frm<?php echo $result_str;?>')"><?php echo geodir_ucwords(__('Fieldset:', 'geodirectory') . ' ' . $field_admin_title);?></b>
         <?php
@@ -175,7 +175,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 ?>
                 <li>
                     <label for="admin_title" class="gd-cf-tooltip-wrap">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Admin title :', 'geodirectory'); ?>
+                        <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Admin title :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('This is used as the field setting name here in the backend only.', 'geodirectory'); ?>
                         </div>
@@ -203,7 +203,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 }
                 ?>
                 <li>
-                    <label for="site_title" class="gd-cf-tooltip-wrap"> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Frontend title :', 'geodirectory'); ?>
+                    <label for="site_title" class="gd-cf-tooltip-wrap"> <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Frontend title :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('This will be the title for the field on the frontend.', 'geodirectory'); ?>
                         </div>
@@ -231,7 +231,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 }
                 ?>
                 <li>
-                    <label for="admin_desc" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Frontend description :', 'geodirectory'); ?>
+                    <label for="admin_desc" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Frontend description :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('This will be shown below the field on the add listing form.', 'geodirectory'); ?>
                         </div>
@@ -259,7 +259,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 }
                 ?>
                 <li>
-                    <label for="htmlvar_name" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('HTML variable name :', 'geodirectory');?>
+                    <label for="htmlvar_name" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('HTML variable name :', 'geodirectory');?>
                         <div class="gdcf-tooltip">
                             <?php _e('This is a unique identifier used in the HTML, it MUST NOT contain spaces or special characters.', 'geodirectory'); ?>
                         </div>
@@ -291,7 +291,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 }
                 ?>
                 <li <?php echo $field_display; ?>>
-                    <label for="is_active" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Is active :', 'geodirectory'); ?>
+                    <label for="is_active" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Is active :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('If no is selected then the field will not be displayed anywhere.', 'geodirectory'); ?>
                         </div>
@@ -330,7 +330,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 }
                 ?>
                 <li>
-                    <label for="for_admin_use" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('For admin use only? :', 'geodirectory'); ?>
+                    <label for="for_admin_use" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('For admin use only? :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('If yes is selected then only site admin can see and edit this field.', 'geodirectory'); ?>
                         </div>
@@ -369,7 +369,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 }
                 ?>
                 <li>
-                    <label for="default_value" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Default value :', 'geodirectory');?>
+                    <label for="default_value" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Default value :', 'geodirectory');?>
                         <div class="gdcf-tooltip">
                             <?php
                             if ($field_type == 'checkbox') {
@@ -413,7 +413,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 }
                 ?>
                 <li>
-                    <label for="show_in" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Show in what locations?:', 'geodirectory'); ?>
+                    <label for="show_in" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Show in what locations?:', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('Select in what locations you want to display this field.', 'geodirectory'); ?>
                         </div>
@@ -570,7 +570,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 }
                 ?>
                 <li>
-                    <label for="is_required" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Is required :', 'geodirectory'); ?>
+                    <label for="is_required" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Is required :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('Select yes to set field as required', 'geodirectory'); ?>
                         </div>
@@ -612,7 +612,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 ?>
                 <li class="cf-is-required-msg" <?php if ((isset($field_info->is_required) && $field_info->is_required == '0') || !isset($field_info->is_required)) {echo "style='display:none;'";}?>>
                     <label for="required_msg" class="gd-cf-tooltip-wrap">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Required message:', 'geodirectory'); ?>
+                        <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Required message:', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('Enter text for the error message if the field is required and has not fulfilled the requirements.', 'geodirectory'); ?>
                         </div>
@@ -660,9 +660,9 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
 
 
                     <label for="field_icon" class="gd-cf-tooltip-wrap">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Upload icon :', 'geodirectory'); ?>
+                        <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Upload icon :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
-                            <?php _e('Upload icon using media and enter its url path, or enter <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank" >font awesome </a>class eg:"fa fa-home"', 'geodirectory');?>
+                            <?php _e('Upload icon using media and enter its url path, or enter <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank" >font awesome </a>class eg:"fas fa-home"', 'geodirectory');?>
                         </div>
                     </label>
                     <div class="gd-cf-input-wrap">
@@ -691,7 +691,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
                 <li>
 
                     <label for="css_class" class="gd-cf-tooltip-wrap">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Css class :', 'geodirectory'); ?>
+                        <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Css class :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('Enter custom css class for field custom style.', 'geodirectory');?>
                             <?php if($field_type=='multiselect'){_e('(Enter class `gd-comma-list` to show list as comma separated)', 'geodirectory');}?>
@@ -742,7 +742,7 @@ if (isset($field_info->data_type) && $field_info->data_type == 'VARCHAR') {
 
                         ?></h3>
                     <label for="cat_sort" class="gd-cf-tooltip-wrap">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Include this field in sorting options :', 'geodirectory'); ?>
+                        <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Include this field in sorting options :', 'geodirectory'); ?>
                         <div class="gdcf-tooltip">
                             <?php _e('Lets you use this filed as a sorting option, set from sorting options above.', 'geodirectory');?>
                         </div>

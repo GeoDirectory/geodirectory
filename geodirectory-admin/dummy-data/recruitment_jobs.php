@@ -27,7 +27,7 @@ function geodir_property_sale_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '\d+(\.\d{2})?',
                       'validation_msg'      =>  'Please enter number and decimal only ie: 100.50',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-usd',
+                      'field_icon'          =>  'fas fa-dollar-sign',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true,
@@ -60,7 +60,7 @@ function geodir_property_sale_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-briefcase',
+                      'field_icon'          =>  'fas fa-briefcase',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true
@@ -83,7 +83,7 @@ function geodir_property_sale_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-briefcase',
+                      'field_icon'          =>  'fas fa-briefcase',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	      =>  true
@@ -106,7 +106,7 @@ function geodir_property_sale_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-life-ring',
+                      'field_icon'          =>  'far fa-life-ring',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true
@@ -128,7 +128,7 @@ function geodir_property_sale_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-area-chart',
+                      'field_icon'          =>  'fas fa-chart-area',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true
@@ -166,7 +166,7 @@ function geodir_property_sale_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-arrow-circle-right',
+                      'field_icon'          =>  'fas fa-arrow-circle-right',
                       'css_class'           =>  '',
                       'cat_sort'            =>  false,
                       'cat_filter'	        =>  false
@@ -188,7 +188,7 @@ function geodir_property_sale_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-arrow-circle-right',
+                      'field_icon'          =>  'fas fa-arrow-circle-right',
                       'css_class'           =>  '',
                       'cat_sort'            =>  false,
                       'cat_filter'	        =>  false,
@@ -216,7 +216,7 @@ function geodir_property_sale_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-arrow-circle-right',
+                      'field_icon'          =>  'fas fa-arrow-circle-right',
                       'css_class'           =>  '',
                       'cat_sort'            =>  false,
                       'cat_filter'	        =>  false

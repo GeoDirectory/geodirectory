@@ -478,7 +478,7 @@ function geodir_edit_post_link()
 
             $postlink = get_permalink(geodir_add_listing_page_id());
             $editlink = geodir_getlink($postlink, array('pid' => $post_id), false);
-            echo ' <p class="edit_link"><i class="fa fa-pencil"></i> <a href="' . esc_url($editlink) . '">' . __('Edit this Post', 'geodirectory') . '</a></p>';
+            echo ' <p class="edit_link"><i class="fas fa-pencil-alt"></i> <a href="' . esc_url($editlink) . '">' . __('Edit this Post', 'geodirectory') . '</a></p>';
         }
     }// end of if, if its a preview or not
     /**
@@ -960,7 +960,7 @@ function geodir_detail_page_google_analytics()
                 padding: .25em .5em
             }
 
-            .Chartjs-legend>li>i {
+            .Chartjs-legend>li>svg {
                 display: inline-block;
                 height: 1em;
                 margin-right: .5em;
@@ -1044,7 +1044,7 @@ function geodir_detail_page_google_analytics()
         <span id="ga_stats" class="gdga-analytics-box" style="display:none">
             <div id="ga-analytics-title"><?php _e("Analytics", 'geodirectory');?></div>
             <div id="gd-active-users-container">
-                <div class="gd-ActiveUsers"><i id="gdga-loader-icon" class="fa fa-refresh fa-spin" title="<?php esc_attr_e("Refresh", 'geodirectory');?>"></i><?php _e("Active Users:", 'geodirectory');?>
+                <div class="gd-ActiveUsers"><i id="gdga-loader-icon" class="fas fa-refresh fa-spin" title="<?php esc_attr_e("Refresh", 'geodirectory');?>"></i><?php _e("Active Users:", 'geodirectory');?>
                     <b class="gd-ActiveUsers-value">0</b>
                 </div>
             </div>
@@ -2623,14 +2623,14 @@ function geodir_add_post_status_author_page()
             // we need to query real status direct as we dynamically change the status for author on author page so even non author status can view them.
             $real_status = $wpdb->get_var("SELECT post_status from $wpdb->posts WHERE ID=$post->ID");
             $status = "<strong>(";
-            $status_icon = '<i class="fa fa-play"></i>';
+            $status_icon = '<i class="fas fa-play"></i>';
             if ($real_status == 'publish') {
                 $status .= __('Published', 'geodirectory');
             }elseif ($real_status == 'pending') {
                 $status .= __('Awaiting Review', 'geodirectory');
             } else {
                 $status .= __('Not published', 'geodirectory');
-                $status_icon = '<i class="fa fa-pause"></i>';
+                $status_icon = '<i class="fas fa-pause"></i>';
             }
             $status .= ")</strong>";
 

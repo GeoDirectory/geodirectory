@@ -200,7 +200,7 @@ function geodir_draw_map($map_args = array())
 
                 <div class="map_background">
                     <div class="top_banner_section_in clearfix">
-                        <div class="<?php echo $map_canvas_name;?>_TopLeft TopLeft"><span class="triggermap" id="<?php echo $map_canvas_name;?>_triggermap" <?php if (!$geodir_map_options['enable_map_resize_button']) { ?> <?php }?>><i class="fa fa-arrows-alt"></i></span></div>
+                        <div class="<?php echo $map_canvas_name;?>_TopLeft TopLeft"><span class="triggermap" id="<?php echo $map_canvas_name;?>_triggermap" <?php if (!$geodir_map_options['enable_map_resize_button']) { ?> <?php }?>><i class="fas fa-expand-arrows-alt"></i></span></div>
                         <div class="<?php echo $map_canvas_name;?>_TopRight TopRight"></div>
                         <div id="<?php echo $map_canvas_name;?>_wrapper" class="main_map_wrapper"
                              style="height:<?php echo $geodir_map_options['height'];?>;width:<?php echo $map_width;?>;">
@@ -239,7 +239,7 @@ function geodir_draw_map($map_args = array())
                       <div class="gd-input-group-addon gd-directions-left">
                         <div class="gd-input-group">
                               <input type="text" id="<?php echo $map_canvas_name; ?>_fromAddress" name="from" class="gd-form-control textfield" value="<?php echo ENTER_LOCATION_TEXT; ?>" onblur="if (this.value == '') {this.value = '<?php echo ENTER_LOCATION_TEXT; ?>';}" onfocus="if (this.value == '<?php echo ENTER_LOCATION_TEXT; ?>') {this.value = '';}" />
-                              <div id="<?php echo $map_canvas_name; ?>_mylocation" class="gd-input-group-addon gd-map-mylocation" onclick="gdMyGeoDirection();" title="<?php echo esc_attr__('My location', 'geodirectory'); ?>"><i class="fa fa-crosshairs fa-fw"></i></div>
+                              <div id="<?php echo $map_canvas_name; ?>_mylocation" class="gd-input-group-addon gd-map-mylocation" onclick="gdMyGeoDirection();" title="<?php echo esc_attr__('My location', 'geodirectory'); ?>"><i class="fas fa-crosshairs fa-fw"></i></div>
                         </div>
                       </div>
                       <div class="gd-input-group-addon gd-directions-right gd-mylocation-go"><input type="button" value="<?php _e('Get Directions', 'geodirectory'); ?>" class="<?php echo $map_canvas_name; ?>_getdirection" id="directions" onclick="calcRoute('<?php echo $map_canvas_name; ?>')" /></div>
@@ -335,7 +335,7 @@ function geodir_draw_map($map_args = array())
                     ?>
                     <div
                         class="map-category-listing<?php echo $map_cat_class;?>">
-                        <div class="gd-trigger gd-triggeroff"><i class="fa fa-compress"></i><i class="fa fa-expand"></i></div>
+                        <div class="gd-trigger gd-triggeroff"><i class="fas fa-compress"></i><i class="fas fa-expand"></i></div>
                         <div id="<?php echo $map_canvas_name;?>_cat"
                              class="<?php echo $map_canvas_name;?>_map_category  map_category"
                              <?php if ($child_collapse){ ?>checked="checked" <?php }?>
@@ -436,8 +436,8 @@ function geodir_draw_map($map_args = array())
                             </div><?php } ?>
                             <div class="geodir-map-navigation">
                                 <ul>
-                                    <li class="geodir-leftarrow"><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                                    <li class="geodir-rightarrow"><a href="#"><i class="fa fa-chevron-right"></i></a>
+                                    <li class="geodir-leftarrow"><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+                                    <li class="geodir-rightarrow"><a href="#"><i class="fas fa-chevron-right"></i></a>
                                     </li>
                                 </ul>
                             </div>

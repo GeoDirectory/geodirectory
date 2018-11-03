@@ -208,7 +208,7 @@ jQuery(document).ready(function() {
                 if( typeof ptype !== "undefined") {
                     jQuery('<tr class="gd-tool-results tool-' + diagnose + '" ><td colspan="3"><span class="gd-tool-results-remove" onclick="jQuery(this).closest(\'tr\').remove();"></span><div class="geodir_diagnostic_result-' + diagnose + '"></div></td></tr>').insertAfter(jQuery('#' + diagnose +'_'+ ptype));
                 } else {
-                    jQuery('<tr class="gd-tool-results tool-' + diagnose + '" ><td colspan="3"><span class="gd-tool-results-remove" onclick="jQuery(this).closest(\'tr\').remove();"><i class="fa fa-spinner fa-spin"></i></span><div class="geodir_diagnostic_result-' + diagnose + '"></div></td></tr>').insertAfter(jQuery(this).parents('tr'));
+                    jQuery('<tr class="gd-tool-results tool-' + diagnose + '" ><td colspan="3"><span class="gd-tool-results-remove" onclick="jQuery(this).closest(\'tr\').remove();"><i class="fas fa-spinner fa-spin"></i></span><div class="geodir_diagnostic_result-' + diagnose + '"></div></td></tr>').insertAfter(jQuery(this).parents('tr'));
                 }
                 var result_container = jQuery('.geodir_diagnostic_result-' + diagnose);
             }
@@ -225,7 +225,7 @@ jQuery(document).ready(function() {
                     '</tr>').insertAfter(jQuery('#' + diagnose +'_'+ ptype));
 
                 jQuery('#gd_progressbar').progressbar({value: 0});
-                jQuery('#gd_progressbar .gd-progress-label').html('<i class="fa fa-refresh fa-spin"></i> Processing...');
+                jQuery('#gd_progressbar .gd-progress-label').html('<i class="fas fa-sync fa-spin"></i> Processing...');
 
             }
 
@@ -259,14 +259,14 @@ function gd_process_diagnose_step(step, ptype, diagnose, result_container) {
                     jQuery('#' + diagnose + '_sub_table').find('.gd-tool-results').remove();
 
                 } else {
-                    jQuery('.tool-' + diagnose + ' .gd-tool-results-remove').html('<i class="fa fa-times"></i>');
+                    jQuery('.tool-' + diagnose + ' .gd-tool-results-remove').html('<i class="fas fa-times"></i>');
                     result_container.html(data);
                 }
                 geodir_enable_fix_buttons(); //enable new fix buttons
             } else {
                 resp = JSON.parse(data);
                 jQuery('#gd_progressbar').progressbar({value: resp.percent});
-                jQuery('#gd_progressbar .gd-progress-label').html('<i class="fa fa-refresh fa-spin"></i> Processing...');
+                jQuery('#gd_progressbar .gd-progress-label').html('<i class="fas fa-sync fa-spin"></i> Processing...');
                 gd_process_diagnose_step(parseInt( resp.step ), ptype, diagnose, result_container)
             }
         },

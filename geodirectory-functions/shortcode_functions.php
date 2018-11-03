@@ -785,7 +785,7 @@ function geodir_sc_gd_listings_output($args = array()) {
 			<?php
             if (!$geodir_ajax) { 
 			?>
-            </div><p class="geodir-sclisting-loading" style="display:none;"><i class="fa fa-cog fa-spin"></i></p></div>
+            </div><p class="geodir-sclisting-loading" style="display:none;"><i class="fas fa-cog fa-spin"></i></p></div>
 <script type="text/javascript">
 /* <![CDATA[ */
 jQuery(document).on('click', '.<?php echo trim($identifier);?> .gd-wgt-page', function(e) {

@@ -1095,7 +1095,7 @@ function geodir_action_details_slider()
     if (!empty($post_images)) {
         ?>
         <div class="geodir_flex-container">
-            <div class="geodir_flex-loader"><i class="fa fa-refresh fa-spin"></i></div>
+            <div class="geodir_flex-loader"><i class="fas fa-sync fa-spin"></i></div>
             <div id="geodir_slider" class="geodir_flexslider ">
                 <ul class="geodir-slides clearfix"><?php echo $main_slides; ?></ul>
             </div>

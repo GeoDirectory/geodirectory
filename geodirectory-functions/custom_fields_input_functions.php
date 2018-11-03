@@ -1074,7 +1074,7 @@ function geodir_cfi_address($html,$cf){
             <?php } ?>
                 <input type="text" field_type="<?php echo $type;?>" name="<?php echo $prefix . 'address';?>" id="<?php echo $prefix . 'address';?>" class="geodir_textfield<?php echo $locate_me_class;?>" value="<?php echo esc_attr(stripslashes($address)); ?>" />
                 <?php if ($locate_me) { ?>
-                <span onclick="gdGeoLocateMe(this, 'add-listing');" class="gd-locate-me-btn gd-input-group-addon" title="<?php esc_attr_e('My location', 'geodirlocation'); ?>"><i class="fa fa-crosshairs fa-fw" aria-hidden="true"></i></span>
+                <span onclick="gdGeoLocateMe(this, 'add-listing');" class="gd-locate-me-btn gd-input-group-addon" title="<?php esc_attr_e('My location', 'geodirlocation'); ?>"><i class="fas fa-crosshairs fa-fw" aria-hidden="true"></i></span>
             </div>
             <?php } ?>
             <span class="geodir_message_note"><?php _e($admin_desc, 'geodirectory');?></span>

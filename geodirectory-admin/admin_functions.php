@@ -67,8 +67,12 @@ if (!function_exists('geodir_admin_styles_req')) {
     function geodir_admin_styles_req()
     {
 
-        wp_register_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', array(), GEODIRECTORY_VERSION);
-        wp_enqueue_style('font-awesome');
+//        wp_register_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', array(), GEODIRECTORY_VERSION);
+//        wp_enqueue_style('font-awesome');
+
+        wp_register_script('font-awesome', 'https://use.fontawesome.com/releases/v5.4.1/js/all.js', array('font-awesome-shim'), GEODIRECTORY_VERSION);
+        wp_register_script('font-awesome-shim', 'https://use.fontawesome.com/releases/v5.4.1/js/v4-shims.js', array(), GEODIRECTORY_VERSION);
+        wp_enqueue_script( 'font-awesome' );
 
         wp_register_script('geodirectory-admin', geodir_plugin_url() . '/geodirectory-assets/js/admin-req.min.js', array('jquery'), GEODIRECTORY_VERSION);
         wp_enqueue_script('geodirectory-admin');
@@ -717,7 +721,7 @@ function geodir_compatibility_setting_tab($tabs)
  */
 function geodir_extend_geodirectory_setting_tab($tabs)
 {
-    $tabs['extend_geodirectory_settings'] = array('label' => __('Extend Geodirectory', 'geodirectory'). ' <i class="fa fa-plug"></i>', 'url' => 'https://wpgeodirectory.com', 'target' => '_blank');
+    $tabs['extend_geodirectory_settings'] = array('label' => __('Extend Geodirectory', 'geodirectory'). ' <i class="fas fa-plug"></i>', 'url' => 'https://wpgeodirectory.com', 'target' => '_blank');
     return $tabs;
 }
 
@@ -1190,7 +1194,7 @@ function geodir_admin_fields($options)
                                 target="_blank"><?php echo get_option($value['id']); ?></a> <i
                                 title="<?php _e('remove file (set to empty)', 'geodirectory'); ?>"
                                 onclick="jQuery('#<?php echo esc_attr($value['id']); ?>_remove').val('1'); jQuery( this ).parent().text('<?php _e('save to remove file', 'geodirectory'); ?>');"
-                                class="fa fa-times gd-remove-file"></i></span>
+                                class="fas fa-times gd-remove-file"></i></span>
 
                     <?php } ?>
                 </td>
@@ -2028,7 +2032,7 @@ function gd_avada_compat_warning()
     $timestamp = 'avada-nag1234';
     $message = __('Welcome to GeoDirectory, please have a look <a href="https://docs.wpgeodirectory.com/category/getting-started/" target="_blank">here</a> to get started. :)', 'geodirectory');
     echo '<div id="' . $timestamp . '"  class="error">';
-    echo '<span class="gd-remove-noti" onclick="gdRemoveANotification(\'' . $plugin . '\',\'' . $timestamp . '\');" ><i class="fa fa-times"></i></span>';
+    echo '<span class="gd-remove-noti" onclick="gdRemoveANotification(\'' . $plugin . '\',\'' . $timestamp . '\');" ><i class="fas fa-times"></i></span>';
     echo "<img class='gd-icon-noti' src='" . plugin_dir_url('') . "geodirectory/geodirectory-assets/images/favicon.ico' > ";
     echo "<p>$message</p>";
     echo "</div>";
@@ -3095,9 +3099,9 @@ jQuery(function(){
             if (typeof filters !== 'undefined' && filters && doFilter) {
                 getTotal = true;
                 attach += '&_c=1';
-                gd_progressbar(el, 0, '<i class="fa fa-refresh fa-spin"></i><?php echo esc_attr( __( 'Preparing...', 'geodirectory' ) );?>');
+                gd_progressbar(el, 0, '<i class="fas fa-sync fa-spin"></i><?php echo esc_attr( __( 'Preparing...', 'geodirectory' ) );?>');
             } else {
-                gd_progressbar(el, 0, '0% (0 / ' + total_posts + ') <i class="fa fa-refresh fa-spin"></i><?php echo esc_attr( __( 'Exporting...', 'geodirectory' ) );?>');
+                gd_progressbar(el, 0, '0% (0 / ' + total_posts + ') <i class="fas fa-sync fa-spin"></i><?php echo esc_attr( __( 'Exporting...', 'geodirectory' ) );?>');
             }
             jQuery(el).find('#gd_timer').text('00:00:01');
             jQuery('#gd_ie_ex_files', el).html('');
@@ -3115,7 +3119,7 @@ jQuery(function(){
                 
                 if (typeof data == 'object') {
                     if (typeof data.error != 'undefined' && data.error) {
-                        gd_progressbar(el, 0, '<i class="fa fa-warning"></i>' + data.error);
+                        gd_progressbar(el, 0, '<i class="fas fa-exclamation-triangle"></i>' + data.error);
                         window.clearInterval(timer_posts);
                     } else {
                         if (getTotal) {
@@ -3131,11 +3135,11 @@ jQuery(function(){
                         } else {
                             if (pages < page || pages == page) {
                                 window.clearInterval(timer_posts);
-                                gd_progressbar(el, 100, '100% (' + total_posts + ' / ' + total_posts + ') <i class="fa fa-check"></i><?php echo esc_attr( __( 'Complete!', 'geodirectory' ) );?>');
+                                gd_progressbar(el, 100, '100% (' + total_posts + ' / ' + total_posts + ') <i class="fas fa-check"></i><?php echo esc_attr( __( 'Complete!', 'geodirectory' ) );?>');
                             } else {
                                 var percentage = Math.round(((page * chunk_size) / total_posts) * 100);
                                 percentage = percentage > 100 ? 100 : percentage;
-                                gd_progressbar(el, percentage, '' + percentage + '% (' + ( page * chunk_size ) + ' / ' + total_posts + ') <i class="fa fa-refresh fa-spin"></i><?php echo esc_attr( __( 'Exporting...', 'geodirectory' ) );?>');
+                                gd_progressbar(el, percentage, '' + percentage + '% (' + ( page * chunk_size ) + ' / ' + total_posts + ') <i class="fas fa-sync fa-spin"></i><?php echo esc_attr( __( 'Exporting...', 'geodirectory' ) );?>');
                             }
                             if (typeof data.files != 'undefined' && jQuery(data.files).length ) {
                                 var obj_files = data.files;
@@ -3166,7 +3170,7 @@ jQuery(function(){
 
     function gd_process_export_cats(el, post_type, total_cats, chunk_size, pages, page) {
         if (page < 2) {
-            gd_progressbar(el, 0, '0% (0 / ' + total_cats + ') <i class="fa fa-refresh fa-spin"></i><?php echo esc_attr( __( 'Exporting...', 'geodirectory' ) );?>');
+            gd_progressbar(el, 0, '0% (0 / ' + total_cats + ') <i class="fas fa-sync fa-spin"></i><?php echo esc_attr( __( 'Exporting...', 'geodirectory' ) );?>');
             jQuery(el).find('#gd_timer').text('00:00:01');
             jQuery('#gd_ie_ex_files', el).html('');
         }
@@ -3183,16 +3187,16 @@ jQuery(function(){
                 
                 if (typeof data == 'object') {
                     if (typeof data.error != 'undefined' && data.error) {
-                        gd_progressbar(el, 0, '<i class="fa fa-warning"></i>' + data.error);
+                        gd_progressbar(el, 0, '<i class="fas fa-exclamation-triangle"></i>' + data.error);
                         window.clearInterval(timer_cats);
                     } else {
                         if (pages < page || pages == page) {
                             window.clearInterval(timer_cats);
-                            gd_progressbar(el, 100, '100% (' + total_cats + ' / ' + total_cats + ') <i class="fa fa-check"></i><?php echo esc_attr( __( 'Complete!', 'geodirectory' ) );?>');
+                            gd_progressbar(el, 100, '100% (' + total_cats + ' / ' + total_cats + ') <i class="fas fa-check"></i><?php echo esc_attr( __( 'Complete!', 'geodirectory' ) );?>');
                         } else {
                             var percentage = Math.round(((page * chunk_size) / total_cats) * 100);
                             percentage = percentage > 100 ? 100 : percentage;
-                            gd_progressbar(el, percentage, '' + percentage + '% (' + ( page * chunk_size ) + ' / ' + total_cats + ') <i class="fa fa-refresh fa-spin"></i><?php esc_attr_e( 'Exporting...', 'geodirectory' );?>');
+                            gd_progressbar(el, percentage, '' + percentage + '% (' + ( page * chunk_size ) + ' / ' + total_cats + ') <i class="fas fa-sync fa-spin"></i><?php esc_attr_e( 'Exporting...', 'geodirectory' );?>');
                         }
                         if (typeof data.files != 'undefined' && jQuery(data.files).length ) {
                             var obj_files = data.files;

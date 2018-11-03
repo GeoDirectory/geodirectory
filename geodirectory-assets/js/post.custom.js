@@ -17,7 +17,7 @@ function geodir_get_popup_forms(e, i, r, o) {
         s = s+"&lang="+icl_vars.current_language;
     }
 
-    jQuery.gdmodal('<div id="basic-modal-content" class="clearfix simplemodal-data" style="display: block;"><div class="geodir-modal-loading"><i class="fa fa-refresh fa-spin "></i></div></div>'), jQuery.post(s, {
+    jQuery.gdmodal('<div id="basic-modal-content" class="clearfix simplemodal-data" style="display: block;"><div class="geodir-modal-loading"><i class="fas fa-sync fa-spin "></i></div></div>'), jQuery.post(s, {
         popuptype: r,
         post_id: d
     }).done(function(i) {

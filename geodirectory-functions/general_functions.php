@@ -3315,7 +3315,7 @@ function geodir_listing_slider_widget_output( $args = '', $instance = '' ) {
 		}
 		?>
 		<div class="flex-container" style="min-height:200px;">
-			<div class="geodir-listing-flex-loader"><i class="fa fa-refresh fa-spin"></i></div>
+			<div class="geodir-listing-flex-loader"><i class="fas fa-sync fa-spin"></i></div>
 			<div id="geodir_widget_slider" class="geodir_flexslider">
 				<ul class="geodir-slides clearfix"><?php echo $widget_main_slides; ?></ul>
 			</div>

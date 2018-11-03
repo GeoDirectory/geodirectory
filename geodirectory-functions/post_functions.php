@@ -2054,7 +2054,7 @@ if (!function_exists('geodir_get_infowindow_html')) {
                                 <?php } ?>
                                 <span class="geodir-bubble-fav"><?php echo geodir_favourite_html($post_author, $ID);?></span>
                                 <span class="geodir-bubble-reviews">
-                                    <a href="<?php echo get_comments_link($ID); ?>" class="geodir-pcomments"><i class="fa fa-comments"></i> <?php echo get_comments_number($ID); ?></a>
+                                    <a href="<?php echo get_comments_link($ID); ?>" class="geodir-pcomments"><i class="fas fa-comments"></i> <?php echo get_comments_number($ID); ?></a>
                                 </span>
                             </div>
                         <?php } ?>
@@ -2328,14 +2328,14 @@ if (!function_exists('geodir_add_to_favorite')) {
         $unfavourite_text = apply_filters('geodir_unfavourite_text', UNFAVOURITE_TEXT);
 
         /**
-         * Filter to modify "fa fa-heart" icon
+         * Filter to modify "fas fa-heart" icon
          *
-         * You can use this filter to change "fa fa-heart" icon to something else.
+         * You can use this filter to change "fas fa-heart" icon to something else.
          *
          * @since 1.0.0
          * @package GeoDirectory
          */
-        $favourite_icon = apply_filters('geodir_favourite_icon', 'fa fa-heart');
+        $favourite_icon = apply_filters('geodir_favourite_icon', 'fas fa-heart');
 
         $site_id = '';
         if ( is_multisite() ) {
@@ -2409,14 +2409,14 @@ if (!function_exists('geodir_remove_from_favorite')) {
         $favourite_text = apply_filters('geodir_favourite_text', FAVOURITE_TEXT);
 
         /**
-         * Filter to modify "fa fa-heart" icon
+         * Filter to modify "fas fa-heart" icon
          *
-         * You can use this filter to change "fa fa-heart" icon to something else.
+         * You can use this filter to change "fas fa-heart" icon to something else.
          *
          * @since 1.0.0
          * @package GeoDirectory
          */
-        $favourite_icon = apply_filters('geodir_favourite_icon', 'fa fa-heart');
+        $favourite_icon = apply_filters('geodir_favourite_icon', 'fas fa-heart');
 
         $site_id = '';
         if ( is_multisite() ) {
@@ -2517,24 +2517,24 @@ if (!function_exists('geodir_favourite_html')) {
         $unfavourite_text = apply_filters('geodir_unfavourite_text', UNFAVOURITE_TEXT);
 
         /**
-         * Filter to modify "fa fa-heart" icon
+         * Filter to modify "fas fa-heart" icon
          *
-         * You can use this filter to change "fa fa-heart" icon to something else.
+         * You can use this filter to change "fas fa-heart" icon to something else.
          *
          * @since 1.0.0
          * @package GeoDirectory
          */
-        $favourite_icon = apply_filters('geodir_favourite_icon', 'fa fa-heart');
+        $favourite_icon = apply_filters('geodir_favourite_icon', 'fas fa-heart');
 
         /**
-         * Filter to modify "fa fa-heart" icon for "remove from favorites" link
+         * Filter to modify "fas fa-heart" icon for "remove from favorites" link
          *
-         * You can use this filter to change "fa fa-heart" icon to something else.
+         * You can use this filter to change "fas fa-heart" icon to something else.
          *
          * @since 1.0.0
          * @package GeoDirectory
          */
-        $unfavourite_icon = apply_filters('geodir_unfavourite_icon', 'fa fa-heart');
+        $unfavourite_icon = apply_filters('geodir_unfavourite_icon', 'fas fa-heart');
 
 
         $site_id = '';

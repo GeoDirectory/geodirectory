@@ -446,12 +446,12 @@ if (!function_exists('geodir_autoinstall_admin_header') && (get_option('geodir_i
 
                         jQuery('.gd_progressbar_'+posttype).progressbar({value: 0});
 
-                        gd_progressbar('.gd_progressbar_container_'+posttype, 0, '<i class="fa fa-refresh fa-spin"></i><?php echo esc_attr(__('Removing data...', 'geodirlocation'));?>');
+                        gd_progressbar('.gd_progressbar_container_'+posttype, 0, '<i class="fas fa-sync fa-spin"></i><?php echo esc_attr(__('Removing data...', 'geodirlocation'));?>');
 
 
                         jQuery.post('<?php echo geodir_get_ajax_url(); ?>&geodir_autofill=geodir_dummy_delete&posttype=' + posttype + '&_wpnonce=' + nonce,
                             function (data) {
-                                gd_progressbar('.gd_progressbar_container_'+posttype, 100, '<i class="fa fa-check"></i><?php echo esc_attr(__('Complete!', 'geodirlocation'));?>');
+                                gd_progressbar('.gd_progressbar_container_'+posttype, 100, '<i class="fas fa-check"></i><?php echo esc_attr(__('Complete!', 'geodirlocation'));?>');
                                 jQuery(obj).removeClass('gd-remove-data');
                                 jQuery(obj).val('<?php _e('Insert data','geodirectory');?>');
                                 jQuery(obj).prop('disabled', false);
@@ -496,7 +496,7 @@ if (!function_exists('geodir_autoinstall_admin_header') && (get_option('geodir_i
 
                         jQuery('.gd_progressbar_'+posttype).progressbar({value: 0});
 
-                        gd_progressbar('.gd_progressbar_container_'+posttype, 0, '0% (0 / ' + dateTypeCount + ') <i class="fa fa-refresh fa-spin"></i><?php echo esc_attr(__('Creating categories and custom fields...', 'geodirlocation'));?>');
+                        gd_progressbar('.gd_progressbar_container_'+posttype, 0, '0% (0 / ' + dateTypeCount + ') <i class="fas fa-sync fa-spin"></i><?php echo esc_attr(__('Creating categories and custom fields...', 'geodirlocation'));?>');
                     }
 
                     if (!(typeof bound_lat_lng == 'object' && bound_lat_lng.length == 4)) {
@@ -516,13 +516,13 @@ if (!function_exists('geodir_autoinstall_admin_header') && (get_option('geodir_i
                             percentage = percentage > 100 ? 100 : percentage;
 
 
-                            gd_progressbar('.gd_progressbar_container_'+posttype, percentage, percentage + '% ('+insertedCount+' / ' + dateTypeCount + ') <i class="fa fa-refresh fa-spin"></i><?php echo esc_attr(__('Inserting data...', 'geodirlocation'));?>');
+                            gd_progressbar('.gd_progressbar_container_'+posttype, percentage, percentage + '% ('+insertedCount+' / ' + dateTypeCount + ') <i class="fas fa-sync fa-spin"></i><?php echo esc_attr(__('Inserting data...', 'geodirlocation'));?>');
 
                             gdInstallDummyData(obj, nonce, posttype,insertedCount);
                         }
                         else {
                             percentage = 100;
-                            gd_progressbar('.gd_progressbar_container_'+posttype, percentage, percentage + '% ('+insertedCount+' / ' + dateTypeCount + ') <i class="fa fa-check"></i><?php echo esc_attr(__('Complete!', 'geodirlocation'));?>');
+                            gd_progressbar('.gd_progressbar_container_'+posttype, percentage, percentage + '% ('+insertedCount+' / ' + dateTypeCount + ') <i class="fas fa-check"></i><?php echo esc_attr(__('Complete!', 'geodirlocation'));?>');
                             jQuery(obj).addClass('gd-remove-data');
                             jQuery(obj).val('<?php _e('Remove data','geodirectory');?>');
                             jQuery(obj).prop('disabled', false);

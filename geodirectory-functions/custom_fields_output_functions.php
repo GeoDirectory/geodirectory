@@ -256,11 +256,11 @@ function geodir_cf_url($html,$location,$cf,$p=''){
             } elseif ($field_icon == '') {
 
                 if ($cf['name'] == 'geodir_facebook') {
-                    $field_icon_af = '<i class="fa fa-facebook-square"></i>';
+                    $field_icon_af = '<i class="fab fa-facebook-square"></i>';
                 } elseif ($cf['name'] == 'geodir_twitter') {
-                    $field_icon_af = '<i class="fa fa-twitter-square"></i>';
+                    $field_icon_af = '<i class="fab fa-twitter-square"></i>';
                 } else {
-                    $field_icon_af = '<i class="fa fa-link"></i>';
+                    $field_icon_af = '<i class="fas fa-link"></i>';
                 }
 
             } else {
@@ -370,7 +370,7 @@ function geodir_cf_phone($html,$location,$cf,$p=''){
             if (strpos($field_icon, 'http') !== false) {
                 $field_icon_af = '';
             } elseif ($field_icon == '') {
-                $field_icon_af = '<i class="fa fa-phone"></i>';
+                $field_icon_af = '<i class="fas fa-phone"></i>';
             } else {
                 $field_icon_af = $field_icon;
                 $field_icon = '';
@@ -465,7 +465,7 @@ function geodir_cf_time($html,$location,$cf,$p=''){
             if (strpos($field_icon, 'http') !== false) {
                 $field_icon_af = '';
             } elseif ($field_icon == '') {
-                $field_icon_af = '<i class="fa fa-clock-o"></i>';
+                $field_icon_af = '<i class="far fa-clock"></i>';
             } else {
                 $field_icon_af = $field_icon;
                 $field_icon = '';
@@ -584,7 +584,7 @@ function geodir_cf_datepicker($html,$location,$cf,$p=''){
             if (strpos($field_icon, 'http') !== false) {
                 $field_icon_af = '';
             } elseif ($field_icon == '') {
-                $field_icon_af = '<i class="fa fa-calendar"></i>';
+                $field_icon_af = '<i class="fas fa-calendar-alt"></i>';
             } else {
                 $field_icon_af = $field_icon;
                 $field_icon = '';
@@ -679,7 +679,7 @@ function geodir_cf_text($html,$location,$cf,$p=''){
             if (strpos($field_icon, 'http') !== false) {
                 $field_icon_af = '';
             } elseif ($field_icon == '') {
-                $field_icon_af = ($cf['htmlvar_name'] == 'geodir_timing') ? '<i class="fa fa-clock-o"></i>' : "";
+                $field_icon_af = ($cf['htmlvar_name'] == 'geodir_timing') ? '<i class="far fa-clock"></i>' : "";
             } else {
                 $field_icon_af = $field_icon;
                 $field_icon = '';
@@ -1134,7 +1134,7 @@ function geodir_cf_email($html,$location,$cf,$p=''){
             if (strpos($field_icon, 'http') !== false) {
                 $field_icon_af = '';
             } elseif ($field_icon == '') {
-                $field_icon_af = '<i class="fa fa-envelope"></i>';
+                $field_icon_af = '<i class="fas fa-envelope"></i>';
             } else {
                 $field_icon_af = $field_icon;
                 $field_icon = '';
@@ -1166,7 +1166,7 @@ function geodir_cf_email($html,$location,$cf,$p=''){
                 if (strpos($field_icon, 'http') !== false) {
                     $field_icon_af = '';
                 } elseif ($field_icon == '') {
-                    $field_icon_af = '<i class="fa fa-envelope"></i>';
+                    $field_icon_af = '<i class="fas fa-envelope"></i>';
                 } else {
                     $field_icon_af = $field_icon;
                     $field_icon = '';
@@ -1619,20 +1619,24 @@ function geodir_cf_taxonomy($html,$location,$cf,$p=''){
                     if ($term != '') {
                         $term = get_term_by('id', $term, $html_var);
                         if (is_object($term)) {
-                            $links[] = "<a href='" . esc_attr(get_term_link($term, $post_taxonomy)) . "'>" . $term->name . "</a>";
-                            $terms[] = $term;
+                            $links[$term->slug] = "<a href='" . esc_attr(get_term_link($term, $post_taxonomy)) . "'>" . $term->name . "</a>";
+                            $terms[$term->slug] = $term;
                         }
                     }
                 }
                 if (!empty($links)) {
                     // order alphabetically
-                    asort($links);
+                    ksort($links,SORT_STRING);
+//                    print_r($links);
                     foreach (array_keys($links) as $key) {
                         $termsOrdered[$key] = $terms[$key];
                     }
                     $terms = $termsOrdered;
                 }
             }
+
+//            print_r($terms);
+
             $html_value = !empty($links) && !empty($terms) ? wp_sprintf('%l', $links, (object)$terms) : '';
 
             if ($html_value != '') {
@@ -1792,7 +1796,7 @@ function geodir_cf_address($html,$location,$cf,$p=''){
             if ( strpos( $field_icon, 'http' ) !== false ) {
                 $field_icon_af = '';
             } elseif ( $field_icon == '' ) {
-                $field_icon_af = '<i class="fa fa-home"></i>';
+                $field_icon_af = '<i class="fas fa-home"></i>';
             } else {
                 $field_icon_af = $field_icon;
                 $field_icon    = '';
