@@ -519,7 +519,7 @@ if (!function_exists('register_geodir_widgets')) {
                 echo 'http://feeds2.feedburner.com/' . $id;
             } else {
                 bloginfo('rss_url');
-            } ?>"><i class="fa fa-rss-square"></i> </a><?php echo $after_title;?>
+            } ?>"><i class="fas fa-rss-square"></i> </a><?php echo $after_title;?>
 
                 <?php if ($text <> "") { ?>
 

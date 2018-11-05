@@ -307,7 +307,7 @@ class geodir_bestof_widget extends WP_Widget
         <input type="hidden" id="bestof_widget_char_count" name="bestof_widget_char_count"
                value="<?php echo $character_count; ?>">
         <div class="geo-bestof-contentwrap geodir-tabs-content" style="position: relative; z-index: 0;">
-            <p id="geodir-bestof-loading" class="geodir-bestof-loading"><i class="fa fa-cog fa-spin"></i></p>
+            <p id="geodir-bestof-loading" class="geodir-bestof-loading"><i class="fas fa-cog fa-spin"></i></p>
             <?php
             echo '<div id="geodir-bestof-places">';
             if ($terms) {

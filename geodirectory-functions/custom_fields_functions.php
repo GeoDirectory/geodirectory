@@ -1373,8 +1373,8 @@ function geodir_field_icon_proccess($cf){
 
     if (strpos($cf['field_icon'], 'http') !== false) {
         $field_icon = ' background: url(' . $cf['field_icon'] . ') no-repeat left center;background-size:18px 18px;padding-left: 21px;';
-    } elseif (strpos($cf['field_icon'], 'fa fa-') !== false) {
-        $field_icon = '<i class="' . $cf['field_icon'] . '"></i>';
+    } elseif (strpos($cf['field_icon'], ' fa-') !== false) {
+        $field_icon = '<i class="' . $cf['field_icon'] . ' fa-fw"></i>';
     }else{
         $field_icon = $cf['field_icon'];
     }
@@ -1910,7 +1910,7 @@ function geodir_get_custom_sort_options($post_type = '')
             'field_type' => 'random',
             'site_title' => 'Random',
             'htmlvar_name' => 'post_title',
-            'field_icon' =>  'fa fa-random',
+            'field_icon' =>  'fas fa-random',
             'description' =>  __('Random sort (not recommended for large sites)', 'geodirectory')
         );
 
@@ -1920,7 +1920,7 @@ function geodir_get_custom_sort_options($post_type = '')
             'field_type' => 'datetime',
             'site_title' => __('Add date', 'geodirectory'),
             'htmlvar_name' => 'post_date',
-            'field_icon' =>  'fa fa-calendar',
+            'field_icon' =>  'fas fa-calendar-alt',
             'description' =>  __('Sort by date added', 'geodirectory')
         );
         $fields[] = array(
@@ -1929,7 +1929,7 @@ function geodir_get_custom_sort_options($post_type = '')
             'field_type' => 'bigint',
             'site_title' => __('Review', 'geodirectory'),
             'htmlvar_name' => 'comment_count',
-            'field_icon' =>  'fa fa-commenting-o',
+            'field_icon' =>  'far fa-comment-dots',
             'description' =>  __('Sort by the number of reviews', 'geodirectory')
         );
         $fields[] = array(
@@ -1938,7 +1938,7 @@ function geodir_get_custom_sort_options($post_type = '')
             'field_type' => 'float',
             'site_title' => __('Rating', 'geodirectory'),
             'htmlvar_name' => 'overall_rating',
-            'field_icon' =>  'fa fa-star-o',
+            'field_icon' =>  'far fa-star',
             'description' =>  __('Sort by the overall rating value', 'geodirectory')
         );
         $fields[] = array(
@@ -1947,7 +1947,7 @@ function geodir_get_custom_sort_options($post_type = '')
             'field_type' => 'text',
             'site_title' => __('Title', 'geodirectory'),
             'htmlvar_name' => 'post_title',
-            'field_icon' =>  'fa fa-sort-alpha-desc',
+            'field_icon' =>  'fas fa-sort-alpha-up',
             'description' =>  __('Sort alphabetically by title', 'geodirectory')
         );
 
@@ -2234,14 +2234,14 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
 
         $nonce = wp_create_nonce('custom_fields_' . $result_str);
 
-        $field_icon = '<i class="fa fa-cog" aria-hidden="true"></i>';
+        $field_icon = '<i class="fas fa-cog" aria-hidden="true"></i>';
         $cso_arr = geodir_get_custom_sort_options($post_type);
 
         $cur_field_type = (isset($cf->field_type)) ? $cf->field_type : esc_html($_REQUEST['field_type']);
         foreach($cso_arr as $cso){
             if($cur_field_type==$cso['field_type']){
 
-                if (isset($cso['field_icon']) && strpos($cso['field_icon'], 'fa fa-') !== false) {
+                if (isset($cso['field_icon']) && strpos($cso['field_icon'], ' fa-') !== false) {
                     $field_icon = '<i class="'.$cso['field_icon'].'" aria-hidden="true"></i>';
                 }elseif(isset($cso['field_icon']) && $cso['field_icon']){
                     $field_icon = '<b class="gd-cf-icon" style="background-image: url(\''.$cso['field_icon'].'\')"></b>';
@@ -2264,7 +2264,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
 
                 <div title="<?php _e('Click to remove field', 'geodirectory');?>"
                      onclick="delete_sort_field('<?php echo $result_str;?>', '<?php echo $nonce;?>', this)"
-                     class="handlediv close"><i class="fa fa-times" aria-hidden="true"></i></div>
+                     class="handlediv close"><i class="fas fa-times" aria-hidden="true"></i></div>
 
 
                 <?php echo $field_icon;?>
@@ -2299,7 +2299,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                             <?php $value = (isset($field_info->sort_asc) && $field_info->sort_asc) ? $field_info->sort_asc : 0;?>
 
                             <label for="asc" class="gd-cf-tooltip-wrap">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Show Ascending Sort (low to high)', 'geodirectory'); ?>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Show Ascending Sort (low to high)', 'geodirectory'); ?>
                                 <div class="gdcf-tooltip">
                                     <?php _e('Select if you want to show this option in the sort options. (A-Z,0-100 or OFF)', 'geodirectory'); ?>
                                 </div>
@@ -2326,7 +2326,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                             <?php $value = (isset($field_info->asc_title) && $field_info->asc_title) ? esc_attr($field_info->asc_title) : '';?>
 
                             <label for="asc_title" class="gd-cf-tooltip-wrap">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Ascending title', 'geodirectory'); ?>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Ascending title', 'geodirectory'); ?>
                                 <div class="gdcf-tooltip">
                                     <?php _e('This is the text used for the sort option.', 'geodirectory'); ?>
                                 </div>
@@ -2343,7 +2343,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                         <li class="cfs-asc-title" <?php if ((isset($field_info->sort_asc) && $field_info->sort_asc == '0') || !isset($field_info->sort_asc)) {echo "style='display:none;'";}?>>
 
                             <label for="is_default" class="gd-cf-tooltip-wrap">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Default sort?', 'geodirectory'); ?>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Default sort?', 'geodirectory'); ?>
                                 <div class="gdcf-tooltip">
                                     <?php _e('This sets the option as the overall default sort value, there can be only one.', 'geodirectory'); ?>
                                 </div>
@@ -2364,7 +2364,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                             <?php $value = (isset($field_info->sort_desc) && $field_info->sort_desc) ? $field_info->sort_desc : 0;?>
 
                             <label for="desc" class="gd-cf-tooltip-wrap">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Show Descending Sort (high to low)', 'geodirectory'); ?>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Show Descending Sort (high to low)', 'geodirectory'); ?>
                                 <div class="gdcf-tooltip">
                                     <?php _e('Select if you want to show this option in the sort options. (Z-A,100-0 or ON)', 'geodirectory'); ?>
                                 </div>
@@ -2391,7 +2391,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                             <?php $value = (isset($field_info->desc_title) && $field_info->desc_title) ? esc_attr($field_info->desc_title) : '';?>
 
                             <label for="desc_title" class="gd-cf-tooltip-wrap">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Descending title', 'geodirectory'); ?>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Descending title', 'geodirectory'); ?>
                                 <div class="gdcf-tooltip">
                                     <?php _e('This is the text used for the sort option.', 'geodirectory'); ?>
                                 </div>
@@ -2407,7 +2407,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                         <li class="cfs-desc-title" <?php if ((isset($field_info->sort_desc) && $field_info->sort_desc == '0') || !isset($field_info->sort_desc)) {echo "style='display:none;'";}?>>
 
                             <label for="is_default" class="gd-cf-tooltip-wrap">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Default sort?', 'geodirectory'); ?>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Default sort?', 'geodirectory'); ?>
                                 <div class="gdcf-tooltip">
                                     <?php _e('This sets the option as the overall default sort value, there can be only one.', 'geodirectory'); ?>
                                 </div>
@@ -2433,7 +2433,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                             <?php $value = esc_attr($site_title)?>
 
                             <label for="site_title" class="gd-cf-tooltip-wrap">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Frontend title', 'geodirectory'); ?>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Frontend title', 'geodirectory'); ?>
                                 <div class="gdcf-tooltip">
                                     <?php _e('This is the text used for the sort option.', 'geodirectory'); ?>
                                 </div>
@@ -2450,7 +2450,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                             <?php $value = (isset($field_info->is_default) && $field_info->is_default) ? esc_attr($field_info->is_default) : '';?>
 
                             <label for="is_default" class="gd-cf-tooltip-wrap">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Default sort?', 'geodirectory'); ?>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Default sort?', 'geodirectory'); ?>
                                 <div class="gdcf-tooltip">
                                     <?php _e('This sets the option as the overall default sort value, there can be only one.', 'geodirectory'); ?>
                                 </div>
@@ -2474,7 +2474,7 @@ if (!function_exists('geodir_custom_sort_field_adminhtml')) {
                         <?php $value = (isset($field_info->is_active) && $field_info->is_active) ? $field_info->is_active: 0;?>
 
                         <label for="is_active" class="gd-cf-tooltip-wrap">
-                            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Is active', 'geodirectory'); ?>
+                            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Is active', 'geodirectory'); ?>
                             <div class="gdcf-tooltip">
                                 <?php _e('Set if this sort option is active or not, if not it will not be shown to users.', 'geodirectory'); ?>
                             </div>
@@ -2773,7 +2773,7 @@ function geodir_cfa_advanced_editor_geodir_special_offers($output,$result_str,$c
     ob_start();
     ?>
     <li>
-        <label for="advanced_editor" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Show advanced editor :', 'geodirectory'); ?>
+        <label for="advanced_editor" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Show advanced editor :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Select if you want to show the advanced editor on add listing page.', 'geodirectory'); ?>
             </div>
@@ -2815,7 +2815,7 @@ function geodir_cfa_validation_pattern_text($output,$result_str,$cf,$field_info)
     ?>
     <li>
         <label for="validation_pattern" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Validation Pattern:', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Validation Pattern:', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Enter regex expression for HTML5 pattern validation.', 'geodirectory'); ?>
             </div>
@@ -2835,7 +2835,7 @@ function geodir_cfa_validation_pattern_text($output,$result_str,$cf,$field_info)
     ?>
     <li>
         <label for="validation_msg" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Validation Message:', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Validation Message:', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Enter a extra validation message to show to the user if validation fails.', 'geodirectory'); ?>
             </div>
@@ -2864,7 +2864,7 @@ function geodir_cfa_htmlvar_name_taxonomy($output,$result_str,$cf,$field_info){
     ?>
     <li style="display: none;">
         <label for="htmlvar_name" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Select taxonomy:', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Select taxonomy:', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Selected taxonomy name use as field name index. ex:-( post_category[gd_placecategory] )', 'geodirectory'); ?>
             </div>
@@ -2887,7 +2887,7 @@ function geodir_cfa_htmlvar_name_taxonomy($output,$result_str,$cf,$field_info){
 
     <li>
         <label for="cat_display_type" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Category display type :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Category display type :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Show categories list as select, multiselect, checkbox or radio', 'geodirectory');?>
             </div>
@@ -2942,7 +2942,7 @@ function geodir_cfa_extra_fields_address($output,$result_str,$cf,$field_info){
 
     <li>
         <label for="show_zip" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Display zip/post code :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Display zip/post code :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Select if you want to show zip/post code field in address section.', 'geodirectory');?>
             </div>
@@ -2967,7 +2967,7 @@ function geodir_cfa_extra_fields_address($output,$result_str,$cf,$field_info){
 
     <li class="cf-zip-lable"  <?php if ((isset($address['show_zip']) && !$address['show_zip']) || !isset($address['show_zip'])) {echo "style='display:none;'";}?> >
         <label for="zip_lable" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Zip/Post code label :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Zip/Post code label :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Enter zip/post code field label in address section.', 'geodirectory');?>
             </div>
@@ -2985,7 +2985,7 @@ function geodir_cfa_extra_fields_address($output,$result_str,$cf,$field_info){
 
     <li>
         <label for="map_lable" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Map button label :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Map button label :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Enter text for `set address on map` button in address section.', 'geodirectory');?>
             </div>
@@ -3000,7 +3000,7 @@ function geodir_cfa_extra_fields_address($output,$result_str,$cf,$field_info){
 
     <li>
         <label for="show_mapzoom" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Use user zoom level:', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Use user zoom level:', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Do you want to use the user defined map zoom level from the add listing page?', 'geodirectory');?>
             </div>
@@ -3024,7 +3024,7 @@ function geodir_cfa_extra_fields_address($output,$result_str,$cf,$field_info){
 
     <li>
         <label for="show_mapview" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Display map view:', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Display map view:', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Select if you want to `set default map` options in address section. ( Satellite Map, Hybrid Map, Terrain Map)', 'geodirectory');?>
             </div>
@@ -3049,7 +3049,7 @@ function geodir_cfa_extra_fields_address($output,$result_str,$cf,$field_info){
 
     <li>
         <label for="mapview_lable" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Map view label:', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Map view label:', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Enter mapview field label in address section.', 'geodirectory');?>
             </div>
@@ -3063,7 +3063,7 @@ function geodir_cfa_extra_fields_address($output,$result_str,$cf,$field_info){
     </li>
     <li>
         <label for="show_latlng" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Show latitude and longitude', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Show latitude and longitude', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('This will show/hide the longitude fields in the address section add listing form.', 'geodirectory');?>
             </div>
@@ -3097,7 +3097,7 @@ function geodir_cfa_extra_fields_multiselect($output,$result_str,$cf,$field_info
     ?>
     <li>
         <label for="multi_display_type" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Multiselect display type :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Multiselect display type :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Show multiselect list as multiselect,checkbox or radio.', 'geodirectory');?>
             </div>
@@ -3142,7 +3142,7 @@ function geodir_cfa_extra_fields_smr($output,$result_str,$cf,$field_info){
     ?>
     <li>
         <label for="option_values" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Option Values :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Option Values :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <span><?php _e('Option Values should be separated by comma.', 'geodirectory');?></span>
                 <br/>
@@ -3183,7 +3183,7 @@ function geodir_cfa_extra_fields_datepicker($output,$result_str,$cf,$field_info)
     ?>
     <li>
         <label for="date_format" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Date Format :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Date Format :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Select the date format.', 'geodirectory');?>
             </div>
@@ -3238,7 +3238,7 @@ function geodir_cfa_extra_fields_file($output,$result_str,$cf,$field_info){
     ?>
     <li>
         <label for="gd_file_types" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Allowed file types :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Allowed file types :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Select file types to allowed for file uploading. (Select multiple file types by holding down "Ctrl" key.)', 'geodirectory');?>
             </div>
@@ -3287,7 +3287,7 @@ function geodir_cfa_extra_fields_text($output,$result_str,$cf,$field_info){
     ?>
     <li class="gdcf-price-extra-set" <?php if(!$show_price){ echo "style='display:none;'";}?>>
         <label for="is_price" class="gd-cf-tooltip-wrap">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Display as price? :', 'geodirectory'); ?>
+            <i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Display as price? :', 'geodirectory'); ?>
             <div class="gdcf-tooltip">
                 <?php _e('Select if this field should be displayed as a price value. ', 'geodirectory'); ?>
             </div>
@@ -3319,7 +3319,7 @@ function geodir_cfa_extra_fields_text($output,$result_str,$cf,$field_info){
     }
     ?>
     <li class="gdcf-price-extra" <?php if(!$show_price_extra){ echo "style='display:none;'";}?>>
-        <label for="thousand_separator" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Thousand separator :', 'geodirectory');?>
+        <label for="thousand_separator" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Thousand separator :', 'geodirectory');?>
             <div class="gdcf-tooltip">
                 <?php _e('Select the thousand separator.', 'geodirectory'); ?>
             </div>
@@ -3347,7 +3347,7 @@ function geodir_cfa_extra_fields_text($output,$result_str,$cf,$field_info){
     }
     ?>
     <li class="gdcf-price-extra" <?php if(!$show_price_extra){ echo "style='display:none;'";}?>>
-        <label for="decimal_separator" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Decimal separator :', 'geodirectory');?>
+        <label for="decimal_separator" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Decimal separator :', 'geodirectory');?>
             <div class="gdcf-tooltip">
                 <?php _e('Select the decimal separator.', 'geodirectory'); ?>
             </div>
@@ -3370,7 +3370,7 @@ function geodir_cfa_extra_fields_text($output,$result_str,$cf,$field_info){
     }
     ?>
     <li class="gdcf-price-extra" <?php if(!$show_price_extra){ echo "style='display:none;'";}?>>
-        <label for="decimal_display" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Decimal display :', 'geodirectory');?>
+        <label for="decimal_display" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Decimal display :', 'geodirectory');?>
             <div class="gdcf-tooltip">
                 <?php _e('Select how the decimal is displayed', 'geodirectory'); ?>
             </div>
@@ -3393,7 +3393,7 @@ function geodir_cfa_extra_fields_text($output,$result_str,$cf,$field_info){
     }
     ?>
     <li class="gdcf-price-extra" <?php if(!$show_price_extra){ echo "style='display:none;'";}?>>
-        <label for="currency_symbol" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Currency symbol :', 'geodirectory');?>
+        <label for="currency_symbol" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Currency symbol :', 'geodirectory');?>
             <div class="gdcf-tooltip">
                 <?php _e('Select the currency symbol.', 'geodirectory'); ?>
             </div>
@@ -3414,7 +3414,7 @@ function geodir_cfa_extra_fields_text($output,$result_str,$cf,$field_info){
     }
     ?>
     <li class="gdcf-price-extra" <?php if(!$show_price_extra){ echo "style='display:none;'";}?>>
-        <label for="currency_symbol_placement" class="gd-cf-tooltip-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i> <?php _e('Currency symbol placement :', 'geodirectory');?>
+        <label for="currency_symbol_placement" class="gd-cf-tooltip-wrap"><i class="fas fa-info-circle" aria-hidden="true"></i> <?php _e('Currency symbol placement :', 'geodirectory');?>
             <div class="gdcf-tooltip">
                 <?php _e('Select the currency symbol placement.', 'geodirectory'); ?>
             </div>

@@ -27,7 +27,7 @@ function geodir_property_rent_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  addslashes_gpc('\d+(\.\d{2})?'), // add slashes required
                       'validation_msg'      =>  'Please enter number and decimal only ie: 100.50',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-usd',
+                      'field_icon'          =>  'fas fa-dollar-sign',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true,
@@ -59,7 +59,7 @@ function geodir_property_rent_custom_fields($post_type='gd_place',$package_id=''
                       'show_in'   =>  '[detail],[listing]',
                       'show_on_pkg' => $package,
                       'option_values' => 'Select Status/,For Rent,Let,Under Offer',
-                      'field_icon' => 'fa fa-home',
+                      'field_icon' => 'fas fa-home',
                       'css_class' => '',
                       'cat_sort' => 1,
                       'cat_filter' => 1,
@@ -82,7 +82,7 @@ function geodir_property_rent_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-th-large',
+                      'field_icon'          =>  'fas fa-th-large',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true
@@ -105,7 +105,7 @@ function geodir_property_rent_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-home',
+                      'field_icon'          =>  'fas fa-home',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true
@@ -128,7 +128,7 @@ function geodir_property_rent_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-bed',
+                      'field_icon'          =>  'fas fa-bed',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true
@@ -151,7 +151,7 @@ function geodir_property_rent_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-bold',
+                      'field_icon'          =>  'fas fa-bold',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true
@@ -173,7 +173,7 @@ function geodir_property_rent_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  addslashes_gpc('\d+(\.\d{2})?'), // add slashes required
                       'validation_msg'      =>  'Please enter the property area in numbers only: 1500',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-area-chart',
+                      'field_icon'          =>  'fas fa-chart-area',
                       'css_class'           =>  '',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true
@@ -196,7 +196,7 @@ function geodir_property_rent_custom_fields($post_type='gd_place',$package_id=''
                       'validation_pattern'  =>  '',
                       'validation_msg'      =>  '',
                       'required_msg'        =>  '',
-                      'field_icon'          =>  'fa fa-plus-square',
+                      'field_icon'          =>  'fas fa-plus-square',
                       'css_class'           =>  'gd-comma-list',
                       'cat_sort'            =>  true,
                       'cat_filter'	        =>  true

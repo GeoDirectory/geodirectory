@@ -294,7 +294,7 @@ jQuery(function($) {
                 label = gd_highlight(label, this.term);
             }
             
-            return $("<li>").width($('input[name="post_address"]').outerWidth()).append('<i class="fa fa-map-marker"></i><span>' + label + '</span>').appendTo(ul);
+            return $("<li>").width($('input[name="post_address"]').outerWidth()).append('<i class="fas fa-map-marker-alt"></i><span>' + label + '</span>').appendTo(ul);
         };
     }
     } catch (e) {

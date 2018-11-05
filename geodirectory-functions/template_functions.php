@@ -654,9 +654,9 @@ function geodir_font_awesome_rating_stars_html($html, $rating, $star_count = 5) 
 		$empty_stars = $star_count - $full_stars - $half_stars;
 		
 		$html = '<div class="gd-star-rating gd-fa-star-rating">';
-		$html .= str_repeat( '<i class="fa fa-star gd-full-star"></i>', $full_stars );
-		$html .= str_repeat( '<i class="fa fa-star-o fa-star-half-full gd-half-star"></i>', $half_stars );
-		$html .= str_repeat( '<i class="fa fa-star-o gd-empty-star"></i>', $empty_stars);
+		$html .= str_repeat( '<i class="fas fa-star gd-full-star"></i>', $full_stars );
+		$html .= str_repeat( '<i class="fas fa-star-half-alt gd-half-star"></i>', $half_stars );
+		$html .= str_repeat( '<i class="far fa-star gd-empty-star"></i>', $empty_stars);
 		$html .= '</div>';
 	}
 
@@ -675,7 +675,7 @@ function geodir_font_awesome_rating_css() {
 		$full_color = get_option('geodir_reviewrating_fa_full_rating_color', '#757575');
 		if ($full_color != '#757575') {
 			echo '<style type="text/css">.br-theme-fontawesome-stars .br-widget a.br-active:after,.br-theme-fontawesome-stars .br-widget a.br-selected:after,
-			.gd-star-rating i.fa {color:' . stripslashes($full_color) . '!important;}</style>';
+			.gd-star-rating svg.svg-inline--fa {color:' . stripslashes($full_color) . '!important;}</style>';
 		}
 	}
 }

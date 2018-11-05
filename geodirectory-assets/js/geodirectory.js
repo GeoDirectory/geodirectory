@@ -590,7 +590,7 @@ function geodir_get_post_term(el) {
     limit = jQuery(el).data('limit');
     term = jQuery(el).val();//data('term');
     var parent_only = parseInt(jQuery(el).data('parent')) > 0 ? 1 : 0;
-    jQuery(el).parent().parent().find('.geodir-popular-cat-list').html('<i class="fa fa-cog fa-spin"></i>');
+    jQuery(el).parent().parent().find('.geodir-popular-cat-list').html('<i class="fas fa-cog fa-spin"></i>');
     jQuery(el).parent().parent().parent().find('.geodir-cat-list-more').hide();
     jQuery.post(geodir_all_js_msg.geodir_admin_ajax_url + '?action=geodir_ajax_action', {
         ajax_action: "geodir_get_term_list",
@@ -719,7 +719,7 @@ function geodir_search_wait(on){
 
         }
         geodir_search_wait_animate();
-        jQuery('button.geodir_submit_search').html('<i class="fa fa-hourglass fa-spin" aria-hidden="true"></i>');
+        jQuery('button.geodir_submit_search').html('<i class="fas fa-hourglass fa-spin" aria-hidden="true"></i>');
     } else {
         searchPos = 0;
         gdSearchDoing = 0;

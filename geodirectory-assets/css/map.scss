@@ -81,6 +81,11 @@
   width: 250px !important;
 }
 
+.gm-style-iw + button.gm-ui-hover-effect {
+    z-index: 11;
+    background: #ffffff5c !important;
+}
+
 .gm-style .gm-style-iw > div, .gm-style .gm-style-iw > div > div{
   overflow: visible !important;
 }
@@ -176,7 +181,7 @@
     margin: 5px 0px;
 }
 
-.geodir-bubble-meta-side i.fa{
+.geodir-bubble-meta-side svg{
     margin-right: 3px;
 }
 
@@ -334,7 +339,7 @@
     visibility: hidden;
 }
 
-.geodir-bubble-meta-bottom .geodir-addtofav a i {
+.geodir-bubble-meta-bottom .geodir-addtofav a svg {
     visibility: visible;
 }
 
@@ -874,10 +879,10 @@ div.geodir_map_container.geodir-map-iphone .map_background .triggermap {
 .gd-osm-results .ui-menu-item:hover {
     background-color: #fafafa !important;
 }
-.gd-osm-results .ui-menu-item .fa {
+.gd-osm-results .ui-menu-item svg {
     margin-right: 5px;
 }
-.gd-osm-results .ui-menu-item:hover .fa {
+.gd-osm-results .ui-menu-item:hover svg {
     color: #3887be!important;
 }
 .gd-osm-results .ui-menu-item  .gdOH {
