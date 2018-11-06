@@ -3,12 +3,16 @@ Contributors: stiofansisland, paoltaia, ayecode, Ismiaini
 Donate link: https://wpgeodirectory.com
 Tags:  directory plugin, business directory, listings, classifieds, real estate, address book, addressbook, addresses, bio, biographies, bios, business, business directory plugin, business-directory, businesses, church, directories, directory, directory widget, geodirectory, googlemap, googlemaps, google maps, list, lists, member directory, members directories, members directory, microformat, microformats, multisite, profile, profiles, staff, user, users, vcard, wordpress business directory, wordpress directory, wordpress directory plugin, yelp clone, tripadvisor clone, yellow pages clone, wordpress business directory plugin, wordpress directory theme, wordpress business directory theme, wordpress city directory plugin, wordpress local directory plugin, city directory
 Requires at least: 3.1
-Tested up to: 4.9
-Stable tag: 1.6.30
+Tested up to: 5.0
+Stable tag: 1.6.31
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Create huge location-based business directories with this fully-featured directory plugin. In a few clicks you could be the next Yelp or Tripadvisor.
+
+= GeoDirectory v2 =
+
+GDv2 is available now available (though not all addons are out of beta testing) [Try GeoDirectory v2](https://wpgeodirectory.com/try-geodirectory-v2/).
 
 == Description ==
 
@@ -150,13 +154,17 @@ GeoDirectory comes with some dummy data you can use to see how listings look. Yo
 
 == Changelog ==
 
+= 1.6.31 =
+
+[GeoDirectory changelog for version 1.6.31](http://wpgeodirectory.com/change-logs/#v1.6.31).
+
 = 1.6.30 =
 
-[GeoDirectory changelog for version 1.6.28](http://wpgeodirectory.com/change-logs/#v1.6.30).
+[GeoDirectory changelog for version 1.6.30](http://wpgeodirectory.com/change-logs/#v1.6.30).
 
 = 1.6.29 =
 
-[GeoDirectory changelog for version 1.6.28](http://wpgeodirectory.com/change-logs/#v1.6.29).
+[GeoDirectory changelog for version 1.6.29](http://wpgeodirectory.com/change-logs/#v1.6.29).
 
 = 1.6.28 =
 
