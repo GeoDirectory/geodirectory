@@ -1,4 +1,4 @@
-v1.6.31
+v1.6.32
 Fix GD search conflict with Jetpack by WordPress.com ElasticSearch - FIXED
 Change CPT settings sorting options description - CHANGED
 Special apostrophe character not supported with search listing - FIXED
@@ -14,6 +14,7 @@ Unable to translate text on detail page photos popup - FIXED
 Search radius settings not filtering the results - FIXED
 OSM near search geolocation not adding on default location to search - FIXED
 Google maps CSS changes means map info-window close button does not work - FIXED
+Shadow missing from fav listing icon - FIXED
 Update Font Awesome to v5 JS version - CHANGED
 
 v1.6.30

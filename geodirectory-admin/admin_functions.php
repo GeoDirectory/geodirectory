@@ -67,11 +67,8 @@ if (!function_exists('geodir_admin_styles_req')) {
     function geodir_admin_styles_req()
     {
 
-//        wp_register_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', array(), GEODIRECTORY_VERSION);
-//        wp_enqueue_style('font-awesome');
-
-        wp_register_script('font-awesome', 'https://use.fontawesome.com/releases/v5.4.1/js/all.js', array('font-awesome-shim'), GEODIRECTORY_VERSION);
-        wp_register_script('font-awesome-shim', 'https://use.fontawesome.com/releases/v5.4.1/js/v4-shims.js', array(), GEODIRECTORY_VERSION);
+        wp_register_script('font-awesome', 'https://use.fontawesome.com/releases/v5.5.0/js/all.js', array('font-awesome-shim'), GEODIRECTORY_VERSION);
+        wp_register_script('font-awesome-shim', 'https://use.fontawesome.com/releases/v5.5.0/js/v4-shims.js', array(), GEODIRECTORY_VERSION);
         wp_enqueue_script( 'font-awesome' );
 
         wp_register_script('geodirectory-admin', geodir_plugin_url() . '/geodirectory-assets/js/admin-req.min.js', array('jquery'), GEODIRECTORY_VERSION);

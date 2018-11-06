@@ -2309,10 +2309,10 @@ function geodir_search_form_submit_button() {
 
 	if ( $new_style ) {
 		?>
-		<button class="geodir_submit_search <?php echo $fa_class; ?>"><?php _e( $default_search_button_label ,'geodirectory'); ?></button>
+		<button class="geodir_submit_search "><?php _e( $default_search_button_label ,'geodirectory'); ?></button>
 	<?php }else{?>
 		<input type="button" value="<?php esc_attr_e( $default_search_button_label ); ?>"
-		       class="geodir_submit_search <?php echo $fa_class; ?>"/>
+		       class="geodir_submit_search "/>
 	<?php }
 }
 
