@@ -835,14 +835,12 @@ add_action( 'wp_enqueue_scripts', 'geodir_fix_script_conflict', 100 );
  */
 function geodir_fontawesome_defer($url)
 {
-    if (strpos($url, '#faload')===false)
+    if (strpos($url, 'use.fontawesome.com/releases/')===false)
         return $url;
     else if (is_admin())
         return str_replace('#faload', '', $url);
     else
-        return str_replace('#faload', '', $url)."' data-search-pseudo-elements defer='defer";
-
-
+        return $url."' data-search-pseudo-elements defer='defer";
 }
 add_filter('clean_url', 'geodir_fontawesome_defer', 11, 1);
 
