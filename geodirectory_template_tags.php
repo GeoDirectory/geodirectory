@@ -328,7 +328,7 @@ function geodir_templates_styles()
     wp_enqueue_style('geodirectory-frontend-rtl-style');
     }
 
-    wp_register_script('font-awesome', 'https://use.fontawesome.com/releases/v5.5.0/js/all.js', array('font-awesome-shim'), GEODIRECTORY_VERSION);
+    wp_register_script('font-awesome', 'https://use.fontawesome.com/releases/v5.5.0/js/all.js#faload', array('font-awesome-shim'), GEODIRECTORY_VERSION);
     wp_register_script('font-awesome-shim', 'https://use.fontawesome.com/releases/v5.5.0/js/v4-shims.js', array(), GEODIRECTORY_VERSION);
     wp_enqueue_script( 'font-awesome' );
 
@@ -825,3 +825,33 @@ function geodir_fix_script_conflict() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'geodir_fix_script_conflict', 100 );
+
+/**
+ * make fontawesome search for inline before and after icons
+ *
+ * @param $url
+ *
+ * @return mixed|string
+ */
+function geodir_fontawesome_defer($url)
+{
+    if (strpos($url, '#faload')===false)
+        return $url;
+    else if (is_admin())
+        return str_replace('#faload', '', $url);
+    else
+        return str_replace('#faload', '', $url)."' data-search-pseudo-elements defer='defer";
+
+
+}
+add_filter('clean_url', 'geodir_fontawesome_defer', 11, 1);
+
+/**
+ * Dequeue our fontawesome if using BB page.
+ */
+function geodir_fix_beaver_builder(){
+    if(isset($_REQUEST['fl_builder'])){
+        wp_dequeue_script( 'font-awesome' );
+    }
+}
+add_filter('wp_print_scripts','geodir_fix_beaver_builder',100);

@@ -1,3 +1,8 @@
+v1.6.33
+CSS Pseudo-Elements now enabled for Font Awesome - CHANGED
+Disable our own FA on beaver builder pages until BB updates to FA5 JS - FIXED
+Map child categories reveal icon not showing correctly - FIXED
+
 v1.6.32
 Fix GD search conflict with Jetpack by WordPress.com ElasticSearch - FIXED
 Change CPT settings sorting options description - CHANGED
