@@ -359,40 +359,42 @@ function build_map_ajax_search_param(map_canvas_var, reload_cat_list, catObj, hi
 }
 
 function geodir_show_sub_cat_collapse_button() {
-    jQuery('ul.main_list li').each(function(i) {
-        var sub_cat_list = jQuery(this).find('ul.sub_list');
-        //alert((typeof sub_cat_list.attr('class') ==='undefined')) ;
-        if (!(typeof sub_cat_list.attr('class') === 'undefined')) {
-            if (sub_cat_list.is(':visible')) {
-                jQuery(this).find('i').removeClass('fa-long-arrow-down');
-                jQuery(this).find('i').addClass('fa-long-arrow-up');
+
+    setTimeout(function(){
+        jQuery('ul.main_list li').each(function(i) {
+            var sub_cat_list = jQuery(this).find('ul.sub_list');
+            if (!(typeof sub_cat_list.attr('class') === 'undefined')) {
+                if (sub_cat_list.is(':visible')) {
+                    jQuery(this).find('svg').removeClass('fa-long-arrow-alt-down');
+                    jQuery(this).find('svg').addClass('fa-long-arrow-alt-up');
+                } else {
+                    jQuery(this).find('svg').removeClass('fa-long-arrow-alt-up');
+                    jQuery(this).find('svg').addClass('fa-long-arrow-alt-down');
+                }
+                jQuery(this).find('svg').show();
+                /**/
             } else {
-                jQuery(this).find('i').removeClass('fa-long-arrow-up');
-                jQuery(this).find('i').addClass('fa-long-arrow-down');
+                jQuery(this).find('svg').hide();
+                /**/
             }
-            jQuery(this).find('i').show();
-            /**/
-        } else {
-            jQuery(this).find('i').hide();
-            /**/
-        }
-    });
-    geodir_activate_collapse_pan();
+        });
+        geodir_activate_collapse_pan();
+    }, 100);
 }
 
 function geodir_activate_collapse_pan() {
-    jQuery('ul.main_list').find('i').click(function() {
+    jQuery('ul.main_list').find('.gd-map-cat-toggle').unbind('click').click(function() {
         jQuery(this)
             .parent('li')
             .find('ul.sub_list')
             .toggle(200,
                 function() {
                     if (jQuery(this).is(':visible')) {
-                        jQuery(this).parent('li').find('i').removeClass('fa-long-arrow-down');
-                        jQuery(this).parent('li').find('i').addClass('fa-long-arrow-up');
+                        jQuery(this).parent('li').find('svg').removeClass('fa-long-arrow-alt-down');
+                        jQuery(this).parent('li').find('svg').addClass('fa-long-arrow-alt-up');
                     } else {
-                        jQuery(this).parent('li').find('i').removeClass('fa-long-arrow-up');
-                        jQuery(this).parent('li').find('i').addClass('fa-long-arrow-down');
+                        jQuery(this).parent('li').find('svg').removeClass('fa-long-arrow-alt-up');
+                        jQuery(this).parent('li').find('svg').addClass('fa-long-arrow-alt-down');
                     }
                 });
     });
