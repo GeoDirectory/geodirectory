@@ -1,3 +1,6 @@
+v1.6.35
+Font Awesome Pseudo-Elements flag disabled by default - CHANGED
+
 v1.6.34
 CSS Pseudo-Elements now enabled for Font Awesome - CHANGED
 Disable our own FA on beaver builder pages until BB updates to FA5 JS - FIXED

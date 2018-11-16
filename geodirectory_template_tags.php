@@ -842,7 +842,7 @@ function geodir_fontawesome_defer($url)
     else
         return $url."' data-search-pseudo-elements defer='defer";
 }
-add_filter('clean_url', 'geodir_fontawesome_defer', 11, 1);
+//add_filter('clean_url', 'geodir_fontawesome_defer', 11, 1); // let users add this as a snippet if they need it
 
 /**
  * Dequeue our fontawesome if using BB page.
