@@ -611,7 +611,7 @@ function geodir_post_where()
                 add_filter('posts_where', 'searching_filter_where', 1);
 
             add_filter('posts_orderby', 'geodir_posts_orderby', 1);
-			add_filter( 'posts_where', 'geodir_posts_having', 10000, 2 ); // make sure its the last WHERE param
+			add_filter( 'posts_clauses', 'geodir_posts_having', 99999, 2 );
 
         } elseif (geodir_is_page('author')) {
 
@@ -1179,7 +1179,7 @@ function geodir_jetpack_fix_post_types_search(){
 }
 add_action( 'plugins_loaded','geodir_jetpack_fix_post_types_search', 10 );
 
-function geodir_posts_having( $where, $query = array() ) {
+function geodir_posts_having( $clauses, $query = array() ) {
 	global $wpdb, $gd_session, $geodir_post_type, $dist, $mylat, $mylon, $snear;
 
 	if ( geodir_is_gd_main_query( $query ) ) {
@@ -1194,13 +1194,22 @@ function geodir_posts_having( $where, $query = array() ) {
 				}
 			}
 
-			if ( strpos( $where, ' HAVING ') === false ) {
-				$where .= $wpdb->prepare( " HAVING distance <= %f ", $dist ); 
+			/* 
+			 * The HAVING clause is often used with the GROUP BY clause to filter groups based on a specified condition. 
+			 * If the GROUP BY clause is omitted, the HAVING clause behaves like the WHERE clause.
+			 */
+			if ( strpos( $clauses['where'], ' HAVING ') === false && strpos( $clauses['groupby'], ' HAVING ') === false ) {
+				$having = $wpdb->prepare( " HAVING distance <= %f ", $dist );
+				if ( trim( $clauses['groupby'] ) != '' ) {
+					$clauses['groupby'] .= $having;
+				} else {
+					$clauses['where'] .= $having;
+				}
 			}
 		}
 	}
 
-	return $where;
+	return $clauses;
 }
 
 function geodir_is_gd_main_query( $query ){
