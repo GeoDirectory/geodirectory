@@ -108,7 +108,7 @@ function enfold_action_calls()
 function gd_enfold_compat_add_top_section_back()
 {
 
-    if (is_page_geodir_home() || geodir_is_page('location')) {
+    if (is_page_geodir_home() || geodir_is_page('location') || geodir_is_page('home')) {
         add_action('geodir_wrapper_open', 'geodir_action_geodir_sidebar_home_top', 8);
     } elseif (geodir_is_page('listing')) {
         add_action('geodir_wrapper_open', 'geodir_action_geodir_sidebar_listings_top', 8);

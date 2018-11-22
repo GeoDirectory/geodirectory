@@ -146,7 +146,7 @@ function gd_breadcrumbs_plus_items($items)
     $bits = $pieces;
 
     $title = $items['last'];
-    if (is_page_geodir_home() || geodir_is_page('location')) {
+    if (is_page_geodir_home() || geodir_is_page('location') || geodir_is_page('home')) {
 
     } elseif (geodir_is_page('listing')) {
 
