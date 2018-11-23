@@ -1,5 +1,6 @@
 v1.3.36
 Event search not showing results for near location search - FIXED
+Some themes not showing GD Home Top widget section - FIXED
 
 v1.6.35
 Font Awesome Pseudo-Elements flag disabled by default - CHANGED

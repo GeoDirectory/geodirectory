@@ -92,7 +92,7 @@ function geodir_x_action_calls()
 function gd_X_compat_add_top_section_back()
 {
 
-    if (is_page_geodir_home() || geodir_is_page('location')) {
+    if (is_page_geodir_home() || geodir_is_page('location') || geodir_is_page('home')) {
         geodir_action_geodir_sidebar_home_top();
     } elseif (geodir_is_page('listing')) {
         geodir_action_geodir_sidebar_listings_top();

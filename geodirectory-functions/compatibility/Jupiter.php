@@ -52,7 +52,7 @@ function jupiter_action_calls()
 function gd_mk_theme_breadcrumbs()
 {
 
-    if (is_page_geodir_home() || geodir_is_page('location')) {
+    if (is_page_geodir_home() || geodir_is_page('location') || geodir_is_page('home')) {
         jupiter_geodir_breadcrumb();
     } elseif (geodir_is_page('listing')) {
         jupiter_geodir_breadcrumb();
@@ -79,7 +79,7 @@ function gd_mk_page_title()
     global $wp;
 
 
-    if (is_page_geodir_home() || geodir_is_page('location')) {
+    if (is_page_geodir_home() || geodir_is_page('location') || geodir_is_page('home')) {
         jupiter_geodir_page_title();
     } elseif (geodir_is_page('listing')) {
         ob_start(); // Start buffering;

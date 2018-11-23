@@ -53,7 +53,7 @@ add_action('genesis_after_header', 'gd_genesis_compat_left_sidebars', 5);
 function gd_genesis_compat_left_sidebars()
 {
 
-    if (is_page_geodir_home()) {
+    if (is_page_geodir_home() || geodir_is_page('home')) {
         remove_action('geodir_home_sidebar_left', 'geodir_action_home_sidebar_left', 10);
         add_action('geodir_wrapper_close', 'geodir_action_home_sidebar_left', 11);
     } elseif (geodir_is_page('location')) {
@@ -162,7 +162,7 @@ add_action('genesis_after_header', 'gd_genesis_compat_add_top_section_back', 11)
 function gd_genesis_compat_add_top_section_back()
 {
 
-    if (is_page_geodir_home() || geodir_is_page('location')) {
+    if (is_page_geodir_home() || geodir_is_page('location') || geodir_is_page('home')) {
         geodir_action_geodir_sidebar_home_top();
     } elseif (geodir_is_page('listing')) {
         geodir_action_geodir_sidebar_listings_top();
