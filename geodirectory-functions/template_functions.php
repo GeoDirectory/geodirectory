@@ -674,7 +674,7 @@ function geodir_font_awesome_rating_css() {
 	if (get_option('geodir_reviewrating_enable_font_awesome') == '1') {
 		$full_color = get_option('geodir_reviewrating_fa_full_rating_color', '#757575');
 		if ($full_color != '#757575') {
-			echo '<style type="text/css">.br-theme-fontawesome-stars .br-widget a.br-active:after,.br-theme-fontawesome-stars .br-widget a.br-selected:after,
+			echo '<style type="text/css">.br-theme-fontawesome-stars .br-widget a.br-active,.br-theme-fontawesome-stars .br-widget a.br-selected,
 			.gd-star-rating svg.svg-inline--fa {color:' . stripslashes($full_color) . '!important;}</style>';
 		}
 	}

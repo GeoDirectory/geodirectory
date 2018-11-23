@@ -1,6 +1,8 @@
-v1.3.36
+v1.6.36
 Event search not showing results for near location search - FIXED
 Some themes not showing GD Home Top widget section - FIXED
+Font Awesome ratings input not showing correctly if FA not loaded with Pseudo-Elements - FIXED
+Get directions text not changing when using default value - FIXED
 
 v1.6.35
 Font Awesome Pseudo-Elements flag disabled by default - CHANGED

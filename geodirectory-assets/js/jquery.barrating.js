@@ -55,7 +55,7 @@
                             href: "#",
                             "data-rating-value": r,
                             "data-rating-text": a,
-                            html: t.options.showValues ? a : ""
+                            html: '<i class="fas fa-star"></i>'//t.options.showValues ? a : ""
                         }), n.append(o))
                     }), t.options.showSelectedRating && n.append(e("<div />", {
                         text: "",

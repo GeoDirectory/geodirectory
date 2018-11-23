@@ -450,7 +450,7 @@ function geodir_predefined_custom_field_output_get_directions($html,$location,$c
             $field_icon    = '';
         }
 
-        $link_text = isset( $post->{$cf['default_value']} ) ? $post->{$cf['default_value']} : __( 'Get Directions', 'geodirectory' );
+        $link_text = !empty( $cf['default_value']) ? $cf['default_value'] : __( 'Get Directions', 'geodirectory' );
 
         $html = '<div class="geodir_more_info ' . $cf['css_class'] . ' ' . $cf['htmlvar_name'] . '" style="clear:both;">';
 
