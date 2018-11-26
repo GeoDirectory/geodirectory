@@ -1799,16 +1799,16 @@ div#jquery-lightbox {
 .br-theme-fontawesome-stars .br-widget a:active {
     outline: 0;
 }
-.br-theme-fontawesome-stars .br-widget a:after {
+.br-theme-fontawesome-stars .br-widget a{
     content: '\f005';
     color: #dddddd
 }
 
-.br-theme-fontawesome-stars .br-widget a.br-active:after {
+.br-theme-fontawesome-stars .br-widget a.br-active {
     color: #757575
 }
 
-.br-theme-fontawesome-stars .br-widget a.br-selected:after {
+.br-theme-fontawesome-stars .br-widget a.br-selected {
     color: #757575
 }
 
