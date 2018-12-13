@@ -181,8 +181,10 @@
     margin: 5px 0px;
 }
 
-.geodir-bubble-meta-side svg{
-    margin-right: 3px;
+.geodir-bubble-meta-side {
+    i, svg {
+        margin-right: 3px;
+    }
 }
 
 .geodir-bubble-meta-side .geodir_more_info.post_address span[itemprop="addressLocality"],
@@ -339,8 +341,10 @@
     visibility: hidden;
 }
 
-.geodir-bubble-meta-bottom .geodir-addtofav a svg {
+.geodir-bubble-meta-bottom .geodir-addtofav a {
+    i,svg {
     visibility: visible;
+    }
 }
 
 /* MAP FULL SCREEN CSS ########################################################################## */
@@ -354,7 +358,7 @@
     color: #FFF;
     text-shadow: 1px 1px 4px rgba(38, 38, 38, 1);
     transition: font-size 0.5s;
-    svg{
+    i,svg{
         filter: drop-shadow(0 0 1px #969696);
     }
 }
@@ -883,9 +887,12 @@ div.geodir_map_container.geodir-map-iphone .map_background .triggermap {
 .gd-osm-results .ui-menu-item:hover {
     background-color: #fafafa !important;
 }
-.gd-osm-results .ui-menu-item svg {
-    margin-right: 5px;
+.gd-osm-results .ui-menu-item {
+    i, svg {
+        margin-right: 5px;
+    }
 }
+.gd-osm-results .ui-menu-item:hover i,
 .gd-osm-results .ui-menu-item:hover svg {
     color: #3887be!important;
 }

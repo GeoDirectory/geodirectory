@@ -505,6 +505,7 @@ body.term-php .form-field textarea {
 	color: #444;
 	width: 100%
 }
+.gd-progress-label i,
 .gd-progress-label svg {
 	margin-left: 7px;
 	font-size: 14px;
@@ -603,6 +604,7 @@ div.update-nag{width: 95%;}
 .gd-locate-me .gd-locate-me-btn:hover {
     color: #333!important;
 }
+.gd-locate-me .gd-locate-me-btn i,
 .gd-locate-me .gd-locate-me-btn svg {
     font-size: 150%!important;
 }

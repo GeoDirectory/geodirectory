@@ -1,3 +1,6 @@
+v1.6.37
+WP Font Awesome Settings added to support CSS and JS versions - ADDED
+
 v1.6.36
 Event search not showing results for near location search - FIXED
 Some themes not showing GD Home Top widget section - FIXED
