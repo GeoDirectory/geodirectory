@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: GeoDirectory 1.6.36\n"
+"Project-Id-Version: GeoDirectory 1.6.37\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 16:19+0000\n"
-"PO-Revision-Date: 2018-11-23 16:19+0000\n"
+"POT-Creation-Date: 2018-12-14 10:57+0000\n"
+"PO-Revision-Date: 2018-12-14 10:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: AyeCode Ltd <contact@ayecode.io>\n"
 "Language: en_US\n"
@@ -4165,6 +4165,73 @@ msgstr ""
 
 #: geodirectory-admin/option-pages/title_meta_settings_array.php:385
 msgid "Enter the meta description for the listing success page."
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:277
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:294
+msgid "Type"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:298
+msgid "CSS (default)"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:305
+msgid "Version"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:309
+#, php-format
+msgid "Latest - %s (default)"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:336
+msgid "Enqueue"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:340
+msgid "Frontend + Backend (default)"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:342
+msgid "Frontend"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:344
+msgid "Backend"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:351
+msgid "Enable v4 shims compatibility"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:356
+msgid ""
+"This enables v4 classes to work with v5, sort of like a band-aid until "
+"everyone has updated everything to v5."
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:362
+msgid "Enable JS pseudo elements (not recommended)"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:369
+msgid ""
+"Used only with the JS version, this will make pseudo-elements work but can "
+"be CPU intensive on some sites."
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:374
+msgid "Dequeue"
+msgstr ""
+
+#: geodirectory-admin/wp-font-awesome-settings.php:380
+msgid ""
+"This will try to dequeue any other Font Awesome versions loaded by other "
+"sources if they are added with `font-awesome` or `fontawesome` in the name."
 msgstr ""
 
 #: geodirectory-functions/ajax_handler_functions.php:396
