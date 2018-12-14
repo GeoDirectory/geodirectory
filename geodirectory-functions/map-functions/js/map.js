@@ -365,16 +365,16 @@ function geodir_show_sub_cat_collapse_button() {
             var sub_cat_list = jQuery(this).find('ul.sub_list');
             if (!(typeof sub_cat_list.attr('class') === 'undefined')) {
                 if (sub_cat_list.is(':visible')) {
-                    jQuery(this).find('svg').removeClass('fa-long-arrow-alt-down');
-                    jQuery(this).find('svg').addClass('fa-long-arrow-alt-up');
+                    jQuery(this).find('i,svg').removeClass('fa-long-arrow-alt-down');
+                    jQuery(this).find('i,svg').addClass('fa-long-arrow-alt-up');
                 } else {
-                    jQuery(this).find('svg').removeClass('fa-long-arrow-alt-up');
-                    jQuery(this).find('svg').addClass('fa-long-arrow-alt-down');
+                    jQuery(this).find('i,svg').removeClass('fa-long-arrow-alt-up');
+                    jQuery(this).find('i,svg').addClass('fa-long-arrow-alt-down');
                 }
-                jQuery(this).find('svg').show();
+                jQuery(this).find('i,svg').show();
                 /**/
             } else {
-                jQuery(this).find('svg').hide();
+                jQuery(this).find('i,svg').hide();
                 /**/
             }
         });
@@ -390,11 +390,11 @@ function geodir_activate_collapse_pan() {
             .toggle(200,
                 function() {
                     if (jQuery(this).is(':visible')) {
-                        jQuery(this).parent('li').find('svg').removeClass('fa-long-arrow-alt-down');
-                        jQuery(this).parent('li').find('svg').addClass('fa-long-arrow-alt-up');
+                        jQuery(this).parent('li').find('i,svg').removeClass('fa-long-arrow-alt-down');
+                        jQuery(this).parent('li').find('i,svg').addClass('fa-long-arrow-alt-up');
                     } else {
-                        jQuery(this).parent('li').find('svg').removeClass('fa-long-arrow-alt-up');
-                        jQuery(this).parent('li').find('svg').addClass('fa-long-arrow-alt-down');
+                        jQuery(this).parent('li').find('i,svg').removeClass('fa-long-arrow-alt-up');
+                        jQuery(this).parent('li').find('i,svg').addClass('fa-long-arrow-alt-down');
                     }
                 });
     });

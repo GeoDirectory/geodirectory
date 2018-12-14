@@ -175,6 +175,12 @@ include_once('geodirectory_template_tags.php');
  */
 include_once('geodirectory_template_actions.php');
 
+/**
+ * Font Awesome Settings.
+ *
+ * @since 1.6.36
+ */
+require_once('geodirectory-admin/wp-font-awesome-settings.php');
 
 /*
  * Admin init + activation hooks
