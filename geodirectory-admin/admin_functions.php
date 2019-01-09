@@ -365,7 +365,6 @@ function geodir_before_admin_panel()
 
     if (!function_exists('curl_init')) {
         echo '<div class="error"><p><strong>' . __('CURL is not installed on this server, this can cause problems, please ask your server admin to install it.', 'geodirectory') . '</strong></p></div>';
-
     }
 
 
