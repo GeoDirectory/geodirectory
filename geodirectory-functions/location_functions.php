@@ -296,21 +296,18 @@ function geodir_get_address_by_lat_lan($lat, $lng)
 {
     $url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' . trim($lat) . ',' . trim($lng);// . "&key=" . geodir_get_map_api_key(); // if we add a key here it will not work if limited to a domain as this is done via curl.
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    $data = json_decode($response);
-    $status = $data->status;
-    if ($status == "OK") {
-        return $data->results[0]->address_components;
-    } else
+    $response = wp_remote_get($url);
+    if ( is_wp_error( $response ) ) {
         return false;
+    }
+
+    $result = json_decode( wp_remote_retrieve_body( $response ) );
+
+    if(isset($result->results[0]->address_components)){
+        return $result->results[0]->address_components;
+    }else{
+        return false;
+    }
 }
 
 /**
@@ -436,29 +433,26 @@ function geodir_get_location_link($which_location = 'current') {
 function geodir_get_osm_address_by_lat_lan($lat, $lng) {
     $url = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' . trim($lat) . '&lon=' . trim($lng) . '&zoom=16&addressdetails=1&email=' . get_option('admin_email');
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    $data = json_decode($response);
-    
-    if (!empty($data) && !empty($data->address)) {
+    $response = wp_remote_get($url);
+    if ( is_wp_error( $response ) ) {
+        return false;
+    }
+
+    $result = json_decode( wp_remote_retrieve_body( $response ) );
+
+    if(!empty($result->address)){
         $address_fields = array('public_building', 'house', 'house_number', 'bakery', 'footway', 'street', 'road', 'village', 'attraction', 'pedestrian', 'neighbourhood', 'suburb');
-        $formatted_address = (array)$data->address;
-        
-        foreach ( $data->address as $key => $value ) {
+        $formatted_address = (array)$result->address;
+
+        foreach ( $result->address as $key => $value ) {
             if (!in_array($key, $address_fields)) {
                 unset($formatted_address[$key]);
             }
         }
-        $data->formatted_address = !empty($formatted_address) ? implode(', ', $formatted_address) : '';
-        
-        return $data;
-    } else {
+        $result->formatted_address = !empty($formatted_address) ? implode(', ', $formatted_address) : '';
+
+        return $result;
+    }else{
         return false;
     }
 }
