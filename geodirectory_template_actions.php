@@ -3599,3 +3599,32 @@ function geodir_previous_next_post_where( $where, $in_same_term, $excluded_terms
 }
 add_filter( 'get_previous_post_where', 'geodir_previous_next_post_where', 10, 5 );
 add_filter( 'get_next_post_where', 'geodir_previous_next_post_where', 10, 5 );
+
+/**
+ * Filter whether a post is able to be edited in the block editor.
+ * 
+ * @since 1.6.38
+ *
+ * @param $use_block_editor  Whether the post type can be edited or not.
+ * @param $post_type The post type being checked.
+ * @return bool True if can be edited else False.
+ */
+function geodir_block_editor( $use_block_editor, $post_type ) {
+	if ( $use_block_editor ) {
+		$gd_post_types = geodir_get_posttypes();
+
+		if ( ! empty( $gd_post_types ) && in_array( $post_type, $gd_post_types ) ) {
+			$use_block_editor = false;
+		}
+	}
+
+	return $use_block_editor;
+}
+// Prevent Gutenberg block editing GD CPTs, we only allow editing of the template pages.
+if ( ! empty( $GLOBALS['wp_version'] ) && version_compare( $GLOBALS['wp_version'], '5.0-beta', '>' ) ) {
+	// WP > 5 beta
+	add_filter( 'use_block_editor_for_post_type', 'geodir_block_editor', 101, 2 );
+} else {
+	// WP < 5 beta
+	add_filter( 'gutenberg_can_edit_post_type', 'geodir_block_editor', 101, 2 );
+}

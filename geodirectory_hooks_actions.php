@@ -181,7 +181,7 @@ add_action('geodir_update_postrating', 'geodir_term_review_count_force_update_si
 add_action('transition_post_status', 'geodir_term_review_count_force_update', 100,3);
 //add_action('created_term', 'geodir_term_review_count_force_update', 100);
 add_action('edited_term', 'geodir_term_review_count_force_update', 100);
-add_action('delete_term', 'geodir_term_review_count_force_update', 100);
+//add_action('delete_term', 'geodir_term_review_count_force_update', 100); /*causes memory timeout on delete bulk tags*/
 
 ////////////////////////
 /* WP CAT META UPDATE ACTIONS */

@@ -1,3 +1,7 @@
+v1.6.38
+Bulk delete tags results in 500 Internal Server Error - FIXED
+Backend edit GD listing pages shows blank page - FIXED
+
 v1.6.37
 WP Font Awesome Settings added to support CSS and JS versions - ADDED
 
