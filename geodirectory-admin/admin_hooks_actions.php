@@ -1432,8 +1432,22 @@ function geodir_diagnose_ratings()
     $is_error_during_diagnose = false;
     $output_str = '';
 
+	$gd_post_types = geodir_get_posttypes();
+
+	$skip_post_types = array();
+	if ( ! empty( $gd_post_types ) ) {
+		foreach ( $gd_post_types as $post_type ) {
+			$location_allowed = $post_type && function_exists( 'geodir_cpt_no_location' ) && geodir_cpt_no_location( $post_type ) ? false : true;
+			if ( $location_allowed ) {
+				continue;
+			}
+			$skip_post_types[] = $post_type;
+		}
+	}
+	$skip_post_types_where = ! empty( $skip_post_types ) ? " AND post_type NOT IN( '" . implode( "','", $skip_post_types ) . "' )" : '';
+
     // check review locations
-    if ($wpdb->get_results("SELECT * FROM " . GEODIR_REVIEW_TABLE . " WHERE post_city='' OR post_city IS NULL OR post_latitude='' OR post_latitude IS NULL")) {
+    if ($wpdb->get_var("SELECT COUNT(*) FROM " . GEODIR_REVIEW_TABLE . " WHERE ( post_city='' OR post_city IS NULL OR post_latitude='' OR post_latitude IS NULL ) {$skip_post_types_where}")) {
         $output_str .= "<li>" . __('Review locations missing or broken', 'geodirectory') . "</li>";
         $is_error_during_diagnose = true;
 
