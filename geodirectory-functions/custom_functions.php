@@ -2306,13 +2306,11 @@ function geodir_search_form_submit_button() {
 		$fa_class = 'fa';
 	}
 
-
-	if ( $new_style ) {
+	if ( ! empty( $new_style ) ) {
 		?>
-		<button class="geodir_submit_search "><?php _e( $default_search_button_label ,'geodirectory'); ?></button>
+		<button class="geodir_submit_search"><?php _e( $default_search_button_label ,'geodirectory'); ?></button>
 	<?php }else{?>
-		<input type="button" value="<?php esc_attr_e( $default_search_button_label ); ?>"
-		       class="geodir_submit_search "/>
+		<input type="button" value="<?php esc_attr_e( $default_search_button_label ); ?>" class="geodir_submit_search"/>
 	<?php }
 }
 
