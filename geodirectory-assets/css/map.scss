@@ -108,9 +108,8 @@
 
 .main_map_wrapper .gm-style-iw-a .geodir-bubble-meta-bottom,
 .main_map_wrapper .gm-style-iw-a .geodir-bubble-meta-fade {
-	bottom: -1px;
 	padding: 0;
-	width: 100%;
+	width: inherit;
 }
 
 .main_map_wrapper .gm-style-iw-a .gd-bubble {
@@ -122,7 +121,7 @@
 }
 
 .main_map_wrapper .gm-style-iw-a .geodir-bubble_desc h4 {
-	width: 100%;
+	width: inherit;
 }
 
 .main_map_wrapper .gm-style-iw-a .geodir-bubble-meta-side .geodir_more_info {

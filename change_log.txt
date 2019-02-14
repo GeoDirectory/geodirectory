@@ -1,10 +1,10 @@
 v1.6.38
 Bulk delete tags results in 500 Internal Server Error - FIXED
-Backend edit GD listing pages shows blank page - FIXED
+Backend edit GD listing pages can show blank page - FIXED
 CURL call replaced with wp_remote_get() - CHANGED
 GD Tool > Ratings check always shows "Review locations missing or broken" - FIXED
-Sometime search button shows font-awesome icon html - FIXED
-Google Map bubble not working - FIXED
+Sometimes search button shows font-awesome icon html - FIXED
+Google Map bubble not working after Google round infoWindow update - FIXED
 
 v1.6.37
 WP Font Awesome Settings added to support CSS and JS versions - ADDED
