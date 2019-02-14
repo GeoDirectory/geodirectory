@@ -95,6 +95,40 @@
     top: 2px !important;
 }
 
+.main_map_wrapper .gm-style-iw.gm-style-iw-c {
+	max-width: 250px !important;
+	max-height: 250px !important;
+}
+
+.main_map_wrapper .gm-style-iw-a .gm-style-iw-d {
+	position: relative;
+	max-height: inherit!important;
+	max-width: inherit!important;
+}
+
+.main_map_wrapper .gm-style-iw-a .geodir-bubble-meta-bottom,
+.main_map_wrapper .gm-style-iw-a .geodir-bubble-meta-fade {
+	bottom: -1px;
+	padding: 0;
+	width: 100%;
+}
+
+.main_map_wrapper .gm-style-iw-a .gd-bubble {
+	width: 100%;
+}
+
+.main_map_wrapper .gm-style-iw-a .geodir-bubble_desc {
+	width: 227px !important;
+}
+
+.main_map_wrapper .gm-style-iw-a .geodir-bubble_desc h4 {
+	width: 100%;
+}
+
+.main_map_wrapper .gm-style-iw-a .geodir-bubble-meta-side .geodir_more_info {
+    padding: 1.5px 0;
+}
+
 .gd-bubble {
     max-width: 250px;
     width: 190px;

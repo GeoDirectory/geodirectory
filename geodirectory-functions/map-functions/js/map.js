@@ -643,15 +643,32 @@ function geodir_fix_marker_pos(map_canvas_var) {
     } else {
         var iwOuter = jQuery('#' + map_canvas_var + ' .gm-style-iw');
     }
-    
-    var iwBackground = iwOuter.parent();
-    org_height = iwBackground.height();
-    if (window.gdMaps == 'osm') {
+
+	org_height = iwOuter.outerHeight(true);
+	if (window.gdMaps == 'osm') {
+		var iwBackground = iwOuter.parent();
+		org_height = iwBackground.height();
         var mainH = jQuery('#' + map_canvas_var).height();
         org_height = mainH < org_height ? mainH : org_height;
         org_height -= (org_height * 0.10);
-    }
-    jQuery('#' + map_canvas_var + ' .geodir-bubble_desc').attr('style', 'height:' + org_height + 'px !important');
+    } else if (window.gdMaps == 'google') {
+		var hImg = jQuery('#' + map_canvas_var + ' .geodir-bubble_image').outerHeight(true);
+		var hMeta = jQuery('#' + map_canvas_var + ' .geodir-bubble-meta-side').outerHeight(true);
+		if (hMeta > 96) {
+			hMeta = 96;
+		}
+		var hBottom = jQuery('#' + map_canvas_var + ' .geodir-bubble-meta-bottom').outerHeight(true);
+		org_height = ( hImg + hMeta + hBottom ) - 24; // padding
+		if ( org_height < 120 ) {
+			org_height = 120; // min height
+		}
+		if ( org_height > 227 ) {
+			org_height = 227; // max height
+		}
+	}
+	if (org_height > 0) {
+		jQuery('#' + map_canvas_var + ' .geodir-bubble_desc').attr('style', 'height:' + org_height + 'px !important');
+	}
 }
 
 function openMarker(map_canvas, id) {
