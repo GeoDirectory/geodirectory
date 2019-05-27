@@ -18,6 +18,7 @@
  * Domain Path: /geodirectory-languages
  * Requires at least: 3.1
  * Tested up to: 5.1
+ * Update URL: https://github.com/GeoDirectory/geodirectory/
  */
 
 /**
